@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৫: প্রসেসিং সিডিউলিং</title>
+    <link rel="stylesheet" href="os_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k55gMp/InvxBM1Mty9rgRDIJNu38mMhftBPqzhAXSDdy92HjL4IFNfey" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1MZu6ADomyXk8EogbLDBsPU5rkXF/dtZZxL1Pceg6x" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouEs/BHtTcWgwPkMAVEABrHI+WGBmvygAodXElARTYHD" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৫: প্রসেসিং সিডিউলিং</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">
+            </button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। সিডিউলিং কাকে বলে?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> সিডিউলিং হলো অপারেটিং সিস্টেমের একটি প্রক্রিয়া যার মাধ্যমে সিস্টেমের রিসোর্স (বিশেষ করে সিপিইউ) কোন প্রসেস বা টাস্ক কখন এবং কত সময়ের জন্য ব্যবহার করবে তা নির্ধারণ করা হয়। প্রসেস সিডিউলিংয়ের ক্ষেত্রে, এটি রেডি কিউ থেকে পরবর্তী কোন প্রসেসটি সিপিইউতে চলবে তা নির্বাচন করার প্রক্রিয়া।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> (এটা ৪র্থ অধ্যায়েও ছিল) সিডিউলিং মানে হলো কাজ ভাগ করে দেওয়া বা রুটিন তৈরি করা। কম্পিউটারের ক্ষেত্রে, কোন প্রোগ্রামটা এখন সিপিইউ ব্যবহার করবে, কোনটা পরে করবে – এই সিদ্ধান্ত নেওয়ার কাজটাই হলো সিডিউলিং।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> ক্লাসের রুটিন তৈরি করাটাই সিডিউলিং। কোন টিচার কখন ক্লাস নেবেন, সেটা ঠিক করা হয়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। SJF Algorithm-এর বৈশিষ্ট্য লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> SJF (Shortest Job First) অ্যালগরিদমের প্রধান বৈশিষ্ট্য হলো এটি রেডি কিউতে থাকা প্রসেসগুলোর মধ্যে যে প্রসেসটির পরবর্তী সিপিইউ বার্স্ট বা কাজ সম্পাদনের আনুমানিক সময় সবচেয়ে কম, সেটিকে প্রথমে সিপিইউ বরাদ্দ করে। এটি প্রিemptive বা নন-প্রিemptive হতে পারে। এটি গড় ওয়েটিং টাইম কমানোর ক্ষেত্রে অপটিমাল (নন-প্রিemptive)। তবে, বড় প্রসেসগুলো স্টারভেশন বা দীর্ঘ অপেক্ষার শিকার হতে পারে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> SJF মানে হলো "যার কাজ ছোট, সে আগে"। এই নিয়মে, যে প্রোগ্রামটা চলতে সবচেয়ে কম সময় নেবে বলে মনে হয়, তাকেই আগে সিপিইউ দেওয়া হয়। এতে গড় অপেক্ষার সময় কমে। কিন্তু সমস্যা হলো, যদি কারো কাজ খুব বড় হয়, সে হয়তো সুযোগই পাবে না (স্টারভেশন)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো ডাক্তার রোগী দেখছেন। SJF নিয়ম হলো, যে রোগীর সমস্যা ছোট বা দেখতে কম সময় লাগবে, তাকে ডাক্তার আগে দেখবেন।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। CPU বাউন্ড প্রোগ্রাম ও I/O বাউন্ড প্রোগ্রাম কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <ul>
+                     <li><strong>CPU বাউন্ড প্রোগ্রাম (CPU-bound Program):</strong> যে প্রোগ্রাম বা প্রসেস তার এক্সিকিউশনের বেশিরভাগ সময় সিপিইউতে গণনা বা কম্পিউটেশন করে এবং তুলনামূলকভাবে কম সময় ইনপুট/আউটপুট (I/O) অপারেশনের জন্য ব্যয় করে, তাকে সিপিইউ বাউন্ড প্রোগ্রাম বলে।</li>
+                     <li><strong>I/O বাউন্ড প্রোগ্রাম (I/O-bound Program):</strong> যে প্রোগ্রাম বা প্রসেস তার এক্সিকিউশনের বেশিরভাগ সময় ইনপুট/আউটপুট অপারেশনের জন্য অপেক্ষা করে (যেমন: ডিস্ক থেকে পড়া, নেটওয়ার্ক থেকে ডেটা নেওয়া) এবং তুলনামূলকভাবে কম সময় সিপিইউতে কম্পিউটেশন করে, তাকে আই/ও বাউন্ড প্রোগ্রাম বলে।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>CPU বাউন্ড: যে প্রোগ্রামগুলো বেশিরভাগ সময় অঙ্ক কষা বা হিসাব নিকাশের (CPU ব্যবহার) কাজ করে, ইনপুট/আউটপুটের কাজ কম করে। যেমন: ভিডিও এডিটিং সফটওয়্যার।</li>
+                     <li>I/O বাউন্ড: যে প্রোগ্রামগুলো বেশিরভাগ সময় ডেটা পড়া বা লেখার (ডিস্ক, নেটওয়ার্ক) জন্য অপেক্ষা করে, CPU কম ব্যবহার করে। যেমন: ফাইল কপি করার প্রোগ্রাম বা ওয়ার্ড প্রসেসর (যখন তুমি টাইপ করছো)।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>CPU বাউন্ড: একজন ছাত্র যে ক্লাসে বেশিরভাগ সময় অঙ্ক করে।</li>
+                     <li>I/O বাউন্ড: একজন ছাত্র যে ক্লাসে বেশিরভাগ সময় বই থেকে নোট টোকে।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। Throughput কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> (এটি ৩য় অধ্যায়েও ছিল) থ্রুপুট (Throughput) হলো একটি নির্দিষ্ট সময়ের এককে কোনো সিস্টেম দ্বারা সফলভাবে সম্পন্ন করা মোট কাজ বা প্রসেসের সংখ্যা। এটি সিস্টেমের কার্যকারিতা বা দক্ষতা পরিমাপের একটি মেট্রিক।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> থ্রুপুট মানে হলো একটা সিস্টেম প্রতি একক সময়ে (যেমন প্রতি সেকেন্ড বা মিনিটে) কয়টা কাজ শেষ করতে পারে। থ্রুপুট যত বেশি, সিস্টেম তত ফাস্ট বা কাজের।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা ফটোকপি মেশিন যদি এক মিনিটে ২০টা কপি করতে পারে, তার থ্রুপুট হলো ২০ কপি/মিনিট।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৫। কয়েকটি Scheduling algorithm এর নাম লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> (এটি ৪র্থ অধ্যায়েও ছিল) কয়েকটি প্রচলিত প্রসেস সিডিউলিং অ্যালগরিদম হলো: First-Come, First-Served (FCFS), Shortest Job First (SJF), Priority Scheduling, Round Robin (RR), Multilevel Queue Scheduling, Multilevel Feedback Queue Scheduling।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> প্রসেস চালানোর வரிசை ঠিক করার কয়েকটা নিয়ম: FCFS (যে আগে আসে সে আগে), SJF (যার কাজ ছোট সে আগে), Priority (যার গুরুত্ব বেশি সে আগে), Round Robin (সবাই অল্প অল্প করে সুযোগ পাবে)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> লাইনে দাঁড়ানো বা কাজ পাওয়ার নিয়ম: আগে আসলে আগে পাবেন (FCFS), ছোট কাজ আগে হবে (SJF), VIP আগে সুযোগ পাবে (Priority), সবাই একটু একটু করে সুযোগ পাবে (Round Robin)।</p>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্নঃ</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। ডিসপ্যাচিং বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> ডিসপ্যাচিং (Dispatching) হলো অপারেটিং সিস্টেমের একটি প্রক্রিয়া যা শর্ট-টার্ম সিডিউলার কর্তৃক নির্বাচিত প্রসেসটিকে সিপিইউ-এর নিয়ন্ত্রণ হস্তান্তর করে। ডিসপ্যাচার নামক মডিউলটি এই কাজটি করে। এর মধ্যে অন্তর্ভুক্ত থাকে: বর্তমান রানিং প্রসেসের কনটেক্সট সুইচ করা (অর্থাৎ, এর অবস্থা সংরক্ষণ করা), নতুন নির্বাচিত প্রসেসের সংরক্ষিত অবস্থা পুনরুদ্ধার করা, প্রসেসটিকে ইউজার মোডে সুইচ করা, এবং প্রসেসটি যেখান থেকে থামা শুরু করেছিল বা শুরু থেকে চালানোর জন্য প্রোগ্রামের সঠিক লোকেশনে জাম্প করা। ডিসপ্যাচিং প্রক্রিয়াটি খুব দ্রুত সম্পন্ন হতে হয় কারণ এটি প্রতিবার কনটেক্সট সুইচের সময় ঘটে। যে সময়টুকু ডিসপ্যাচিংয়ের জন্য ব্যয় হয় তাকে ডিসপ্যাচ ল্যাটেন্সি (Dispatch Latency) বলে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সিডিউলার যখন ঠিক করে ফেলে যে এখন কোন প্রসেসটা চলবে, তখন ডিসপ্যাচার নামের একজন সেই প্রসেসটাকে ডেকে এনে CPU-র চেয়ারে বসিয়ে দেয়। এই বসিয়ে দেওয়ার আগে সে আগের প্রসেসটার কাজ কোথায় সেভ করে রাখে, আর নতুনটার সেভ করা অবস্থা লোড করে নেয়। এই পুরো প্রক্রিয়াটাকেই ডিসপ্যাচিং বলে। এটা খুব তাড়াতাড়ি করতে হয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> রিলে দৌড়ে একজন দৌড়ানো শেষ করে যখন আরেকজনের হাতে ব্যাটনটা তুলে দেয়, সেই তুলে দেওয়ার কাজটাই ডিসপ্যাচিংয়ের মতো। আগের জনের দৌড় শেষ (কনটেক্সট সেভ), নতুন জন ব্যাটন নিয়ে দৌড় শুরু করে (কনটেক্সট লোড)।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। CPU Scheduling সংক্ষেপে বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> সিপিইউ সিডিউলিং হলো মাল্টিপ্রোগ্রামিং অপারেটিং সিস্টেমের একটি মৌলিক কাজ যার মাধ্যমে রেডি কিউতে থাকা প্রসেসগুলোর মধ্য থেকে একটি প্রসেসকে সিপিইউতে এক্সিকিউশনের জন্য নির্বাচন ও বরাদ্দ করা হয়। এটি শর্ট-টার্ম সিডিউলার দ্বারা সম্পাদিত হয়। এর মূল লক্ষ্য হলো সিপিইউর সর্বোচ্চ ব্যবহার নিশ্চিত করা, সিস্টেমের থ্রুপুট বাড়ানো, প্রসেসগুলোর অপেক্ষার সময় (Waiting Time) ও রেসপন্স টাইম (Response Time) কমানো এবং একটি ন্যায়সঙ্গত (Fair) উপায়ে প্রসেসগুলোর মধ্যে সিপিইউ সময় বণ্টন করা। বিভিন্ন সিডিউলিং অ্যালগরিদম এই লক্ষ্যগুলো অর্জনের জন্য ব্যবহৃত হয়।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সিপিইউ সিডিউলিং মানে হলো, অনেকগুলো প্রোগ্রাম যখন একসাথে চলার জন্য তৈরি থাকে, তখন তাদের মধ্যে কাকে সিপিইউ ব্যবহার করতে দেওয়া হবে, সেই সিদ্ধান্ত নেওয়া। এটা OS এর একটা খুব জরুরি কাজ। উদ্দেশ্য হলো সিপিইউকে möglichst ব্যস্ত রাখা আর সব প্রোগ্রাম যেন ঠিকঠাক চলতে পারে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> ক্লাসের একমাত্র বোর্ডটা কে আগে ব্যবহার করবে, সেটা টিচার যেভাবে ঠিক করে দেন, সেটাই সিপিইউ সিডিউলিংয়ের মতো।</p>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন:</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">১। Scheduling algorithm -এর বিভিন্ন Criteria-গুলো লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p>বিভিন্ন সিপিইউ সিডিউলিং অ্যালগরিদম তুলনা এবং মূল্যায়ন করার জন্য কয়েকটি গুরুত্বপূর্ণ ক্রাইটেরিয়া বা মানদণ্ড ব্যবহার করা হয়। এগুলো হলো:</p>
+                <ol>
+                    <li><strong>সিপিইউ ইউটিলাইজেশন (CPU Utilization):</strong> সিপিইউ কত শতাংশ সময় ধরে কার্যকরভাবে কোনো প্রসেস এক্সিকিউট করছে তার পরিমাপ। লক্ষ্য থাকে সিপিইউকে möglichst ব্যস্ত রাখা।</li>
+                    <li><strong>থ্রুপুট (Throughput):</strong> প্রতি একক সময়ে সম্পন্ন হওয়া মোট প্রসেসের সংখ্যা। লক্ষ্য থাকে থ্রুপুট সর্বোচ্চ করা।</li>
+                    <li><strong>টার্নঅ্যারাউন্ড টাইম (Turnaround Time):</strong> একটি প্রসেসের সিস্টেমে জমা দেওয়া থেকে শুরু করে তার সম্পূর্ণ এক্সিকিউশন শেষ হওয়া পর্যন্ত মোট সময়। লক্ষ্য থাকে এই সময় কমানো।</li>
+                    <li><strong>ওয়েটিং টাইম (Waiting Time):</strong> একটি প্রসেস রেডি কিউতে মোট কত সময় ধরে সিপিইউ পাওয়ার জন্য অপেক্ষা করেছে তার সমষ্টি। লক্ষ্য থাকে এটি কমানো।</li>
+                    <li><strong>রেসপন্স টাইম (Response Time):</strong> একটি ইন্টারঅ্যাকটিভ সিস্টেমে, রিকোয়েস্ট জমা দেওয়া থেকে শুরু করে প্রথম রেসপন্স পাওয়া পর্যন্ত সময়। লক্ষ্য থাকে রেসপন্স টাইম möglichst দ্রুত করা।</li>
+                </ol>
+                <p>সিস্টেমের ধরনের উপর নির্ভর করে কোন ক্রাইটেরিয়া বেশি গুরুত্বপূর্ণ তা নির্ধারণ করা হয়।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কোন সিডিউলিং অ্যালগরিদমটা ভালো, সেটা বোঝার জন্য কয়েকটা জিনিস দেখা হয়:</p>
+                <ul>
+                    <li><strong>CPU Utilization:</strong> সিপিইউটা কতক্ষণ কাজ করছে, অলস বসে থাকছে না তো? (বেশি থাকা ভালো)</li>
+                    <li><strong>Throughput:</strong> প্রতি ঘন্টায় কয়টা কাজ শেষ করতে পারছে? (বেশি হওয়া ভালো)</li>
+                    <li><strong>Turnaround Time:</strong> একটা কাজ জমা দেওয়া থেকে শেষ হওয়া পর্যন্ত মোট কত সময় লাগছে? (কম লাগা ভালো)</li>
+                    <li><strong>Waiting Time:</strong> কাজটাকে লাইনে (রেডি কিউতে) কতক্ষণ দাঁড়িয়ে থাকতে হচ্ছে? (কম থাকা ভালো)</li>
+                    <li><strong>Response Time:</strong> কমান্ড দেওয়ার পর প্রথম জবাব পেতে কতক্ষণ লাগছে? (কম লাগা ভালো)</li>
+                </ul>
+                 <p>এগুলো দেখেই বোঝা যায় কোন অ্যালগরিদম কেমন পারফর্ম করছে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা রেস্টুরেন্ট কতটা ভালো, সেটা বোঝার উপায়:</p>
+                 <ul>
+                     <li>বাবুর্চি কতক্ষণ রান্না করছে? (CPU Utilization)</li>
+                     <li>ঘন্টায় কয়টা অর্ডার ডেলিভারি হচ্ছে? (Throughput)</li>
+                     <li>অর্ডার দেওয়া থেকে খাবার আসা পর্যন্ত মোট কত সময় লাগছে? (Turnaround Time)</li>
+                     <li>খাবার বানানোর জন্য ওয়েটারকে কতক্ষণ বাবুর্চির জন্য অপেক্ষা করতে হচ্ছে? (Waiting Time)</li>
+                     <li>অর্ডার দেওয়ার কতক্ষণ পর প্রথম খাবারটা টেবিলে আসছে? (Response Time)</li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">২। FCFS Algorithm উদাহরণসহ বর্ণনা করা।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p><strong>FCFS (First-Come, First-Served) অ্যালগরিদম:</strong><br>
+                 এটি সবচেয়ে সরল সিপিইউ সিডিউলিং অ্যালগরিদম। এই পদ্ধতিতে, যে প্রসেসটি রেডি কিউতে প্রথমে আসে, সেটিকেই প্রথমে সিপিইউ বরাদ্দ করা হয়। এটি একটি নন-প্রিemptive অ্যালগরিদম, অর্থাৎ একবার কোনো প্রসেস সিপিইউ পেলে সেটি তার সিপিইউ বার্স্ট শেষ না করা পর্যন্ত চলতে থাকে।</p>
+
+                 <p><strong>উদাহরণ:</strong><br>
+                 ধরা যাক, তিনটি প্রসেস P1, P2, P3 রেডি কিউতে আসে এবং তাদের সিপিইউ বার্স্ট টাইম যথাক্রমে 24ms, 3ms, এবং 3ms। যদি তারা P1, P2, P3 ক্রমে আসে:</p>
+                 <ul>
+                     <li><strong>গ্যান্ট চার্ট (Gantt Chart):</strong>
+                         <pre><code>|   P1 (24ms)   | P2 (3ms) | P3 (3ms) |
+0              24         27         30  (সময় ms)</code></pre>
+                     </li>
+                     <li><strong>ওয়েটিং টাইম:</strong> P1=0, P2=24, P3=27</li>
+                     <li><strong>গড় ওয়েটিং টাইম:</strong> (0 + 24 + 27) / 3 = 17 ms</li>
+                 </ul>
+                 <p>যদি তারা P2, P3, P1 ক্রমে আসতো:</p>
+                 <ul>
+                     <li><strong>গ্যান্ট চার্ট:</strong>
+                         <pre><code>| P2 (3ms) | P3 (3ms) |    P1 (24ms)   |
+0          3          6                 30  (সময় ms)</code></pre>
+                     </li>
+                     <li><strong>ওয়েটিং টাইম:</strong> P2=0, P3=3, P1=6</li>
+                     <li><strong>গড় ওয়েটিং টাইম:</strong> (0 + 3 + 6) / 3 = 3 ms</li>
+                 </ul>
+                 <p><strong>পর্যালোচনা:</strong> FCFS বোঝা ও বাস্তবায়ন করা সহজ। কিন্তু এটি "কনভয় ইফেক্ট" (Convoy Effect) সমস্যায় ভুগতে পারে, যেখানে একটি দীর্ঘ প্রসেস অনেকগুলো ছোট প্রসেসকে অপেক্ষা করিয়ে রাখে, ফলে গড় ওয়েটিং টাইম বেড়ে যায়।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> FCFS মানে হলো "আগে আসলে আগে পাবেন"। যে প্রসেসটা রেডি কিউতে আগে ঢুকবে, CPU খালি হলে সেই আগে চলার সুযোগ পাবে। একবার চলতে শুরু করলে সে তার কাজ শেষ না করা পর্যন্ত চলবে।</p>
+                <ul>
+                    <li><strong>উদাহরণ:</strong> যদি P1 (২৪ সেকেন্ড লাগবে), P2 (৩ সেকেন্ড), P3 (৩ সেকেন্ড) এই வரிசைতে আসে, তাহলে P1 আগে চলবে ২৪ সেকেন্ড, তারপর P2 চলবে ৩ সেকেন্ড, তারপর P3 চলবে ৩ সেকেন্ড। এতে P2 কে ২৪ সেকেন্ড আর P3 কে ২৭ সেকেন্ড অপেক্ষা করতে হচ্ছে। গড় অপেক্ষা অনেক বেশি (১৭ সেকেন্ড)।</li>
+                    <li>কিন্তু যদি P2, P3, P1 வரிசைতে আসতো, তাহলে গড় অপেক্ষা হতো মাত্র ৩ সেকেন্ড!</li>
+                    <li><strong>সমস্যা:</strong> যদি একটা বড় কাজের প্রসেস আগে এসে যায়, তাহলে তার পিছনের ছোট ছোট কাজের প্রসেসগুলোকে অনেকক্ষণ বসে থাকতে হয়।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> ব্যাংকের লাইনে যে আগে দাঁড়ায়, সে আগে ক্যাশিয়ারের কাছে যেতে পারে। এটাই FCFS। কিন্তু যদি তোমার আগে একজন লোক দাঁড়ায় যার কাজ শেষ করতে ১ ঘন্টা লাগবে, তাহলে তোমার ২ মিনিটের কাজ হলেও তোমাকে ১ ঘন্টা অপেক্ষা করতে হবে! এটা এই সিস্টেমের সমস্যা।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">৩। SJF Algorithm উদাহরণসহ বর্ণনা কর।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p><strong>SJF (Shortest Job First) অ্যালগরিদম:</strong><br>
+                 এই সিডিউলিং অ্যালগরিদমটি রেডি কিউতে থাকা প্রসেসগুলোর মধ্যে যে প্রসেসটির পরবর্তী সিপিইউ বার্স্ট টাইম (Next CPU Burst Time) সবচেয়ে কম, সেটিকে নির্বাচন করে সিপিইউতে বরাদ্দ দেয়। SJF দুই ধরনের হতে পারে: নন-প্রিemptive এবং প্রিemptive (SRTF - Shortest Remaining Time First)। SJF গড় ওয়েটিং টাইম সর্বনিম্ন করার ক্ষেত্রে অপটিমাল।</p>
+
+                 <p><strong>উদাহরণ (নন-প্রিemptive SJF):</strong><br>
+                 ধরা যাক, ৪টি প্রসেস P1, P2, P3, P4 একই সময়ে (সময় 0) রেডি কিউতে আসে যাদের বার্স্ট টাইম যথাক্রমে 6ms, 8ms, 7ms, 3ms।</p>
+                 <ul>
+                     <li><strong>প্রসেস নির্বাচন:</strong> সবচেয়ে কম বার্স্ট টাইম P4 (3ms) এর। এরপর P1 (6ms), তারপর P3 (7ms), সবশেষে P2 (8ms)।</li>
+                     <li><strong>গ্যান্ট চার্ট:</strong>
+                         <pre><code>| P4(3) |  P1(6)  |  P3(7)  |    P2(8)    |
+0       3         9        16             24  (সময় ms)</code></pre>
+                     </li>
+                     <li><strong>ওয়েটিং টাইম:</strong> P4=0, P1=3, P3=9, P2=16</li>
+                     <li><strong>গড় ওয়েটিং টাইম:</strong> (0 + 3 + 9 + 16) / 4 = 7 ms</li>
+                 </ul>
+                 <p><strong>সমস্যা:</strong> SJF এর প্রধান সমস্যা হলো পরবর্তী সিপিইউ বার্স্ট টাইম সঠিকভাবে অনুমান করা কঠিন এবং দীর্ঘ বার্স্ট টাইম সম্পন্ন প্রসেসগুলো স্টারভেশনের শিকার হতে পারে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> SJF মানে "যার কাজ সবচেয়ে ছোট, সে আগে যাবে"। OS রেডি থাকা প্রসেসগুলোর মধ্যে দেখে কার চলতে সবচেয়ে কম সময় লাগবে, তাকেই আগে CPU দেয়।</p>
+                 <ul>
+                     <li><strong>নন-প্রিemptive:</strong> একবার কাজ শুরু করলে শেষ না করে থামবে না।</li>
+                     <li><strong>প্রিemptive (SRTF):** যদি চলার সময় তার চেয়েও ছোট কাজের কেউ এসে পড়ে, তাহলে চলমান কাজটা থেমে গিয়ে নতুন ছোট কাজটা শুরু হবে।</li>
+                 </ul>
+                 <p><strong>উদাহরণ:</strong> P1(6), P2(8), P3(7), P4(3) যদি একসাথে আসে, নন-প্রিemptive SJF প্রথমে P4(3) কে চালাবে, তারপর P1(6), তারপর P3(7), শেষে P2(8) কে চালাবে। এতে গড় ওয়েটিং টাইম কম হয়।</p>
+                 <p><strong>সমস্যা:</strong> পরের বার চলতে কত সময় লাগবে সেটা আগে থেকে জানা কঠিন। আর বড় কাজের প্রসেস লাইনে পিছনে পড়ে থাকতে পারে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> ডাক্তার যদি ঠিক করেন যে রোগীর সমস্যা সবচেয়ে ছোট তাকে আগে দেখবেন, সেটাই SJF। যদি এমন হয় যে, একজন সিরিয়াস রোগী দেখছেন, এমন সময় তার চেয়েও ছোট সমস্যার আরেকজন এলো, ডাক্তার আগের জনকে থামিয়ে নতুন জনকে দেখা শুরু করলেন, সেটা প্রিemptive SJF।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">৪। Round Robin Scheduling Algorithm বর্ণনা কর।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p><strong>রাউন্ড রবিন (Round Robin - RR) সিডিউলিং অ্যালগরিদম:</strong><br>
+                 রাউন্ড রবিন একটি প্রিemptive সিডিউলিং অ্যালগরিদম যা টাইম-শেয়ারিং অপারেটিং সিস্টেমের জন্য বিশেষভাবে ডিজাইন করা হয়েছে। এটি FCFS অ্যালগরিদমের মতোই, তবে এতে প্রিemption যুক্ত করা হয়েছে যাতে সিস্টেমটি ইন্টারঅ্যাকটিভ থাকে।</p>
+
+                 <p><strong>কার্যপ্রণালী:</strong></p>
+                 <ol>
+                     <li>একটি ছোট নির্দিষ্ট সময়ের একক, যাকে টাইম কোয়ান্টাম (Time Quantum) বা টাইম স্লাইস (সাধারণত ১০-১০০ মিলিসেকেন্ড) বলা হয়, পূর্বনির্ধারিত থাকে।</li>
+                     <li>রেডি কিউকে একটি FIFO বা সার্কুলার কিউ হিসেবে বিবেচনা করা হয়।</li>
+                     <li>সিডিউলার রেডি কিউয়ের প্রথম প্রসেসটিকে নির্বাচন করে এবং একটি টাইমার সেট করে সিপিইউ বরাদ্দ দেয় (টাইম কোয়ান্টামের সমান)।</li>
+                     <li>যদি প্রসেসটি টাইম কোয়ান্টাম শেষ হওয়ার আগেই তার সিপিইউ বার্স্ট সম্পন্ন করে, তবে সে নিজে থেকেই সিপিইউ ত্যাগ করে।</li>
+                     <li>যদি প্রসেসটি টাইম কোয়ান্টামের মধ্যে শেষ না হয়, তবে টাইমার ইন্টারাপ্ট তৈরি করে, চলমান প্রসেসটিকে থামিয়ে রেডি কিউয়ের শেষে যুক্ত করা হয় এবং সিডিউলার কিউয়ের পরবর্তী প্রসেসকে সিপিইউ বরাদ্দ দেয়।</li>
+                 </ol>
+
+                 <p><strong>উদাহরণ:</strong><br>
+                 ধরা যাক, প্রসেস P1, P2, P3 এর বার্স্ট টাইম যথাক্রমে 24, 3, 3 এবং টাইম কোয়ান্টাম = 4ms।</p>
+                 <ul>
+                     <li><strong>গ্যান্ট চার্ট:</strong>
+                         <pre><code>| P1(4)| P2(3)| P3(3)| P1(4)| P1(4)| P1(4)| P1(4)| P1(4)| P1(4)|
+0      4       7      10      14      18      22      26      30</code></pre>
+                         <em>(এখানে P2 ও P3 তাদের কোয়ান্টামের আগেই শেষ হয়ে যায়। P1 কে ৬ বার সুযোগ দিতে হয় ৪ms করে)</em>
+                     </li>
+                 </ul>
+                 <p><strong>পারফরম্যান্স:</strong> RR এর পারফরম্যান্স টাইম কোয়ান্টামের আকারের উপর খুব নির্ভরশীল। কোয়ান্টাম খুব বড় হলে এটি FCFS এর মতো হয়, খুব ছোট হলে কনটেক্সট সুইচিং ওভারহেড বাড়ে। এটি গড় টার্নঅ্যারাউন্ড টাইম ভালো না দিলেও রেসপন্স টাইম ভালো দেয় এবং স্টারভেশন হয় না।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রাউন্ড রবিন মানে হলো সবাই একটু একটু করে সুযোগ পাবে। OS একটা নির্দিষ্ট ছোট্ট সময় (টাইম কোয়ান্টাম) ঠিক করে দেয়। প্রত্যেকটা প্রসেস ওই সময়টুকু চলার সুযোগ পায়। যদি কাজ শেষ হয়ে যায় তো ভালো, না হলে তাকে লাইনের একদম পিছনে পাঠিয়ে দেওয়া হয় আর পরের জন সুযোগ পায়। এভাবে ঘুরতে থাকে।</p>
+                 <ul>
+                     <li><strong>উদাহরণ:</strong> টাইম কোয়ান্টাম যদি ৪ সেকেন্ড হয়, আর P1 এর লাগে ২৪ সেকেন্ড, P2 এর ৩, P3 এর ৩। তাহলে প্রথমে P1 চলবে ৪ সেকেন্ড, তারপর P2 চলবে ৩ সেকেন্ড (শেষ), তারপর P3 চলবে ৩ সেকেন্ড (শেষ), তারপর আবার P1 চলবে ৪ সেকেন্ড, আবার P1 চলবে ৪ সেকেন্ড... এভাবে P1 মোট ৬ বার সুযোগ পেয়ে কাজ শেষ করবে।</li>
+                     <li><strong>পারফরম্যান্স:</strong> টাইম কোয়ান্টাম কত বড় সেটার উপর পারফরম্যান্স নির্ভর করে। এটা নিশ্চিত করে যে কোনো প্রসেস অনেকক্ষণ ধরে বসে থাকবে না।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো ক্লাসে টিচার ঠিক করলেন প্রত্যেক ছাত্রকে কথা বলার জন্য ২ মিনিট করে সময় দেবেন। রিফাত ২ মিনিট বললো, তারপর অন্যজন ২ মিনিট, তারপর আরেকজন... যার কথা শেষ হবে না, সে আবার লাইনের পিছনে গিয়ে দাঁড়াবে। এটাই রাউন্ড রবিন।</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>অপারেটিং সিস্টেম স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        // Function to apply theme
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀️ লাইট মোড'; // Sun icon for light mode switch
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = '🌙 ডার্ক মোড'; // Moon icon for dark mode switch
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initial theme setup
+        let preferredTheme = 'light'; // Default to light
+        if (currentTheme) {
+            preferredTheme = currentTheme;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Uncomment below line if you want system preference to be the initial default
+            // preferredTheme = 'dark';
+        }
+        applyTheme(preferredTheme);
+
+        // Button click listener
+        themeToggleBtn.addEventListener('click', () => {
+            let newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+    </script>
+
+</body>
+</html>

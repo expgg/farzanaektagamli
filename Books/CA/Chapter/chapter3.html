@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৩: সিপিইউ ডিজাইনের বেসিক</title>
+    <link rel="stylesheet" href="os_style.css"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k55gMp/InvxBM1Mty9rgRDIJNu38mMhftBPqzhAXSDdy92HjL4IFNfey" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1MZu6ADomyXk8EogbLDBsPU5rkXF/dtZZxL1Pceg6x" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouEs/BHtTcWgwPkMAVEABrHI+WGBmvygAodXElARTYHD" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৩: সিপিইউ ডিজাইনের বেসিক</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">
+            </button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। ALU-এর কাজ কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> ALU (Arithmetic Logic Unit) এর প্রধান কাজ হলো সিপিইউর অভ্যন্তরে সকল প্রকার গাণিতিক (যেমন: যোগ, বিয়োগ, গুণ, ভাগ) এবং যৌক্তিক (যেমন: AND, OR, NOT, XOR) অপারেশন সম্পাদন করা।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ALU হলো সিপিইউর ক্যালকুলেটর। এটা সব হিসাবনিকাশ (যোগ-বিয়োগ) আর যুক্তির কাজ (হ্যাঁ/না তুলনা) করে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার ব্রেইনের যে অংশটা অঙ্ক কষে বা যুক্তি দিয়ে চিন্তা করে, সেটাই ALU।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। কন্ট্রোল ইউনিট (CU)-এর কাজ কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> কন্ট্রোল ইউনিট (CU) সিপিইউ তথা পুরো কম্পিউটার সিস্টেমের কার্যক্রম পরিচালনা ও নিয়ন্ত্রণ করে। এটি মেমরি থেকে ইন্সট্রাকশন ফেচ করে, ডিকোড করে এবং এক্সিকিউট করার জন্য প্রয়োজনীয় কন্ট্রোল সিগন্যাল তৈরি করে ALU, রেজিস্টার ও অন্যান্য ইউনিটে প্রেরণ করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কন্ট্রোল ইউনিট হলো সিপিইউর ম্যানেজার। সে নির্দেশ আনে, বোঝে কী করতে হবে, আর সেই অনুযায়ী மற்ற সব অংশকে দিয়ে কাজটা করিয়ে নেয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> ট্র্যাফিক পুলিশ যেমন রাস্তার সব গাড়ি কন্ট্রোল করে, কন্ট্রোল ইউনিটও তেমনি কম্পিউটারের সব কাজ কন্ট্রোল করে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। CPU বলতে কী বুঝ?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> CPU এর পূর্ণরূপ হলো Central Processing Unit। এটি কম্পিউটারের প্রধান কার্যকরী অংশ বা মস্তিষ্ক, যা প্রোগ্রামের ইন্সট্রাকশনগুলো এক্সিকিউট করে এবং ডেটা প্রসেসিং এর কাজ সম্পন্ন করে। এর প্রধান অংশ হলো কন্ট্রোল ইউনিট (CU) এবং অ্যারিথমেটিক লজিক ইউনিট (ALU)।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> CPU হলো কম্পিউটারের ব্রেইন। এটাই সব হিসাবনিকাশ করে আর পুরো কম্পিউটারটাকে চালায়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> মানুষের শরীরের যেমন ব্রেইন, কম্পিউটারের তেমনি CPU।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। ফুল অ্যাডার কাকে বলে।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> ফুল অ্যাডার (Full Adder) হলো একটি ডিজিটাল লজিক সার্কিট যা তিনটি বাইনারি বিট (দুটি ইনপুট বিট A ও B, এবং একটি পূর্ববর্তী Carry-in বিট Cin) যোগ করে দুটি আউটপুট উৎপন্ন করে: একটি Sum বিট (S) এবং একটি Carry-out বিট (Cout)।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফুল অ্যাডার হলো একটা ইলেকট্রনিক সার্কিট যেটা তিনটা বাইনারি সংখ্যা (০ বা ১) যোগ করতে পারে। যোগ করে সে একটা যোগফল (Sum) আর একটা হাতে থাকা সংখ্যা (Carry) বের করে দেয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি যখন হাতে রেখে যোগ করো (যেমন ৮+৭=১৫, ৫ নামলো হাতে ১), ফুল অ্যাডারও তেমনি তিনটা বিট যোগ করে যোগফল আর হাতে থাকা সংখ্যাটা বের করে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৫। Co-processor বলতে কী বুঝ?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> কো-প্রসেসর (Co-processor) হলো একটি বিশেষায়িত প্রসেসিং ইউনিট যা মূল সিপিইউকে নির্দিষ্ট কিছু জটিল বা সময়সাপেক্ষ কাজ (যেমন: ফ্লোটিং-পয়েন্ট গাণিতিক হিসাব, গ্রাফিক্স প্রসেসিং) সম্পাদনে সহায়তা করার জন্য ডিজাইন করা হয়। এটি মূল সিপিইউর পাশাপাশি কাজ করে তার কাজের চাপ কমায় এবং সিস্টেমের পারফরম্যান্স বৃদ্ধি করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কো-প্রসেসর হলো মেইন সিপিইউর একজন স্পেশালিস্ট সহকারী। কিছু বিশেষ কাজ (যেমন খুব কঠিন অঙ্ক বা গ্রাফিক্সের কাজ) যা করতে মেইন সিপিইউর অনেক সময় লাগে বা কষ্ট হয়, সেই কাজগুলো এই কো-প্রসেসর করে দেয়। যেমন গ্রাফিক্স কার্ডের GPU একটা কো-প্রসেসর।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো রিফাত (মেইন CPU) রান্না করছে। তার একজন সহকারী (কো-প্রসেসর) আছে যে শুধু সবজি কাটার কাজটা খুব দ্রুত করতে পারে। রিফাত তাকে সবজি কাটতে দিয়ে নিজে অন্য কাজ করে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৬। কো-প্রসেসরের কাজ লেখ?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> কো-প্রসেসরের প্রধান কাজ হলো মূল সিপিইউকে নির্দিষ্ট ধরনের বিশেষায়িত ও জটিল কম্পিউটেশনাল টাস্ক থেকে অব্যাহতি দেওয়া এবং সেই কাজগুলো নিজে দ্রুত ও দক্ষতার সাথে সম্পাদন করা। যেমন: ফ্লোটিং-পয়েন্ট গাণিতিক হিসাব, গ্রাফিক্স রেন্ডারিং, ডিজিটাল সিগন্যাল প্রসেসিং, ক্রিপ্টোগ্রাফি ইত্যাদি।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কো-প্রসেসরের কাজ হলো স্পেশাল কিছু কাজ করা যা মেইন সিপিইউ ভালো পারে না বা করতে গেলে স্লো হয়ে যায়। যেমন কঠিন অংক করা বা ভিডিও গেমের গ্রাফিক্স বানানো।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> সবজি কাটার সহকারীর কাজ হলো শুধু দ্রুত আর সুন্দর করে সবজি কেটে দেওয়া।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৭। MAR ও MBR-এর কাজ লেখ?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <ul>
+                     <li><strong>MAR (Memory Address Register):</strong> এটি সেই মেমরি লোকেশনের অ্যাড্রেস ধারণ করে যেখান থেকে ডেটা পড়া বা লেখা হবে।</li>
+                     <li><strong>MBR (Memory Buffer Register) বা MDR (Memory Data Register):** এটি মেমরি থেকে পড়া ডেটা অথবা মেমরিতে লেখার জন্য প্রস্তুত ডেটা সাময়িকভাবে ধারণ করে।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>MAR: মেমরির ঠিকানা লিখে রাখে।</li>
+                     <li>MBR: মেমরি থেকে আনা বা মেমরিতে পাঠানো ডেটাটা ধরে রাখে।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>MAR: লাইব্রেরির বইয়ের তাক নম্বর।</li>
+                     <li>MBR: তাক থেকে আনা বইটা বা তাকি রাখতে দেওয়া বইটা।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৮। MAR ও MBR-এর পূর্ণনাম লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <ul>
+                     <li><strong>MAR:</strong> Memory Address Register</li>
+                     <li><strong>MBR:</strong> Memory Buffer Register (অথবা MDR: Memory Data Register)</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> MAR মানে মেমরি অ্যাড্রেস রেজিস্টার, MBR মানে মেমরি বাফার রেজিস্টার।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> এদের পুরো নাম।</p>
+            </div>
+        </div>
+
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্নঃ</h3>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">১। একটি আদর্শ সিপিইউ (CPU)-এর ব্লকচিত্র অঙ্কন করে কন্ট্রোল ইউনিটের কাজ দেখাও?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p><strong>সিপিইউ ব্লকচিত্র:</strong></p>
+                 <pre><code>
+           +---------------------------+
+           |     কন্ট্রোল ইউনিট (CU)    |-------------+
+           +-----------+---------------+             | --> কন্ট্রোল সিগন্যাল
+                       | ডিকোড (IR থেকে)           |
+           +-----------V---------------+             |
+           |       রেজিস্টারসমূহ        |             |
+           | (PC, IR, MAR, MBR, GPRs...) |&lt;------------+
+           +-----------+---------------+             |
+                       ^  | ডেটা/অ্যাড্রেস           |
+                       |  V                       |
+           +-----------+---------------+             |
+           | অ্যারিথমেটিক লজিক ইউনিট   |&lt;------------+
+           |          (ALU)            |
+           +---------------------------+
+                       ^  |
+                       |--+--- সিস্টেম বাস (ডেটা, অ্যাড্রেস, কন্ট্রোল)
+                 </code></pre>
+                 <p><strong>কন্ট্রোল ইউনিটের কাজ:</strong> কন্ট্রোল ইউনিট (CU) ইন্সট্রাকশন রেজিস্টার (IR) থেকে ইন্সট্রাকশন ডিকোড করে। এরপর, এটি প্রয়োজনীয় কন্ট্রোল সিগন্যাল তৈরি করে যা রেজিস্টারসমূহ, ALU এবং সিস্টেম বাসের কার্যক্রম নিয়ন্ত্রণ করে, যার মাধ্যমে ইন্সট্রাকশন সাইকেল সমন্বিত হয়।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> উপরের ছবিতে সিপিইউর মেইন অংশগুলো (কন্ট্রোল ইউনিট, ALU, রেজিস্টার) দেখানো হয়েছে। কন্ট্রোল ইউনিট হলো মেইন কন্ট্রোলার। সে নির্দেশ (IR থেকে) পড়ে, বুঝে, তারপর ALU কে বলে হিসাব করতে, রেজিস্টারকে বলে ডেটা নিতে বা দিতে, আর বাসকে বলে ডেটা আনা-নেওয়া করতে। সব কাজ সে সিগন্যাল পাঠিয়ে কন্ট্রোল করে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> ট্র্যাফিক পুলিশ (কন্ট্রোল ইউনিট) যেমন সিগন্যাল দিয়ে গাড়ি (ডেটা), রাস্তা (বাস), আর অন্যান্য পুলিশকে (ALU, রেজিস্টার) কন্ট্রোল করে পুরো ট্র্যাফিক সিস্টেম চালায়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। চার বিটের একটি জেনারেল পারপাস রেজিস্টার অঙ্কন করে দেখাও।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি ৪-বিটের জেনারেল পারপাস রেজিস্টার (GPR) সাধারণত চারটি ফ্লিপ-ফ্লপ ব্যবহার করে তৈরি করা হয়। এর একটি কমন ক্লক ইনপুট এবং একটি লোড/এনাবল কন্ট্রোল সিগন্যাল থাকে। লোড সিগন্যাল সক্রিয় হলে ক্লক পালসের সাথে সাথে ৪-বিট ইনপুট ডেটা রেজিস্টারে লোড হয়।</p>
+                <p><strong>টেক্সট-ভিত্তিক ডায়াগ্রাম:</strong></p>
+                 <pre><code>
+      Data In (D3 D2 D1 D0) ---+----> [+---+---+---+---+] (4 x D Flip-Flops) --+---> Data Out (Q3 Q2 Q1 Q0)
+                              |      [|FF3|FF2|FF1|FF0|]                      |
+      Load/Enable ------------+-----> [-------C L K-------] &lt;------------------+---- Clock (CLK)
+                 </code></pre>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ৪-বিটের একটা রেজিস্টার মানে হলো এটা ৪টা ০ বা ১ একসাথে মনে রাখতে পারে। এটা বানাতে ৪টা ফ্লিপ-ফ্লপ লাগে। একটা 'লোড' সিগন্যাল দিলে আর ক্লক পালস এলে বাইরের ৪টা বিট ভেতরে ঢুকে যায় আর আউটপুটে দেখা যায়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো ৪টা লাইট সুইচ আছে যা অন বা অফ (১ বা ০) মনে রাখতে পারে। এটাই ৪-বিটের রেজিস্টার। তুমি একসাথে ৪টা সুইচের অবস্থা সেট করতে পারো।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। GPR Based machine-এর Block diagram অঙ্কন করে বিভিন্ন অংশ চিহ্নিত কর।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি জেনারেল রেজিস্টার (GPR) ভিত্তিক মেশিনের সরলীকৃত ব্লক ডায়াগ্রাম:</p>
+                 <pre><code>
+           +---------------------------+
+           |     কন্ট্রোল ইউনিট (CU)    |---------+-----> কন্ট্রোল সিগন্যাল
+           +-----------+---------------+         |
+                       | ডিকোড (IR)             |
+                       V                       |
+           +-----------+---------------+         |
+           | ইন্সট্রাকশন রেজিস্টার (IR)|         |
+           +-----------+---------------+         |
+                       ^                         |
+                       | ইন্সট্রাকশন             |
+           +-----------+---------------+         |
+           | প্রোগ্রাম কাউন্টার (PC)   |---------+
+           +-----------+---------------+         | Address
+                       |                         V
+           +-----------V---------------+      +-----+
+           | মেমরি অ্যাড্রেস রেজি: (MAR)|----->|     |
+           +---------------------------+      |  M  |
+                                              |  E  |
+           +---------------------------+      |  M  |
+           | মেমরি বাফার রেজি: (MBR)  |&lt;----->|  O  |
+           +-----------+---------------+      |  R  |
+                       ^  | ডেটা              |  Y  |
+                       |  V                   |     |
+           +-----------+--+------------+      +-----+
+           | রেজিস্টার ফাইল (GPRs)    |&lt;-----+------- ডেটা (MBR/ALU)
+           | (R0, R1, R2, ...)         |------>------- অপারেন্ড (ALU/MBR)
+           +-----------+---------------+
+                       ^  |
+                       |  V অপারেন্ড/ফলাফল
+           +-----------+---------------+
+           |       ALU                 |
+           +---------------------------+
+                 </code></pre>
+                 <p><strong>অংশগুলো:</strong> কন্ট্রোল ইউনিট (CU), অ্যারিথমেটিক লজিক ইউনিট (ALU), রেজিস্টার ফাইল (GPRs), প্রোগ্রাম কাউন্টার (PC), ইন্সট্রাকশন রেজিস্টার (IR), মেমরি অ্যাড্রেস রেজিস্টার (MAR), মেমরি বাফার রেজিস্টার (MBR), প্রধান মেমরি (Memory), সিস্টেম বাস।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> জেনারেল রেজিস্টার মেশিনের ছবিতে অনেকগুলো জেনারেল পারপাস রেজিস্টার (GPRs) থাকে যা ডেটা বা অ্যাড্রেস রাখতে পারে। ALU এই রেজিস্টারগুলো থেকে ডেটা নিয়ে কাজ করে এবং ফলাফল রেজিস্টারে রাখতে পারে। কন্ট্রোল ইউনিট পুরো প্রক্রিয়াটা নিয়ন্ত্রণ করে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> এটা এমন একটা রান্নাঘর যেখানে একটামাত্র বাটির বদলে অনেকগুলো ছোট ছোট বাটি (GPR) আছে। বাবুর্চি (ALU) যেকোনো বাটি থেকে মশলা বা সবজি নিতে পারে, আবার রান্না করা জিনিস যেকোনো বাটিতে রাখতে পারে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৪। 4-bit ALU সার্কিট অঙ্কন কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি ৪-বিট ALU (Arithmetic Logic Unit) এর লজিক সার্কিট টেক্সট-ভিত্তিক ডায়াগ্রামে আঁকা জটিল। তবে এর ব্লক ডায়াগ্রাম নিচে দেওয়া হলো:</p>
+                 <pre><code>
+      A (4-bit) --+---------------------+---> F (4-bit Result)
+                  |     +---------+     |
+      B (4-bit) --+---->| 4-bit   |     |
+                  |     | Adder/  |     |
+      Cin --------+---->| Logic   |-----+---> Flags (C, Z, S, V)
+                  |     | Circuit |     |
+      Function----->|     +---------+     |
+      Select (S)    |                     |
+                    +---------------------+ (4-bit ALU)
+                 </code></pre>
+                 <p>এটি দুটি ৪-বিট ইনপুট (A, B) ও ফাংশন সিলেক্ট ইনপুট (S) নেয় এবং একটি ৪-বিট ফলাফল (F) ও স্ট্যাটাস ফ্ল্যাগ তৈরি করে। এর অভ্যন্তরে অ্যাডার ও লজিক গেট থাকে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ৪-বিট ALU আঁকা কঠিন, কিন্তু এটা দুটো ৪-বিটের সংখ্যা (A, B) নেয়। কন্ট্রোল সিগন্যাল (Function Select) ঠিক করে দেয় কী কাজ করতে হবে (যোগ, বিয়োগ, AND, OR ইত্যাদি)। ALU সেই কাজটা করে ৪-বিটের একটা ফলাফল (F) আর কিছু স্ট্যাটাস ফ্ল্যাগ দেয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> এটা একটা ৪-বিট ক্যালকুলেটর। তুমি দুটো ৪-বিটের সংখ্যা দাও আর বলে দাও কী করতে হবে, এটা সেটা করে ফলাফলটা আর কিছু স্ট্যাটাস (যেমন: হাতে আছে কিনা) তোমাকে বলে দেয়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৫। স্ট্রেইটলাইন সিকুয়েন্সিং বলতে কী বুঝ?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> স্ট্রেইটলাইন সিকুয়েন্সিং (Straight-line Sequencing) হলো প্রোগ্রাম এক্সিকিউশনের সবচেয়ে সরল পদ্ধতি যেখানে সিপিইউ মেমরিতে সংরক্ষিত ইন্সট্রাকশনগুলোকে তাদের অবস্থানের ক্রম অনুযায়ী (consecutive order) একটির পর একটি ফেচ এবং এক্সিকিউট করে। প্রোগ্রাম কাউন্টার (PC) প্রতিটি ইন্সট্রাকশন ফেচের পর স্বাভাবিকভাবে পরবর্তী ইন্সট্রাকশনের ঠিকানা নির্দেশ করার জন্য ইনক্রিমেন্ট হয়। এই পদ্ধতিতে কোনো ব্রাঞ্চ বা জাম্প ইন্সট্রাকশন থাকে না।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> স্ট্রেইটলাইন সিকুয়েন্সিং মানে হলো প্রোগ্রামটা একদম সোজা লাইনে একটার পর একটা নির্দেশ পালন করে যাওয়া। কোনো লাফঝাঁপ বা শর্ত চেক করে অন্য জায়গায় চলে যাওয়া – এসব থাকে না।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> রান্নার রেসিপির নির্দেশগুলো একটার পর একটা வரிசையாக ফলো করে যাওয়া, কোনো লাইন বাদ না দিয়ে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৬। Intelligent monitor interface-এর ব্লকচিত্র অঙ্কন করে সংক্ষেপে লেখ।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ইন্টেলিজেন্ট মনিটর ইন্টারফেস বলতে সাধারণত আধুনিক গ্রাফিক্স অ্যাডাপ্টার বা ভিডিও কার্ডকে বোঝানো হয়, যার নিজস্ব প্রসেসিং ইউনিট (GPU), মেমরি (VRAM) এবং কন্ট্রোল লজিক থাকে। এটি সিপিইউর উপর চাপ কমিয়ে ডিসপ্লে সম্পর্কিত কাজগুলো নিজেই সম্পাদন করে।</p>
+                 <p><strong>ব্লক ডায়াগ্রাম (ধারণা):</strong></p>
+                 <pre><code>
+      +-----+      +--------------+      +-----------------+      +---------+
+      | CPU |&lt;---->| সিস্টেম বাস   |&lt;---->| গ্রাফিক্স কার্ড   |&lt;---->| মনিটর  |
+      +-----+      +--------------+      | (ইন্টারফেস)     |      +---------+
+                                         | +-------+-------+ |
+                                         | |  GPU  | VRAM  | |
+                                         | +-------+-------+ |
+                                         | | ডিসপ্লে কন্ট্রোল | |
+                                         | +---------------+ |
+                                         +-----------------+
+                 </code></pre>
+                 <p>এখানে GPU গ্রাফিক্স প্রসেস করে, VRAM ফ্রেম বাফার ও টেক্সচার রাখে, এবং ডিসপ্লে কন্ট্রোলার মনিটরে সিগন্যাল পাঠায়।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ইন্টেলিজেন্ট মনিটর ইন্টারফেস হলো তোমার কম্পিউটারের গ্রাফিক্স কার্ড। এটার নিজের ব্রেইন (GPU) আর মেমরি (VRAM) আছে। মনিটরে ছবি দেখানোর কাজগুলো সে নিজেই করে ফেলে, মেইন সিপিইউকে বেশি চাপ দেয় না।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> সিনেমা হলের প্রজেক্টর মেশিনটা নিজেই ছবি প্রসেস করতে পারে। গ্রাফিক্স কার্ডও এরকম একটা 'বুদ্ধিমান' ইন্টারফেস যা ডিসপ্লের কাজ নিজেই সামলায়।</p>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন:</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">১। একটি সাধারণ CPU মডেলের বর্ণনা দাও।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p>একটি সাধারণ সিপিইউ (সেন্ট্রাল প্রসেসিং ইউনিট) মডেল নিম্নলিখিত প্রধান অংশগুলো নিয়ে গঠিত:</p>
+                 <ol>
+                     <li><strong>কন্ট্রোল ইউনিট (CU):</strong> সিস্টেমের কার্যক্রম নিয়ন্ত্রণ ও সমন্বয় করে, ইন্সট্রাকশন ফেচ, ডিকোড ও এক্সিকিউট করার জন্য সিগন্যাল পাঠায়।</li>
+                     <li><strong>অ্যারিথমেটিক লজিক ইউনিট (ALU):** সকল গাণিতিক ও যৌক্তিক অপারেশন সম্পাদন করে।</li>
+                     <li><strong>রেজিস্টারসমূহ (Registers):** সিপিইউর ভেতরের দ্রুতগতির অস্থায়ী মেমরি। এর মধ্যে আছে:
+                         <ul>
+                             <li>জেনারেল পারপাস রেজিস্টার (GPRs)</li>
+                             <li>প্রোগ্রাম কাউন্টার (PC)</li>
+                             <li>ইন্সট্রাকশন রেজিস্টার (IR)</li>
+                             <li>মেমরি অ্যাড্রেস রেজিস্টার (MAR)</li>
+                             <li>মেমরি বাফার রেজিস্টার (MBR/MDR)</li>
+                             <li>ফ্ল্যাগ রেজিস্টার (Status Register)</li>
+                         </ul>
+                     </li>
+                     <li><strong>সিপিইউ ইন্টারনাল বাস (CPU Internal Bus):** ভেতরের অংশগুলোর মধ্যে ডেটা ও সিগন্যাল আদান-প্রদান করে।</li>
+                 </ol>
+                 <p>সিপিইউ মূলত ফেচ-ডিকোড-এক্সিকিউট চক্র অনুসরণ করে কাজ করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> একটা সাধারণ সিপিইউর মধ্যে মূলত তিনটা জিনিস থাকে:</p>
+                <ol>
+                    <li><strong>কন্ট্রোল ইউনিট (CU):</strong> ম্যানেজার।</li>
+                    <li><strong>ALU:</strong> ক্যালকুলেটর।</li>
+                    <li><strong>রেজিস্টার:</strong> কাজের জন্য দরকারি ছোট ছোট অনেকগুলো ফাস্ট মেমরি বা খাতা।</li>
+                </ol>
+                 <p>এরা সবাই ভেতরের রাস্তা (Internal Bus) দিয়ে যোগাযোগ করে আর ফেচ-ডিকোড-এক্সিকিউট চক্র মেনে কাজ করে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার ব্রেইনের মতো। একটা অংশ কন্ট্রোল করে (CU), একটা অংশ চিন্তা বা হিসাব করে (ALU), আর অনেকগুলো জায়গা আছে যেখানে তুমি তাৎক্ষণিক তথ্য মনে রাখো (রেজিস্টার)।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">২। ৪-বিট জেনারেল রেজিস্টার-এর ব্লক ডায়াগ্রাম অঙ্কন করে বর্ণনা দাও।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p><strong>৪-বিট জেনারেল পারপাস রেজিস্টার:</strong> এটি ৪টি বিট ডেটা অস্থায়ীভাবে সংরক্ষণ করতে পারে এবং সাধারণত ৪টি প্যারালাল ডি ফ্লিপ-ফ্লপ দিয়ে তৈরি।</p>
+                 <p><strong>ব্লক ডায়াগ্রাম:</strong></p>
+                 <pre><code>
+         Data Inputs          +-----+-----+-----+-----+
+             D3 ------------->| D   | D   | D   | D   |
+             D2 ------------->|  Q3 |  Q2 |  Q1 |  Q0 |&lt;--- Data Outputs
+             D1 ------------->| FF3 | FF2 | FF1 | FF0 |
+             D0 ------------->|     |     |     |     |
+                              +-----+-----+-----+-----+
+                                  ^     ^     ^     ^
+                                  |     |     |     |
+      Load/Enable Signal ---------+-----+-----+-----+------> (To all FF Enable/Load)
+      Clock (CLK) --------------+-----+-----+-----+------> (To all FF Clock)
+                 </code></pre>
+                 <p><strong>বর্ণনা:</strong> ৪টি ফ্লিপ-ফ্লপ (FF0-FF3) প্রতি ক্লক সাইকেলে লোড/এনাবল সিগন্যাল সক্রিয় থাকলে ৪-বিট ইনপুট ডেটা (D0-D3) গ্রহণ করে এবং আউটপুটে (Q0-Q3) ধারণ করে রাখে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ৪-বিট রেজিস্টার হলো ৪টা বিট মনে রাখার বাক্স। এটা বানাতে ৪টা ফ্লিপ-ফ্লপ লাগে। যখন তুমি 'লোড' বাটনে চাপ দাও আর ঘড়ির টিক বাজে, তখন ইনপুটে থাকা ৪টা বিট বাক্সের ভেতর ঢুকে যায় আর আউটপুটে দেখা যায়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> ৪টা লাইট সুইচের প্যানেল। একটা মাস্টার 'লোড' সুইচ আছে। এই মাস্টার সুইচ অন করে তুমি যদি ৪টা লাইটের সুইচ অন/অফ করো, তাহলে লাইটগুলো সেই অবস্থায় সেট হয়ে যাবে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">৩। ৪-বিট সমান্তরাল অ্যাডার-এর ব্লক ডায়াগ্রাম অঙ্কন করে বর্ণনা দাও।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p><strong>৪-বিট সমান্তরাল অ্যাডার (4-bit Parallel Adder):</strong> এটি একটি ডিজিটাল সার্কিট যা দুটি ৪-বিট বাইনারি সংখ্যাকে যোগ করে একটি ৪-বিট যোগফল (Sum) এবং একটি ক্যারি-আউট (Cout) তৈরি করে। এটি চারটি ফুল অ্যাডার (FA) সার্কিটকে ক্যাসকেড সংযোগে ব্যবহার করে তৈরি হয়।</p>
+                 <p><strong>ব্লক ডায়াগ্রাম:</strong></p>
+                 <pre><code>
+         A3 A2 A1 A0     B3 B2 B1 B0  (Inputs)
+         |  |  |  |        |  |  |  |
+         V  V  V  V        V  V  V  V
+      +----+    +----+    +----+    +----+
+ Cin--->| FA |---->| FA |---->| FA |---->| FA |---> Cout
+      | (0)| C1 | (1)| C2 | (2)| C3 | (3)|
+      +--+-+    +--+-+    +--+-+    +--+-+
+         |        |        |        |
+         V        V        V        V
+        S0       S1       S2       S3     (Sum Output)
+                 </code></pre>
+                 <p><strong>বর্ণনা:</strong> প্রতিটি ফুল অ্যাডার দুটি ইনপুট বিট এবং আগের স্টেজ থেকে আসা ক্যারি-ইন যোগ করে একটি সাম বিট ও একটি ক্যারি-আউট তৈরি করে। ক্যারি-আউটটি পরবর্তী স্টেজে যায়।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ৪-বিট প্যারালাল অ্যাডার হলো এমন একটা সার্কিট যা দুটো ৪-বিটের বাইনারি সংখ্যা যোগ করতে পারে। এটা বানাতে ৪টা ফুল অ্যাডার লাগে। প্রথম ফুল অ্যাডার প্রথম বিট দুটো যোগ করে, তার হাতে থাকাটা দ্বিতীয় ফুল অ্যাডারকে দেয়, وهكذا চলতে থাকে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি যখন দুটো ৪ অংকের সংখ্যা নিচে নিচে রেখে যোগ করো, তখন ডানদিক থেকে যোগ করে হাতে থাকা সংখ্যাটা বামের অংকের সাথে যোগ করো। ৪-বিট প্যারালাল অ্যাডারও অনেকটা এভাবেই কাজ করে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">৪। 4-bit ALU ব্লক ডায়াগ্রাম অঙ্কন করে বর্ণনা দাও।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p><strong>৪-বিট অ্যারিথমেটিক লজিক ইউনিট (4-bit ALU):</strong> এটি একটি ডিজিটাল সার্কিট যা দুটি ৪-বিট অপারেন্ডের উপর বিভিন্ন গাণিতিক ও যৌক্তিক অপারেশন সম্পাদন করতে পারে, যা ফাংশন সিলেক্ট লাইন দ্বারা নির্ধারিত হয়।</p>
+                 <p><strong>ব্লক ডায়াগ্রাম (ধারণা):</strong></p>
+                 <pre><code>
+             A [4]       B [4]   Cin
+              |           |       |
+              V           V       V
+      +-------+-----------+-------+
+      |       |           |       |
+      | +--- Arith Circuit ----+ | -----> Arithmetic Result
+      | |                       | |
+      | +-----------------------+ |
+      |       |           |       |
+      | +---- Logic Circuit ----+ | -----> Logic Result
+      | |                       | |
+      | +-----------------------+ |
+      |       |           |       |
+      |       V           V       V
+      | +-----------------------+ |
+      | |      Multiplexer      | | --> F [4] (Final Result)
+      | +-----------------------+ |
+      |            ^              | -----> Flags (Cout, Z, S, V)
+      +------------+--------------+
+                   |
+          Function Select [k] (Control)
+                 </code></pre>
+                 <p><strong>বর্ণনা:</strong> ALU দুটি ৪-বিট ইনপুট (A, B) ও কন্ট্রোল সিগন্যাল (Function Select) নেয়। এর ভেতরে অ্যারিথমেটিক সার্কিট ও লজিক সার্কিট থাকে। কন্ট্রোল সিগন্যাল অনুযায়ী মাল্টিপ্লেক্সার সঠিক অপারেশনের ফলাফল (F) আউটপুটে পাঠায় এবং স্ট্যাটাস ফ্ল্যাগ তৈরি করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ৪-বিট ALU হলো একটা সার্কিট যা দুটো ৪-বিটের সংখ্যা নিয়ে যোগ, বিয়োগ, AND, OR ইত্যাদি অনেক রকম কাজ করতে পারে। বাইরে থেকে সিগন্যাল দিয়ে বলে দিতে হয় কোন কাজটা করতে হবে। এটা কাজের পর ফলাফল আর কিছু স্ট্যাটাস ফ্ল্যাগ দেয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> এটা একটা মাল্টি-ফাংশনাল ক্যালকুলেটর। তুমি দুটো ৪-বিটের সংখ্যা দাও আর বলে দাও কী করতে হবে (যোগ/বিয়োগ/AND/OR)। এটা সেই কাজটা করে ফলাফল আর কিছু স্ট্যাটাস তোমাকে দেয়।</p>
+            </div>
+        </div>
+
+
+    </main>
+
+    <footer class="page-footer">
+        <p>কম্পিউটার আর্কিটেকচার স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        // Function to apply theme
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀️ লাইট মোড'; // Sun icon for light mode switch
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = '🌙 ডার্ক মোড'; // Moon icon for dark mode switch
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initial theme setup
+        let preferredTheme = 'light'; // Default to light
+        if (currentTheme) {
+            preferredTheme = currentTheme;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Uncomment below line if you want system preference to be the initial default
+            // preferredTheme = 'dark';
+        }
+        applyTheme(preferredTheme);
+
+        // Button click listener
+        themeToggleBtn.addEventListener('click', () => {
+            let newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+    </script>
+
+</body>
+</html>

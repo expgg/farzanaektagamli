@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ২: ডায়নামিক ওয়েবসাইট এবং ফ্রেমওয়ার্ক</title>
+    <link rel="stylesheet" href="webdev_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k55gMp/InvxBM1Mty9rgRDIJNu38mMhftBPqzhAXSDdy92HjL4IFNfey" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1MZu6ADomyXk8EogbLDBsPU5rkXF/dtZZxL1Pceg6x" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouEs/BHtTcWgwPkMAVEABrHI+WGBmvygAodXElARTYHD" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ২: ডায়নামিক ওয়েবসাইট এবং ফ্রেমওয়ার্ক</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">
+            </button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্নোত্তর</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। স্ট্যাটিক ওয়েবসাইট কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> স্ট্যাটিক ওয়েবসাইট হলো এমন ধরনের ওয়েবসাইট যার কনটেন্ট বা বিষয়বস্তু পূর্ব-লিখিত HTML, CSS এবং JavaScript ফাইল হিসেবে সার্ভারে সংরক্ষিত থাকে এবং ব্যবহারকারীর ব্রাউজারে সরাসরি প্রদর্শিত হয়। এর কনটেন্ট সাধারণত স্থির থাকে এবং পরিবর্তনের জন্য কোড সম্পাদনা করার প্রয়োজন হয়।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> স্ট্যাটিক ওয়েবসাইট হলো একটা ছাপানো বইয়ের মতো। এর পাতাগুলো (ওয়েবপেজ) আগে থেকেই তৈরি করা থাকে। তুমি যখন ওয়েবসাইটটা দেখবে, সার্ভার শুধু ওই রেডিমেড পাতাগুলোই তোমাকে পাঠিয়ে দেবে। কোনো লেখা বা ছবি বদলাতে হলে কোড বদলাতে হয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো রিফাত একটা পোস্টার বানিয়েছে। পোস্টারে যা লেখা বা আঁকা আছে, সেটা সবসময় একই রকম থাকে। স্ট্যাটিক ওয়েবসাইটও এই পোস্টারের মতো, এর কনটেন্ট নিজে নিজে বদলায় না।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। ডায়নামিক ওয়েবসাইট কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> ডায়নামিক ওয়েবসাইট হলো এমন ধরনের ওয়েবসাইট যার কনটেন্ট ব্যবহারকারীর অনুরোধ (request), সময়, বা অন্যান্য প্যারামিটারের উপর ভিত্তি করে সার্ভার-সাইড স্ক্রিপ্টিং ল্যাঙ্গুয়েজ এবং ডাটাবেজ ব্যবহার করে তাৎক্ষণিকভাবে (dynamically) তৈরি হয়। এর ফলে ব্যবহারকারী ইন্টারঅ্যাকটিভ অভিজ্ঞতা পায় এবং কনটেন্ট ঘন ঘন পরিবর্তিত হতে পারে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ডায়নামিক ওয়েবসাইট হলো একটা জাদুকরী বইয়ের মতো। তুমি যখন পাতা উল্টাও (ওয়েবসাইট ভিজিট করো), তখন সার্ভার তোমার জন্য বিশেষভাবে সেই মুহূর্তের তথ্য দিয়ে পাতাটা তৈরি করে দেখায়। যেমন ফেসবুক, তুমি যখন লগইন করো, তোমার নিউজ ফিড তোমার জন্যই তৈরি হয়। এই ধরনের ওয়েবসাইট ডাটাবেজ আর সার্ভার-সাইড কোড ব্যবহার করে চলে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো একটা জাদুকরী ছবির ফ্রেম আছে। যে যখনই ফ্রেমটার দিকে তাকায়, ফ্রেমটা তখন সেই মুহূর্তের আবহাওয়া অনুযায়ী ছবি বদলে দেখায়। ডায়নামিক ওয়েবসাইটও এরকম, ব্যবহারকারী বা সময় অনুযায়ী এর কনটেন্ট বদলে যায়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। ফ্রেমওয়ার্ক কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> সফটওয়্যার ডেভেলপমেন্টে, ফ্রেমওয়ার্ক হলো একটি পুনঃব্যবহারযোগ্য (reusable) কোড লাইব্রেরি, টুলস এবং কনভেনশনের সেট যা একটি নির্দিষ্ট ধরনের অ্যাপ্লিকেশন তৈরির জন্য একটি মৌলিক কাঠামো বা ভিত্তি প্রদান করে। এটি ডেভেলপমেন্ট প্রক্রিয়াকে দ্রুততর, সহজতর এবং আরও সংগঠিত করতে সাহায্য করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> (এটা ১ম অধ্যায়েও ছিল) ফ্রেমওয়ার্ক হলো সফটওয়্যার বা ওয়েবসাইট বানানোর জন্য একটা রেডিমেড স্ট্রাকচার বা ছাঁচ। এতে অনেক কোড আগে থেকেই লেখা থাকে, কিছু নিয়মকানুন ঠিক করা থাকে, যা ফলো করে ডেভেলপাররা দ্রুত এবং সহজে অ্যাপ্লিকেশন বানাতে পারে। এটা অনেকটা ঘর বানানোর জন্য রেডিমেড প্ল্যান আর কাঠামোর মতো।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> লেগো দিয়ে খেলার সময় যেমন বিভিন্ন আকারের ব্লক আর চাকা আগে থেকেই তৈরি করা থাকে, ফ্রেমওয়ার্কও তেমনি ওয়েবসাইট বানানোর জন্য আগে থেকে তৈরি করা কোডের ব্লক আর নিয়মকানুন।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। ডায়নামিক ওয়েবসাইট তৈরির কয়েকটি ফ্রেমওয়ার্কের নাম লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ডায়নামিক ওয়েবসাইট তৈরির জন্য ব্যবহৃত কয়েকটি জনপ্রিয় সার্ভার-সাইড ফ্রেমওয়ার্ক হলো: ল্যারাভেল (Laravel - PHP), ডিজ্যাঙ্গো (Django - Python), রুবি অন রেইলস (Ruby on Rails - Ruby), এক্সপ্রেস.জেএস (Express.js - Node.js/JavaScript), এএসপি.নেট (ASP.NET - C#)।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সার্ভারে চলে এবং ডায়নামিক ওয়েবসাইট বানাতে সাহায্য করে এমন কয়েকটা ফ্রেমওয়ার্কের নাম: PHP-র জন্য Laravel, Python-এর জন্য Django, Ruby-র জন্য Rails, JavaScript (Node.js) এর জন্য Express।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> ওয়েবসাইট বানানোর কয়েকটা বিখ্যাত 'রেডিমেড কাঠামোর' (সার্ভার সাইডের জন্য) নাম হলো: ল্যারাভেল, ডিজ্যাঙ্গো, এক্সপ্রেস।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৫। ল্যারাভেল কী?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ল্যারাভেল (Laravel) হলো একটি জনপ্রিয়, ওপেন-সোর্স পিএইচপি (PHP) ওয়েব অ্যাপ্লিকেশন ফ্রেমওয়ার্ক যা মূলত মডেল-ভিউ-কন্ট্রোলার (MVC) আর্কিটেকচারাল প্যাটার্ন অনুসরণ করে। এটি ওয়েব অ্যাপ্লিকেশন তৈরিকে সহজ ও দ্রুত করার জন্য বিভিন্ন বিল্ট-ইন ফিচার ও টুলস সরবরাহ করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ল্যারাভেল হলো PHP ভাষা ব্যবহার করে ডায়নামিক ওয়েবসাইট বানানোর একটা খুব জনপ্রিয় ফ্রেমওয়ার্ক। এটাতে অনেক সুবিধা আগে থেকেই দেওয়া থাকে, তাই PHP দিয়ে ওয়েব অ্যাপ বানানো অনেক সহজ হয়ে যায়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> যারা PHP দিয়ে ওয়েবসাইট বানায়, তাদের জন্য ল্যারাভেল হলো একটা দারুণ সুপার টুলকিট!</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৬। ডিজ্যাঙ্গো কী?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ডিজ্যাঙ্গো (Django) একটি হাই-লেভেল, ওপেন-সোর্স পাইথন (Python) ওয়েব ফ্রেমওয়ার্ক যা দ্রুত ডেভেলপমেন্ট এবং পরিষ্কার, বাস্তবসম্মত ডিজাইনকে উৎসাহিত করে। এটি সাধারণত মডেল-ভিউ-টেম্পলেট (MVT) আর্কিটেকচার অনুসরণ করে এবং এতে অনেক বিল্ট-ইন ফিচার (যেমন: ORM, অ্যাডমিন প্যানেল) রয়েছে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ডিজ্যাঙ্গো হলো পাইথন ভাষা ব্যবহার করে বড় এবং জটিল ডায়নামিক ওয়েবসাইট বানানোর একটা খুব শক্তিশালী ফ্রেমওয়ার্ক। এটা 'Don't Repeat Yourself' (DRY) নীতি মেনে চলে আর অনেক কাজ সহজ করে দেয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> পাইথন দিয়ে ওয়েবসাইট বানানোর জন্য ডিজ্যাঙ্গো হলো একটা হেভি ডিউটি মেশিন, যেটা দিয়ে বড় বড় কাজ সহজে করা যায়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৭। ডাটাবেজ কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ডাটাবেজ হলো কোনো কম্পিউটার সিস্টেমে ইলেকট্রনিকভাবে সংরক্ষিত বিপুল পরিমাণ সুসংগঠিত তথ্য বা ডেটার একটি কাঠামোবদ্ধ সংগ্রহ। একটি ডাটাবেজ ম্যানেজমেন্ট সিস্টেম (DBMS) ব্যবহার করে এই ডেটা সহজে অ্যাক্সেস, ব্যবস্থাপনা, পরিবর্তন এবং হালনাগাদ করা যায়।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ডাটাবেজ হলো কম্পিউটারে তথ্য গুছিয়ে রাখার একটা ডিজিটাল আলমারি বা ফাইল ক্যাবিনেট। এখানে টেবিলের মতো করে ডেটা রাখা হয়, যাতে পরে সহজে খুঁজে বের করা যায় বা বদলানো যায়। যেমন, ফেসবুক তোমার সব তথ্য (নাম, বন্ধু, পোস্ট) একটা ডাটাবেজে গুছিয়ে রাখে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার স্কুলের লাইব্রেরিতে যেমন অনেক বই সুন্দর করে সাজানো থাকে (বিষয় অনুযায়ী, লেখকের নাম অনুযায়ী), ডাটাবেজও তেমনি কম্পিউটারে তথ্যগুলোকে সুন্দর করে সাজিয়ে রাখে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৮। DDL কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> DDL এর পূর্ণরূপ হলো Data Definition Language। এটি স্ট্রাকচার্ড কোয়েরি ল্যাঙ্গুয়েজ (SQL) এর একটি অংশ যা ডাটাবেজের কাঠামো (Structure) বা স্কিমা (Schema) তৈরি, পরিবর্তন বা মুছে ফেলার জন্য ব্যবহৃত হয়। এর কমান্ডগুলো হলো CREATE, ALTER, DROP ইত্যাদি।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> DDL হলো ডাটাবেজের নকশা বা স্ট্রাকচার বানানোর বা বদলানোর কমান্ড। যেমন: নতুন টেবিল বানানো, টেবিলের কলাম যোগ করা বা বাদ দেওয়া, পুরো টেবিল মুছে ফেলা – এই কাজগুলো DDL কমান্ড দিয়ে করা হয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো ডাটাবেজ হলো একটা খালি জমি। DDL হলো সেই জমিতে বাড়ি বানানোর (CREATE), বাড়ির ডিজাইন বদলানোর (ALTER), বা বাড়ি ভেঙে ফেলার (DROP) কমান্ড।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৯। DML কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> DML এর পূর্ণরূপ হলো Data Manipulation Language। এটি SQL এর একটি অংশ যা ডাটাবেজ টেবিলের মধ্যে সংরক্ষিত ডেটা নিয়ে কাজ করার জন্য (যেমন: ডেটা ইনসার্ট করা, আপডেট করা, ডিলিট করা এবং কুয়েরি বা 조회 করা) ব্যবহৃত হয়। এর প্রধান কমান্ডগুলো হলো SELECT, INSERT, UPDATE, DELETE।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> DML হলো ডাটাবেজের ভেতরের আসল ডেটাগুলো নিয়ে কাজ করার কমান্ড। যেমন: টেবিলে নতুন ডেটা ঢোকানো (INSERT), পুরনো ডেটা বদলানো (UPDATE), ডেটা মুছে ফেলা (DELETE), অথবা টেবিল থেকে ডেটা খুঁজে বের করে দেখা (SELECT) – এই কাজগুলো DML কমান্ড দিয়ে করা হয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> বাড়ি (ডাটাবেজ) বানানোর পর, সেই বাড়ির ভেতরে জিনিসপত্র ঢোকানো (INSERT), সাজানো গোছানো (UPDATE), ফেলে দেওয়া (DELETE) বা খুঁজে বের করা (SELECT) – এই কাজগুলো হলো DML কমান্ডের মতো।</p>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্নোত্তর</h3>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">১। স্ট্যাটিক ও ডায়নামিক ওয়েবসাইট বলতে কী বুঝায়?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <ul>
+                     <li><strong>স্ট্যাটিক ওয়েবসাইট:</strong> এটি এমন ওয়েবসাইট যার ওয়েবপেজগুলোর কন্টেন্ট সাধারণত স্থির থাকে এবং সার্ভারে আগে থেকে তৈরি করা HTML, CSS, JS ফাইল হিসেবে সংরক্ষিত থাকে। ব্যবহারকারী যখন পেজটি অনুরোধ করে, সার্ভার সেই ফাইলগুলো সরাসরি পাঠিয়ে দেয়। কন্টেন্ট পরিবর্তনের জন্য কোড পরিবর্তন করতে হয়। এটি তৈরি করা সহজ এবং হোস্টিং খরচ কম।</li>
+                     <li><strong>ডায়নামিক ওয়েবসাইট:</strong> এটি এমন ওয়েবসাইট যার কন্টেন্ট ব্যবহারকারীর অনুরোধ, সময়, ডেটাবেজ বা অন্যান্য শর্তের উপর ভিত্তি করে সার্ভার-সাইড স্ক্রিপ্টিং (যেমন: PHP, Python, Node.js) ও ডাটাবেজের মাধ্যমে রানটাইমে বা তাৎক্ষণিকভাবে তৈরি হয়। এটি ব্যবহারকারীকে ইন্টারঅ্যাকটিভ অভিজ্ঞতা দেয়, কন্টেন্ট সহজেই আপডেট করা যায় এবং ব্যবহারকারী অনুযায়ী কন্টেন্ট পার্সোনালাইজ করা সম্ভব।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li><strong>স্ট্যাটিক:</strong> ছাপানো বইয়ের পাতা, কনটেন্ট ফিক্সড। দেখতে চাইলে সার্ভার শুধু পাতাটা পাঠিয়ে দেয়। বানানো সহজ, খরচ কম।</li>
+                     <li><strong>ডায়নামিক:</strong> জাদুকরী বইয়ের পাতা, কনটেন্ট যখন দেখা হয় তখন তৈরি হয়। সার্ভার ডেটাবেজ থেকে তথ্য নিয়ে, কোড চালিয়ে পেজ বানিয়ে পাঠায়। বানানো কঠিন, খরচ বেশি, কিন্তু অনেক সুবিধা।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li><strong>স্ট্যাটিক:</strong> দেয়ালে আঁকা ছবি, সবসময় একই রকম।</li>
+                     <li><strong>ডায়নামিক:</strong> ডিজিটাল ফটো ফ্রেম, যেখানে ছবি নিজে নিজে বদলাতে থাকে।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। স্ট্যাটিক ও ডায়নামিক ওয়েবসাইটের মধ্যে পার্থক্য লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> স্ট্যাটিক ও ডায়নামিক ওয়েবসাইটের মধ্যে প্রধান পার্থক্যগুলো হলো:</p>
+                 <ul>
+                     <li><strong>কন্টেন্ট:</strong> স্ট্যাটিক ওয়েবসাইটের কন্টেন্ট স্থির ও পূর্ব-নির্ধারিত থাকে। ডায়নামিক ওয়েবসাইটের কন্টেন্ট রানটাইমে তৈরি হয় এবং পরিবর্তনশীল।</li>
+                     <li><strong>ডাটাবেজ:</strong> স্ট্যাটিক ওয়েবসাইটে সাধারণত ডাটাবেজের ব্যবহার হয় না। ডায়নামিক ওয়েবসাইটে কন্টেন্ট সংরক্ষণের জন্য ডাটাবেজ অপরিহার্য।</li>
+                     <li><strong>সার্ভার-সাইড স্ক্রিপ্টিং:</strong> স্ট্যাটিক ওয়েবসাইটে সার্ভার-সাইড স্ক্রিপ্টিং লাগে না। ডায়নামিক ওয়েবসাইট তৈরিতে সার্ভার-সাইড ল্যাঙ্গুয়েজ (PHP, Python, etc.) লাগে।</li>
+                     <li><strong>ইন্টারঅ্যাক্টিভিটি:</strong> স্ট্যাটিক ওয়েবসাইটে ইউজারের সাথে ইন্টারঅ্যাকশন সীমিত। ডায়নামিক ওয়েবসাইট অনেক বেশি ইন্টারঅ্যাকটিভ হতে পারে (যেমন: লগইন, সার্চ, কমেন্ট)।</li>
+                     <li><strong>ডেভেলপমেন্ট ও রক্ষণাবেক্ষণ:</strong> স্ট্যাটিক ওয়েবসাইট তৈরি ও হোস্ট করা সহজ এবং সস্তা। ডায়নামিক ওয়েবসাইট তৈরি ও রক্ষণাবেক্ষণ তুলনামূলক জটিল ও ব্যয়বহুল।</li>
+                     <li><strong>ব্যবহার:</strong> ব্যক্তিগত ব্লগ, পোর্টফোলিও, ছোট ব্যবসার তথ্যের জন্য স্ট্যাটিক ওয়েবসাইট উপযুক্ত। ই-কমার্স, সোশ্যাল মিডিয়া, নিউজ পোর্টাল, অনলাইন ফোরামের জন্য ডায়নামিক ওয়েবসাইট প্রয়োজন।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>স্ট্যাটিক: কনটেন্ট বদলায় না, ডাটাবেজ লাগে না, কোড লেখা সহজ, খরচ কম।</li>
+                     <li>ডায়নামিক: কনটেন্ট বদলায়, ডাটাবেজ লাগে, কোড লেখা জটিল, খরচ বেশি, ইউজার লগইন/কমেন্ট করতে পারে।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>স্ট্যাটিক: একটা ছাপানো লিফলেট। ডায়নামিক: ফেসবুকের নিউজ ফিড।</li>
+                     <li>লিফলেট বানানো সহজ, খরচ কম, কিন্তু তথ্য বদলানো যায় না। নিউজ ফিড বানানো কঠিন, খরচ বেশি, কিন্তু সবসময় নতুন নতুন খবর আসে আর তুমি লাইক/কমেন্ট করতে পারো।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। ডাটাবেস কী? ইহার বৈশিষ্ট্য লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <ul>
+                     <li><strong>ডাটাবেজ:</strong> ডাটাবেজ হলো কোনো কম্পিউটার সিস্টেমে ইলেকট্রনিকভাবে সংরক্ষিত বিপুল পরিমাণ সুসংগঠিত ও সম্পর্কযুক্ত (related) তথ্যের একটি কাঠামোবদ্ধ সংগ্রহ, যা সহজে অ্যাক্সেস, ব্যবস্থাপনা ও হালনাগাদ করা যায়।</li>
+                     <li><strong>বৈশিষ্ট্য:</strong>
+                         <ol>
+                             <li><strong>সুসংগঠিত ডেটা (Organized Data):</strong> ডেটা সাধারণত টেবিল, রো, কলাম ইত্যাদি কাঠামোতে منظمভাবে সংরক্ষিত থাকে।</li>
+                             <li><strong>ডেটা ইন্টিগ্রিটি (Data Integrity):</strong> ডেটার নির্ভুলতা, সামঞ্জস্যতা এবং বৈধতা বজায় রাখার নিয়ম প্রয়োগ করা হয়।</li>
+                             <li><strong>ডেটা শেয়ারিং (Data Sharing):</strong> অনুমোদিত একাধিক ব্যবহারকারী একই সময়ে ডেটাবেজ অ্যাক্সেস ও শেয়ার করতে পারে।</li>
+                             <li><strong>ডেটা নিরাপত্তা (Data Security):</strong> অননুমোদিত অ্যাক্সেস থেকে ডেটাকে রক্ষা করার ব্যবস্থা থাকে।</li>
+                             <li><strong>রিডানডেন্সি হ্রাস (Reduced Redundancy):</strong> একই ডেটা অপ্রয়োজনে একাধিকবার সংরক্ষণের প্রবণতা কমায়।</li>
+                             <li><strong>ডেটা কনসিসটেন্সি (Data Consistency):</strong> ডেটার বিভিন্ন কপির মধ্যে সামঞ্জস্যতা বজায় রাখে।</li>
+                             <li><strong>ডেটা ইন্ডিপেন্ডেন্স (Data Independence):</strong> অ্যাপ্লিকেশন প্রোগ্রাম থেকে ডেটার ভৌত বা যৌক্তিক গঠন পৃথক রাখা হয়।</li>
+                         </ol>
+                     </li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>ডাটাবেজ: কম্পিউটারে তথ্য গুছিয়ে রাখার ডিজিটাল গোডাউন।</li>
+                     <li>বৈশিষ্ট্য: তথ্যগুলো সাজানো থাকে, ভুল তথ্য সহজে ঢোকে না, একই তথ্য বারবার লেখা লাগে না, অনেকে একসাথে ব্যবহার করতে পারে, সহজে খুঁজে বের করা যায়, নিরাপদ থাকে।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li>ডাটাবেজ: তোমার স্কুলের লাইব্রেরি।</li>
+                    <li>বৈশিষ্ট্য: বইগুলো সুন্দর করে সাজানো, একই বইয়ের দশটা কপি নেই, কারা বই নিতে পারবে তার নিয়ম আছে, বই সহজে খুঁজে পাওয়া যায়, সবাই ব্যবহার করতে পারে।</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৪। DDL-এর কমান্ডগুলো লেখ।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> SQL এর DDL (Data Definition Language) এর প্রধান কমান্ডগুলো হলো:</p>
+                 <ul>
+                     <li><strong><code>CREATE</code>:</strong> ডাটাবেজ অবজেক্ট (যেমন: টেবিল, ভিউ, ইনডেক্স, ডাটাবেজ) তৈরি করার জন্য। (যেমন: <code>CREATE TABLE</code>)</li>
+                     <li><strong><code>ALTER</code>:</strong> বিদ্যমান ডাটাবেজ অবজেক্টের কাঠামো পরিবর্তন করার জন্য। (যেমন: <code>ALTER TABLE</code>)</li>
+                     <li><strong><code>DROP</code>:</strong> বিদ্যমান ডাটাবেজ অবজেক্ট মুছে ফেলার জন্য। (যেমন: <code>DROP TABLE</code>)</li>
+                     <li><strong><code>TRUNCATE</code>:</strong> টেবিলের সমস্ত ডেটা দ্রুত মুছে ফেলার জন্য (টেবিলের কাঠামো ঠিক থাকে)।</li>
+                     <li><strong><code>RENAME</code>:</strong> ডাটাবেজ অবজেক্টের নাম পরিবর্তন করার জন্য। (কিছু DBMS এ)</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> DDL কমান্ডগুলো ডাটাবেজের 'কাঠামো' নিয়ে কাজ করে: <code>CREATE</code> দিয়ে বানানো, <code>ALTER</code> দিয়ে বদলানো, <code>DROP</code> দিয়ে ফেলে দেওয়া, <code>TRUNCATE</code> দিয়ে টেবিল খালি করা।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> DDL কমান্ডগুলো হলো বাড়ি বানানোর বা ভাঙার যন্ত্রপাতি: <code>CREATE</code> (নতুন বাড়ি), <code>ALTER</code> (বাড়ির ডিজাইন বদলানো), <code>DROP</code> (পুরো বাড়ি ভেঙে ফেলা), <code>TRUNCATE</code> (বাড়ি রেখে ভেতরের সব জিনিস ফেলে দেওয়া)।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৫। DML-এর কমান্ডগুলো লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> SQL এর DML (Data Manipulation Language) এর প্রধান কমান্ডগুলো হলো:</p>
+                 <ul>
+                     <li><strong><code>SELECT</code>:</strong> টেবিল থেকে ডেটা পুনরুদ্ধার বা 조회 করার জন্য।</li>
+                     <li><strong><code>INSERT</code>:</strong> টেবিলে নতুন ডেটা বা রো প্রবেশ করানোর জন্য।</li>
+                     <li><strong><code>UPDATE</code>:</strong> টেবিলের বিদ্যমান ডেটা পরিবর্তন বা হালনাগাদ করার জন্য।</li>
+                     <li><strong><code>DELETE</code>:</strong> টেবিল থেকে ডেটা বা রো মুছে ফেলার জন্য।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> DML কমান্ডগুলো টেবিলের 'ভেতরের ডেটা' নিয়ে কাজ করে: <code>SELECT</code> দিয়ে ডেটা দেখা, <code>INSERT</code> দিয়ে নতুন ডেটা ঢোকানো, <code>UPDATE</code> দিয়ে পুরনো ডেটা বদলানো, <code>DELETE</code> দিয়ে ডেটা মুছে ফেলা।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> DML কমান্ডগুলো হলো বাড়ির ভেতরের জিনিসপত্র নিয়ে কাজ করা: <code>SELECT</code> (জিনিস খুঁজে দেখা), <code>INSERT</code> (নতুন জিনিস রাখা), <code>UPDATE</code> (পুরনো জিনিসের জায়গায় নতুন রাখা বা রঙ বদলানো), <code>DELETE</code> (জিনিস ফেলে দেওয়া)।</p>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্নোত্তর</h3>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">১। ডায়নামিক ওয়েবসাইট তৈরির বিভিন্ন ফ্রেমওয়ার্কগুলোর বর্ণনা দাও।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p>ডায়নামিক ওয়েবসাইট তৈরির জন্য বিভিন্ন প্রোগ্রামিং ল্যাঙ্গুয়েজের উপর ভিত্তি করে अनेक শক্তিশালী সার্ভার-সাইড ফ্রেমওয়ার্ক রয়েছে। এগুলো ওয়েব ডেভেলপমেন্ট প্রক্রিয়াকে দ্রুত, সংগঠিত এবং নিরাপদ করে তোলে। কয়েকটি জনপ্রিয় ফ্রেমওয়ার্কের বর্ণনা নিচে দেওয়া হলো:</p>
+
+                 <ol>
+                     <li><strong>ল্যারাভেল (Laravel):</strong>
+                         <ul>
+                             <li><strong>ভাষা:</strong> PHP</li>
+                             <li><strong>আর্কিটেকচার:</strong> MVC (Model-View-Controller)</li>
+                             <li><strong>বৈশিষ্ট্য:</strong> এটি একটি মার্জিত সিনট্যাক্স, বিল্ট-ইন টেমপ্লেটিং ইঞ্জিন (Blade), Eloquent ORM (ডাটাবেজ ইন্টারঅ্যাকশনের জন্য), Artisan কমান্ড-লাইন টুল, শক্তিশালী রাউটিং, বিল্ট-ইন সিকিউরিটি ফিচার (CSRF, XSS প্রোটেকশন), এবং একটি বৃহৎ কমিউনিটি ও ইকোসিস্টেম (যেমন: Laracasts) প্রদান করে। দ্রুত ডেভেলপমেন্ট ও আধুনিক ফিচার এর প্রধান আকর্ষণ।</li>
+                             <li><strong>ব্যবহার:</strong> ছোট থেকে বৃহৎ আকারের ওয়েব অ্যাপ্লিকেশন, API তৈরি।</li>
+                         </ul>
+                     </li>
+                     <li><strong>ডিজ্যাঙ্গো (Django):</strong>
+                         <ul>
+                             <li><strong>ভাষা:</strong> Python</li>
+                             <li><strong>আর্কিটেকচার:</strong> MVT (Model-View-Template) - MVC এর একটি প্রকরণ।</li>
+                             <li><strong>বৈশিষ্ট্য:</strong> এটি "batteries-included" দর্শন অনুসরণ করে, অর্থাৎ অনেক প্রয়োজনীয় ফিচার (যেমন: ORM, অটোমেটিক অ্যাডমিন ইন্টারফেস, অথেন্টিকেশন সিস্টেম, টেমপ্লেটিং ইঞ্জিন) ফ্রেমওয়ার্কের সাথেই আসে। এটি অত্যন্ত সুরক্ষিত, স্কেলেবল এবং DRY (Don't Repeat Yourself) নীতিকে উৎসাহিত করে।</li>
+                             <li><strong>ব্যবহার:</strong> জটিল, ডেটা-চালিত ওয়েব অ্যাপ্লিকেশন, কন্টেন্ট ম্যানেজমেন্ট সিস্টেম, সায়েন্টিফিক কম্পিউটিং প্ল্যাটফর্ম।</li>
+                         </ul>
+                     </li>
+                     <li><strong>রুবি অন রেইলস (Ruby on Rails):</strong>
+                         <ul>
+                             <li><strong>ভাষা:</strong> Ruby</li>
+                             <li><strong>আর্কিটেকচার:</strong> MVC</li>
+                             <li><strong>বৈশিষ্ট্য:</strong> "Convention over Configuration" এবং DRY নীতিতে বিশ্বাসী। এটি অত্যন্ত দ্রুত অ্যাপ্লিকেশন প্রোটোটাইপিং এবং ডেভেলপমেন্ট সম্ভব করে তোলে। এতে ActiveRecord (ORM), Action Pack (Controller/View), Active Support ইত্যাদি কম্পোনেন্ট রয়েছে। জেম (Gem) এর মাধ্যমে প্রচুর প্লাগইন পাওয়া যায়।</li>
+                             <li><strong>ব্যবহার:</strong> স্টার্টআপ, দ্রুত প্রোটোটাইপিং, ই-কমার্স, সোশ্যাল নেটওয়ার্কিং সাইট।</li>
+                         </ul>
+                     </li>
+                     <li><strong>এক্সপ্রেস.জেএস (Express.js):</strong>
+                         <ul>
+                             <li><strong>ভাষা:</strong> JavaScript (Node.js রানটাইমে)</li>
+                             <li><strong>আর্কিটেকচার:</strong> এটি একটি মিনিমালিস্ট এবং ফ্লেক্সিবল ফ্রেমওয়ার্ক, কোনো নির্দিষ্ট প্যাটার্ন চাপিয়ে দেয় না (তবে প্রায়শই MVC/MVC-সদৃশ প্যাটার্নে ব্যবহৃত হয়)।</li>
+                             <li><strong>বৈশিষ্ট্য:</strong> Node.js এর জন্য ডি-ফ্যাক্টো স্ট্যান্ডার্ড ওয়েব ফ্রেমওয়ার্ক হিসেবে পরিচিত। এটি খুবই হালকা (lightweight) এবং আন-ওপিনিওনেটেড (unopinionated), অর্থাৎ ডেভেলপারকে নিজের পছন্দ অনুযায়ী টুলস ও স্ট্রাকচার বেছে নেওয়ার স্বাধীনতা দেয়। মিডলওয়্যার (Middleware) এর ধারণা এর একটি মূল অংশ।</li>
+                             <li><strong>ব্যবহার:</strong> ওয়েব অ্যাপ্লিকেশন, API তৈরি, মাইক্রোসার্ভিসেস। MEAN/MERN স্ট্যাকের অংশ হিসেবে বহুল ব্যবহৃত।</li>
+                         </ul>
+                     </li>
+                     <li><strong>এএসপি.নেট কোর (ASP.NET Core):</strong>
+                         <ul>
+                             <li><strong>ভাষা:</strong> C# (মূলত), F#</li>
+                             <li><strong>আর্কিটেকচার:</strong> MVC, Razor Pages, Blazor ইত্যাদি প্যাটার্ন সমর্থন করে।</li>
+                             <li><strong>বৈশিষ্ট্য:</strong> এটি মাইক্রোসফট কর্তৃক ডেভেলপ করা একটি ক্রস-প্ল্যাটফর্ম, হাই-পারফরম্যান্স, ওপেন-সোর্স ফ্রেমওয়ার্ক। এটি মডুলার, ক্লাউড-রেডি এবং উইন্ডোজ, ম্যাকওএস, লিনাক্সে চলে। শক্তিশালী টাইপিং, বিল্ট-ইন ডিপেন্ডেন্সি ইনজেকশন এবং .NET ইকোসিস্টেম এর সুবিধা।</li>
+                             <li><strong>ব্যবহার:</strong> এন্টারপ্রাইজ-লেভেল ওয়েব অ্যাপ্লিকেশন, ওয়েব সার্ভিসেস, IoT অ্যাপস।</li>
+                         </ul>
+                     </li>
+                 </ol>
+                 <p>এই ফ্রেমওয়ার্কগুলো ছাড়াও আরও অনেক ফ্রেমওয়ার্ক (যেমন: Flask, Spring, Symphony ইত্যাদি) রয়েছে, যেগুলোর প্রত্যেকটির নিজস্ব সুবিধা ও ব্যবহারক্ষেত্র আছে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ডায়নামিক ওয়েবসাইট বানানোর জন্য কয়েকটা জনপ্রিয় 'রেডিমেড টুলবক্স' বা ফ্রেমওয়ার্ক হলো:</p>
+                 <ul>
+                     <li><strong>Laravel (PHP):</strong> PHP দিয়ে ওয়েবসাইট বানানোর জন্য খুব জনপ্রিয় আর আধুনিক একটা ফ্রেমওয়ার্ক। অনেক কাজ সহজ করে দেয়।</li>
+                     <li><strong>Django (Python):</strong> পাইথন দিয়ে বড় আর জটিল ওয়েবসাইট বানানোর জন্য খুব শক্তিশালী ফ্রেমওয়ার্ক। সিকিউরিটি আর স্কেলেবিলিটি ভালো।</li>
+                     <li><strong>Ruby on Rails (Ruby):</strong> রুবি ভাষা ব্যবহার করে খুব দ্রুত ওয়েবসাইট বানানো যায় এটা দিয়ে। স্টার্টআপদের মধ্যে খুব জনপ্রিয়।</li>
+                     <li><strong>Express.js (JavaScript/Node.js):</strong> Node.js এর সাথে ব্যবহার করা হয়। এটা খুব হালকা আর ফ্লেক্সিবল, ডেভেলপার নিজের মতো করে সাজিয়ে নিতে পারে। API বানানোর জন্য খুব ভালো।</li>
+                     <li><strong>ASP.NET Core (C#):</strong> মাইক্রোসফটের তৈরি, বড় এন্টারপ্রাইজ অ্যাপ্লিকেশন বানানোর জন্য বেশ শক্তিশালী ও ক্রস-প্ল্যাটফর্ম।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> বিভিন্ন ভাষায় বাড়ি বানানোর জন্য বিভিন্ন রকম রেডিমেড নকশা আর টুলস আছে:</p>
+                 <ul>
+                     <li>ল্যারাভেল: PHP ইট দিয়ে বাড়ি বানানোর নকশা।</li>
+                     <li>ডিজ্যাঙ্গো: পাইথন কাঠ দিয়ে বাড়ি বানানোর নকশা।</li>
+                     <li>রেইল্স: রুবি স্টিল দিয়ে বাড়ি বানানোর নকশা।</li>
+                     <li>এক্সপ্রেস: জাভাস্ক্রিপ্ট ব্লক দিয়ে বাড়ি বানানোর নকশা।</li>
+                     <li>ASP.NET: C# কংক্রিট দিয়ে বাড়ি বানানোর নকশা।</li>
+                 </ul>
+                 <p>প্রত্যেকটার নিজস্ব স্টাইল আর সুবিধা আছে।</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>ওয়েব ডিজাইন অ্যান্ড ডেভেলপমেন্ট স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        // Function to apply theme
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀️ লাইট মোড'; // Sun icon for light mode switch
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = '🌙 ডার্ক মোড'; // Moon icon for dark mode switch
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initial theme setup
+        let preferredTheme = 'light'; // Default to light
+        if (currentTheme) {
+            preferredTheme = currentTheme;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Uncomment below line if you want system preference to be the initial default
+            // preferredTheme = 'dark';
+        }
+        applyTheme(preferredTheme);
+
+        // Button click listener
+        themeToggleBtn.addEventListener('click', () => {
+            let newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+    </script>
+
+</body>
+</html>

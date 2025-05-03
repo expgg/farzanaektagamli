@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৮: সার্ভলেট</title>
+
+    <link rel="stylesheet" href="java_style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    </head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৮: সার্ভলেট</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">🌙 ডার্ক মোড</button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। সার্ভলেট বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> সার্ভলেট হলো একটি জাভা ক্লাস যা ওয়েব সার্ভারের ক্ষমতা বৃদ্ধি করে এবং ক্লায়েন্টের (ব্রাউজার) রিকোয়েস্ট প্রসেস করে ডায়নামিক ওয়েব কনটেন্ট তৈরি করে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সার্ভলেট হলো জাভা দিয়ে লেখা একটা প্রোগ্রাম যা ওয়েব সার্ভারে চলে। তুমি যখন কোনো ওয়েবসাইটে যাও (রিকোয়েস্ট পাঠাও), সার্ভলেট সেই রিকোয়েস্টটা নিয়ে প্রসেস করে তোমার জন্য একটা ডায়নামিক (পরিবর্তনশীল) ওয়েব পেজ তৈরি করে পাঠাতে পারে। এটা মূলত সার্ভার-সাইড প্রোগ্রামিংয়ের জন্য ব্যবহৃত হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> ওয়েবসাইটের রাঁধুনি। তুমি (ব্রাউজার) কী খেতে চাও (রিকোয়েস্ট) সেটা শুনে সে মেনু অনুযায়ী রান্না করে (প্রসেস করে) খাবারটা (ওয়েব পেজ) তোমার সামনে হাজির করে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। কয়েকটি জনপ্রিয় সার্ভলেট কন্টেইনার এর নাম লেখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> Apache Tomcat, Jetty, GlassFish, JBoss (WildFly)।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সার্ভলেটগুলো নিজে নিজে চলতে পারে না, তাদের চালানোর জন্য একটা বিশেষ সফটওয়্যার বা পরিবেশ লাগে, যাকে সার্ভলেট কন্টেইনার বা ওয়েব কন্টেইনার বলে। Tomcat, Jetty এগুলো হলো জনপ্রিয় সার্ভলেট কন্টেইনার।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> রাঁধুনি (সার্ভলেট) কে কাজ করার জন্য যেমন একটা রান্নাঘর (সার্ভলেট কন্টেইনার) দরকার হয়, যেখানে সব যন্ত্রপাতি থাকে। Tomcat, Jetty হলো সেই রকম রান্নাঘর।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। জাভায় সার্ভলেট তৈরির সম্ভাব্য উপায়সমূহ কী কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ১. `javax.servlet.Servlet` ইন্টারফেস ইমপ্লিমেন্ট করে। ২. `javax.servlet.GenericServlet` অ্যাবস্ট্রাক্ট ক্লাস এক্সটেন্ড করে। ৩. `javax.servlet.http.HttpServlet` অ্যাবস্ট্রাক্ট ক্লাস এক্সটেন্ড করে (সবচেয়ে বেশি ব্যবহৃত)।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সার্ভলেট বানানোর ৩টা প্রধান রাস্তা আছে:<ol><li>একদম বেসিক `Servlet` ইন্টারফেস ব্যবহার করা।</li><li>একটু উন্নত `GenericServlet` ক্লাস ব্যবহার করা।</li><li>HTTP প্রটোকলের জন্য বিশেষভাবে তৈরি `HttpServlet` ক্লাস ব্যবহার করা (ওয়েব অ্যাপ্লিকেশনের জন্য এটাই সাধারণত ব্যবহার করা হয়)।</li></ol></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> রাঁধুনি হওয়ার ৩টা পথ: ১) একেবারে গোড়া থেকে সব শেখা, ২) সাধারণ রান্নার ট্রেনিং নেওয়া, ৩) নির্দিষ্ট কোনো হোটেলের (HTTP) জন্য বিশেষ ট্রেনিং নেওয়া।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। `init()` মেথডের কাজ কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> সার্ভলেট ইন্সট্যান্সকে ইনিশিয়ালাইজ করা; এটি সার্ভলেটের লাইফ সাইকেলে কেবল একবার কল হয়।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সার্ভলেটটা যখন প্রথমবার লোড হয় বা চালু হয়, তখন তাকে কাজের জন্য প্রস্তুত করার কিছু কাজ থাকে (যেমন ডাটাবেজ কানেকশন তৈরি, ফাইল লোড করা)। `init()` মেথডটা ঠিক এই কাজগুলোই করে। এটা সার্ভলেটের জীবনে মাত্র একবারই কল হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> রান্না শুরু করার আগে রাঁধুনির সব সরঞ্জাম (ছুরি, কড়াই) ধুয়ে মুছে রেডি করে নেওয়াটাই হলো `init()`।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৫। `service()` মেথডের কাজ কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ক্লায়েন্টের প্রতিটি রিকোয়েস্ট গ্রহণ করে প্রসেস করা এবং রেসপন্স তৈরি করা।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> যখনই কোনো ক্লায়েন্ট (যেমন তোমার ব্রাউজার) সার্ভলেটের কাছে রিকোয়েস্ট পাঠায়, সার্ভলেট কন্টেইনার তখন `service()` মেথডটাকে কল করে। এই মেথডটাই মূল কাজটা করে – রিকোয়েস্টটা দেখে, প্রসেস করে, আর ক্লায়েন্টকে একটা জবাব (রেসপন্স) পাঠায়। প্রত্যেকটা রিকোয়েস্টের জন্য এটা কল হতে পারে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> যখনই কাস্টমার খাবারের অর্ডার দেয় (রিকোয়েস্ট), রাঁধুনি রান্নাঘরে গিয়ে (`service()` মেথড) সেই অর্ডার অনুযায়ী রান্নাটা করে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৬। সেশন ম্যানেজমেন্ট বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি নির্দিষ্ট ব্যবহারকারীর একাধিক রিকোয়েস্ট জুড়ে তার স্টেট বা তথ্য মনে রাখার কৌশল।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ওয়েব সাইটগুলো সাধারণত Stateless হয়, মানে তারা আগের রিকোয়েস্ট ভুলে যায়। সেশন ম্যানেজমেন্ট হলো এমন একটা কৌশল যার মাধ্যমে সার্ভার মনে রাখতে পারে যে একই ব্যবহারকারী কিছুক্ষণ আগে কী করেছিল বা কে লগইন করে আছে। যেমন, রিফাত লগইন করার পর বিভিন্ন পেজে গেলেও সার্ভার যেন বুঝতে পারে এটা রিফাতই। কুকি, URL রিরাইটিং, HttpSession অবজেক্ট দিয়ে এটা করা হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> দোকানে গেলে দোকানদার যদি তোমাকে চিনে রাখে এবং মনে রাখে তুমি আগে কী কিনেছিলে, সেটাই সেশন ম্যানেজমেন্ট। ওয়েবসাইটও তোমাকে চিনে রাখার জন্য এই কৌশল ব্যবহার করে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৭। কুকি কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> সার্ভার কর্তৃক ক্লায়েন্টের ব্রাউজারে পাঠানো এবং সংরক্ষিত অল্প পরিমাণ টেক্সচুয়াল ডেটা।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কুকি হলো ছোট্ট একটা টেক্সট ফাইল যা ওয়েবসাইট তোমার ব্রাউজারে সেভ করে রাখে। পরে তুমি আবার ওই ওয়েবসাইটে গেলে, ব্রাউজার কুকিটা ওয়েবসাইটকে পাঠায়। এতে ওয়েবসাইট তোমাকে চিনতে পারে বা তোমার আগের কিছু তথ্য (যেমন লগইন অবস্থা, পছন্দের জিনিস) মনে রাখতে পারে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমাকে চিনে রাখার জন্য দোকানদার তোমাকে যেমন একটা টোকেন বা কার্ড দেয়, কুকিও সেরকম একটা ডিজিটাল টোকেন যা ওয়েবসাইট তোমার ব্রাউজারে রেখে দেয়।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৮। সার্ভলেট লাইফ সাইকেল বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> সার্ভলেট তৈরি হওয়া থেকে শুরু করে ধ্বংস হওয়া পর্যন্ত বিভিন্ন দশার মধ্য দিয়ে যাওয়ার প্রক্রিয়া।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> একটা সার্ভলেটের জীবনচক্র বা লাইফ সাইকেল আছে। এটা কয়েকটা ধাপে ঘটে:<ol><li>লোডিং এবং ইন্সট্যানশিয়েশন (তৈরি হওয়া)।</li><li>ইনিশিয়ালাইজেশন (`init()` মেথড কল হওয়া - জীবনে একবার)।</li><li>রিকোয়েস্ট হ্যান্ডলিং (`service()` মেথড কল হওয়া - প্রতি রিকোয়েস্টে)।</li><li>ডেস্ট্রাকশন (`destroy()` মেথড কল হওয়া - সার্ভলেট বন্ধ হওয়ার আগে, জীবনে একবার)।</li></ol></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> রাঁধুনির জীবন: কাজে যোগ দেওয়া -> প্রথম দিন সব বুঝে নেওয়া (`init`) -> প্রতিদিন অর্ডার অনুযায়ী রান্না করা (`service`) -> চাকরি ছেড়ে দেওয়া (`destroy`)।</p></div>
+        </div>
+
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৯। চিত্রসহ জাভা সার্ভলেটের সংজ্ঞা লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>সংজ্ঞা:</strong> সার্ভলেট হলো একটি জাভা প্রোগ্রামিং ল্যাঙ্গুয়েজ ক্লাস যা সাধারণত ওয়েব সার্ভারে রান করে। এটি ক্লায়েন্ট (যেমন: ওয়েব ব্রাউজার) থেকে আসা HTTP রিকোয়েস্ট গ্রহণ করে, প্রসেস করে এবং ডায়নামিক কনটেন্ট (যেমন: HTML, XML) সম্বলিত HTTP রেসপন্স তৈরি করে ক্লায়েন্টের কাছে ফেরত পাঠায়। এটি সার্ভার-সাইড ওয়েব অ্যাপ্লিকেশন তৈরির একটি শক্তিশালী প্রযুক্তি।</p>
+                <p><strong>চিত্র (সাধারণ ফ্লো):</strong></p>
+                 <pre><code>
+    +--------------+        HTTP Request        +--------------+        +--------------------+       +-------------+
+    | Client       | ------------------------> | Web Server   | -----> | Servlet Container  | ----> | Servlet     |
+    | (e.g., Browser)|                         | (e.g., Apache)|        | (e.g., Tomcat)     |       | (Your Code) |
+    +--------------+        HTTP Response       +--------------+ <----- |                    | <---- |             |
+                     <------------------------ |              |        +--------------------+       +-------------+
+                                                (Static Content)       (Manages Servlet)           (Processes Request)
+                 </code></pre>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সার্ভলেট হলো একটা জাভা ক্লাস যা ওয়েব সার্ভারে থাকে। যখন রিফাত ব্রাউজার থেকে কোনো ওয়েবসাইটের রিকোয়েস্ট পাঠায়, সেটা প্রথমে ওয়েব সার্ভারে যায়। ওয়েব সার্ভার যদি দেখে এটা একটা সার্ভলেটের কাজ, সে রিকোয়েস্টটা সার্ভলেট কন্টেইনারকে (যেমন Tomcat) দেয়। কন্টেইনার তখন নির্দিষ্ট সার্ভলেটটাকে চালু করে (বা চালু থাকলে) রিকোয়েস্টটা প্রসেস করতে দেয়। সার্ভলেট কাজ শেষে একটা HTML পেজ বা অন্য কোনো ডেটা তৈরি করে কন্টেইনারকে ফেরত দেয়, যা ওয়েব সার্ভারের মাধ্যমে রিফাতের ব্রাউজারে চলে আসে। উপরের চিত্র এই প্রবাহটাই দেখাচ্ছে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি (Client) রেস্টুরেন্টে (Web Server) গিয়ে ওয়েটারকে (Servlet Container) খাবারের অর্ডার দিলে। ওয়েটার সেই অর্ডার কিচেনে রাঁধুনিকে (Servlet) দিলো। রাঁধুনি খাবার বানিয়ে ওয়েটারকে দিলো, ওয়েটার সেটা তোমাকে এনে দিলো (Response)।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১০। সার্ভলেটের উল্লেখযোগ্য বৈশিষ্ট্যসমূহ উল্লেখ কর।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong><ul><li><strong>প্ল্যাটফর্ম ও সার্ভার ইন্ডিপেন্ডেন্ট:</strong> যেকোনো অপারেটিং সিস্টেম ও বিভিন্ন ওয়েব সার্ভারে চলতে পারে।</li><li><strong>পারফরম্যান্স:</strong> CGI স্ক্রিপ্টের চেয়ে দ্রুত কাজ করে কারণ সার্ভলেট মেমরিতে লোড হয়ে থাকে এবং প্রতিটি রিকোয়েস্টের জন্য নতুন প্রসেস তৈরি করে না।</li><li><strong>শক্তিশালী:</strong> জাভার পূর্ণাঙ্গ সুবিধা (যেমন: নেটওয়ার্কিং, মাল্টিথ্রেডিং, এক্সেপশন হ্যান্ডলিং, JDBC) ব্যবহার করা যায়।</li><li><strong>নিরাপত্তা:</strong> জাভার নিরাপত্তা বৈশিষ্ট্যগুলো ব্যবহার করে।</li><li><strong>এক্সটেনসিবল:</strong> HTTP ছাড়াও অন্যান্য প্রটোকলের জন্য ব্যবহার করা যায় (GenericServlet)।</li><li><strong>সেশন ম্যানেজমেন্ট:</strong> ব্যবহারকারীর সেশন ট্র্যাক করার বিল্ট-ইন সুবিধা আছে।</li><li><strong>রোবাস্ট (Robust):</strong> জাভার গার্বেজ কালেকশন ও এক্সেপশন হ্যান্ডলিংয়ের কারণে তুলনামূলক স্থিতিশীল।</li></ul></p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সার্ভলেটের ভালো দিকগুলো:<ul><li>যেকোনো কম্পিউটার বা সার্ভারে চলে।</li><li>বেশ ফাস্ট কাজ করে।</li><li>জাভার সব পাওয়ারফুল ফিচার ব্যবহার করা যায়।</li><li>নিরাপদ।</li><li>শুধু ওয়েবসাইট না, অন্য কাজেও লাগানো যায়।</li><li>ব্যবহারকারীকে মনে রাখতে পারে (সেশন)।</li><li>সহজে ক্র্যাশ করে না।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> এই রাঁধুনির (সার্ভলেট) সুবিধা: সে যেকোনো রান্নাঘরে কাজ করতে পারে, খুব তাড়াতাড়ি রান্না করে, অনেক রকম রান্না জানে, পরিষ্কার পরিচ্ছন্ন ও নিরাপদ, শুধু রান্না না অন্য কাজও পারে, কাস্টমারকে মনে রাখে, আর সহজে অসুস্থ হয় না।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১১। সার্ভলেট আর্কিটেকচার কম্পোনেন্টসমূহ বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> সার্ভলেট আর্কিটেকচারের প্রধান উপাদানগুলো হলো:<ol><li><strong>ওয়েব সার্ভার (Web Server):</strong> ক্লায়েন্ট থেকে HTTP রিকোয়েস্ট গ্রহণ করে এবং স্ট্যাটিক কনটেন্ট (HTML, CSS, Image) সরাসরি প্রদান করে। ডায়নামিক কনটেন্টের জন্য রিকোয়েস্ট সার্ভলেট কন্টেইনারে ফরওয়ার্ড করে। উদাহরণ: Apache HTTP Server, Nginx।</li><li><strong>সার্ভলেট কন্টেইনার (Servlet Container / Web Container):</strong> এটি ওয়েব সার্ভারের একটি অংশ বা একটি স্বতন্ত্র সার্ভার যা সার্ভলেটগুলোর লাইফ সাইকেল ম্যানেজ করে। এটি রিকোয়েস্ট গ্রহণ করে সঠিক সার্ভলেটকে ম্যাপ করে, সার্ভলেট লোড ও ইনিশিয়ালাইজ করে, রিকোয়েস্ট ও রেসপন্স অবজেক্ট তৈরি করে `service()` মেথডে পাস করে এবং সার্ভলেটকে আনলোড করে। উদাহরণ: Apache Tomcat, Jetty।</li><li><strong>সার্ভলেট (Servlet):</strong> জাভা ক্লাস যা `Servlet` ইন্টারফেস ইমপ্লিমেন্ট করে (সাধারণত `HttpServlet` এক্সটেন্ড করে)। এটি ক্লায়েন্টের রিকোয়েস্ট প্রসেস করে এবং ডায়নামিক রেসপন্স তৈরি করে।</li><li><strong>সার্ভলেট API (`javax.servlet` ও `javax.servlet.http` প্যাকেজ):</strong> সার্ভলেট তৈরি ও ব্যবহারের জন্য প্রয়োজনীয় ইন্টারফেস ও ক্লাস (যেমন: `Servlet`, `HttpServlet`, `ServletRequest`, `ServletResponse`, `HttpServletRequest`, `HttpServletResponse`, `HttpSession` ইত্যাদি) সরবরাহ করে।</li><li><strong>ক্লায়েন্ট (Client):</strong> সাধারণত একটি ওয়েব ব্রাউজার যা HTTP রিকোয়েস্ট পাঠায় এবং সার্ভার থেকে পাওয়া রেসপন্স প্রদর্শন করে।</li></ol></p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সার্ভলেট সিস্টেমের মেইন পার্টস:<ul><li><strong>ওয়েব সার্ভার:</strong> গেটকিপার, যে বাইরের রিকোয়েস্ট রিসিভ করে।</li><li><strong>সার্ভলেট কন্টেইনার:</strong> ম্যানেজার, যে সার্ভলেটদের দেখাশোনা করে, তাদের জীবনচক্র নিয়ন্ত্রণ করে।</li><li><strong>সার্ভলেট:</strong> আসল কর্মী (রাঁধুনি), যে রিকোয়েস্ট অনুযায়ী কাজ করে।</li><li><strong>সার্ভলেট API:</strong> নিয়মকানুন ও যন্ত্রপাতির সেট, যা দিয়ে সার্ভলেট বানানো ও ব্যবহার করা হয়।</li><li><strong>ক্লায়েন্ট:</strong> কাস্টমার (ব্রাউজার), যে রিকোয়েস্ট পাঠায় আর রেসপন্স দেখে।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> রেস্টুরেন্টের অংশগুলো: গেট (`Web Server`), ম্যানেজার (`Servlet Container`), রাঁধুনি (`Servlet`), রান্নার নিয়ম ও সরঞ্জাম (`Servlet API`), কাস্টমার (`Client`)।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১২। `service()` মেথডের সাথে সম্পর্কিত HTTP মেথডসমূহ আলোচনা কর।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> `HttpServlet` ক্লাসের `service()` মেথডটি ক্লায়েন্ট থেকে আসা HTTP রিকোয়েস্টের ধরনের (HTTP Method যেমন GET, POST, PUT, DELETE ইত্যাদি) উপর ভিত্তি করে নির্দিষ্ট `doXxx()` মেথডকে কল করে। প্রধান HTTP মেথড এবং সংশ্লিষ্ট `doXxx()` মেথডগুলো হলো:<ul><li><strong>HTTP GET:</strong> ডেটা পুনরুদ্ধার বা পাওয়ার জন্য ব্যবহৃত হয়। `service()` মেথড এটিকে `doGet(HttpServletRequest req, HttpServletResponse resp)` মেথডে ফরওয়ার্ড করে।</li><li><strong>HTTP POST:</strong> সার্ভারে ডেটা সাবমিট করার জন্য (যেমন: ফর্ম ডেটা) ব্যবহৃত হয়। `service()` মেথড এটিকে `doPost(HttpServletRequest req, HttpServletResponse resp)` মেথডে ফরওয়ার্ড করে।</li><li><strong>HTTP PUT:</strong> সার্ভারে একটি রিসোর্স তৈরি বা প্রতিস্থাপন করার জন্য ব্যবহৃত হয়। `service()` এটিকে `doPut()` মেথডে ফরওয়ার্ড করে।</li><li><strong>HTTP DELETE:</strong> সার্ভার থেকে একটি রিসোর্স মুছে ফেলার জন্য ব্যবহৃত হয়। `service()` এটিকে `doDelete()` মেথডে ফরওয়ার্ড করে।</li><li><strong>HTTP HEAD:</strong> GET এর অনুরূপ, কিন্তু রেসপন্সে শুধু হেডার পাঠায়, বডি পাঠায় না। `service()` এটিকে `doHead()` মেথডে ফরওয়ার্ড করে।</li><li><strong>HTTP OPTIONS:</strong> সার্ভার কোন HTTP মেথডগুলো সমর্থন করে তা জানার জন্য ব্যবহৃত হয়। `service()` এটিকে `doOptions()` মেথডে ফরওয়ার্ড করে।</li><li><strong>HTTP TRACE:</strong> রিকোয়েস্ট মেসেজটি সার্ভার পর্যন্ত পৌঁছাতে যে পথ অনুসরণ করেছে তা ডায়াগনস্টিক পারপাসে দেখার জন্য। `service()` এটিকে `doTrace()` মেথডে ফরওয়ার্ড করে।</li></ul>সাধারণত ওয়েব অ্যাপ্লিকেশনে `doGet()` এবং `doPost()` মেথড দুটিই সবচেয়ে বেশি ওভাররাইড ও ব্যবহার করা হয়।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ক্লায়েন্ট যখন সার্ভলেটের কাছে রিকোয়েস্ট পাঠায়, সে বলে দেয় সে কী করতে চায় (GET-দেখতে চাই, POST-জমা দিতে চাই, DELETE-মুছতে চাই ইত্যাদি)। সার্ভলেটের `service()` মেথড এই রিকোয়েস্টের ধরণটা দেখে। <ul><li>যদি GET রিকোয়েস্ট হয়, সে `doGet()` কে কাজ করতে বলে।</li><li>যদি POST রিকোয়েস্ট হয়, সে `doPost()` কে কাজ করতে বলে।</li><li>যদি PUT রিকোয়েস্ট হয়, `doPut()` কে বলে... ইত্যাদি।</li></ul> আমাদের সাধারণত `doGet()` আর `doPost()` মেথড দুটোতেই কোড লিখতে হয় যে GET বা POST রিকোয়েস্ট এলে কী করতে হবে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি রেস্টুরেন্টে গিয়ে অর্ডার দেওয়ার সময় বলে দাও কী চাও: "মেনু দেখি" (GET), "এই খাবারটা দাও" (POST), "টেবিলটা পরিষ্কার করো" (PUT), "এই অর্ডারটা বাদ দাও" (DELETE)। ওয়েটার (`service`) তোমার চাওয়ার ধরণ অনুযায়ী সঠিক ডিপার্টমেন্টে (`doGet`, `doPost`...) খবরটা পৌঁছে দেয়।</p></div>
+        </div>
+
+        </main>
+
+    <footer class="page-footer">
+        <p>অ্যাপ্লিকেশন ডেভেলপমেন্ট ইউজিং জাভা - স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true} ], throwOnError: false });"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="main_script.js" defer></script>
+
+</body>
+</html>

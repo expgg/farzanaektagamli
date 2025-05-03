@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৯: ৮০৮৬ মাইক্রোপ্রসেসরের ইন্টারাপ্ট ইন্টারফেস</title>
+    <link rel="stylesheet" href="os_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k55gMp/InvxBM1Mty9rgRDIJNu38mMhftBPqzhAXSDdy92HjL4IFNfey" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1MZu6ADomyXk8EogbLDBsPU5rkXF/dtZZxL1Pceg6x" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouEs/BHtTcWgwPkMAVEABrHI+WGBmvygAodXElARTYHD" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৯: ৮০৮৬ মাইক্রোপ্রসেসরের ইন্টারাপ্ট ইন্টারফেস</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">
+            </button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। Interrupt কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> ইন্টারাপ্ট (Interrupt) হলো একটি সিগন্যাল বা ইভেন্ট যা মাইক্রোপ্রসেসরের কাছে পাঠানো হয় তার বর্তমান কাজের স্বাভাবিক এক্সিকিউশন সাময়িকভাবে স্থগিত করে একটি বিশেষ সার্ভিস রুটিন (Interrupt Service Routine - ISR) এক্সিকিউট করার জন্য অনুরোধ জানাতে। এটি হার্ডওয়্যার ডিভাইস বা সফটওয়্যার ইনস্ট্রাকশন দ্বারা জেনারেট হতে পারে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, ইন্টারাপ্ট হলো প্রসেসরের কাজে বাধা দেওয়া। ধরো তুমি পড়ছো, এমন সময় কলিং বেল বাজলো (ইন্টারাপ্ট)। তুমি পড়া থামিয়ে দরজা খুলতে গেলে (ISR)। কাজ শেষে আবার আগের পড়ায় ফিরে আসলে। কম্পিউটারেও এরকম বাইরের ডিভাইস বা প্রোগ্রাম নিজেই প্রসেসরকে ইন্টারাপ্ট দিয়ে মনোযোগ আকর্ষণ করতে পারে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> ফারজানা খেলছে, তখন মা ডাক দিলো (ইন্টারাপ্ট)। ফারজানা খেলা থামিয়ে মায়ের কাছে গেলো, কথা শুনে আবার খেলায় ফিরলো। এই মায়ের ডাকটাই হলো ইন্টারাপ্ট।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">২। সফটওয়্যার ইন্টারাপ্ট কাকে বলে?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> সফটওয়্যার ইন্টারাপ্ট হলো এমন এক ধরনের ইন্টারাপ্ট যা প্রোগ্রামের মধ্যে নির্দিষ্ট ইন্টারাপ্ট ইনস্ট্রাকশন (যেমন 8086 এর <code>INT n</code>) এক্সিকিউট করার মাধ্যমে জেনারেট হয়। এটি হার্ডওয়্যার ইভেন্টের উপর নির্ভরশীল নয় এবং প্রোগ্রামার দ্বারা নিয়ন্ত্রিত হয়, সাধারণত অপারেটিং সিস্টেমের সার্ভিস কল করার জন্য ব্যবহৃত হয়।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, হার্ডওয়্যার ইন্টারাপ্ট আসে বাইরের যন্ত্র থেকে। কিন্তু সফটওয়্যার ইন্টারাপ্ট আসে প্রোগ্রামের ভেতর থেকেই। প্রোগ্রামার ইচ্ছে করে কোডের মধ্যে <code>INT</code> কমান্ড লিখে প্রসেসরকে একটা নির্দিষ্ট ইন্টারাপ্ট সার্ভিস রুটিন চালাতে বলতে পারে। এটা অনেকটা রিফাত যেমন খেলার সময় নিজেই বলে, "ওকে, এখন ড্রিঙ্কস ব্রেক!"</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি নিজেই অ্যালার্ম সেট করে রাখলে (সফটওয়্যার ইন্টারাপ্ট) যাতে ঠিক সময়ে পড়া শুরু করতে পারো। বাইরের কেউ তোমাকে ডাকেনি।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৩। Base address কাকে বলে?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> বেইস অ্যাড্রেস (Base Address) সাধারণত একটি মেমরি সেগমেন্ট, ডেটা স্ট্রাকচার বা মেমরি ম্যাপড ব্লকের শুরুর ঠিকানা নির্দেশ করে। 8086 আর্কিটেকচারে, সেগমেন্ট রেজিস্টারগুলো (CS, DS, SS, ES) সংশ্লিষ্ট মেমরি সেগমেন্টের বেইস অ্যাড্রেস নির্দেশ করে (ফিজিক্যাল বেইস = সেগমেন্ট * 16)।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, বেইস অ্যাড্রেস মানে হলো কোনো কিছুর শুরুটা কোথায়, সেই ঠিকানা। যেমন, একটা বইয়ের তাকের শুরুটা কোন নম্বরে। 8086 এ সেগমেন্ট রেজিস্টারগুলো এই শুরুর ঠিকানাটাই মনে রাখে। ফারজানার বাসার ঠিকানাটা হলো তার এলাকার একটা বেইস অ্যাড্রেস।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা লম্বা রাস্তার (মেমরি) শুরুটা যেখান থেকে (০ নম্বর বাড়ি), সেটাই হলো বেইস অ্যাড্রেস।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। ইন্টারাপ্ট ভেক্টর কাকে বলে?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ইন্টারাপ্ট ভেক্টর (Interrupt Vector) হলো একটি নির্দিষ্ট ইন্টারাপ্ট টাইপের জন্য নির্ধারিত Interrupt Service Routine (ISR) এর মেমরি অ্যাড্রেস (সাধারণত সেগমেন্ট ও অফসেট)। 8086 সিস্টেমে, ইন্টারাপ্ট ভেক্টর টেবিলের (IVT) মধ্যে প্রতিটি ইন্টারাপ্ট টাইপের জন্য ৪ বাইটের একটি এন্ট্রি (অফসেট ও সেগমেন্ট) থাকে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, যখন একটা ইন্টারাপ্ট আসে, তখন প্রসেসরকে জানতে হয় ঠিক কোন কাজটা করতে হবে। ইন্টারাপ্ট ভেক্টর হলো সেই কাজের ঠিকানা। একটা টেবিলের মধ্যে (IVT) প্রত্যেক ধরনের ইন্টারাপ্টের জন্য তার কাজের ঠিকানা লেখা থাকে। রিফাত যেমন বইয়ের সূচিপত্র দেখে গল্পের পৃষ্ঠা নম্বর বের করে, ইন্টারাপ্ট ভেক্টরও তেমনি ISR এর ঠিকানা খুঁজে বের করতে সাহায্য করে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার ফোনের কন্টাক্ট লিস্টের মতো। কন্টাক্ট নাম (ইন্টারাপ্ট টাইপ) বললে ফোন নম্বর (ইন্টারাপ্ট ভেক্টর বা ISR অ্যাড্রেস) পাওয়া যায়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৫। কোন প্রকার ইন্টারাপ্টে কাকে বলে?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> (প্রশ্নটি অস্পষ্ট, সম্ভাব্য উত্তর মাস্ক করা যায় না কোনটি)</p>
+                 <p>নন-মাস্কেবল ইন্টারাপ্ট (Non-Maskable Interrupt - NMI) কে মাস্ক বা উপেক্ষা করা যায় না। এটি জরুরি অবস্থার জন্য সংরক্ষিত (যেমন 8086 এর Type 2 ইন্টারাপ্ট)।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> (মাস্ক করা যায় না ধরে) রিফাত, কিছু ইন্টারাপ্ট আছে যেগুলোকে প্রসেসর চাইলেও ইগনোর বা বন্ধ (মাস্ক) করতে পারে না। এগুলো খুব জরুরি অবস্থার সিগন্যাল, যেমন NMI। ফারজানা খেলার সময় মায়ের সাধারণ ডাক (INTR) শুনতে না পেলেও, আগুন লাগার অ্যালার্ম (NMI) বাজলে তাকে শুনতেই হবে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> (মাস্ক করা যায় না ধরে) কিছু অ্যালার্ম আছে যা তুমি বন্ধ করতে পারবে না, বাজতেই থাকবে (যেমন ফায়ার অ্যালার্ম)। NMI সেরকম একটা ইন্টারাপ্ট।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৬। হার্ডওয়্যার ইন্টারাপ্ট কাকে বলে?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> হার্ডওয়্যার ইন্টারাপ্ট হলো এমন এক ধরনের ইন্টারাপ্ট যা মাইক্রোপ্রসেসরের সাথে সংযুক্ত কোনো এক্সটার্নাল পেরিফেরাল ডিভাইস বা হার্ডওয়্যার সার্কিট দ্বারা জেনারেট হয়। ডিভাইসটি প্রসেসরের মনোযোগ আকর্ষণ করার জন্য প্রসেসরের নির্দিষ্ট ইন্টারাপ্ট পিনে (যেমন: INTR বা NMI) একটি ইলেকট্রিক্যাল সিগন্যাল পাঠায়।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, হার্ডওয়্যার ইন্টারাপ্ট হলো বাইরের কোনো যন্ত্র থেকে আসা সিগন্যাল। যেমন, কিবোর্ডে কিছু টাইপ করলে সে প্রসেসরকে একটা ইন্টারাপ্ট সিগন্যাল পাঠায়। মাউস নাড়ানো, প্রিন্টার কাজ শেষ করা – এগুলো সবই হার্ডওয়্যার ইন্টারাপ্টের উদাহরণ। রিফাতের খেলনা গাড়ির রিমোট কন্ট্রোল থেকে আসা সিগন্যালটাও একরকম হার্ডওয়্যার ইন্টারাপ্ট।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> কলিং বেল বাজাটা একটা হার্ডওয়্যার ইন্টারাপ্ট। বাইরের একটা যন্ত্র (বেল) তোমাকে সিগন্যাল দিচ্ছে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৭। 8086 প্রসেসরে কয়টি উৎস হতে ইন্টারাপ্ট সিগন্যাল আসতে পারে?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> 8086 প্রসেসরে প্রধানত তিনটি উৎস থেকে ইন্টারাপ্ট সিগন্যাল আসতে পারে:</p>
+                 <ol>
+                     <li>এক্সটার্নাল হার্ডওয়্যার ইন্টারাপ্ট (NMI, INTR পিন)।</li>
+                     <li>সফটওয়্যার ইন্টারাপ্ট (<code>INT n</code> ইনস্ট্রাকশন)।</li>
+                     <li>প্রসেসর কন্ডিশনাল ইন্টারাপ্ট/এক্সেপশন (Divide Error, INTO, Trap Flag)।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, 8086 প্রসেসর তিন দিক থেকে ইন্টারাপ্ট পেতে পারে: ১) বাইরের যন্ত্রের কাছ থেকে, ২) প্রোগ্রামের ভেতর থেকে, ৩) নিজের ভেতরের কোনো বিশেষ অবস্থা বা ভুল থেকে। ফারজানাকে যেমন বাইরে থেকে কেউ ডাকতে পারে, সে নিজে নিজে কাজের বিরতি নিতে পারে, বা ভুল করলে অন্য কেউ ধরিয়ে দিতে পারে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার মনোযোগ আকর্ষণের তিনটা উপায়: (১) বাইরে থেকে কেউ ডাকা, (২) তুমি নিজেই কিছু করা, (৩) কোনো ভুল বা দুর্ঘটনা ঘটা।</p>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্নোত্তর</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। পূর্ব সংজ্ঞায়িত ইন্টারাপ্টসমূহ কী কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> 8086 প্রসেসরের প্রধান কয়েকটি পূর্ব-সংজ্ঞায়িত বা ডেডিকেটেড ইন্টারাপ্ট হলো:</p>
+                 <ul>
+                     <li><strong>Type 0:</strong> ডিভাইড এরর।</li>
+                     <li><strong>Type 1:</strong> সিঙ্গেল স্টেপ (Trap)।</li>
+                     <li><strong>Type 2:</strong> নন-মাস্কেবল ইন্টারাপ্ট (NMI)।</li>
+                     <li><strong>Type 3:</strong> ব্রেকপয়েন্ট (<code>INT 3</code>)।</li>
+                     <li><strong>Type 4:</strong> ওভারফ্লো (<code>INTO</code>)।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, কিছু ইন্টারাপ্টের নম্বর (টাইপ) আর তাদের কাজ আগে থেকেই ঠিক করা আছে। যেমন: টাইপ ০ (ভাগের ভুল), টাইপ ১ (এক ধাপ করে চলা), টাইপ ২ (খুব জরুরি), টাইপ ৩ (প্রোগ্রাম থামানো), টাইপ ৪ (হিসাবে ওভারফ্লো)। রিফাতের যেমন কিছু নির্দিষ্ট খেলার রুল আছে, এগুলোও প্রসেসরের তেমন কিছু নির্দিষ্ট ইন্টারাপ্ট রুল।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> ফোনের কিছু স্পেশাল নম্বর যেমন ফায়ার সার্ভিস, পুলিশ - এগুলো আগে থেকেই ঠিক করা থাকে। এই ইন্টারাপ্টগুলোও তেমনি স্পেশাল কাজের জন্য আগে থেকে ঠিক করা।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">২। INTO ইনস্ট্রাকশনের ব্যবহার লেখ।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> <code>INTO</code> (Interrupt on Overflow) একটি কন্ডিশনাল সফটওয়্যার ইন্টারাপ্ট ইনস্ট্রাকশন। এটি শুধুমাত্র তখনই একটি Type 4 ইন্টারাপ্ট জেনারেট করে যখন ওভারফ্লো ফ্ল্যাগ (OF) সেট (1) থাকে। এটি সাধারণত সাইন্ড অ্যারিথমেটিক অপারেশনের পর ওভারফ্লো ঘটেছে কিনা তা পরীক্ষা করে ত্রুটি হ্যান্ডেল করার জন্য ব্যবহৃত হয়।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, <code>INTO</code> কমান্ডটা চেক করে দেখে যে ওভারফ্লো ফ্ল্যাগটা (OF) অন আছে কিনা। যদি অন থাকে (আগের হিসাবে ওভারফ্লো হয়েছিল), তাহলে সে টাইপ ৪ ইন্টারাপ্ট চালু করে দেয়। যদি OF অফ থাকে, তাহলে সে কিছুই করে না। ফারজানা যেমন বলে, "যদি বৃষ্টি আসে (OF=1), তাহলে ছাতা নিয়ে বের হবো (Type 4 interrupt)"।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা সেন্সর যা চেক করে পাত্রটা ভরে উপচে পড়ছে কিনা (OF=1)। যদি উপচে পড়ে, তাহলে অ্যালার্ম বাজায় (Type 4 interrupt)।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। 8086 প্রসেসরে কয়টি উৎস হতে ইন্টারাপ্ট সিগন্যাল আসতে পারে ও কী কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> (এই প্রশ্নের উত্তর অতি সংক্ষিপ্ত প্রশ্ন ৭ এর অনুরূপ।) 8086 প্রসেসরে প্রধানত তিনটি উৎস থেকে ইন্টারাপ্ট সিগন্যাল আসতে পারে:</p>
+                 <ol>
+                     <li>এক্সটার্নাল হার্ডওয়্যার ইন্টারাপ্ট (NMI, INTR)।</li>
+                     <li>সফটওয়্যার ইন্টারাপ্ট (INT n)।</li>
+                     <li>প্রসেসর কন্ডিশনাল ইন্টারাপ্ট/এক্সেপশন (Divide Error, INTO, Trap)।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, এটা আগের প্রশ্নের মতোই। তিন জায়গা থেকে ইন্টারাপ্ট আসে: (১) বাইরের যন্ত্র থেকে, (২) প্রোগ্রামের ভেতর থেকে, (৩) প্রসেসরের নিজের কন্ডিশন বা ভুল থেকে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> রিফাতের মনোযোগ আকর্ষণের তিনটা উপায়: (১) বাইরে থেকে কেউ ডাকা, (২) সে নিজেই কিছু করা, (৩) কোনো ভুল বা দুর্ঘটনা ঘটা।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৪। 8086 প্রসেসরে ইন্টারাপ্টসমূহকে কয়টি গ্রুপে ভাগ করা যায় ও কী কী?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> 8086 এর ইন্টারাপ্টগুলোকে বিভিন্নভাবে গ্রুপ করা যায়:</p>
+                 <ul>
+                     <li><strong>উৎস অনুসারে:</strong> এক্সটার্নাল (হার্ডওয়্যার) এবং ইন্টারনাল (সফটওয়্যার/এক্সেপশন)।</li>
+                     <li><strong>মাস্কিএবিলিটি অনুসারে:</strong> নন-মাস্কেবল (NMI) এবং মাস্কেবল (INTR, অন্যান্য)।</li>
+                     <li><strong>ভেক্টর অনুসারে:</strong> ডেডিকেটেড/প্রিডিফাইন্ড (Type 0-4) এবং ইউজার-ডিফাইন্ড (Type 5-255)।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, ইন্টারাপ্টগুলোকে কয়েকভাবে ভাগ করা যায়: কোথা থেকে আসছে? বন্ধ করা যায় কিনা? কাজ কি আগে থেকে ঠিক করা?</p>
+                 <p>ফারজানা যেমন তার বন্ধুদের বিভিন্ন গ্রুপে ভাগ করতে পারে: ক্লাসের বন্ধু, খেলার বন্ধু, বা ভালো বন্ধু, মোটামুটি বন্ধু।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> অ্যালার্মগুলোকে ভাগ করা: (১) কোথা থেকে বাজছে? (২) বন্ধ করা যায় কিনা? (৩) কিসের জন্য বাজছে?</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৫। 8086 প্রসেসর কীভাবে ইন্টারাপ্টের অগ্রগণ্যতা রক্ষা করে তা বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> 8086 একটি নির্দিষ্ট অগ্রাধিকার (Priority) স্কিম অনুসরণ করে:</p>
+                 <ul>
+                     <li>সর্বোচ্চ অগ্রাধিকার: ইন্টারনাল ইন্টারাপ্ট ও NMI।</li>
+                     <li>সর্বনিম্ন অগ্রাধিকার: মাস্কেবল হার্ডওয়্যার ইন্টারাপ্ট (INTR)।</li>
+                     <li>INTR শুধুমাত্র IF=1 হলে গৃহীত হয়।</li>
+                     <li>একাধিক INTR রিকোয়েস্ট এলে এক্সটার্নাল PIC (যেমন 8259A) অগ্রাধিকার নির্ধারণ করে।</li>
+                     <li>ISR চলার সময় সাধারণত নতুন INTR গ্রহণ করা হয় না (IF=0 থাকে), কিন্তু NMI গৃহীত হতে পারে।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, প্রসেসর ইন্টারাপ্টের গুরুত্ব বোঝে। ভেতরের ইন্টারাপ্ট আর NMI হলো VIP। সাধারণ হার্ডওয়্যার ইন্টারাপ্ট (INTR) এর গুরুত্ব কম। একসাথে অনেকে INTR দিলে PIC ম্যানেজার সিরিয়াল ঠিক করে। একটা ইন্টারাপ্টের কাজ চলার সময় সাধারণত নতুন INTR আসে না। রিফাতের কাছে যেমন পরীক্ষার পড়া (NMI) সবচেয়ে জরুরি, তারপর হোমওয়ার্ক (INTR)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> হাসপাতালের ইমার্জেন্সির মতো। সিরিয়াস রোগী (NMI) আগে দেখা হয়, তারপর অ্যাপয়েন্টমেন্টের রোগী (INTR)। একসাথে অনেকে এলে রিসিপশনিস্ট (PIC) সিরিয়াল ঠিক করে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৬। বেস অ্যাড্রেস কাকে বলে? বেসড ইনডেক্স অ্যাড্রেসিং মোড বলতে কী বুঝায়?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <ul>
+                     <li><strong>বেস অ্যাড্রেস:</strong> একটি মেমরি সেগমেন্ট বা ডেটা স্ট্রাকচারের শুরুর ঠিকানা।</li>
+                     <li><strong>বেসড ইনডেক্স অ্যাড্রেসিং মোড:</strong> একটি মেমরি অ্যাড্রেসিং মোড যেখানে কার্যকর ঠিকানা (EA) একটি বেইস রেজিস্টার (BX বা BP) এবং একটি ইনডেক্স রেজিস্টার (SI বা DI) এর মান যোগ করে পাওয়া যায় ($EA = [Base] + [Index]$)। এটি 2D অ্যারে অ্যাক্সেসের জন্য উপযোগী।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li><strong>বেস অ্যাড্রেস:</strong> রিফাত, এটা হলো কোনো কিছুর শুরুটা কোথায় সেই ঠিকানা।</li>
+                     <li><strong>বেসড ইনডেক্স অ্যাড্রেসিং:</strong> ফারজানা, এই পদ্ধতিতে দুটো রেজিস্টারের ঠিকানা (বেইসের আর ইনডেক্সের) যোগ করে আসল ঠিকানাটা পাওয়া যায়। রিফাতের বইয়ের তাকের নম্বর (Base) আর সেই তাকের কত নম্বর বই (Index) মিলিয়ে বইটা খুঁজে বের করার মতো।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> বিল্ডিং নম্বর (Base) আর ফ্ল্যাট নম্বর (Index) মিলিয়ে সঠিক ফ্ল্যাটটা খুঁজে বের করার পদ্ধতি।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৭। 8086 প্রসেসর ইন্টারাপ্টকে চিহ্নিতকরণ প্রক্রিয়ায় কয় ভাগে ভাগ করা যায়?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ISR চিহ্নিত করার জন্য ইন্টারাপ্ট টাইপ নম্বর পাওয়ার প্রক্রিয়া অনুসারে দুই ভাগে ভাগ করা যায়:</p>
+                 <ol>
+                     <li><strong>ভেক্টরড ইন্টারাপ্ট (Vectored Interrupts):</strong> ইন্টারাপ্ট সোর্স বা প্রসেসর নিজেই টাইপ নম্বর জানতে পারে (যেমন: INT n, NMI, PIC সহ INTR)।</li>
+                     <li><strong>নন-ভেক্টরড ইন্টারাপ্ট (Non-Vectored Interrupts):</strong> ইন্টারাপ্ট সোর্স টাইপ নম্বর দেয় না (8086 এ সরাসরি প্রযোজ্য নয়)।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, প্রসেসরকে ইন্টারাপ্টের কাজটা (ISR) চেনার জন্য একটা নম্বর লাগে। ১) ভেক্টরড: যখন ইন্টারাপ্ট নিজেই নম্বর বলে দেয় বা PIC বলে দেয়। ২) নন-ভেক্টরড: যখন নম্বর বলে না (8086 এ এটা সরাসরি দেখা যায় না)। ফারজানা কলিং বেল শুনে যদি ইন্টারকমে জানতে পারে কে এসেছে (ভেক্টরড), আর না পারলে দরজায় গিয়ে দেখতে হলে (নন-ভেক্টরড)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> ফোনে কল এলে কলার আইডি (ভেক্টরড) দেখে বোঝা যায় কে কল করেছে। কলার আইডি না থাকলে (নন-ভেক্টরড) রিসিভ করে জানতে হয়।</p>
+            </div>
+        </div>
+
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">১। ৮০৮৬ প্রসেসরের ইন্টারাপ্টের সাধারণ বৈশিষ্ট্য সমূহ বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> 8086 মাইক্রোপ্রসেসরের ইন্টারাপ্ট সিস্টেমের সাধারণ বৈশিষ্ট্যগুলো হলো:</p>
+                 <ul>
+                     <li>২৫৬টি ইন্টারাপ্ট টাইপ (0-255) সমর্থন।</li>
+                     <li>মেমরির শুরুতে 1KB ইন্টারাপ্ট ভেক্টর টেবিল (IVT) যেখানে প্রতি টাইপের জন্য ৪ বাইটের ISR অ্যাড্রেস (CS:IP) থাকে।</li>
+                     <li>একাধিক উৎস: হার্ডওয়্যার (NMI, INTR), সফটওয়্যার (INT n), এক্সেপশন।</li>
+                     <li>নির্দিষ্ট অগ্রাধিকার স্কিম (Internal/NMI > INTR)।</li>
+                     <li>মাস্কিএবিলিটি (NMI ছাড়া বাকিরা IF ফ্ল্যাগ দ্বারা নিয়ন্ত্রণযোগ্য)।</li>
+                     <li>ইন্টারাপ্ট গ্রহণ করলে স্বয়ংক্রিয়ভাবে ফ্ল্যাগ, CS, IP স্ট্যাকে পুশ হয় এবং IF, TF ক্লিয়ার হয়।</li>
+                     <li>IVT থেকে নতুন CS:IP লোড করে ISR এ জাম্প করে।</li>
+                     <li>ISR শেষে <code>IRET</code> দিয়ে মূল প্রোগ্রামে ফেরে (ফ্ল্যাগ, CS, IP পুনরুদ্ধার করে)।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, 8086 এর ইন্টারাপ্ট সিস্টেমের কিছু ব্যাপার: ২৫৬ রকম ইন্টারাপ্ট, সবার ঠিকানা IVT তে লেখা, উৎস অনেকরকম, গুরুত্ব অনুযায়ী কাজ হয়, জরুরি না হলে বন্ধ রাখা যায়, ইন্টারাপ্ট এলে প্রসেসর নিজে নিজে সব গুছিয়ে ISR এ যায়, কাজ শেষে আবার আগের জায়গায় ফেরে। রিফাতের বাসায় গেস্ট এলে যেমন কিছু নিয়মকানুন মানা হয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> স্কুলের ইন্টারাপ্ট (যেমন ছুটির ঘণ্টা) সিস্টেম: অনেক রকম ঘণ্টা (২৫৬ টাইপ), কোন ঘণ্টায় কী করতে হবে তার রুটিন (IVT), ঘণ্টা বাজানোর কারণ (উৎস), কোন ঘণ্টা বেশি জরুরি (অগ্রাধিকার), টিচার চাইলে কোনো ঘণ্টা ইগনোর করতে পারেন কিনা (মাস্কিএবিলিটি), ঘণ্টা বাজলে ক্লাস থামিয়ে লাইনে দাঁড়ানো (প্রসেস), ছুটির পর আবার ক্লাসে ফেরা (রিটার্ন)।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">২। ইন্টারাপ্ট ভেক্টর টেবিল অংকন করে বর্ণনা কর।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p><strong>অঙ্কন:</strong> (মেমরির 00000H থেকে 003FFH পর্যন্ত একটি টেবিল আঁকতে হবে, যেখানে প্রতি ৪ বাইটে একটি ইন্টারাপ্ট টাইপের ISR অ্যাড্রেস (IP Low, IP High, CS Low, CS High) দেখানো থাকবে। Type 0, 1, 2 ইত্যাদি লেবেল করা যেতে পারে।)</p>
+                 <pre><code>
+        Memory Address | Type | Content         | Description
+        -----------------------------------------------------------
+        00000H-00003H  | 0    | IP(L), IP(H), CS(L), CS(H) | Divide Error
+        00004H-00007H  | 1    | IP(L), IP(H), CS(L), CS(H) | Single Step
+        00008H-0000BH  | 2    | IP(L), IP(H), CS(L), CS(H) | NMI
+        ...            | ...  | ...                       | ...
+        003FCH-003FFH  | 255  | IP(L), IP(H), CS(L), CS(H) | User/Reserved
+        -----------------------------------------------------------
+                 </code></pre>
+                 <p><em></em></p>
+                 <p><strong>বর্ণনা:</strong> ইন্টারাপ্ট ভেক্টর টেবিল (IVT) 8086 সিস্টেমের মেমরির প্রথম 1KB (00000H - 003FFH) স্থান জুড়ে থাকে। এটি ২৫৬টি ৪-বাইটের এন্ট্রি ধারণ করে, প্রতিটি এন্ট্রি একটি নির্দিষ্ট ইন্টারাপ্ট টাইপের Interrupt Service Routine (ISR) এর সেগমেন্ট (CS) এবং অফসেট (IP) অ্যাড্রেস সংরক্ষণ করে। যখন কোনো ইন্টারাপ্ট ঘটে, প্রসেসর ইন্টারাপ্ট টাইপ নম্বর ব্যবহার করে এই টেবিল থেকে সংশ্লিষ্ট ISR এর CS:IP মান খুঁজে নেয় এবং সেখানে কন্ট্রোল ট্রান্সফার করে।</p>
+             </div>
+             <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, IVT হলো একটা বড় সূচিপত্র যা মেমরির শুরুতে থাকে। এতে ২৫৬টা এন্ট্রি আছে, প্রত্যেকটা ইন্টারাপ্ট টাইপের জন্য একটা। প্রতি এন্ট্রিতে ৪ বাইট করে জায়গা, যেখানে লেখা থাকে ওই ইন্টারাপ্ট ঘটলে প্রসেসরকে কোন ঠিকানায় (CS:IP) যেতে হবে। ফারজানা যেমন তার ডায়েরির প্রথম পাতায় জরুরি ফোন নম্বরগুলো লিখে রাখে।</p>
+             </div>
+             <div class="answer-part answer-part-3">
+                  <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা হোটেলের রিসেপশনের রেজিস্টার খাতা। রুম নম্বর (ইন্টারাপ্ট টাইপ) বললে খাতা দেখে বলে দেওয়া যায় সেই রুমে কে আছে বা কোথায় যেতে হবে (ISR অ্যাড্রেস)।</p>
+             </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">৩। ইন্টারাপ্ট কয়প্রকার ও কী কী, বর্ণনা কর।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> (এই প্রশ্নের উত্তর সংক্ষিপ্ত প্রশ্ন ৪ এর বিস্তারিত রূপ।)</p>
+                 <p>8086 এর ইন্টারাপ্টগুলোকে বিভিন্নভাবে শ্রেণিবিভাগ করা যায়:</p>
+                 <ol>
+                     <li><strong>উৎস অনুসারে:</strong>
+                         <ul>
+                             <li><strong>এক্সটার্নাল (হার্ডওয়্যার):</strong> NMI (নন-মাস্কেবল), INTR (মাস্কেবল)।</li>
+                             <li><strong>ইন্টারনাল (সফটওয়্যার/এক্সেপশন):</strong> INT n, INT 3, INTO, Divide Error, Single Step।</li>
+                         </ul>
+                     </li>
+                     <li><strong>মাস্কিএবিলিটি অনুসারে:</strong>
+                          <ul>
+                             <li><strong>নন-মাস্কেবল:</strong> NMI।</li>
+                             <li><strong>মাস্কেবল:</strong> INTR।</li>
+                         </ul>
+                     </li>
+                      <li><strong>ভেক্টর অনুসারে:</strong>
+                          <ul>
+                             <li><strong>ডেডিকেটেড/প্রিডিফাইন্ড:</strong> Type 0-4।</li>
+                             <li><strong>ইউজার-ডিফাইন্ড:</strong> Type 5-255।</li>
+                         </ul>
+                     </li>
+                 </ol>
+                 <p>(প্রতি প্রকারের সংক্ষিপ্ত বর্ণনা দিতে হবে।)</p>
+             </div>
+             <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, এটা সংক্ষিপ্ত প্রশ্ন ৪ এরই বিস্তারিত। ইন্টারাপ্টগুলোকে ভাগ করা যায়: কোথা থেকে আসছে? বন্ধ করা যায় কিনা? কাজ কি ফিক্সড? রিফাতের মনোযোগ আকর্ষণের কারণগুলো বিভিন্ন ভাবে ভাগ করার মতো।</p>
+             </div>
+             <div class="answer-part answer-part-3">
+                  <p><strong>একদম সহজ ব্যাখ্যা:</strong> ফোনের কলগুলোকে ভাগ করা: (১) কে কল করছে? (২) সাইলেন্ট করা যায় কিনা? (৩) কন্টাক্টে সেভ করা নাকি অজানা নম্বর?</p>
+             </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">৪। ইন্টারাপ্ট ভেক্টর টেবিলের যে-কোনো ২টি অ্যাড্রেস পয়েন্টারের কাজ উল্লেখ কর?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ইন্টারাপ্ট ভেক্টর টেবিলের (IVT) দুটি অ্যাড্রেস পয়েন্টারের কাজ:</p>
+                 <ol>
+                     <li><strong>টাইপ 0 পয়েন্টার (00000H):</strong> Divide Error ইন্টারাপ্টের ISR এর CS:IP অ্যাড্রেস ধারণ করে। শূন্য দিয়ে ভাগ বা ভাগফলে ওভারফ্লো ঘটলে প্রসেসর এই ঠিকানায় জাম্প করে।</li>
+                     <li><strong>টাইপ 2 পয়েন্টার (00008H):</strong> Non-Maskable Interrupt (NMI) এর ISR এর CS:IP অ্যাড্রেস ধারণ করে। NMI পিনে সিগন্যাল এলে প্রসেসর এই ঠিকানায় জাম্প করে।</li>
+                 </ol>
+             </div>
+             <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, IVT টেবিলের দুটো এন্ট্রির কাজ: ১) Type 0 এর ঠিকানা: ভাগের হিসাবে ভুল হলে কোথায় যেতে হবে। ২) Type 2 এর ঠিকানা: খুব জরুরি NMI সিগন্যাল এলে কোথায় যেতে হবে। ফারজানার ডায়েরিতে যেমন লেখা থাকে, "পেট ব্যথা করলে -> ডাক্তারের ফোন নম্বর", "আগুন লাগলে -> ফায়ার সার্ভিসের নম্বর"।</p>
+             </div>
+             <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> হোটেলের রেজিস্টার খাতায় লেখা: "রুম নম্বর ০ -> ম্যানেজারের অফিস", "রুম নম্বর ২ -> ইমার্জেন্সি এক্সিট"।</p>
+             </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">৫। চিত্রের মাধ্যমে ৮০৮৬ প্রসেসরের সর্বনিম্ন সিস্টেম ইন্টারাপ্ট ইন্টারফেস বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> (এখানে একটি সিঙ্গেল 8259A PIC ব্যবহার করে 8086 এর INTR পিনের সাথে হার্ডওয়্যার ইন্টারাপ্ট সোর্স সংযোগ করার বেসিক ইন্টারফেস ডায়াগ্রাম আঁকতে হবে এবং বর্ণনা করতে হবে।)</p>
+                 <p><em></em></p>
+                 <p><strong>বর্ণনা:</strong> এই ইন্টারফেসে, একাধিক হার্ডওয়্যার ডিভাইস (৮টি পর্যন্ত) তাদের ইন্টারাপ্ট রিকোয়েস্ট 8259A PIC এর IR0-IR7 পিনে পাঠায়। PIC এই রিকোয়েস্টগুলো গ্রহণ করে, মাস্কিং ও প্রায়োরিটি চেক করে সর্বোচ্চ অগ্রাধিকার প্রাপ্ত রিকোয়েস্টটির জন্য 8086 এর INTR পিনে সিগন্যাল পাঠায়। 8086 (যদি IF=1 থাকে) দুটি INTA সাইকেল জেনারেট করে। দ্বিতীয় INTA সাইকেলে PIC ইন্টারাপ্টিং ডিভাইসের ৮-বিট টাইপ নম্বর ডেটা বাসে স্থাপন করে, যা 8086 গ্রহণ করে IVT থেকে ISR অ্যাড্রেস খুঁজে নেয়। PIC কে ICW ও OCW দিয়ে কনফিগার করতে হয়।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, অনেকগুলো যন্ত্র যখন একসাথে ইন্টারাপ্ট দিতে চায় (INTR), তখন একটা ম্যানেজার (PIC - 8259A) ব্যবহার করা হয়। ডায়াগ্রামে দেখাতে হবে কীভাবে বিভিন্ন যন্ত্র PIC এর সাথে যুক্ত, PIC আবার 8086 এর INTR পিনের সাথে যুক্ত। যন্ত্র ইন্টারাপ্ট দিলে, PIC সেটা প্রায়োরিটি অনুযায়ী চেক করে 8086 কে জানায়। 8086 রাজি হলে, PIC তাকে বলে দেয় কোন যন্ত্রটা ইন্টারাপ্ট দিয়েছে (তার টাইপ নম্বরটা ডেটা বাসে পাঠিয়ে)। রিফাতের ক্লাসে যেমন ক্লাস ক্যাপ্টেন (PIC) ঠিক করে দেয় কে টিচারের (8086) কাছে প্রশ্ন করার সুযোগ পাবে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা কোম্পানির কল সেন্টারের ছবি। অনেক কাস্টমার (ডিভাইস) ফোন করে, অপারেটর (PIC) ঠিক করে কোন কলটা ম্যানেজারের (8086) কাছে আগে যাবে এবং কাস্টমারের আইডি নম্বরটা (টাইপ নম্বর) ম্যানেজারকে বলে দেয়।</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>কম্পিউটার আর্কিটেকচার অ্যান্ড মাইক্রোপ্রসেসর স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        // Function to apply theme
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀️ লাইট মোড'; // Sun icon for light mode switch
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = '🌙 ডার্ক মোড'; // Moon icon for dark mode switch
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initial theme setup
+        let preferredTheme = 'light'; // Default to light
+        if (currentTheme) {
+            preferredTheme = currentTheme;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Uncomment below line if you want system preference to be the initial default
+            // preferredTheme = 'dark';
+        }
+        applyTheme(preferredTheme);
+
+        // Button click listener
+        themeToggleBtn.addEventListener('click', () => {
+            let newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+    </script>
+
+</body>
+</html>

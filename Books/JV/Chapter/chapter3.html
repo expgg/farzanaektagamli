@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৩: জাভাতে অবজেক্ট ওরিয়েন্টেড প্রোগ্রামিং</title>
+
+    <link rel="stylesheet" href="java_style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    </head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৩: জাভাতে অবজেক্ট ওরিয়েন্টেড প্রোগ্রামিং</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">🌙 ডার্ক মোড</button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। জাভার প্রধান স্তম্ভ কয়টি ও কী কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ৪টি: এনক্যাপসুলেশন, ইনহেরিট্যান্স, পলিমরফিজম, অ্যাবস্ট্রাকশন।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> অবজেক্ট ওরিয়েন্টেড প্রোগ্রামিং (OOP) এর মূল ভিত্তি বা পিলার হলো ৪টা জিনিস: ডেটা আর কোড একসাথে রাখা (এনক্যাপসুলেশন), এক ক্লাস থেকে আরেক ক্লাসে বৈশিষ্ট্য পাওয়া (ইনহেরিট্যান্স), একই জিনিস বিভিন্ন রূপে কাজ করা (পলিমরফিজম), আর অপ্রয়োজনীয় জিনিস লুকিয়ে শুধু জরুরি অংশ দেখানো (অ্যাবস্ট্রাকশন)।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা বাড়ি বানানোর ৪টা মূল নীতি: দেয়াল দিয়ে ঘর আলাদা করা (এনক্যাপসুলেশন), বাবার বাড়ি ছেলে পাওয়া (ইনহেরিট্যান্স), একজন মানুষই ছাত্র আবার খেলোয়াড় হওয়া (পলিমরফিজম), গাড়ির ইঞ্জিন না দেখে শুধু স্টিয়ারিং চালানো (অ্যাবস্ট্রাকশন)।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। ডাটা অ্যাবস্ট্রাকশন বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> অপ্রয়োজনীয় বিস্তারিত তথ্য গোপন রেখে শুধু অত্যাবশ্যকীয় বৈশিষ্ট্য প্রকাশ করা।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> অ্যাবস্ট্রাকশন মানে হলো, কোনো জিনিসের ভেতরের জটিল কাজগুলো বা অপ্রয়োজনীয় ডিটেইলস ব্যবহারকারীর কাছ থেকে লুকিয়ে রাখা, আর শুধু দরকারি অংশটুকু ব্যবহার করার সুযোগ দেওয়া। যেমন আমরা টিভি চালাই রিমোট দিয়ে, কিন্তু টিভির ভেতরের সার্কিট কীভাবে কাজ করে তা আমাদের জানার দরকার হয় না।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি গাড়ি চালাও স্টিয়ারিং, গিয়ার, ব্রেক দিয়ে। ইঞ্জিন কীভাবে তেল পুড়িয়ে শক্তি বানাচ্ছে, সেই জটিল ব্যাপারটা তোমার জানার দরকার নেই, ওটা লুকানো থাকে। এটাই অ্যাবস্ট্রাকশন।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। জাভার কী কী পদ্ধতিতে ডাটা অ্যাবস্ট্রাকশন সম্পন্ন করা যায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> অ্যাবস্ট্রাক্ট ক্লাস (Abstract Class) এবং ইন্টারফেস (Interface) ব্যবহার করে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> জাভাতে অ্যাবস্ট্রাকশন মূলত দুইভাবে করা যায়: অ্যাবস্ট্রাক্ট ক্লাস বানিয়ে (যে ক্লাসের কিছু মেথড অসম্পূর্ণ থাকে) অথবা ইন্টারফেস ব্যবহার করে (যেখানে শুধু কাজের তালিকা থাকে, কাজটা কীভাবে হবে বলা থাকে না)।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> কাজটা করার দুটো আইডিয়া: ১) একটা অসম্পূর্ণ নকশা দেওয়া (অ্যাবস্ট্রাক্ট ক্লাস), ২) শুধু কী কী কাজ করতে হবে তার লিস্ট দেওয়া (ইন্টারফেস)।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। এনক্যাপসুলেশন কাকে বলে?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ডেটা (ভেরিয়েবল) এবং কোড (মেথড) যা ওই ডেটার উপর কাজ করে, সেগুলোকে একত্রিত করে একটি সিঙ্গেল ইউনিট বা ক্লাসের মধ্যে আবদ্ধ করা।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এনক্যাপসুলেশন মানে হলো, কোনো ক্লাসের ডেটা (ভেরিয়েবল) আর সেই ডেটা ব্যবহার করে এমন মেথডগুলোকে একসাথে একটা "ক্যাপসুল" বা প্যাকেজের মধ্যে মুড়ে রাখা। এর ফলে বাইরের কেউ সরাসরি ডেটাগুলোতে হস্তক্ষেপ করতে পারে না (যদি না অনুমতি দেওয়া হয়), ডেটাগুলো নিরাপদ থাকে। ডেটা অ্যাক্সেস করতে হলে সাধারণত ওই ক্লাসের মেথড ব্যবহার করতে হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> ওষুধের ক্যাপসুলের মতো। ক্যাপসুলের খোসার ভেতরে প্রয়োজনীয় ওষুধ ভরা থাকে। খোসাটা (ক্লাস) ওষুধগুলোকে (ডেটা) বাইরের জগৎ থেকে রক্ষা করে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৫। পলিমরফিজম বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> একই নামের মেথড বা অপারেশনের বিভিন্ন পরিস্থিতিতে বিভিন্ন রূপ বা আচরণ প্রদর্শন করার ক্ষমতা।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> পলিমরফিজম মানে 'বহুরূপতা'। OOP-তে এর মানে হলো, একই জিনিস (যেমন একটা মেথড বা অপারেটর) ಸಂದರ್ಭ অনুযায়ী ভিন্ন ভিন্ন কাজ করতে পারে। যেমন `+` চিহ্ন সংখ্যা যোগ করে, আবার স্ট্রিং জোড়া লাগায়। অথবা, সুপারক্লাসের একই মেথড সাবক্লাসে ভিন্ন ভিন্ন ভাবে কাজ করতে পারে (মেথড ওভাররাইডিং)।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার আঁকার পেন্সিলটা দিয়ে তুমি লিখতেও পারো, ছবিও আঁকতে পারো। একটাই জিনিস, কিন্তু কাজ করছে দুই রকম। এটাই পলিমরফিজম।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৬। সুপার ক্লাস ও সাব-ক্লাস কাকে বলে?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> (সুপার ক্লাস:) যে ক্লাস থেকে অন্য ক্লাস বৈশিষ্ট্য ইনহেরিট করে। (সাব-ক্লাস:) যে ক্লাস অন্য ক্লাস থেকে বৈশিষ্ট্য ইনহেরিট করে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ইনহেরিট্যান্সে, যে ক্লাসটা তার বৈশিষ্ট্য অন্য ক্লাসকে ব্যবহার করতে দেয়, তাকে বলে সুপারক্লাস (বা প্যারেন্ট ক্লাস/বেস ক্লাস)। আর যে ক্লাস অন্য ক্লাস থেকে বৈশিষ্ট্যগুলো পায় বা উত্তরাধিকার সূত্রে লাভ করে, তাকে বলে সাব-ক্লাস (বা চাইল্ড ক্লাস/ডিরাইভড ক্লাস)।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> বাবা হলেন সুপারক্লাস, আর ছেলে হলো সাব-ক্লাস। ছেলে বাবার কিছু বৈশিষ্ট্য (যেমন চেহারা, সম্পত্তি) পায়।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৭। মাল্টিলেভেল ইনহেরিট্যান্স কাকে বলে?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> যখন একটি ক্লাস অন্য একটি ডিরাইভড ক্লাস থেকে বৈশিষ্ট্য ইনহেরিট করে (অর্থাৎ চেইন আকারে ইনহেরিট্যান্স)।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> মাল্টিলেভেল ইনহেরিট্যান্স হলো একটা চেইন বা সিঁড়ির মতো ইনহেরিট্যান্স। যেমন: ক্লাস C যদি ক্লাস B থেকে বৈশিষ্ট্য পায়, আর ক্লাস B যদি ক্লাস A থেকে বৈশিষ্ট্য পায় (A -> B -> C), তাহলে এটাকে মাল্টিলেভেল ইনহেরিট্যান্স বলে। এখানে নাতি (C) বাবার (B) কাছ থেকে, আর বাবা (B) দাদার (A) কাছ থেকে বৈশিষ্ট্য পাচ্ছে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> দাদা (A) -> বাবা (B) -> ছেলে (C)। ছেলে বাবার বৈশিষ্ট্য পায়, বাবা দাদার বৈশিষ্ট্য পায়।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৮। সিঙ্গেল ইনহেরিট্যান্স কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> যখন একটি ক্লাস শুধুমাত্র একটি সুপারক্লাস থেকে বৈশিষ্ট্য ইনহেরিট করে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সিঙ্গেল ইনহেরিট্যান্স মানে হলো, একটা সাব-ক্লাস শুধু একটাই সুপারক্লাসের বৈশিষ্ট্য পাবে। যেমন: ক্লাস B শুধু ক্লাস A থেকেই বৈশিষ্ট্য পাবে (A -> B)। জাভা ক্লাস লেভেলে সরাসরি মাল্টিপল ইনহেরিট্যান্স সাপোর্ট করে না, তাই এটা খুব কমন।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> বাবা (A) -> ছেলে (B)। ছেলে শুধু তার বাবার বৈশিষ্ট্যই পাচ্ছে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৯। হায়ারারকিক্যাল ইনহেরিট্যান্স কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> যখন একাধিক সাব-ক্লাস একই সুপারক্লাস থেকে বৈশিষ্ট্য ইনহেরিট করে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> হায়ারারকিক্যাল ইনহেরিট্যান্স মানে হলো, একটা সুপারক্লাসের একাধিক সাব-ক্লাস থাকবে। যেমন: ক্লাস B এবং ক্লাস C দুজনেই ক্লাস A থেকে বৈশিষ্ট্য পাবে (A -> B, A -> C)। এখানে বাবা (A) একজন, কিন্তু তার একাধিক সন্তান (B, C) তার বৈশিষ্ট্য পাচ্ছে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> বাবা (A) -> ছেলে (B) এবং বাবা (A) -> মেয়ে (C)। ছেলে আর মেয়ে দুজনেই বাবার বৈশিষ্ট্য পাচ্ছে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১০। অ্যাবস্ট্রাক্ট ক্লাস কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> যে ক্লাসকে `abstract` কিওয়ার্ড দিয়ে ডিক্লেয়ার করা হয় এবং যার অবজেক্ট তৈরি করা যায় না; এতে অ্যাবস্ট্রাক্ট ও নন-অ্যাবস্ট্রাক্ট মেথড থাকতে পারে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> অ্যাবস্ট্রাক্ট ক্লাস হলো একটা অসম্পূর্ণ ক্লাস। এটাকে `abstract` লিখে ঘোষণা করতে হয়। তুমি সরাসরি এই ক্লাসের অবজেক্ট বানাতে পারবে না। এর ভেতরে কিছু মেথড থাকতে পারে যেগুলোর শুধু নাম আছে কিন্তু কাজটা কীভাবে হবে বলা নেই (এগুলোকে অ্যাবস্ট্রাক্ট মেথড বলে)। আবার সাধারণ মেথডও থাকতে পারে। অন্য ক্লাসকে এই অ্যাবস্ট্রাক্ট ক্লাস থেকে ইনহেরিট করে ওই অসম্পূর্ণ মেথডগুলোকে পূর্ণ করতে হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা বাড়ির অসম্পূর্ণ নকশা (অ্যাবস্ট্রাক্ট ক্লাস)। নকশায় বলা আছে বসার ঘর থাকবে, শোবার ঘর থাকবে, কিন্তু বাথরুমটা কেমন হবে সেটা আঁকা নেই (অ্যাবস্ট্রাক্ট মেথড)। যে এই নকশা ব্যবহার করে বাড়ি বানাবে, তাকে অবশ্যই নিজের মতো করে বাথরুমটা বানিয়ে নিতে হবে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১১। ইন্টারফেস বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি সম্পূর্ণ অ্যাবস্ট্রাক্ট টাইপ যা `interface` কিওয়ার্ড দিয়ে ডিক্লেয়ার করা হয়; এতে শুধু অ্যাবস্ট্রাক্ট মেথড (জাভা ৮ থেকে ডিফল্ট ও স্ট্যাটিক মেথডও থাকতে পারে) এবং স্ট্যাটিক ফাইনাল ভেরিয়েবল থাকে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ইন্টারফেস হলো ক্লাসের জন্য একটা "চুক্তি" বা নিয়মাবলীর সেট। এখানে শুধু বলে দেওয়া থাকে ক্লাসটাকে কী কী কাজ করতে হবে (মেথডের নামগুলো), কিন্তু কীভাবে করতে হবে সেটা বলা থাকে না (সব মেথডই অ্যাবস্ট্রাক্ট)। কোনো ক্লাস যদি একটা ইন্টারফেসকে `implements` করে, তাহলে তাকে ওই ইন্টারফেসের সব অ্যাবস্ট্রাক্ট মেথড অবশ্যই তার নিজের ক্লাসে বানিয়ে দিতে (বাস্তবায়ন করতে) হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার স্কুলের রুটিন (ইন্টারফেস)। রুটিনে বলা আছে কোন পিরিয়ডে কোন সাবজেক্ট পড়তে হবে। কিন্তু কীভাবে পড়তে হবে (যেমন বই পড়ে, নাকি টিচারের লেকচার শুনে) সেটা বলা নেই। তোমাকে (ক্লাস) সেই রুটিন অনুযায়ী কাজগুলো করতে হবে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১২। মাল্টিপল ইন্টারফেস কাকে বলে?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি ক্লাসের একাধিক ইন্টারফেসকে `implements` করার ক্ষমতা।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> জাভাতে একটা ক্লাস সরাসরি একাধিক ক্লাস থেকে ইনহেরিট করতে পারে না (মাল্টিপল ইনহেরিট্যান্স অফ ক্লাস নেই)। কিন্তু একটা ক্লাস চাইলে একই সাথে একাধিক ইন্টারফেসকে `implements` করতে পারে। মানে, সে একসাথে অনেকগুলো ভিন্ন ভিন্ন চুক্তি বা নিয়মাবলী মেনে চলতে পারে। এটাই হলো মাল্টিপল ইন্টারফেস ইমপ্লিমেন্টেশন।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি যেমন একই সাথে স্কুলের রুটিন (একটা ইন্টারফেস) মেনে চলো, আবার বাসার নিয়মকানুনও (আরেকটা ইন্টারফেস) মেনে চলো।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১৩। সুপার কী-ওয়ার্ড কেন ব্যবহার করা হয়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> সাব-ক্লাস থেকে তার ইমিডিয়েট সুপারক্লাসের মেম্বার (মেথড, কনস্ট্রাক্টর, ভেরিয়েবল) অ্যাক্সেস করার জন্য।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `super` কিওয়ার্ডটা সাব-ক্লাসের ভেতর থেকে ঠিক তার উপরের সুপারক্লাসের জিনিসপত্র ব্যবহার করার জন্য লাগে। যেমন: <ul><li>সাব-ক্লাসের কনস্ট্রাক্টর থেকে সুপারক্লাসের কনস্ট্রাক্টর কল করতে (`super()`)।</li><li>সাব-ক্লাসের কোনো মেথড থেকে সুপারক্লাসের একই নামের মেথড (যেটা ওভাররাইড করা হয়েছে) কল করতে (`super.methodName()`)।</li><li>সুপারক্লাসের কোনো ভেরিয়েবল অ্যাক্সেস করতে (যদি সাব-ক্লাসে একই নামের ভেরিয়েবল থাকে) (`super.variableName`)।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> ছেলে যদি বাবার কোনো পুরনো খেলনা বা কথা ব্যবহার করতে চায়, তখন সে `super` ব্যবহার করে। যেমন: বাবার মতো করে কথা বলতে চাইলে (`super.speak()`)।</p></div>
+        </div>
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। মাল্টিলেভেল ইনহেরিট্যান্স এর ব্লকচিত্র অঙ্কন করে ফরম্যাট লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ব্লকচিত্র (টেক্সট):</strong></p>
+                 {/* Diagram doesn't need code-container or button */}
+                 <pre><code>
+      +-----------+
+      |  Class A  |  (সুপার ক্লাস / দাদা)
+      +-----+-----+
+            ^
+            | (extends)
+      +-----+-----+
+      |  Class B  |  (ইন্টারমিডিয়েট / বাবা)
+      +-----+-----+
+            ^
+            | (extends)
+      +-----+-----+
+      |  Class C  |  (সাব ক্লাস / ছেলে)
+      +-----------+
+                 </code></pre>
+                 <p><strong>ফরম্যাট (কোড):</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+// সুপার ক্লাস
+class A {
+    // A এর মেম্বার
+}
+
+// ইন্টারমিডিয়েট সাব-ক্লাস (A থেকে ইনহেরিট করছে)
+class B extends A {
+    // B এর নিজস্ব মেম্বার + A এর মেম্বার
+}
+
+// ফাইনাল সাব-ক্লাস (B থেকে ইনহেরিট করছে)
+class C extends B {
+    // C এর নিজস্ব মেম্বার + B এর মেম্বার + A এর মেম্বার
+}
+                    </code></pre>
+                 </div>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> মাল্টিলেভেল ইনহেরিট্যান্স হলো চেইন বা সিঁড়ির মতো। ক্লাস A হলো প্রথম ধাপ, ক্লাস B দ্বিতীয় ধাপে A এর সব বৈশিষ্ট্য পায়, আবার ক্লাস C তৃতীয় ধাপে B এর সব বৈশিষ্ট্য (যার মধ্যে A এর বৈশিষ্ট্যও আছে) পায়। ব্লকচিত্রে দেখানো হয়েছে কীভাবে ক্লাস C ক্লাস B-কে এবং ক্লাস B ক্লাস A-কে `extends` করছে। ফরম্যাটে দেখানো হয়েছে কীভাবে কোডে `extends` কিওয়ার্ড ব্যবহার করে এই চেইন তৈরি করা হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> দাদা (A) -> বাবা (B) -> ছেলে (C)। ছেলে বাবার সব পায়, বাবা দাদার সব পায়। তাই ছেলেও পরোক্ষভাবে দাদার বৈশিষ্ট্যগুলো পায়।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। সুপার ক্লাস ও সাব-ক্লাস বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong><ul><li><strong>সুপারক্লাস (Superclass):</strong> ইনহেরিট্যান্স সম্পর্কের মধ্যে, যে ক্লাসটি তার বৈশিষ্ট্য (ডেটা ও মেথড) অন্য ক্লাসকে ব্যবহার বা উত্তরাধিকার সূত্রে অর্জন করার সুযোগ দেয়, তাকে সুপারক্লাস বলে। একে প্যারেন্ট ক্লাস বা বেস ক্লাসও বলা হয়। এটি ইনহেরিট্যান্স হায়ারার্কির উপরের স্তরে অবস্থান করে।</li><li><strong>সাবক্লাস (Subclass):</strong> যে ক্লাসটি অন্য একটি ক্লাস (সুপারক্লাস) থেকে বৈশিষ্ট্যসমূহ ইনহেরিট বা উত্তরাধিকার সূত্রে লাভ করে, তাকে সাবক্লাস বলে। একে চাইল্ড ক্লাস বা ডিরাইভড ক্লাসও বলা হয়। সাবক্লাস তার সুপারক্লাসের নন-প্রাইভেট মেম্বারগুলো ব্যবহার করতে পারে এবং নিজের নতুন বৈশিষ্ট্য বা মেথড যোগ করতে পারে বা সুপারক্লাসের মেথডকে ওভাররাইড করতে পারে।</li></ul></p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong><ul><li><strong>সুপারক্লাস:</strong> যে ক্লাসটা "বাবা" বা "মা"-এর মতো, যার বৈশিষ্ট্য অন্যরা পায়।</li><li><strong>সাবক্লাস:</strong> যে ক্লাসটা "সন্তান"-এর মতো, যে তার "বাবা/মা" (সুপারক্লাস) এর কাছ থেকে বৈশিষ্ট্য পায় এবং চাইলে নিজের নতুন বৈশিষ্ট্যও যোগ করতে পারে।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong><ul><li>সুপারক্লাস = বাবা।</li><li>সাবক্লাস = ছেলে (যে বাবার বৈশিষ্ট্য পায়)।</li></ul></p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। একটি উদাহরণের মাধ্যমে Java inheritance দেখাও।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য (Code):</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+// সুপারক্লাস (প্যারেন্ট)
+class Animal {
+    void eat() {
+        System.out.println("This animal eats food.");
+    }
+}
+
+// সাবক্লাস (চাইল্ড), Animal থেকে ইনহেরিট করছে
+class Dog extends Animal {
+    // Dog ক্লাসের নিজস্ব মেথড
+    void bark() {
+        System.out.println("The dog barks.");
+    }
+
+    // eat() মেথড সুপারক্লাস থেকে ইনহেরিট করা হয়েছে
+}
+
+// টেস্ট ক্লাস
+class TestInheritance {
+    public static void main(String[] args) {
+        // সাবক্লাসের অবজেক্ট তৈরি
+        Dog myDog = new Dog();
+
+        // সাবক্লাসের নিজস্ব মেথড কল
+        myDog.bark(); // আউটপুট: The dog barks.
+
+        // সুপারক্লাস থেকে ইনহেরিট করা মেথড কল
+        myDog.eat(); // আউটপুট: This animal eats food.
+    }
+}
+                    </code></pre>
+                 </div>
+                 <p><strong>ব্যাখ্যা:</strong> এখানে `Animal` হলো সুপারক্লাস যার `eat()` নামে একটি মেথড আছে। `Dog` হলো সাবক্লাস যা `extends Animal` লিখে `Animal` ক্লাসকে ইনহেরিট করেছে। এর ফলে `Dog` ক্লাসের অবজেক্ট (`myDog`) তার নিজস্ব `bark()` মেথড ছাড়াও সুপারক্লাসের `eat()` মেথডটিও ব্যবহার করতে পারছে। এটাই জাভা ইনহেরিট্যান্সের উদাহরণ।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> আমরা `Animal` নামে একটা ক্লাস বানিয়েছি যার কাজ হলো `eat()` (খাওয়া)। এরপর `Dog` নামে আরেকটা ক্লাস বানিয়েছি যে `Animal` কে `extends` করেছে। মানে, `Dog` ক্লাসটা `Animal` ক্লাসের সন্তান। তাই `Dog` নিজের কাজ (`bark` - ঘেউ ঘেউ করা) ছাড়াও তার বাবার (`Animal`) কাজটাও (`eat`) করতে পারে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> `Animal` হলো বাবা, যার `eat` করার ক্ষমতা আছে। `Dog` হলো ছেলে, যে বাবার কাছ থেকে `eat` করার ক্ষমতাটা পেয়েছে, আবার নিজে নিজে `bark` (ঘেউ ঘেউ) করতেও শিখেছে।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৪। Final ও Super Keyword এর মাথে পার্থক্য লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <div class="table-container"><table><thead><tr><th>বৈশিষ্ট্য</th><th>`final` কিওয়ার্ড</th><th>`super` কিওয়ার্ড</th></tr></thead><tbody><tr><td><strong>ব্যবহার</strong></td><td>ভেরিয়েবল, মেথড, ক্লাসকে অপরিবর্তনীয় করতে।</td><td>সাবক্লাস থেকে সুপারক্লাসের মেম্বার অ্যাক্সেস করতে।</td></tr><tr><td><strong>ভেরিয়েবল</strong></td><td>`final` ভেরিয়েবলের মান একবার সেট করলে আর বদলানো যায় না (কনস্ট্যান্ট)।</td><td>`super.variable` দিয়ে সুপারক্লাসের হাইড হয়ে যাওয়া ইন্সট্যান্স ভেরিয়েবল অ্যাক্সেস করা যায়।</td></tr><tr><td><strong>মেথড</strong></td><td>`final` মেথডকে সাবক্লাসে ওভাররাইড করা যায় না।</td><td>`super.method()` দিয়ে সুপারক্লাসের ওভাররিডেন মেথড কল করা যায়।</td></tr><tr><td><strong>ক্লাস</strong></td><td>`final` ক্লাসকে ইনহেরিট (extends) করা যায় না।</td><td>ক্লাসের ক্ষেত্রে প্রযোজ্য নয়।</td></tr><tr><td><strong>কনস্ট্রাক্টর</strong></td><td>কনস্ট্রাক্টর `final` হতে পারে না।</td><td>`super()` দিয়ে সাবক্লাসের কনস্ট্রাক্টর থেকে সুপারক্লাসের কনস্ট্রাক্টর কল করা যায় (অবশ্যই প্রথম স্টেটমেন্ট হতে হবে)।</td></tr><tr><td><strong>উদ্দেশ্য</strong></td><td>পরিবর্তন বা সম্প্রসারণ রোধ করা।</td><td>সুপারক্লাসের বৈশিষ্ট্য পুনর্ব্যবহার বা অ্যাক্সেস করা।</td></tr></tbody></table></div>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong><ul><li>`final`: কোনো কিছুকে ফাইনাল বা শেষ বানিয়ে দেয়। যেমন ফাইনাল ভেরিয়েবলের মান বদলায় না, ফাইনাল মেথডকে অন্য ক্লাস বদলাতে পারে না, ফাইনাল ক্লাস থেকে নতুন ক্লাস বানানো যায় না।</li><li>`super`: সাব-ক্লাস থেকে তার ঠিক উপরের সুপারক্লাসকে বোঝায়। এটা দিয়ে সুপারক্লাসের কনস্ট্রাক্টর, মেথড বা ভেরিয়েবল কল করা যায়।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong><ul><li>`final`: "এটা ফাইনাল, আর বদলাবে না!" - যেমন তোমার জন্ম তারিখ।</li><li>`super`: "আমার বাবার জিনিসটা দাও" - ছেলে বাবার কোনো জিনিস চাইলে `super` ব্যবহার করে।</li></ul></p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৫। উদাহরণসহ পলিমরফিজম প্রক্রিয়াটি ব্যাখ্যা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ব্যাখ্যা:</strong> পলিমরফিজম (Polymorphism) অর্থ 'বহুরূপতা'। জাভাতে এটি অবজেক্ট ওরিয়েন্টেড প্রোগ্রামিংয়ের একটি মূল স্তম্ভ যা একই ইন্টারফেস বা নামের মাধ্যমে বিভিন্ন ধরনের ডেটা বা ক্লাসকে উপস্থাপন করার ক্ষমতা দেয়। প্রধানত দুই ধরনের পলিমরফিজম দেখা যায়:<ol><li><strong>কম্পাইল-টাইম পলিমরফিজম (মেথড ওভারলোডিং):</strong> একই ক্লাসে একই নামের কিন্তু ভিন্ন প্যারামিটার লিস্টের মেথড থাকলে, কম্পাইলার কল করার সময় প্যারামিটার দেখে নির্ধারণ করে কোন মেথডটি চলবে।</li><li><strong>রান-টাইম পলিমরফিজম (মেথড ওভাররাইডিং):</strong> যখন সাবক্লাস সুপারক্লাসের কোনো মেথডকে ওভাররাইড করে, তখন সুপারক্লাসের রেফারেন্স ভেরিয়েবল যদি সাবক্লাসের অবজেক্টকে নির্দেশ করে, তাহলে মেথড কল করলে রানটাইমে অবজেক্টের ধরনের উপর ভিত্তি করে সাবক্লাসের ওভাররাইড করা মেথডটি কল হয়। একে ডায়নামিক মেথড ডিসপ্যাচও বলে।</li></ol></p>
+                <p><strong>উদাহরণ (রান-টাইম পলিমরফিজম):</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+// সুপারক্লাস
+class Shape {
+    void draw() {
+        System.out.println("Drawing a shape...");
+    }
+}
+
+// সাবক্লাস ১
+class Circle extends Shape {
+    @Override // মেথড ওভাররাইডিং
+    void draw() {
+        System.out.println("Drawing a circle (O)");
+    }
+}
+
+// সাবক্লাস ২
+class Square extends Shape {
+    @Override // মেথড ওভাররাইডিং
+    void draw() {
+        System.out.println("Drawing a square ([])");
+    }
+}
+
+// টেস্ট ক্লাস
+class TestPolymorphism {
+    public static void main(String[] args) {
+        Shape myShape; // সুপারক্লাসের রেফারেন্স
+
+        myShape = new Circle(); // সাবক্লাস Circle এর অবজেক্ট
+        myShape.draw(); // আউটপুট: Drawing a circle (O) -> Circle এর draw() কল হলো
+
+        myShape = new Square(); // সাবক্লাস Square এর অবজেক্ট
+        myShape.draw(); // আউটপুট: Drawing a square ([]) -> Square এর draw() কল হলো
+
+        myShape = new Shape(); // সুপারক্লাসের অবজেক্ট
+        myShape.draw(); // আউটপুট: Drawing a shape... -> Shape এর draw() কল হলো
+    }
+}
+                    </code></pre>
+                 </div>
+                 <p><strong>ব্যাখ্যা:</strong> এখানে `Shape` ক্লাসের `draw()` মেথডকে `Circle` ও `Square` সাবক্লাসগুলো ওভাররাইড করেছে। `main` মেথডে `Shape` টাইপের রেফারেন্স `myShape` কখনো `Circle` অবজেক্টকে, কখনো `Square` অবজেক্টকে নির্দেশ করছে। যখন `myShape.draw()` কল করা হচ্ছে, তখন জাভা রানটাইমে দেখছে `myShape` আসলে কোন ক্লাসের অবজেক্টকে নির্দেশ করছে এবং সেই অনুযায়ী সংশ্লিষ্ট ক্লাসের `draw()` মেথডটি চালাচ্ছে। একই `myShape.draw()` কল ভিন্ন ভিন্ন আউটপুট দিচ্ছে, এটাই রান-টাইম পলিমরফিজম।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> পলিমরফিজম মানে একই জিনিস নানা রূপে কাজ করা। যেমন: মেথড ওভাররাইডিংয়ের ক্ষেত্রে, `Shape` ক্লাসের একটা `draw` মেথড আছে। `Circle` আর `Square` ক্লাস দুটোই `Shape` থেকে এসেছে এবং নিজের মতো করে `draw` মেথড লিখেছে (ওভাররাইড করেছে)। এখন আমরা যদি একটা `Shape` ভেরিয়েবল দিয়ে কখনো `Circle` কে ধরি, কখনো `Square` কে ধরি, আর তারপর `draw` কল করি, তাহলে সে নিজে নিজেই বুঝে নেয় এখন কাকে ধরেছে এবং সেই অনুযায়ী `Circle` বা `Square` আঁকার কাজটা করে। একই কল (`draw()`) ভিন্ন কাজ করছে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার কাছে একটা রিমোট কন্ট্রোল (`Shape` রেফারেন্স) আছে। তুমি যদি রিমোটটা দিয়ে টিভি (`Circle` অবজেক্ট) চালাও, তাহলে টিভির চ্যানেল বদলাবে (`draw()` কল)। আবার ওই একই রিমোট দিয়ে যদি এসি (`Square` অবজেক্ট) চালাও, তাহলে এসির টেম্পারেচার বদলাবে (`draw()` কল)। রিমোট একটাই, কিন্তু কোন যন্ত্রের সাথে কানেক্টেড তার উপর নির্ভর করে কাজটা বদলে যাচ্ছে।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৬। উদাহরণসহ ইন্টারফেস-এর ফরম্যাট উল্লেখ কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ফরম্যাট:</strong></p>
+                 <div class="code-container">
+                     <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                     <pre><code class="language-java code-content">
+[modifier] interface InterfaceName {
+    // Constants (public static final by default)
+    [dataType] CONSTANT_NAME = value;
+
+    // Abstract methods (public abstract by default)
+    [returnType] methodName(parameterList);
+
+    // Default methods (Java 8+)
+    default [returnType] defaultMethodName(parameterList) {
+        // Implementation
+    }
+
+    // Static methods (Java 8+)
+    static [returnType] staticMethodName(parameterList) {
+        // Implementation
+    }
+}
+
+// Implementing class
+class ClassName implements InterfaceName {
+    // Must implement all abstract methods from InterfaceName
+    @Override
+    public [returnType] methodName(parameterList) {
+        // Implementation
+    }
+    // Other class members
+}
+                     </code></pre>
+                 </div>
+                 <p><strong>উদাহরণ:</strong></p>
+                 <div class="code-container">
+                     <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                     <pre><code class="language-java code-content">
+// ইন্টারফেস ডিক্লারেশন
+interface Drawable {
+    int MAX_WIDTH = 100; // Constant (public static final)
+    void draw(); // Abstract method (public abstract)
+    default void info() { // Default method
+        System.out.println("This is a drawable object.");
+    }
+}
+
+// ক্লাস যা ইন্টারফেস ইমপ্লিমেন্ট করছে
+class Circle implements Drawable {
+    @Override
+    public void draw() { // Abstract মেথডের বাস্তবায়ন আবশ্যক
+        System.out.println("Drawing a circle (O). Max width: " + MAX_WIDTH);
+    }
+    // info() মেথড ব্যবহার করা যাবে অথবা ওভাররাইড করা যাবে
+}
+
+// টেস্ট ক্লাস
+class TestInterface {
+    public static void main(String[] args) {
+        Circle c = new Circle();
+        c.draw(); // আউটপুট: Drawing a circle (O). Max width: 100
+        c.info(); // আউটপুট: This is a drawable object.
+    }
+}
+                    </code></pre>
+                 </div>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ইন্টারফেস হলো একটা টেমপ্লেট বা চুক্তি যেখানে বলে দেওয়া থাকে কী কী কাজ করতে হবে (মেথড) কিন্তু কীভাবে করতে হবে তা বলা থাকে না (মেথডগুলো অ্যাবস্ট্রাক্ট)। ক্লাস যখন কোনো ইন্টারফেসকে `implements` করে, তখন তাকে ওই ইন্টারফেসের সব অ্যাবস্ট্রাক্ট মেথড বানিয়ে দিতে হয়। ফরম্যাটে দেখানো হয়েছে কীভাবে `interface` কিওয়ার্ড ব্যবহার করে ইন্টারফেস ও তার মেম্বার (কনস্ট্যান্ট, অ্যাবস্ট্রাক্ট মেথড, ডিফল্ট মেথড, স্ট্যাটিক মেথড) ডিক্লেয়ার করা হয় এবং কীভাবে ক্লাস সেটা `implements` করে। উদাহরণে, `Drawable` ইন্টারফেসে `MAX_WIDTH` নামে কনস্ট্যান্ট ও `draw()` নামে অ্যাবস্ট্রাক্ট মেথড আছে। `Circle` ক্লাস `Drawable` কে ইমপ্লিমেন্ট করায় তাকে `draw()` মেথডটা অবশ্যই বানাতে হয়েছে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> স্কুলের পরীক্ষার রুটিন (ইন্টারফেস)। রুটিনে বলা আছে কোন কোন বিষয়ে পরীক্ষা দিতে হবে (`draw()` মেথড)। তোমাকে (ক্লাস) সেইসব বিষয়ে পরীক্ষা দেওয়ার জন্য প্রস্তুতি নিতে হবে (`draw()` মেথডের কোড লিখতে হবে)। রুটিনে কিছু নিয়মও লেখা থাকতে পারে (কনস্ট্যান্ট বা ডিফল্ট মেথড) যা সবাইকে মানতে হবে।</p></div>
+        </div>
+
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">১। সুপার ক্লাস ও সাব-ক্লাস ব্যবহার করে একটি প্রোগ্রাম লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য (Code):</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+// সুপারক্লাস (Parent)
+class Vehicle {
+    String brand;
+    int year;
+
+    // সুপারক্লাসের কনস্ট্রাক্টর
+    Vehicle(String brand, int year) {
+        this.brand = brand;
+        this.year = year;
+        System.out.println("Vehicle object created.");
+    }
+
+    void displayInfo() {
+        System.out.println("Brand: " + brand + ", Year: " + year);
+    }
+}
+
+// সাবক্লাস (Child), Vehicle থেকে ইনহেরিট করছে
+class Car extends Vehicle {
+    String model;
+
+    // সাবক্লাসের কনস্ট্রাক্টর, সুপারক্লাসের কনস্ট্রাক্টর কল করছে
+    Car(String brand, int year, String model) {
+        super(brand, year); // সুপারক্লাসের কনস্ট্রাক্টর কল (প্রথম স্টেটমেন্ট হতে হবে)
+        this.model = model;
+        System.out.println("Car object created.");
+    }
+
+    // সাবক্লাসের নিজস্ব মেথড
+    void displayCarInfo() {
+        super.displayInfo(); // সুপারক্লাসের মেথড কল
+        System.out.println("Model: " + model);
+    }
+}
+
+// টেস্ট ক্লাস
+class TestVehicle {
+    public static void main(String[] args) {
+        // সাবক্লাসের অবজেক্ট তৈরি
+        Car myCar = new Car("Toyota", 2022, "Corolla");
+        System.out.println("--- Displaying Car Info ---");
+        myCar.displayCarInfo();
+    }
+}
+                    </code></pre>
+                 </div>
+                 <p><strong>ব্যাখ্যা:</strong> এই প্রোগ্রামে `Vehicle` হলো সুপারক্লাস এবং `Car` হলো সাবক্লাস (`Car extends Vehicle`)। `Car` ক্লাস `Vehicle` ক্লাসের `brand` ও `year` বৈশিষ্ট্য এবং `displayInfo()` মেথড ইনহেরিট করে। `Car` ক্লাসের কনস্ট্রাক্টরের ভেতর `super(brand, year)` ব্যবহার করে `Vehicle` ক্লাসের কনস্ট্রাক্টরকে কল করা হয়েছে। আবার, `displayCarInfo()` মেথডের ভেতর `super.displayInfo()` ব্যবহার করে `Vehicle` ক্লাসের মেথডকে কল করা হয়েছে। `main` মেথডে `Car` ক্লাসের অবজেক্ট তৈরি করে তার মেথড কল করা হয়েছে, যা সুপারক্লাস ও সাবক্লাস উভয়ের বৈশিষ্ট্য ব্যবহার করে।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এখানে `Vehicle` (যানবাহন) হলো "বাবা" ক্লাস, যার ব্র্যান্ড আর বছর আছে। `Car` হলো "সন্তান" ক্লাস যে `Vehicle` থেকে এসেছে, তাই তারও ব্র্যান্ড আর বছর আছে, সাথে নিজের একটা মডেল নামও আছে। গাড়ি (`Car`) বানানোর সময় সে বাবাকে (`Vehicle`) তার ব্র্যান্ড আর বছর দিয়ে দেয় (`super(brand, year)`)। আবার গাড়ির তথ্য দেখানোর সময় সে বাবার কাছ থেকে পাওয়া তথ্য (`super.displayInfo()`) দেখায়, তারপর নিজের মডেল নামটা দেখায়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> বাবা (`Vehicle`) তার নাম (`brand`) আর বয়স (`year`) বলতে পারে। ছেলে (`Car`) বাবার কাছ থেকে নাম-বয়স বলার ক্ষমতা পেয়েছে, আর নিজে নতুন করে মডেল (`model`) বলতে শিখেছে। ছেলে যখন নিজের পরিচয় দেয়, তখন বাবার পরিচয় (`super.displayInfo`) দিয়ে তারপর নিজের মডেল বলে।</p></div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">২। মাল্টিলেভেল ইনহেরিট্যান্স ব্যবহার করে একটি জাভা প্রোগ্রাম লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য (Code):</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+// লেভেল ১: দাদা
+class Grandfather {
+    void land() {
+        System.out.println("Grandfather has land.");
+    }
+}
+
+// লেভেল ২: বাবা (দাদা থেকে ইনহেরিট করছে)
+class Father extends Grandfather {
+    void house() {
+        System.out.println("Father built a house.");
+    }
+    // land() মেথড ইনহেরিট করেছে
+}
+
+// লেভেল ৩: ছেলে (বাবা থেকে ইনহেরিট করছে)
+class Son extends Father {
+    void car() {
+        System.out.println("Son bought a car.");
+    }
+    // house() এবং land() মেথড ইনহেরিট করেছে
+}
+
+// টেস্ট ক্লাস
+class TestMultiLevel {
+    public static void main(String[] args) {
+        Son david = new Son();
+        david.car();   // নিজের মেথড
+        david.house(); // বাবার (Father) মেথড
+        david.land();  // দাদার (Grandfather) মেথড
+    }
+}
+                    </code></pre>
+                 </div>
+                 <p><strong>ব্যাখ্যা:</strong> এখানে `Grandfather` হলো বেস ক্লাস। `Father` ক্লাস `Grandfather` কে এক্সটেন্ড করেছে, এবং `Son` ক্লাস `Father` কে এক্সটেন্ড করেছে (Grandfather -> Father -> Son)। `Son` ক্লাসের অবজেক্ট (`david`) তার নিজের `car()` মেথড ছাড়াও `Father` ক্লাস থেকে পাওয়া `house()` মেথড এবং পরোক্ষভাবে `Grandfather` ক্লাস থেকে পাওয়া `land()` মেথডও অ্যাক্সেস করতে পারছে। এটাই মাল্টিলেভেল ইনহেরিট্যান্স।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> দাদা -> বাবা -> ছেলে। ছেলে (`Son`) তার বাবার (`Father`) বৈশিষ্ট্য (`house`) পায়, আর বাবা তার বাবার (`Grandfather`) বৈশিষ্ট্য (`land`) পায়। ফলে, ছেলে একই সাথে গাড়ি (`car`) চালাতে পারে, বাবার বানানো বাড়িতে (`house`) থাকতে পারে, আবার দাদার জমিতেও (`land`) যেতে পারে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি (`Son`) তোমার বাবার (`Father`) মতো কিছু কাজ করতে পারো, আবার তোমার বাবা তার বাবার (`Grandfather`) মতো কিছু কাজ করতে পারেন। তাই তুমি তোমার নিজের কাজ ছাড়াও বাবা এবং দাদার কাজগুলোও করতে পারছো।</p></div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">৩। ইন্টারফেস বাস্তবায়ন প্রক্রিয়াটি একটি প্রোগ্রাম লিখে ব্যাখ্যা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য (Code & Explanation):</strong></p>
+                <p><strong>ভূমিকা:</strong> ইন্টারফেস হলো একটি অ্যাবস্ট্রাক্ট টাইপ যা ক্লাসের জন্য একটি কন্ট্রাক্ট বা চুক্তি হিসেবে কাজ করে। কোনো ক্লাস যখন একটি ইন্টারফেসকে `implements` করে, তখন সে ওই ইন্টারফেসের সকল অ্যাবস্ট্রাক্ট মেথডকে বাস্তবায়ন করতে বাধ্য থাকে।</p>
+                <p><strong>প্রোগ্রাম:</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+// ইন্টারফেস সংজ্ঞা
+interface Player {
+    // অ্যাবস্ট্রাক্ট মেথড (কী করতে হবে)
+    void play();
+    void stop();
+}
+
+// ক্লাস ১: যা ইন্টারফেস বাস্তবায়ন করছে
+class AudioPlayer implements Player {
+    // ইন্টারফেসের মেথড বাস্তবায়ন
+    @Override
+    public void play() {
+        System.out.println("AudioPlayer: Playing audio...");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("AudioPlayer: Stopping audio.");
+    }
+}
+
+// ক্লাস ২: যা একই ইন্টারফেস বাস্তবায়ন করছে
+class VideoPlayer implements Player {
+    // ইন্টারফেসের মেথড বাস্তবায়ন
+    @Override
+    public void play() {
+        System.out.println("VideoPlayer: Playing video...");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("VideoPlayer: Stopping video.");
+    }
+}
+
+// টেস্ট ক্লাস
+class TestInterfaceImpl {
+    public static void main(String[] args) {
+        // ইন্টারফেস টাইপের ভেরিয়েবল বিভিন্ন ইমপ্লিমেন্টিং ক্লাসের অবজেক্ট ধরতে পারে
+        Player player1 = new AudioPlayer();
+        Player player2 = new VideoPlayer();
+
+        player1.play(); // AudioPlayer এর play() কল হবে
+        player1.stop();  // AudioPlayer এর stop() কল হবে
+
+        player2.play(); // VideoPlayer এর play() কল হবে
+        player2.stop();  // VideoPlayer এর stop() কল হবে
+    }
+}
+                    </code></pre>
+                 </div>
+                 <p><strong>ব্যাখ্যা:</strong> এখানে `Player` নামে একটি ইন্টারফেস ডিক্লেয়ার করা হয়েছে যাতে `play()` এবং `stop()` নামে দুটি অ্যাবস্ট্রাক্ট মেথড আছে। `AudioPlayer` এবং `VideoPlayer` ক্লাস দুটি `implements Player` লিখে `Player` ইন্টারফেসটিকে বাস্তবায়ন করেছে। এর ফলে, উভয় ক্লাসকেই নিজ নিজ প্রেক্ষাপটে `play()` এবং `stop()` মেথডের কোড লিখতে হয়েছে (`@Override` দিয়ে)। `main` মেথডে দেখানো হয়েছে কীভাবে ইন্টারফেস টাইপের ভেরিয়েবল দিয়ে ইমপ্লিমেন্টিং ক্লাসগুলোর অবজেক্ট রেফার করা যায় এবং মেথড কল করা যায়।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> আমরা `Player` নামে একটা নিয়ম বানিয়েছি যে, যে প্লেয়ার হবে, তাকে `play` আর `stop` করতে পারতেই হবে। কীভাবে করবে সেটা বলিনি। এরপর `AudioPlayer` আর `VideoPlayer` দুটো ক্লাস বানিয়েছি যারা বলেছে "আমরা Player এর নিয়ম মানবো" (`implements Player`)। তাই তাদের দুজনকেই নিজের মতো করে `play` আর `stop` করার কোড লিখতে হয়েছে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা খেলার নিয়ম (`Player` ইন্টারফেস) হলো দুটো কাজ করতে হবে: খেলা শুরু (`play`) আর খেলা শেষ (`stop`)। ক্রিকেট প্লেয়ার (`AudioPlayer`) আর ফুটবল প্লেয়ার (`VideoPlayer`) দুজনই এই নিয়ম মানে। তাই দুজনকে নিজের খেলার শুরু আর শেষটা করতে হয়।</p></div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">৪। মাল্টিপল ইন্টারফেস প্রক্রিয়াটি প্রোগ্রামসহ বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য (Code & Explanation):</strong></p>
+                <p><strong>ভূমিকা:</strong> জাভাতে একটি ক্লাস সরাসরি একাধিক ক্লাসকে এক্সটেন্ড করতে না পারলেও, একটি ক্লাস একই সাথে একাধিক ইন্টারফেসকে ইমপ্লিমেন্ট করতে পারে। এটি ক্লাসকে বিভিন্ন ধরনের কন্ট্রাক্ট বা কার্যকারিতা প্রদান করার সুযোগ দেয়।</p>
+                <p><strong>প্রোগ্রাম:</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+// প্রথম ইন্টারফেস
+interface Engine {
+    void startEngine();
+    void stopEngine();
+}
+
+// দ্বিতীয় ইন্টারফেস
+interface MusicPlayer {
+    void playMusic();
+    void stopMusic();
+}
+
+// একটি ক্লাস যা দুটি ইন্টারফেস ইমপ্লিমেন্ট করছে
+class SmartCar implements Engine, MusicPlayer { // কমা দিয়ে একাধিক ইন্টারফেস
+
+    // Engine ইন্টারফেসের মেথড বাস্তবায়ন
+    @Override
+    public void startEngine() {
+        System.out.println("SmartCar: Engine started.");
+    }
+    @Override
+    public void stopEngine() {
+        System.out.println("SmartCar: Engine stopped.");
+    }
+
+    // MusicPlayer ইন্টারফেসের মেথড বাস্তবায়ন
+    @Override
+    public void playMusic() {
+        System.out.println("SmartCar: Playing music...");
+    }
+    @Override
+    public void stopMusic() {
+        System.out.println("SmartCar: Music stopped.");
+    }
+
+    // ক্লাসের নিজস্ব মেথড (ঐচ্ছিক)
+    public void drive() {
+        System.out.println("SmartCar is driving.");
+    }
+}
+
+// টেস্ট ক্লাস
+class TestMultipleInterfaces {
+    public static void main(String[] args) {
+        SmartCar mySmartCar = new SmartCar();
+
+        // Engine এর কাজ করানো
+        mySmartCar.startEngine();
+        mySmartCar.drive(); // নিজস্ব মেথড
+        mySmartCar.stopEngine();
+
+        System.out.println("---");
+
+        // MusicPlayer এর কাজ করানো
+        mySmartCar.playMusic();
+        mySmartCar.stopMusic();
+    }
+}
+                    </code></pre>
+                 </div>
+                 <p><strong>ব্যাখ্যা:</strong> এখানে `Engine` এবং `MusicPlayer` নামে দুটি ভিন্ন ইন্টারফেস আছে। `SmartCar` ক্লাসটি `implements Engine, MusicPlayer` লিখে দুটি ইন্টারফেসকেই একসাথে বাস্তবায়ন করেছে। এর ফলে `SmartCar` ক্লাসকে `Engine` ইন্টারফেসের `startEngine()`, `stopEngine()` এবং `MusicPlayer` ইন্টারফেসের `playMusic()`, `stopMusic()` - এই চারটি মেথডই ইমপ্লিমেন্ট করতে হয়েছে। `main` মেথডে `SmartCar` অবজেক্ট তৈরি করে দুটি ইন্টারফেসের মেথডই কল করা যাচ্ছে।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> একটা গাড়ি একই সাথে চলার নিয়ম (`Engine` ইন্টারফেস) এবং গান শোনার নিয়ম (`MusicPlayer` ইন্টারফেস) দুটোই মানতে পারে। আমাদের `SmartCar` ক্লাসটা সেটাই করেছে (`implements Engine, MusicPlayer`)। তাই এই গাড়িটা ইঞ্জিন চালু/বন্ধ করতে পারে আবার গানও চালাতে/বন্ধ করতে পারে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি (`SmartCar`) একই সাথে স্কুলের নিয়ম (`Engine`) যেমন মানো (যেমন: হোমওয়ার্ক করা), তেমনি বাসার নিয়মও (`MusicPlayer`) মানো (যেমন: নিজের ঘর গোছানো)। তুমি দুটো ভিন্ন নিয়ম তালিকা একসাথে পালন করছো।</p></div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>অ্যাপ্লিকেশন ডেভেলপমেন্ট ইউজিং জাভা - স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    {/* --- Scripts at the end of body --- */}
+
+    {/* KaTeX JS (Deferred - No integrity/crossorigin) */}
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true} ], throwOnError: false });"></script>
+
+    {/* Prism.js Core & Autoloader (No integrity/crossorigin) */}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    {/* External JavaScript File for Theme & Comment Toggling */}
+    <script src="main_script.js" defer></script>
+
+</body>
+</html>

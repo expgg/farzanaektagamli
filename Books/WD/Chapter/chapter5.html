@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৫: ডোমেইন অ্যান্ড হোস্টিং</title>
+    <link rel="stylesheet" href="webdev_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k55gMp/InvxBM1Mty9rgRDIJNu38mMhftBPqzhAXSDdy92HjL4IFNfey" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1MZu6ADomyXk8EogbLDBsPU5rkXF/dtZZxL1Pceg6x" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouEs/BHtTcWgwPkMAVEABrHI+WGBmvygAodXElARTYHD" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৫: ডোমেইন অ্যান্ড হোস্টিং</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">
+            </button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্নোত্তর</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। ডোমেইন কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> ডোমেইন নেম বা ডোমেইন হলো ইন্টারনেটে একটি ওয়েবসাইট বা নেটওয়ার্ক রিসোর্স শনাক্ত করার জন্য ব্যবহৃত একটি সহজে মনে রাখার মতো অনন্য নাম। এটি আইপি অ্যাড্রেসের একটি মানব-পাঠযোগ্য বিকল্প হিসেবে কাজ করে। যেমন: <code>google.com</code>, <code>wikipedia.org</code>।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ডোমেইন হলো ওয়েবসাইটের ঠিকানা বা নাম। যেমন আমরা google.com লিখে গুগলে যাই, এখানে 'google.com' টাই হলো ডোমেইন নেম। আইপি অ্যাড্রেস মনে রাখা কঠিন, তাই এই সহজ নামগুলো ব্যবহার করা হয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার বাসার ঠিকানার যেমন একটা নাম আছে (যেমন: 'রিফাতের নীড়'), ওয়েবসাইটেরও তেমনি একটা নাম থাকে, সেটাই হলো ডোমেইন।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। হোস্টিং বা ওয়েব হোস্টিং কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> ওয়েব হোস্টিং হলো একটি সেবা যা ব্যক্তি বা প্রতিষ্ঠানকে তাদের ওয়েবসাইট বা ওয়েবপেজ ইন্টারনেটে প্রদর্শন করার সুযোগ করে দেয়। হোস্টিং প্রোভাইডাররা তাদের সার্ভারে ওয়েবসাইটের ফাইলগুলো (HTML, CSS, JS, ছবি ইত্যাদি) সংরক্ষণ করার জন্য জায়গা (স্পেস) এবং প্রয়োজনীয় প্রযুক্তি সরবরাহ করে, যার ফলে যে কেউ ইন্টারনেট থেকে ওয়েবসাইটটি অ্যাক্সেস করতে পারে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> হোস্টিং হলো ইন্টারনেটে তোমার ওয়েবসাইটের ফাইলগুলো জমা রাখার জন্য একটা জায়গা ভাড়া নেওয়া। তুমি যে ওয়েবসাইটটা বানালে, সেটার সব ফাইল তো কোথাও রাখতে হবে যাতে সবাই ইন্টারনেট দিয়ে দেখতে পারে। এই জায়গা দেওয়ার সার্ভিসটাই হলো ওয়েব হোস্টিং।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো তুমি একটা দোকান খুলবে। দোকানটা বানানোর পর জিনিসপত্র রাখার জন্য তোমার একটা জায়গা (দোকান ঘর) ভাড়া নিতে হবে তো? ওয়েব হোস্টিং হলো ওয়েবসাইটের জন্য সেরকম একটা ভাড়া করা জায়গা বা ঘর।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৩। পূর্ণরূপ লেখ: ICANN; TLD; PSTN; ISD; ADSL; GPON.</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <ul>
+                     <li><strong>ICANN:</strong> Internet Corporation for Assigned Names and Numbers</li>
+                     <li><strong>TLD:</strong> Top-Level Domain</li>
+                     <li><strong>PSTN:</strong> Public Switched Telephone Network</li>
+                     <li><strong>ISD:</strong> International Subscriber Dialing</li>
+                     <li><strong>ADSL:</strong> Asymmetric Digital Subscriber Line</li>
+                     <li><strong>GPON:</strong> Gigabit Passive Optical Network</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এগুলো ইন্টারনেট, ডোমেইন আর টেলিকমিউনিকেশন সম্পর্কিত কিছু সংস্থার বা প্রযুক্তির নামের পুরো ফর্ম। যেমন TLD হলো ডোমেইন নামের শেষের অংশটা (.com, .org, .net, .bd)। ADSL আর GPON হলো ব্রডব্যান্ড ইন্টারনেট কানেকশনের দুটো টেকনোলজি।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> এগুলো হলো ইন্টারনেট আর ফোন লাইনের দুনিয়ার কিছু বস (ICANN) আর টেকনোলজির লম্বা নাম।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। BTCL ও BTRC কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <ul>
+                    <li><strong>BTCL:</strong> Bangladesh Telecommunications Company Limited (বাংলাদেশ টেলিকমিউনিকেশনস কোম্পানি লিমিটেড)। এটি বাংলাদেশের একটি রাষ্ট্রায়ত্ত টেলিকমিউনিকেশন সেবা প্রদানকারী সংস্থা।</li>
+                    <li><strong>BTRC:</strong> Bangladesh Telecommunication Regulatory Commission (বাংলাদেশ টেলিযোগাযোগ নিয়ন্ত্রণ কমিশন)। এটি বাংলাদেশের টেলিযোগাযোগ খাত নিয়ন্ত্রণকারী স্বাধীন কমিশন।</li>
+                </ul>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> BTCL হলো বাংলাদেশের সরকারি টেলিফোন আর ইন্টারনেট কোম্পানি (আগের টিএনটি)। আর BTRC হলো সেই সংস্থা যারা বাংলাদেশের সব ফোন আর ইন্টারনেট কোম্পানি ঠিকমতো চলছে কিনা, নিয়ম মানছে কিনা, সেটা দেখাশোনা করে (নিয়ন্ত্রণকারী)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> BTCL হলো সরকারি ফোন আর ইন্টারনেট সার্ভিস। BTRC হলো এই সব ফোন আর ইন্টারনেট কোম্পানিগুলোর ট্র্যাফিক পুলিশ বা রেফারি।</p>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্নোত্তর</h3>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">১। ডোমেইন নেম সিস্টেম (DNS) বলতে কী বুঝায়?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ডোমেইন নেম সিস্টেম (DNS) হলো ইন্টারনেটের জন্য একটি হায়ারারকিক্যাল এবং ডিসেন্ট্রালাইজড নেমিং সিস্টেম যা মানুষের পাঠযোগ্য ডোমেইন নেমগুলোকে (যেমন: <code>www.example.com</code>) মেশিনের পাঠযোগ্য আইপি অ্যাড্রেসে (যেমন: <code>192.0.2.1</code>) রূপান্তর করে। এটি মূলত ইন্টারনেটের ফোনবুক হিসেবে কাজ করে, যা ব্যবহারকারীকে আইপি অ্যাড্রেস মনে না রেখেই ডোমেইন নেম ব্যবহার করে ওয়েবসাইট বা সার্ভার অ্যাক্সেস করতে সাহায্য করে। যখন কোনো ব্যবহারকারী ব্রাউজারে ডোমেইন নেম টাইপ করে, তখন DNS সিস্টেম সেই নামের সংশ্লিষ্ট আইপি অ্যাড্রেস খুঁজে বের করে দেয়।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> (এটা আগের সাবজেক্টেও ছিল) DNS হলো ইন্টারনেটের অ্যাড্রেস বই। আমরা ওয়েবসাইটের নাম মনে রাখি (যেমন <code>google.com</code>), কিন্তু কম্পিউটার চেনে আইপি নম্বর। আমরা যখন ব্রাউজারে নাম লিখি, DNS সেই নামের αντίστοιχο নম্বরটা খুঁজে বের করে কম্পিউটারকে দেয়, যাতে কম্পিউটার ঠিক সার্ভারে যেতে পারে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি রিফাতের নাম জানো, কিন্তু তার ফোন নম্বর জানো না। DNS হলো এমন একজন বন্ধু যে তোমার কাছ থেকে রিফাতের নাম শুনে তার ফোন নম্বরটা তোমাকে বলে দেয়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। সাবডোমেইন বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> সাবডোমেইন হলো একটি মূল ডোমেইন নেমের একটি অংশ বা উপবিভাগ যা মূল ডোমেইনের আগে একটি ডট (.) দ্বারা যুক্ত থাকে। এটি একটি বৃহত্তর ওয়েবসাইটকে যৌক্তিকভাবে বিভিন্ন অংশে ভাগ করার জন্য বা ভিন্ন ভিন্ন সার্ভিস হোস্ট করার জন্য ব্যবহৃত হয়। যেমন: <code>blog.example.com</code> এ 'blog' হলো <code>example.com</code> মূল ডোমেইনের একটি সাবডোমেইন।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সাবডোমেইন হলো একটা বড় ওয়েবসাইটের ঠিকানার একটা অংশ। যেমন, <code>mail.google.com</code> এ 'mail' হলো <code>google.com</code> এর একটা সাবডোমেইন, যেটা দিয়ে গুগলের মেইল সার্ভিসে যাওয়া যায়। এটা অনেকটা একটা বড় বাড়ির ভেতরে আলাদা আলাদা ফ্ল্যাটের ঠিকানার মতো।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো 'rifat.com' হলো রিফাতের বাড়ি। সে যদি বাড়ির একটা অংশে লাইব্রেরি বানায়, সেটার ঠিকানা হতে পারে 'library.rifat.com'। এই 'library' অংশটাই হলো সাবডোমেইন।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। বিটিসিএল-এর কার্যাবলি সংক্ষেপে বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> বাংলাদেশ টেলিকমিউনিকেশনস কোম্পানি লিমিটেড (BTCL) একটি রাষ্ট্রায়ত্ত সংস্থা হিসেবে বাংলাদেশের টেলিযোগাযোগ খাতে বিভিন্ন সেবা প্রদান করে। এর প্রধান কার্যাবলি হলো:</p>
+                 <ol>
+                     <li>দেশব্যাপী ফিক্সড-লাইন টেলিফোন (ল্যান্ডলাইন) সেবা প্রদান ও নেটওয়ার্ক রক্ষণাবেক্ষণ।</li>
+                     <li>ইন্টারনেট সার্ভিস প্রোভাইডার (ISP) হিসেবে ব্রডব্যান্ড ইন্টারনেট সেবা (যেমন ADSL, GPON) প্রদান।</li>
+                     <li>আন্তর্জাতিক ভয়েস ও ডেটা কমিউনিকেশনের জন্য সাবমেরিন ক্যাবল ও স্যাটেলাইট আর্থ স্টেশনের মাধ্যমে সংযোগ স্থাপন ও ব্যবস্থাপনা।</li>
+                     <li>বাংলাদেশের কান্ট্রি কোড টপ-লেভেল ডোমেইন (.bd) এবং বাংলা ডোমেইন (.বাংলা) এর রেজিস্ট্রেশন ও ব্যবস্থাপনা।</li>
+                     <li>বিভিন্ন সরকারি ও বেসরকারি প্রতিষ্ঠানকে ডেডিকেটেড লিজড লাইন ও ডেটা সংযোগ সেবা প্রদান।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> BTCL এর কাজগুলো হলো: ল্যান্ডফোন লাইন দেওয়া আর চালানো, ইন্টারনেট সার্ভিস দেওয়া (ADSL, GPON ফাইবার), বিদেশের সাথে যোগাযোগের জন্য সাবমেরিন ক্যাবল ম্যানেজ করা, ডট বিডি (.bd) ডোমেইন রেজিস্ট্রেশন করা, আর বিভিন্ন অফিসকে ডেডিকেটেড ইন্টারনেট লাইন দেওয়া।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> BTCL হলো সরকারি টেলিফোনওয়ালা আর ইন্টারনেটওয়ালা। তারা ফোন লাইন দেয়, ইন্টারনেট দেয়, আবার .bd ডোমেইন নামেরও দেখাশোনা করে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৪। বিটিআরসি (BTRC)-এর কার্যাবলি সংক্ষেপে বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> বাংলাদেশ টেলিযোগাযোগ নিয়ন্ত্রণ কমিশন (BTRC) বাংলাদেশের টেলিযোগাযোগ খাতের নিয়ন্ত্রক সংস্থা হিসেবে কাজ করে। এর প্রধান কার্যাবলি হলো:</p>
+                 <ol>
+                     <li>টেলিযোগাযোগ এবং ইন্টারনেট সেবা প্রদানের জন্য লাইসেন্স প্রদান ও নবায়ন করা।</li>
+                     <li>টেলিযোগাযোগ সম্পর্কিত আইন, নীতিমালা ও নির্দেশনা প্রণয়ন ও বাস্তবায়ন করা।</li>
+                     <li>সেবার মান (Quality of Service - QoS) পর্যবেক্ষণ ও নিশ্চিত করা।</li>
+                     <li>ট্যারিফ বা কলরেট অনুমোদন ও নিয়ন্ত্রণ করা।</li>
+                     <li>রেডিও ফ্রিকুয়েন্সি স্পেকট্রাম বরাদ্দ ও ব্যবস্থাপনা করা।</li>
+                     <li>অপারেটরদের মধ্যে বা অপারেটর ও গ্রাহকদের মধ্যে বিরোধ নিষ্পত্তি করা।</li>
+                     <li>অবৈধ ভিওআইপি সহ টেলিযোগাযোগ সম্পর্কিত অপরাধমূলক কার্যক্রম প্রতিরোধ ও দমন করা।</li>
+                     <li>খাতের সুষ্ঠু প্রতিযোগিতা নিশ্চিত করা এবং গ্রাহকদের স্বার্থ রক্ষা করা।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> BTRC হলো বাংলাদেশের সব ফোন আর ইন্টারনেট কোম্পানির বস বা রেগুলেটর। তাদের কাজ হলো: কোম্পানিগুলোকে লাইসেন্স দেওয়া, নিয়মকানুন বানানো, সবাই নিয়ম মানছে কিনা দেখা, ইন্টারনেটের স্পিড বা ফোনের নেটওয়ার্ক ঠিক আছে কিনা মনিটর করা, কলরেট ঠিক করে দেওয়া, ফ্রিকুয়েন্সি ভাগ করে দেওয়া, অবৈধ ভিওআইপি বন্ধ করা, আর গ্রাহকদের অধিকার রক্ষা করা।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> BTRC হলো খেলার মাঠের রেফারি। সে ঠিক করে দেয় কারা খেলতে পারবে (লাইসেন্স), খেলার নিয়ম কী হবে, সবাই নিয়ম মানছে কিনা, আর কোনো ঝামেলা হলে বিচার করে।</p>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্নোত্তর</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">১। ডোমেইন রেজিস্ট্রেশন প্রসেসের বর্ণনা দাও।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p>একটি ওয়েবসাইট বা অনলাইন পরিচয়ের জন্য ডোমেইন নেম রেজিস্ট্রেশন একটি অপরিহার্য ধাপ। এই প্রক্রিয়াটি সাধারণত নিম্নলিখিত ধাপগুলো অনুসরণ করে সম্পন্ন করা হয়:</p>
+                <ol>
+                    <li><strong>ডোমেইন নেম নির্বাচন (Choosing a Domain Name):</strong> প্রথমে ওয়েবসাইটের বিষয়বস্তু, ব্র্যান্ড বা উদ্দেশ্যের সাথে সঙ্গতিপূর্ণ একটি ইউনিক এবং সহজে মনে রাখার মতো ডোমেইন নেম পছন্দ করতে হয়। নামটি সংক্ষিপ্ত, প্রাসঙ্গিক এবং উচ্চারণযোগ্য হওয়া বাঞ্ছনীয়।</li>
+                    <li><strong>প্রাপ্যতা যাচাই (Checking Availability):</strong> নির্বাচিত ডোমেইন নেমটি পূর্বে অন্য কেউ রেজিস্টার করেছে কিনা তা যাচাই করতে হয়। এটি ডোমেইন রেজিস্ট্রারদের ওয়েবসাইটে বা WHOIS lookup টুলের মাধ্যমে করা যায়। যদি নামটি উপলব্ধ না থাকে, তবে ভিন্ন নাম বা ভিন্ন TLD (যেমন .com এর বদলে .net বা .org) চেষ্টা করতে হয়।</li>
+                    <li><strong>রেজিস্ট্রার নির্বাচন (Selecting a Registrar):</strong> ডোমেইন নেম রেজিস্ট্রেশনের জন্য একটি ICANN-স্বীকৃত ডোমেইন রেজিস্ট্রার (Domain Registrar) বা তাদের রিসেলার নির্বাচন করতে হয়। রেজিস্ট্রার নির্বাচন করার সময় তাদের সুনাম, মূল্য, গ্রাহক সেবা এবং অতিরিক্ত ফিচারগুলো (যেমন: WHOIS privacy) বিবেচনা করা উচিত। (বাংলাদেশের .bd ডোমেইনের জন্য BTCL হলো রেজিস্ট্রার)।</li>
+                    <li><strong>রেজিস্ট্রেশন তথ্য প্রদান (Providing Registration Information):</strong> রেজিস্ট্রারের ওয়েবসাইটে অ্যাকাউন্ট খুলে বা লগইন করে ডোমেইন রেজিস্ট্রেশনের জন্য আবেদন করতে হয়। এসময় registrant (মালিক), administrative, technical এবং billing contact এর সঠিক তথ্য (নাম, ঠিকানা, ইমেইল, ফোন নম্বর) প্রদান করতে হয়। এই তথ্য WHOIS ডাটাবেজে সংরক্ষিত থাকে (যদি না Privacy Protection নেওয়া হয়)।</li>
+                    <li><strong>রেজিস্ট্রেশনের মেয়াদ নির্বাচন (Choosing Registration Period):</strong> ডোমেইন নেম সাধারণত ১ থেকে ১০ বছরের জন্য রেজিস্টার করা যায়। ব্যবহারকারীকে তার প্রয়োজন অনুযায়ী মেয়াদ নির্বাচন করতে হয়। মেয়াদ শেষে ডোমেইনটি রিনিউ বা নবায়ন করতে হয়।</li>
+                    <li><strong>পেমেন্ট বা অর্থ পরিশোধ (Making Payment):</strong> নির্বাচিত মেয়াদ এবং রেজিস্ট্রারের ফি অনুযায়ী ক্রেডিট কার্ড, ডেবিট কার্ড, মোবাইল ব্যাংকিং বা অন্য কোনো সমর্থিত মাধ্যমে পেমেন্ট সম্পন্ন করতে হয়।</li>
+                    <li><strong>ডিএনএস কনফিগারেশন (DNS Configuration):</strong> ডোমেইন রেজিস্ট্রেশন সম্পন্ন হওয়ার পর ডোমেইনটিকে হোস্টিং সার্ভারের সাথে সংযুক্ত করার জন্য নেম সার্ভার (Nameserver) বা অন্যান্য DNS রেকর্ড (যেমন: A রেকর্ড, CNAME রেকর্ড) রেজিস্ট্রারের কন্ট্রোল প্যানেল থেকে কনফিগার করতে হয়।</li>
+                </ol>
+                 <p>এই ধাপগুলো সঠিকভাবে সম্পন্ন করার পর ডোমেইন নেমটি ব্যবহারকারীর নামে রেজিস্টার হয়ে যায় এবং ওয়েবসাইটে ব্যবহারের জন্য প্রস্তুত হয় (DNS প্রোপাগেশনের জন্য কিছু সময় লাগতে পারে)।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ওয়েবসাইটে জন্য একটা নাম (ডোমেইন) কেনার বা রেজিস্টার করার ধাপগুলো হলো:</p>
+                 <ol>
+                     <li><strong>নাম পছন্দ করা:</strong> তোমার ওয়েবসাইটের জন্য একটা সুন্দর আর ইউনিক নাম ঠিক করা (যেমন `rifat-blog.com`)।</li>
+                     <li><strong>খোঁজা:</strong> নামটা খালি আছে কিনা দেখা (রেজিস্ট্রারের ওয়েবসাইটে চেক করা)।</li>
+                     <li><strong>দোকান ঠিক করা:</strong> কোন দোকান (রেজিস্ট্রার) থেকে নামটা কিনবে সেটা ঠিক করা (যেমন Namecheap, GoDaddy, বা .bd হলে BTCL)।</li>
+                     <li><strong>ফর্ম পূরণ:</strong> তোমার আসল নাম, ঠিকানা, ইমেইল দিয়ে রেজিস্ট্রেশন ফর্ম পূরণ করা।</li>
+                     <li><strong>মেয়াদ ঠিক করা:</strong> কত বছরের জন্য নামটা কিনবে (১ বছর, ২ বছর...) সেটা বলা।</li>
+                     <li><strong>টাকা দেওয়া:</strong> রেজিস্ট্রেশনের ফি পরিশোধ করা।</li>
+                     <li><strong>হোস্টিংয়ের সাথে জোড়া লাগানো:</strong> ডোমেইনটাকে তোমার হোস্টিংয়ের সাথে কানেক্ট করার জন্য নেমসার্ভার সেট করা।</li>
+                 </ol>
+                 <p>ব্যাস, হয়ে গেল তোমার ডোমেইন রেজিস্ট্রেশন!</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার নতুন বাড়ির জন্য একটা নাম ঠিক করার মতো:</p>
+                 <ol>
+                     <li>নাম ভাবা ('রিফাতের নীড়')।</li>
+                     <li>এই নামে অন্য কোনো বাড়ি আছে কিনা খোঁজ নেওয়া।</li>
+                     <li>কোন অফিস থেকে নাম রেজিস্ট্রি করাবে সেটা ঠিক করা।</li>
+                     <li>অফিসে গিয়ে ফর্ম পূরণ করা।</li>
+                     <li>কত বছরের জন্য রেজিস্ট্রি করবে বলা।</li>
+                     <li>রেজিস্ট্রি ফি দেওয়া।</li>
+                     <li>তোমার জমির দলিলের সাথে নামটা যুক্ত করা।</li>
+                 </ol>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">২। বিটিসিএল এবং বিটিআরসি- এর কাজের বর্ণনা দাও।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p>বাংলাদেশের টেলিযোগাযোগ খাতে BTCL এবং BTRC দুটি ভিন্ন কিন্তু গুরুত্বপূর্ণ ভূমিকা পালন করে।</p>
+
+                 <p><strong>বিটিসিএল (BTCL - Bangladesh Telecommunications Company Limited):</strong><br>
+                 এটি একটি রাষ্ট্রায়ত্ত কোম্পানি যা মূলত টেলিযোগাযোগ <strong>সেবা প্রদানকারী (Service Provider)</strong> হিসেবে কাজ করে। এর প্রধান কাজগুলো হলো:</p>
+                 <ul>
+                     <li>দেশব্যাপী ল্যান্ডলাইন বা ফিক্সড টেলিফোন সংযোগ প্রদান, পরিচালনা ও রক্ষণাবেক্ষণ করা।</li>
+                     <li>ব্রডব্যান্ড ইন্টারনেট সেবা (ADSL, GPON ফাইবার অপটিক) গ্রাহক পর্যায়ে পৌঁছে দেওয়া।</li>
+                     <li>দেশের অভ্যন্তরীণ এবং আন্তর্জাতিক টেলিকমিউনিকেশন ব্যাকবোন (যেমন: সাবমেরিন ক্যাবল সংযোগ) পরিচালনা ও লিজ প্রদান করা।</li>
+                     <li>বাংলাদেশের জাতীয় ডোমেইন '.bd' এবং '.বাংলা' এর নিবন্ধন কর্তৃপক্ষ হিসেবে দায়িত্ব পালন করা।</li>
+                     <li>বিভিন্ন সরকারি ও কর্পোরেট গ্রাহকদের জন্য ডেডিকেটেড ডেটা সংযোগ, ভিপিএন এবং অন্যান্য টেলিকম সেবা প্রদান করা।</li>
+                     <li>আন্তর্জাতিক ভয়েস কল আদান-প্রদানের জন্য International Gateway (IGW) পরিচালনা করা।</li>
+                 </ul>
+
+                 <p><strong>বিটিআরসি (BTRC - Bangladesh Telecommunication Regulatory Commission):</strong><br>
+                 এটি বাংলাদেশের টেলিযোগাযোগ খাতের <strong>নিয়ন্ত্রক সংস্থা (Regulator)</strong>। এটি একটি স্বাধীন কমিশন যার প্রধান কাজ হলো পুরো খাতটিকে সুষ্ঠুভাবে পরিচালনা ও নিয়ন্ত্রণ করা। এর প্রধান কাজগুলো হলো:</p>
+                 <ul>
+                     <li>টেলিযোগাযোগ সেবা (মোবাইল, ফিক্সড লাইন, ইন্টারনেট, ভি-স্যাট ইত্যাদি) প্রদানের জন্য অপারেটরদের লাইসেন্স প্রদান, নিয়ন্ত্রণ ও নবায়ন করা।</li>
+                     <li>টেলিযোগাযোগ সম্পর্কিত আইন, নীতিমালা, রেগুলেশন ও গাইডলাইন তৈরি এবং সেগুলোর প্রয়োগ নিশ্চিত করা।</li>
+                     <li>অপারেটরদের সেবার মান (Quality of Service - QoS) পর্যবেক্ষণ করা এবং গ্রাহকদের জন্য মানসম্মত সেবা নিশ্চিত করা।</li>
+                     <li>কলরেট, ইন্টারকানেকশন চার্জ এবং অন্যান্য ট্যারিফ অনুমোদন ও নিয়ন্ত্রণ করা।</li>
+                     <li>জাতীয় সম্পদ হিসেবে রেডিও ফ্রিকুয়েন্সি স্পেকট্রাম এর পরিকল্পনা, বরাদ্দ এবং দক্ষ ব্যবহার নিশ্চিত করা।</li>
+                     <li>অপারেটরদের মধ্যেকার এবং অপারেটর ও গ্রাহকদের মধ্যেকার বিরোধ নিষ্পত্তি করা।</li>
+                     <li>অবৈধ ভিওআইপি (VoIP), সিম ক্লোনিং এবং অন্যান্য টেলিযোগাযোগ সম্পর্কিত অপরাধমূলক কার্যক্রম প্রতিরোধ ও দমনে আইন প্রয়োগকারী সংস্থাকে সহায়তা করা।</li>
+                     <li>খাতে সুষ্ঠু প্রতিযোগিতা বজায় রাখা এবং গ্রাহকদের স্বার্থ সংরক্ষণ করা।</li>
+                 </ul>
+                 <p>সংক্ষেপে, BTCL সেবা প্রদান করে এবং BTRC সেই সেবা প্রদানকারীসহ পুরো খাতকে নিয়ন্ত্রণ করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li><strong>BTCL (সরকারি ফোন ও ইন্টারনেট কোম্পানি):</strong> এর কাজ হলো সেবা দেওয়া - ল্যান্ডফোন লাইন দেওয়া, ইন্টারনেট কানেকশন দেওয়া (যেমন ফাইবার অপটিক), .bd ডোমেইন নাম রেজিস্ট্রি করা, সাবমেরিন ক্যাবল ম্যানেজ করা।</li>
+                    <li><strong>BTRC (টেলিকম পুলিশ বা রেফারি):</strong> এর কাজ হলো নিয়ম বানানো আর সব কোম্পানিকে কন্ট্রোল করা - লাইসেন্স দেওয়া, কলরেট ঠিক করা, নেটওয়ার্কের মান দেখা, ফ্রিকুয়েন্সি ভাগ করে দেওয়া, অবৈধ কাজ বন্ধ করা, গ্রাহকদের অধিকার দেখা।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li><strong>BTCL:</strong> সরকারি বাস সার্ভিস, যারা যাত্রী পরিবহন করে।</li>
+                     <li><strong>BTRC:</strong> বিআরটিএ বা ট্র্যাফিক পুলিশ, যারা সব বাস ঠিকমতো চলছে কিনা, লাইসেন্স আছে কিনা, নিয়ম মানছে কিনা, সেটা দেখে।</li>
+                 </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>ওয়েব ডিজাইন অ্যান্ড ডেভেলপমেন্ট স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        // Function to apply theme
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀️ লাইট মোড'; // Sun icon for light mode switch
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = '🌙 ডার্ক মোড'; // Moon icon for dark mode switch
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initial theme setup
+        let preferredTheme = 'light'; // Default to light
+        if (currentTheme) {
+            preferredTheme = currentTheme;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Uncomment below line if you want system preference to be the initial default
+            // preferredTheme = 'dark';
+        }
+        applyTheme(preferredTheme);
+
+        // Button click listener
+        themeToggleBtn.addEventListener('click', () => {
+            let newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+    </script>
+
+</body>
+</html>

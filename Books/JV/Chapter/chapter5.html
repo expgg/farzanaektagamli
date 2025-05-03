@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৫: এক্সেপশন হ্যান্ডলিং</title>
+
+    <link rel="stylesheet" href="java_style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    </head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৫: এক্সেপশন হ্যান্ডলিং</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">🌙 ডার্ক মোড</button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। এরর বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রোগ্রামের স্বাভাবিক এক্সিকিউশনে বাধাদানকারী অস্বাভাবিক পরিস্থিতি।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এরর মানে হলো প্রোগ্রামে এমন কোনো গুরুতর সমস্যা হওয়া যা সাধারণত প্রোগ্রামার ঠিক করতে পারে না এবং যার কারণে প্রোগ্রামটা আর ঠিকমতো চলতে পারে না বা ক্র্যাশ করে। যেমন: মেমরি শেষ হয়ে যাওয়া।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি গাড়ি চালাচ্ছ, হঠাৎ ইঞ্জিনই নষ্ট হয়ে গেল! এটা একটা এরর।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। কী কী কারণে এরর সংঘটিত হতে পারে?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> সিস্টেম রিসোর্সের অভাব (যেমন: মেমরি শেষ), হার্ডওয়্যার ফেইলিউর, JVM ইন্টারনাল প্রবলেম।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এরর হওয়ার কিছু কারণ হলো: কম্পিউটারের র‍্যাম বা জায়গা শেষ হয়ে যাওয়া, হার্ডওয়্যারে সমস্যা হওয়া, বা জাভা ভার্চুয়াল মেশিনের নিজের ভেতরের কোনো বড় সমস্যা।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> গাড়ি বন্ধ হওয়ার কারণ: তেল শেষ, ইঞ্জিন নষ্ট, বা রাস্তার চাকা ফেটে যাওয়া।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। এক্সেপশন কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> রান-টাইমের সময় প্রোগ্রামের স্বাভাবিক এক্সিকিউশন প্রবাহে বাধাদানকারী ঘটনা।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এক্সেপশন হলো প্রোগ্রামের এররের চেয়ে কম গুরুতর এক ধরণের সমস্যা, যা প্রোগ্রাম চলার সময় (রান-টাইমে) ঘটতে পারে। যেমন: ভুল ইনপুট দেওয়া, শূন্য দিয়ে ভাগ করা, ফাইলের অস্তিত্ব না থাকা। এগুলো ঘটলে প্রোগ্রামের স্বাভাবিক কাজ বন্ধ হয়ে যায়, তবে এগুলোকে কোডের মাধ্যমে হ্যান্ডেল বা সামলানো যায়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি হিসাব করতে গিয়ে ভুল করে ৫ কে ০ দিয়ে ভাগ করতে গেলে – এটা একটা এক্সেপশন। প্রোগ্রামটা এখানে আটকে যাবে যদি তুমি ভুলটা সামলানোর ব্যবস্থা না রাখো।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। এক্সেপশন কী কী কারণে হতে পারে?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> অবৈধ ইউজার ইনপুট, ডিভাইসের ত্রুটি, কোডে লজিক্যাল ভুল, নেটওয়ার্ক সমস্যা, ফাইল খুঁজে না পাওয়া।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এক্সেপশন নানা কারণে হতে পারে। যেমন: ব্যবহারকারী ভুল ডেটা দিলে, কোনো ডিভাইস (যেমন প্রিন্টার) ঠিকমতো কাজ না করলে, প্রোগ্রামার হিসাবে কোনো ভুল করলে (যেমন শূন্য দিয়ে ভাগ), ইন্টারনেট কানেকশন চলে গেলে, যে ফাইলটা দরকার সেটা খুঁজে না পেলে ইত্যাদি।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> রিফাত ফারজানাকে একটা ফাইল পাঠাতে গিয়ে দেখলো ইন্টারনেট নেই - এটাও একটা এক্সেপশন।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৫। এক্সেপশন হ্যান্ডলিং কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রোগ্রামের স্বাভাবিক এক্সিকিউশন বজায় রেখে রান-টাইম এরর (এক্সেপশন) পরিচালনা বা সামলানোর কৌশল।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এক্সেপশন হ্যান্ডলিং হলো প্রোগ্রামে এমন ব্যবস্থা রাখা যাতে কোনো এক্সেপশন বা অপ্রত্যাশিত সমস্যা ঘটলেও প্রোগ্রামটা ক্র্যাশ না করে বা বন্ধ না হয়ে যায়। এই ব্যবস্থায় সমস্যাটাকে ধরে (catch করে) সেটার ব্যাপারে একটা বিকল্প ব্যবস্থা নেওয়া হয় বা ব্যবহারকারীকে একটা মেসেজ দেখানো হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি সাইকেল চালাতে গিয়ে পড়ে গেলে (এক্সেপশন), সাথে সাথে উঠে আবার চালানো শুরু করলে বা ফার্স্ট-এইড নিলে (হ্যান্ডলিং)। পড়ে গিয়ে ওখানেই বসে না থাকাটাই হ্যান্ডলিং।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৬। জাভা এক্সেপশন হ্যান্ডলিংয়ে ব্যবহৃত কী-ওয়ার্ডগুলোর নাম লেখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> `try`, `catch`, `finally`, `throw`, `throws`।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> জাভাতে এক্সেপশন সামলানোর জন্য পাঁচটা বিশেষ কিওয়ার্ড আছে: `try` (যে কোডে সমস্যা হতে পারে সেটা এখানে লেখা হয়), `catch` (সমস্যাটা ধরলে কী করতে হবে সেটা এখানে লেখা হয়), `finally` (সমস্যা হোক বা না হোক, এই কোডটা চলবেই), `throw` (নিজে থেকে কোনো এক্সেপশন তৈরি করে ছুঁড়ে দেওয়া), `throws` (মেথড ঘোষণা করে যে সে এক্সেপশন ছুঁড়তে পারে)।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> সমস্যা সামলানোর টুলস: `try` (সাবধানে কাজ করার জায়গা), `catch` (ভুল হলে ধরার জাল), `finally` (কাজ শেষে যা অবশ্যই করতে হবে), `throw` (লাল পতাকা দেখানো), `throws` (সম্ভাব্য বিপদের সতর্কবার্তা)।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৭। অ্যারিথমেটিক এক্সেপশন কখন সংঘটিত হয়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> যখন গাণিতিক অপারেশনে ত্রুটি ঘটে, যেমন: পূর্ণসংখ্যাকে শূন্য দ্বারা ভাগ করলে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> যখন অংক করতে গিয়ে কোনো ভুল হয়, যেমন কোনো Integer সংখ্যাকে শূন্য দিয়ে ভাগ করার চেষ্টা করা হয়, তখন `ArithmeticException` ঘটে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> রিফাত যদি ৫টা চকলেট ০ জন বন্ধুকে ভাগ করে দিতে চায়, কম্পিউটার এই অংকটা করতে গিয়ে `ArithmeticException` দেখাবে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৮। Class Cast এক্সেপশন কখন সংঘটিত হয়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> যখন একটি অবজেক্টকে ভুল বা বেমানান ক্লাস্ট টাইপে কাস্ট করার চেষ্টা করা হয়।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> তুমি যদি ভুল করে একটা অবজেক্টকে এমন একটা ক্লাসের টাইপে রূপান্তর (cast) করতে যাও, যেটার সাথে তার আসলে কোনো সম্পর্ক নেই (যেমন একটা 'Dog' অবজেক্টকে 'Cat' টাইপে কাস্ট করতে গেলে), তখন `ClassCastException` ঘটে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি একটা কুকুরের খেলনাকে জোর করে বেড়ালের খেলনার বাক্সে ঢোকাতে গেলে যা হবে, সেটাই `ClassCastException`।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৯। IOException কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ইনপুট/আউটপুট অপারেশনে কোনো সমস্যা বা বিঘ্ন ঘটলে যে এক্সেপশন হয়।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> যখন ফাইল পড়া বা লেখা, নেটওয়ার্কে ডেটা পাঠানো বা গ্রহণ করা, অথবা অন্য কোনো ইনপুট/আউটপুট (I/O) কাজ করতে গিয়ে কোনো সমস্যা হয় (যেমন ফাইল খুঁজে না পাওয়া, ডিস্ক ফুল), তখন `IOException` বা এর সাব-ক্লাসের এক্সেপশন ঘটে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি ফারজানার কাছ থেকে পেনড্রাইভে ফাইল নিচ্ছো, হঠাৎ পেনড্রাইভ খুলে ফেললে বা কারেন্ট চলে গেল – তখন `IOException` হতে পারে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১০। SQL এক্সেপশন সংঘটিত হয় কেন?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ডাটাবেজের সাথে সংযোগ স্থাপন বা SQL কোয়েরি এক্সিকিউট করার সময় কোনো ত্রুটি ঘটলে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> যখন তুমি জাভা প্রোগ্রাম থেকে কোনো ডাটাবেজের সাথে কানেক্ট করতে যাও বা ডাটাবেজে কোনো ডেটা খুঁজতে (Query) বা ঢোকাতে গিয়ে ভুল করো (যেমন ভুল SQL কমান্ড লেখা, টেবিল খুঁজে না পাওয়া), তখন `SQLException` ঘটে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি লাইব্রেরিতে গিয়ে ভুল বইয়ের নাম বললে বা লাইব্রেরির দরজা বন্ধ থাকলে যেমন বই পাবে না, ডাটাবেজে ভুল করলে বা কানেকশন না পেলেও `SQLException` হয়।</p></div>
+        </div>
+
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। যে-কোনো দুটি এক্সেপশন হ্যান্ডলিং উদাহরণসহ উল্লেখ কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>১. `ArithmeticException` হ্যান্ডলিং:</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+try {
+    int result = 10 / 0; // শূন্য দ্বারা ভাগ
+    System.out.println(result);
+} catch (ArithmeticException e) {
+    System.out.println("Error: Cannot divide by zero!");
+}
+                    </code></pre>
+                 </div>
+                 <p><strong>ব্যাখ্যা:</strong> এখানে `try` ব্লকের ভেতর শূন্য দ্বারা ভাগের চেষ্টা করা হয়েছে, যা `ArithmeticException` তৈরি করবে। `catch` ব্লক সেই এক্সেপশনটি ধরে ফেলে এবং একটি এরর মেসেজ প্রিন্ট করে, ফলে প্রোগ্রাম ক্র্যাশ করে না।</p>
+
+                <p><strong>২. `ArrayIndexOutOfBoundsException` হ্যান্ডলিং:</strong></p>
+                 <div class="code-container">
+                     <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                     <pre><code class="language-java code-content">
+try {
+    int[] numbers = {1, 2, 3};
+    System.out.println(numbers[5]); // অ্যারের সীমার বাইরের ইন্ডেক্স
+} catch (ArrayIndexOutOfBoundsException e) {
+    System.out.println("Error: Invalid array index!");
+}
+                     </code></pre>
+                 </div>
+                 <p><strong>ব্যাখ্যা:</strong> এখানে `numbers` অ্যারের সাইজ 3 (ইন্ডেক্স 0, 1, 2)। কিন্তু `numbers[5]` দিয়ে ৫ম ইন্ডেক্স অ্যাক্সেস করার চেষ্টা করা হয়েছে যা অ্যারের সীমার বাইরে। `try` ব্লকের এই কোড `ArrayIndexOutOfBoundsException` তৈরি করে, যা `catch` ব্লক ধরে ফেলে এবং এরর মেসেজ দেখায়।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong><ol><li><strong>অঙ্ক করার ভুল সামলানো:</strong> যদি রিফাত ভুল করে ১০ কে ০ দিয়ে ভাগ করে, তাহলে সাধারণ প্রোগ্রাম বন্ধ হয়ে যাবে। কিন্তু `try-catch` ব্যবহার করলে, `try`-এর মধ্যে ভাগটা করার চেষ্টা করা হবে, আর ০ দিয়ে ভাগ করার কারণে যে `ArithmeticException` হবে, সেটা `catch` ব্লক ধরে ফেলবে আর একটা মেসেজ দেখাবে "শূন্য দিয়ে ভাগ করা যায় না!", কিন্তু প্রোগ্রাম বন্ধ হবে না।</li><li><strong>লিস্টের বাইরে চলে যাওয়া সামলানো:</strong> ফারজানার কাছে ৩টা বইয়ের লিস্ট আছে (০, ১, ২ নম্বর পজিশনে)। সে যদি ভুল করে ৫ নম্বর পজিশনের বইটা খুঁজতে যায় (`numbers[5]`), তাহলে `ArrayIndexOutOfBoundsException` হবে। `try-catch` এটা ধরে ফেলবে আর বলবে "ভুল ইনডেক্স!", প্রোগ্রাম চলবে।</li></ol></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong><ol><li>ক্যালকুলেটরে ০ দিয়ে ভাগ করতে গেলে Error দেখায়, বন্ধ হয়ে যায় না – এটাই এক্সেপশন হ্যান্ডলিং।</li><li>তোমার বইয়ের ব্যাগে ৩টা বই আছে। তুমি ৫ নম্বর বইটা খুঁজতে গেলে পাবে না, কিন্তু ব্যাগটাও ছিঁড়ে ফেলবে না – এটাই এক্সেপশন হ্যান্ডলিং।</li></ol></p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। এক্সেপশন হ্যান্ডিলিং এর সুবিধাসমূহ লেখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong><ul><li><strong>প্রোগ্রামের স্বাভাবিক প্রবাহ রক্ষা:</strong> এক্সেপশন ঘটলেও প্রোগ্রাম ক্র্যাশ বা অস্বাভাবিকভাবে বন্ধ হওয়া থেকে রক্ষা পায়।</li><li><strong>ত্রুটি পৃথকীকরণ:</strong> স্বাভাবিক কোড থেকে ত্রুটি সামলানোর কোড (`catch` ব্লক) আলাদা রাখা যায়, যা কোডকে পরিচ্ছন্ন ও বোধগম্য করে।</li><li><strong>ত্রুটি প্রচার (Propagation):</strong> একটি মেথডে তৈরি হওয়া এক্সেপশন কলিং মেথডগুলোতে পাঠানো যায় যতক্ষণ না সেটি হ্যান্ডেল করা হচ্ছে।</li><li><strong>ত্রুটি সম্পর্কে তথ্য প্রদান:</strong> এক্সেপশন অবজেক্টের মাধ্যমে ত্রুটির কারণ ও বিস্তারিত তথ্য পাওয়া যায় যা ডিবাগিংয়ে সাহায্য করে।</li><li><strong>বিভিন্ন ধরনের ত্রুটি নির্দিষ্টভাবে হ্যান্ডেল:</strong> ভিন্ন ভিন্ন `catch` ব্লক ব্যবহার করে বিভিন্ন প্রকারের এক্সেপশনকে আলাদাভাবে সামলানো যায়।</li></ul></p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এক্সেপশন হ্যান্ডেল করলে সুবিধা হলো:<ul><li>প্রোগ্রাম হঠাৎ বন্ধ হয়ে যায় না।</li><li>ভুলের কোড আর আসল কাজের কোড আলাদা থাকে, বুঝতে সুবিধা হয়।</li><li>এক জায়গায় ভুল হলে সেটা অন্য জায়গায় গিয়েও ঠিক করা যায়।</li><li>কী কারণে ভুল হলো সেটা জানা যায়।</li><li>একেক ধরণের ভুলের জন্য একেক রকম সমাধান করা যায়।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> রাস্তায় হঠাৎ গর্ত (এক্সেপশন) এলে, আগে থেকে চিহ্ন দেওয়া থাকলে (হ্যান্ডলিং) তুমি সেটা এড়িয়ে যেতে পারবে বা ধীরে চালাতে পারবে, অ্যাক্সিডেন্ট হবে না।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। উদাহরণসহ throws বিবৃতি বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ব্যাখ্যা:</strong> `throws` হলো একটি কিওয়ার্ড যা কোনো মেথড সিগনেচারে ব্যবহার করা হয়। এটি ঘোষণা করে যে ওই মেথডটি এক্সিকিউশনের সময় নির্দিষ্ট কিছু চেকড্ এক্সেপশন (Checked Exception) তৈরি করতে পারে এবং নিজে সেটিকে হ্যান্ডেল না করে কলিং মেথডের উপর হ্যান্ডেল করার দায়িত্ব ছেড়ে দেয়। যদি কোনো মেথড চেকড্ এক্সেপশন থ্রো করতে পারে এমন কোড ধারণ করে, তবে তাকে অবশ্যই হয় `try-catch` দিয়ে হ্যান্ডেল করতে হবে অথবা `throws` কিওয়ার্ড ব্যবহার করে ঘোষণা করতে হবে।</p>
+                <p><strong>উদাহরণ:</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+import java.io.IOException;
+
+class FileReader {
+    // এই মেথড IOException থ্রো করতে পারে, তাই throws দিয়ে ঘোষণা করা হলো
+    void readFile(String fileName) throws IOException {
+        System.out.println("Trying to read file: " + fileName);
+        if (fileName.equals("nonexistent.txt")) {
+            // একটি চেকড্ এক্সেপশন তৈরি ও থ্রো করা
+            throw new IOException("File not found!");
+        }
+        System.out.println("File read successfully (pretend).");
+    }
+}
+
+class TestThrows {
+    public static void main(String[] args) {
+        FileReader reader = new FileReader();
+        try {
+            // যে মেথড throws দিয়ে এক্সেপশন ঘোষণা করেছে, তাকে কল করার সময় try-catch লাগে
+            reader.readFile("myFile.txt"); // এটা ঠিকঠাক চলবে (ধরে নিচ্ছি)
+            reader.readFile("nonexistent.txt"); // এটা IOException থ্রো করবে
+        } catch (IOException e) {
+            // কলিং মেথডে এক্সেপশন হ্যান্ডেল করা হলো
+            System.out.println("Caught exception in main: " + e.getMessage());
+        }
+    }
+}
+                    </code></pre>
+                 </div>
+                 <p><strong>ব্যাখ্যা:</strong> এখানে `FileReader` ক্লাসের `readFile` মেথডটি ফাইল পড়ার কাজ করে, যা `IOException` থ্রো করতে পারে। যেহেতু এটি একটি চেকড্ এক্সেপশন, `readFile` মেথড সিগনেচারে `throws IOException` লিখে ঘোষণা করা হয়েছে যে সে এই এক্সেপশনটি হ্যান্ডেল করবে না, বরং যে তাকে কল করবে (এখানে `main` মেথড) তাকে হ্যান্ডেল করতে হবে। তাই `main` মেথডে `readFile` কল করার সময় `try-catch` ব্লক ব্যবহার করা হয়েছে `IOException` হ্যান্ডেল করার জন্য।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `throws` কিওয়ার্ডটা হলো একটা মেথডের সতর্কবাণী। মেথডটা যেন বলছে, "আমি এই কাজটা করি, কিন্তু এই কাজ করতে গিয়ে অমুক সমস্যা (এক্সেপশন) হতে পারে, সেটা কিন্তু আমি সামলাবো না, যে আমাকে ডাকবে তাকেই সামলাতে হবে!" যেমন, `readFile` মেথডটা ফাইল পড়ে, কিন্তু ফাইল পড়তে গিয়ে `IOException` হতে পারে। তাই সে `throws IOException` লিখে দায়টা যে তাকে কল করবে (যেমন `main` মেথড) তার ঘাড়ে চাপিয়ে দেয়। তখন `main` মেথডকে `try-catch` দিয়ে তৈরি থাকতে হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> রিফাত ফারজানাকে বললো, "আমি তোমার জন্য আইসক্রিম আনতে যাচ্ছি (`readFile`), কিন্তু রাস্তায় দোকান বন্ধ থাকতে পারে (`throws IOException`), তখন কিন্তু আমি কিছু করতে পারবো না, তুমি অন্য ব্যবস্থা রেখো (`try-catch` লাগবে)"। `throws` হলো এই আগাম সতর্কবার্তাটা।</p></div>
+        </div>
+
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">১। জাভা এক্সেপশন ক্লাসের হায়ারারকি চিত্রসহ বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ভূমিকা:</strong> জাভাতে সকল এক্সেপশন এবং এরর ক্লাসগুলো `java.lang.Throwable` ক্লাসের সাবক্লাস। `Throwable` ক্লাসের দুটি প্রধান সাবক্লাস হলো `Exception` এবং `Error`। প্রোগ্রামাররা সাধারণত `Exception` ক্লাসের সাবক্লাসগুলো নিয়ে কাজ করেন, কারণ এগুলো হ্যান্ডেল করা সম্ভব। `Error` সাধারণত সিস্টেম লেভেলের সমস্যা নির্দেশ করে যা অ্যাপ্লিকেশন লেভেলে হ্যান্ডেল করা যায় না। `Exception` ক্লাসের আবার দুটি প্রধান ভাগ হলো চেকড্ এক্সেপশন (Checked Exceptions) এবং আনচেকড্ এক্সেপশন (Unchecked Exceptions)।</p>
+                <p><strong>হায়ারারকি চিত্র (টেক্সট):</strong></p>
+                 {/* Text diagram does not need code-container or button */}
+                 <pre><code>
+           +-----------------+
+           | java.lang.Object|
+           +--------+--------+
+                    ^
+                    | (extends)
+           +--------+--------+
+           | java.lang.Throwable |
+           +--------+--------+
+                   / \
+                  /   \ (extends)
+                 /     \
+ +---------------+     +---------------+
+ | java.lang.Error |     | java.lang.Exception |
+ +---------------+     +---------------+
+ | - OutOfMemoryError|     | - IOException     |
+ | - StackOverflowErr|     | - SQLException    |
+ | - ...             |     | - ...             | (Checked Exceptions)
+ |                   |     |                   |
+ | (Unrecoverable)   |     +-------------------+
+ |                   |             | (extends)
+ |                   |     +--------------------------+
+ |                   |     | java.lang.RuntimeException |
+ |                   |     +--------------------------+
+ |                   |     | - ArithmeticException    |
+ |                   |     | - NullPointerException   |
+ |                   |     | - ArrayIndexOutOfBounds..|
+ |                   |     | - ClassCastException     |
+ |                   |     | - ...                    |
+ |                   |     |                          |
+ |                   |     | (Unchecked Exceptions)   |
+                 </code></pre>
+                 <p><strong>বর্ণনা:</strong></p>
+                 <ol>
+                    <li><strong>`Throwable`:** জাভার সকল এরর এবং এক্সেপশনের মূল বা সুপারক্লাস।</li>
+                    <li><strong>`Error`:** সিস্টেম লেভেলের গুরুতর সমস্যা নির্দেশ করে (যেমন: `OutOfMemoryError`, `StackOverflowError`) যা সাধারণত অ্যাপ্লিকেশন কোড দ্বারা হ্যান্ডেল বা পুনরুদ্ধার করা সম্ভব হয় না। এগুলো আনচেকড্ (Unchecked)।</li>
+                    <li><strong>`Exception`:** অ্যাপ্লিকেশন লেভেলে যে সমস্যাগুলো ঘটতে পারে এবং যা হ্যান্ডেল করা সম্ভব বা উচিত, সেগুলো এই ক্লাসের অধীনে আসে।
+                        <ul>
+                            <li><strong>Checked Exceptions:** এগুলো `Exception` ক্লাসের সরাসরি সাবক্লাস (কিন্তু `RuntimeException` এর সাবক্লাস নয়)। কম্পাইলার এই ধরনের এক্সেপশন হ্যান্ডেল করা হয়েছে কিনা তা চেক করে। যদি কোনো মেথড এই এক্সেপশন থ্রো করতে পারে, তাকে অবশ্যই `try-catch` অথবা `throws` দিয়ে হ্যান্ডেল করতে হবে। উদাহরণ: `IOException`, `SQLException`, `FileNotFoundException`।</li>
+                            <li><strong>Unchecked Exceptions (Runtime Exceptions):** এগুলো `RuntimeException` ক্লাসের সাবক্লাস। কম্পাইলার এগুলো হ্যান্ডেল করার জন্য বাধ্য করে না, যদিও হ্যান্ডেল করা সম্ভব। এগুলো সাধারণত প্রোগ্রামিংয়ের ভুলের কারণে ঘটে। উদাহরণ: `ArithmeticException`, `NullPointerException`, `ArrayIndexOutOfBoundsException`, `ClassCastException`।</li>
+                        </ul>
+                    </li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> জাভার সব ভুল বা সমস্যা (`Throwable`) মূলত দুই প্রকার: <ol><li><strong>`Error`:** খুব বড় ধরণের সমস্যা, যা ঠিক করা প্রায় অসম্ভব (যেমন: মেমরি শেষ)। এটা নিয়ে প্রোগ্রামারদের তেমন কিছু করার থাকে না।</li><li><strong>`Exception`:** ছোটখাটো সমস্যা যা প্রোগ্রাম চলার সময় হতে পারে এবং যা কোড লিখে সামলানো যায়। এগুলো আবার দুই রকম: <ul><li><strong>Checked Exception:** যে সমস্যাগুলো হওয়ার সম্ভাবনা বেশি (যেমন: ফাইল না পাওয়া) এবং জাভা কম্পাইলার জোর করে যে এগুলো সামলানোর কোড (`try-catch` বা `throws`) লিখতেই হবে।</li><li><strong>Unchecked/Runtime Exception:** যে সমস্যাগুলো সাধারণত প্রোগ্রামারের নিজের ভুলের কারণে হয় (যেমন: ০ দিয়ে ভাগ, লিস্টের বাইরে যাওয়া) এবং কম্পাইলার এগুলো সামলানোর জন্য জোর করে না (যদিও সামলানো ভালো)।</li></ul></li></ol> চিত্রটা দেখাচ্ছে কীভাবে `Throwable` থেকে `Error` আর `Exception` এসেছে, আবার `Exception` থেকে `RuntimeException` (যেটা Unchecked) আর অন্যান্য Checked Exception গুলো এসেছে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> ভুল বা সমস্যার বংশলতিকা: <ul><li>পরদাদা: `Throwable` (সব ভুল এর নিচে)</li><li>দুই দাদা: `Error` (খুব বড় ভুল, ঠিক করা যায় না) আর `Exception` (ছোট ভুল যা ঠিক করা যায়)</li><li>`Exception` দাদার আবার দুই ছেলে:<ul><li>`Checked Exception` (যে ভুলগুলো হতে পারে বলে কম্পাইলার আগে থেকেই সাবধান করে দেয়)</li><li>`RuntimeException` (যে ভুলগুলো হঠাৎ করে হয়, সাধারণত নিজের দোষে)</li></ul></li></ul> বিভিন্ন ধরণের ভুল (যেমন: `ArithmeticException`, `IOException`) হলো এই বংশের নাতি-পুতি।</p></div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>অ্যাপ্লিকেশন ডেভেলপমেন্ট ইউজিং জাভা - স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+   
+   
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true} ], throwOnError: false });"></script>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+   
+    <script src="main_script.js" defer></script>
+
+</body>
+</html>

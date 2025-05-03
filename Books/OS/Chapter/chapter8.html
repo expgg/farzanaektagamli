@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৮: স্টোরেজ এবং আই / ও সিস্টেম</title>
+    <link rel="stylesheet" href="os_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k55gMp/InvxBM1Mty9rgRDIJNu38mMhftBPqzhAXSDdy92HjL4IFNfey" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1MZu6ADomyXk8EogbLDBsPU5rkXF/dtZZxL1Pceg6x" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouEs/BHtTcWgwPkMAVEABrHI+WGBmvygAodXElARTYHD" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৮: স্টোরেজ এবং আই / ও সিস্টেম</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">
+            </button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। SASD এবং DASD-এর মধ্যে পার্থক্য কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> SASD (Sequential Access Storage Device) এবং DASD (Direct Access Storage Device) এর মধ্যে প্রধান পার্থক্য হলো ডেটা অ্যাক্সেস করার পদ্ধতিতে। SASD তে ডেটা வரிசையாக বা ক্রমানুসারে অ্যাক্সেস করতে হয় (যেমন: ম্যাগনেটিক টেপ)। DASD তে যেকোনো ডেটা সরাসরি তার ঠিকানা অনুযায়ী অ্যাক্সেস করা যায় (যেমন: হার্ড ডিস্ক, SSD)।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> SASD হলো ক্যাসেট প্লেয়ারের মতো, গান শুনতে হলে প্রথম থেকে শুনে যেতে হয়। DASD হলো সিডি প্লেয়ার বা পেনড্রাইভের মতো, তুমি যেকোনো গান সরাসরি সিলেক্ট করে শুনতে পারো।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> SASD: বইয়ের পাতা একটার পর একটা উল্টে পড়া। DASD: বইয়ের সূচিপত্র দেখে সরাসরি যেকোনো পৃষ্ঠায় চলে যাওয়া।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। I/O Hardware কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> I/O (Input/Output) হার্ডওয়্যার হলো কম্পিউটারের সেইসব ভৌত ডিভাইস বা যন্ত্রাংশ যা ব্যবহারকারী বা বাইরের জগতের সাথে কম্পিউটারের যোগাযোগের মাধ্যম হিসেবে কাজ করে। এর মধ্যে ইনপুট ডিভাইস (যেমন: কিবোর্ড, মাউস), আউটপুট ডিভাইস (যেমন: মনিটর, প্রিন্টার) এবং উভয় কাজ করে এমন ডিভাইস (যেমন: নেটওয়ার্ক কার্ড, হার্ড ডিস্ক ড্রাইভ) অন্তর্ভুক্ত।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> I/O হার্ডওয়্যার হলো কম্পিউটারের সেইসব পার্টস যা দিয়ে আমরা কম্পিউটারে তথ্য দিই (ইনপুট) বা কম্পিউটার থেকে তথ্য পাই (আউটপুট)। যেমন: কিবোর্ড, মাউস, মনিটর, প্রিন্টার, পেনড্রাইভ, হার্ডডিস্ক – এগুলো সবই I/O হার্ডওয়্যার।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার শরীরের অঙ্গ-প্রত্যঙ্গের মতো। চোখ, কান দিয়ে তুমি তথ্য নাও (ইনপুট); মুখ দিয়ে কথা বলো, হাত দিয়ে কাজ করো (আউটপুট)। কম্পিউটারেরও এরকম তথ্য দেওয়া-নেওয়ার যন্ত্র আছে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। I/O Software কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> I/O সফটওয়্যার হলো অপারেটিং সিস্টেমের একটি অংশ যা I/O হার্ডওয়্যার ডিভাইসগুলোকে পরিচালনা ও নিয়ন্ত্রণ করে এবং অ্যাপ্লিকেশন প্রোগ্রাম ও হার্ডওয়্যারের মধ্যে ডেটা আদান-প্রদান সহজ করে। এর মধ্যে ডিভাইস ড্রাইভার, ইন্টারাপ্ট হ্যান্ডলার, বাফারিং ও ক্যাশিং সিস্টেম এবং ডিভাইস-ইনডিপেন্ডেন্ট ইন্টারফেস অন্তর্ভুক্ত থাকে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> I/O সফটওয়্যার হলো অপারেটিং সিস্টেমের সেই পার্ট যেটা কম্পিউটারের সব I/O হার্ডওয়্যারকে (কিবোর্ড, মাউস, প্রিন্টার ইত্যাদি) ম্যানেজ করে। কোন ডিভাইস কখন কাজ করবে, কীভাবে ডেটা নেবে বা দেবে – এই সব কাজ I/O সফটওয়্যার দেখাশোনা করে। ডিভাইস ড্রাইভারগুলো এর একটা বড় অংশ।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার ব্রেইন যেমন তোমার হাত, পা, চোখ, কানকে কন্ট্রোল করে, I/O সফটওয়্যারও তেমনি কম্পিউটারের সব ইনপুট/আউটপুট যন্ত্রকে কন্ট্রোল করে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। RAID কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> RAID এর পূর্ণরূপ হলো Redundant Array of Independent Disks (বা কখনও Inexpensive Disks)। এটি একটি ডেটা স্টোরেজ ভার্চুয়ালাইজেশন প্রযুক্তি যা একাধিক ফিজিক্যাল ডিস্ক ড্রাইভকে একত্রিত করে এক বা একাধিক লজিক্যাল ইউনিটে পরিণত করে, যার উদ্দেশ্য হলো ডেটা রিডানডেন্সি (redundancy) বৃদ্ধি করা, পারফরম্যান্স (গতি) বাড়ানো অথবা উভয়ই। বিভিন্ন RAID লেভেল (যেমন: RAID 0, RAID 1, RAID 5) ভিন্ন ভিন্ন উপায়ে এই কাজগুলো করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> RAID মানে হলো অনেকগুলো হার্ডডিস্ককে একসাথে জুড়ে দিয়ে কাজ করানো। এর লাভ হলো, হয় ডেটা অনেক ফাস্ট রিড/রাইট করা যায়, অথবা একটা হার্ডডিস্ক নষ্ট হয়ে গেলেও ডেটা হারায় না (কারণ অন্য ডিস্কে কপি থাকে), অথবা দুটো সুবিধাই একসাথে পাওয়া যায়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো তোমার অনেকগুলো ছোট ছোট বক্স আছে। RAID মানে হলো বক্সগুলোকে একসাথে টেপ দিয়ে লাগিয়ে একটা বড় বক্স বানানো। এতে হয়তো জিনিস রাখা সহজ হয় বা একটা বক্স ছিঁড়ে গেলেও অন্যটায় জিনিস সুরক্ষিত থাকে।</p>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্নঃ</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। I/O Software-এর Goal বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> অপারেটিং সিস্টেমের I/O সফটওয়্যার ডিজাইনের প্রধান লক্ষ্য বা Goal গুলো হলো:</p>
+                 <ol>
+                     <li><strong>ডিভাইস ইন্ডিপেন্ডেন্স (Device Independence):</strong> অ্যাপ্লিকেশন প্রোগ্রামগুলো যাতে নির্দিষ্ট হার্ডওয়্যারের বিবরণ না জেনেই বিভিন্ন ডিভাইসের সাথে কাজ করতে পারে।</li>
+                     <li><strong>ইউনিফর্ম নেমিং (Uniform Naming):</strong> ফাইল এবং ডিভাইসগুলোকে সামঞ্জস্যপূর্ণ নামকরণ পদ্ধতির মাধ্যমে অ্যাক্সেস করার সুযোগ দেওয়া।</li>
+                     <li><strong>এরর হ্যান্ডলিং (Error Handling):</strong> I/O অপারেশনের ত্রুটি শনাক্ত করা এবং সম্ভব হলে রিকভার করা।</li>
+                     <li><strong>দক্ষতা (Efficiency):</strong> I/O অপারেশনগুলো দ্রুত এবং সিস্টেম রিসোর্সের কার্যকর ব্যবহারের মাধ্যমে সম্পন্ন করা।</li>
+                     <li><strong>শেয়ারিং ও প্রোটেকশন (Sharing and Protection):</strong> ডিভাইসগুলোকে নিরাপদে শেয়ার করা বা সুরক্ষিত রাখার ব্যবস্থা করা।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> I/O সফটওয়্যারের লক্ষ্য: প্রোগ্রামারদের কাজ সহজ করা (ডিভাইস ইন্ডিপেন্ডেন্স), ফাইলের বা ডিভাইসের নাম সহজে ব্যবহার করতে দেওয়া, ভুল হলে সেটা সামলানো, I/O möglichst দ্রুত করা, আর ডিভাইসগুলো নিরাপদে শেয়ার করার ব্যবস্থা করা।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা ভালো লাইব্রেরি সিস্টেমের লক্ষ্য: ব্যবহারকারী যেকোনো বই (ডিভাইস) সহজে খুঁজে পাবে (ইউনিফর্ম নেমিং), বইটা কোন কোম্পানির ছাপা সেটা নিয়ে ভাবতে হবে না (ডিভাইস ইন্ডিপেন্ডেন্স), বই ছেঁড়া থাকলে ব্যবস্থা নেওয়া হবে (এরর হ্যান্ডলিং), বই পড়ার জন্য দীর্ঘক্ষণ অপেক্ষা করতে হবে না (দক্ষতা), আর একজন আরেকজনের বই নিয়ে যাবে না (সুরক্ষা)।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। I/O Hardware-এর বৈশিষ্ট্য লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> I/O হার্ডওয়্যার ডিভাইসগুলোর কিছু সাধারণ বৈশিষ্ট্য রয়েছে:</p>
+                 <ol>
+                     <li><strong>ভিন্ন ভিন্ন গতি (Varying Speeds):</strong> ডিভাইসগুলোর ডেটা ট্রান্সফার রেট ভিন্ন ভিন্ন হয়।</li>
+                     <li><strong>ডেটা ট্রান্সফার ইউনিট:** কেউ বাইট স্ট্রিমে, কেউ ব্লকে ডেটা ট্রান্সফার করে।</li>
+                     <li><strong>অ্যাক্সেস মেথড:** সিকুয়েনশিয়াল বা ডিরেক্ট/র্যা ন্ডম অ্যাক্সেস সমর্থন করে।</li>
+                     <li><strong>কন্ট্রোল ইন্টারফেস:** প্রত্যেকের নিজস্ব কন্ট্রোল রেজিস্টার ও কমান্ড সেট থাকে।</li>
+                     <li><strong>এরর কন্ডিশন:** বিভিন্ন ধরনের এরর রিপোর্ট করতে পারে।</li>
+                     <li><strong>শেয়ারেবল বা ডেডিকেটেড:** কিছু ডিভাইস শেয়ার করা যায়, কিছু যায় না।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> I/O ডিভাইসগুলোর কিছু বৈশিষ্ট্য: ১) এদের স্পিড একেক রকম। ২) কেউ অল্প অল্প করে ডেটা নেয়/দেয়, কেউ একসাথে অনেক ডেটা নেয়/দেয়। ৩) কেউ ডেটা வரிசையாக দেয় (টেপ), কেউ সরাসরি যেকোনো জায়গা থেকে দেয় (ডিস্ক)। ৪) প্রত্যেককে কন্ট্রোল করার নিয়ম আলাদা। ৫) এরা বিভিন্ন ধরনের ভুল করতে পারে। ৬) কিছু ডিভাইস অনেকে মিলে ব্যবহার করা যায়, কিছু যায় না।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> ক্লাসের বিভিন্ন ছাত্রের মতো: কেউ লেখে খুব দ্রুত, কেউ আস্তে। কেউ এক লাইন করে লেখে, কেউ পুরো প্যারাগ্রাফ একসাথে। কেউ প্রথম থেকে পড়তে শুরু করে, কেউ যেকোনো জায়গা থেকে। প্রত্যেকের সাথে কথা বলার ভঙ্গি আলাদা। তারা ভুলও করতে পারে!</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। Input/output System-এর কার্যবলি বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> অপারেটিং সিস্টেমের ইনপুট/আউটপুট (I/O) সাবসিস্টেম হার্ডওয়্যার ডিভাইস এবং অ্যাপ্লিকেশন প্রোগ্রামগুলোর মধ্যে ডেটা প্রবাহ পরিচালনা করার জন্য বিভিন্ন কার্য সম্পাদন করে। প্রধান কার্যাবলিগুলো হলো:</p>
+                 <ol>
+                     <li>I/O রিকোয়েস্ট হ্যান্ডলিং</li>
+                     <li>ডিভাইস ম্যানেজমেন্ট (বরাদ্দ, নিয়ন্ত্রণ, পুনরুদ্ধার)</li>
+                     <li>ডিভাইস ড্রাইভার ইন্টারফেস পরিচালনা</li>
+                     <li>বাফারিং, ক্যাশিং, স্পুলিং প্রদান</li>
+                     <li>এরর হ্যান্ডলিং</li>
+                     <li>ডিভাইস-ইনডিপেন্ডেন্ট ইন্টারফেস প্রদান</li>
+                     <li>প্রোটেকশন ও নিরাপত্তা</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> OS এর I/O সিস্টেম যা করে: প্রোগ্রামের কাছ থেকে I/O রিকোয়েস্ট নেয়, ডিভাইসগুলোকে ম্যানেজ করে, ড্রাইভার ব্যবহার করে ডিভাইসের সাথে কথা বলে, ডেটা জমা রাখার জন্য বাফার/ক্যাশে/স্পুল ব্যবহার করে, ভুল হলে সামলায়, আর প্রোগ্রামারদের জন্য একটা সহজ ব্যবস্থা তৈরি করে দেয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> লাইব্রেরিয়ান যেমন পাঠকের কাছ থেকে বইয়ের রিকোয়েস্ট নেয়, বইটা খুঁজে বের করে দেয়, বইয়ের হিসাব রাখে, ছেঁড়া থাকলে ঠিক করে, সহজে বই পাওয়ার ব্যবস্থা করে – OS এর I/O সিস্টেমও কম্পিউটারের ডিভাইসগুলো নিয়ে সেরকম কাজ করে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৪। I/O Hardware-এর ক্ষেত্রে O/S-এর বিবেচ্য বিষয়গুলো লেখ।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> I/O হার্ডওয়্যার পরিচালনা করার সময় অপারেটিং সিস্টেমকে বিভিন্ন বিষয় বিবেচনা করতে হয়, যেমন:</p>
+                 <ul>
+                     <li>ডিভাইসের বৈচিত্র্য</li>
+                     <li>গতির পার্থক্য</li>
+                     <li>এরর হ্যান্ডলিং</li>
+                     <li>ডিভাইস ইন্ডিপেন্ডেন্স</li>
+                     <li>দক্ষতা (CPU অপেক্ষা কমানো)</li>
+                     <li>সুরক্ষা ও শেয়ারিং</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> OS যখন I/O ডিভাইস নিয়ে কাজ করে, তখন তাকে ভাবতে হয়: দুনিয়ায় কত রকমের ডিভাইস আছে, তাদের স্পিডও আলাদা, ভুল করলে কীভাবে সামলাবে, প্রোগ্রামারদের কাজ কীভাবে সহজ করবে, সিস্টেমটাকে কীভাবে ফাস্ট রাখবে, আর ডিভাইসগুলো কীভাবে নিরাপদে শেয়ার করবে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একজন কোচ যখন একটা টিম চালায়, তাকে যেমন ভাবতে হয়: টিমে কত রকমের প্লেয়ার আছে, কার দৌড়ের গতি কেমন, কে ভুল করলে কী করতে হবে, সবার জন্য খেলার নিয়ম কীভাবে সহজ করা যায়, কীভাবে টিম সবচেয়ে ভালো খেলবে, আর কীভাবে প্লেয়ারদের নিরাপদে রাখা যায় – OS ও ডিভাইস নিয়ে এরকম অনেক কিছু ভাবে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৫। SASD ও DASD এর মধ্যে পার্থক্য লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> Sequential Access Storage Device (SASD) এবং Direct Access Storage Device (DASD) এর মধ্যে প্রধান পার্থক্যগুলো হলো:</p>
+                 <ul>
+                     <li><strong>অ্যাক্সেস পদ্ধতি:</strong> SASD তে ডেটা வரிசையாக অ্যাক্সেস করা হয়। DASD তে ডেটা সরাসরি বা র্যা ন্ডমভাবে অ্যাক্সেস করা যায়।</li>
+                     <li><strong>অ্যাক্সেস টাইম:</strong> SASD তে অ্যাক্সেস টাইম বেশি ও পরিবর্তনশীল। DASD তে কম ও তুলনামূলক স্থির।</li>
+                     <li><strong>গঠন:</strong> SASD উদাহরণ ম্যাগনেটিক টেপ। DASD উদাহরণ হার্ড ডিস্ক, SSD, CD/DVD।</li>
+                     <li><strong>ব্যবহার:</strong> SASD মূলত ব্যাকআপ/আর্কাইভের জন্য। DASD প্রাইমারি/সেকেন্ডারি স্টোরেজ ও ঘন ঘন ব্যবহারের জন্য।</li>
+                     <li><strong>খরচ:</strong> প্রতি ইউনিট SASD (টেপ) সাধারণত সস্তা।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>SASD (টেপ): গান শুনতে হলে প্রথম থেকে শুনতে হয়। অ্যাক্সেস করতে সময় বেশি লাগে। ব্যাকআপ রাখার জন্য ভালো। সস্তা।</li>
+                     <li>DASD (ডিস্ক/SSD): যেকোনো গান সরাসরি চালানো যায়। অ্যাক্সেস করতে সময় কম লাগে। OS, সফটওয়্যার রাখার জন্য ভালো। দাম বেশি।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>SASD: পুরনো দিনের ক্যাসেট।</li>
+                     <li>DASD: আধুনিক পেনড্রাইভ বা হার্ডডিস্ক।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন:</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">১। I/O Software-এর লক্ষ্য ও উদ্দেশ্য বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p>অপারেটিং সিস্টেমের I/O সফটওয়্যার সাবসিস্টেমের মূল লক্ষ্য হলো কম্পিউটারের বিভিন্ন এবং বৈচিত্র্যময় I/O ডিভাইসগুলোকে একটি সুসংহত, কার্যকর এবং ব্যবহারকারী-বান্ধব উপায়ে পরিচালনা করা। এর প্রধান লক্ষ্য ও উদ্দেশ্যগুলো নিম্নরূপ:</p>
+                <ol>
+                    <li><strong>ডিভাইস ইন্ডিপেন্ডেন্স (Device Independence):</strong> অ্যাপ্লিকেশন প্রোগ্রামগুলোকে নির্দিষ্ট হার্ডওয়্যার ডিভাইসের বিস্তারিত বিবরণ জানা থেকে মুক্ত রাখা, যাতে জেনেরিক কমান্ড ব্যবহার করে কাজ করা যায়।</li>
+                    <li><strong>ইউনিফর্ম নেমিং (Uniform Naming):</strong> ফাইল এবং ডিভাইসগুলোকে একটি সামঞ্জস্যপূর্ণ নামকরণ পদ্ধতি প্রদান করা।</li>
+                    <li><strong>এরর হ্যান্ডলিং (Error Handling):</strong> I/O অপারেশনের সময় সৃষ্ট ত্রুটি শনাক্ত করা, সম্ভব হলে পুনরুদ্ধার করা বা রিপোর্ট করা।</li>
+                    <li><strong>দক্ষতা ও পারফরম্যান্স (Efficiency and Performance):</strong> সিস্টেমের সামগ্রিক পারফরম্যান্স অপ্টিমাইজ করা (যেমন: বাফারিং, ক্যাশিং, স্পুলিং ব্যবহার করে CPU অপেক্ষা কমানো)।</li>
+                    <li><strong>শেয়ারিং ও প্রোটেকশন (Sharing and Protection):</strong> শেয়ারেবল ডিভাইসগুলোকে নিরাপদে শেয়ার করার ব্যবস্থা করা এবং ডেডিকেটেড ডিভাইসগুলোকে অননুমোদিত অ্যাক্সেস থেকে রক্ষা করা।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> I/O সফটওয়্যারের লক্ষ্য ও উদ্দেশ্য হলো:</p>
+                 <ul>
+                     <li>প্রোগ্রামারদের চিন্তা করতে হবে না যে তারা কোন কোম্পানির প্রিন্টার বা ডিস্ক ব্যবহার করছে (ডিভাইস ইন্ডিপেন্ডেন্স)।</li>
+                     <li>ফাইল বা ডিভাইস চেনার জন্য সহজ ও একই রকম নাম থাকবে (ইউনিফর্ম নেমিং)।</li>
+                     <li>ডেটা আদান-প্রদানে ভুল হলে সেটা সামলানো (এরর হ্যান্ডলিং)।</li>
+                     <li>möglichst দ্রুত গতিতে এবং সিপিইউকে কম বসিয়ে রেখে ডেটা আদান-প্রদান করা (দক্ষতা)।</li>
+                     <li>ডিভাইসগুলোকে নিরাপদে রাখা এবং দরকার অনুযায়ী শেয়ার করার ব্যবস্থা করা (শেয়ারিং ও প্রোটেকশন)।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা ভালো হোটেলের রিসেপশনের লক্ষ্য:</p>
+                 <ul>
+                     <li>গেস্ট কোন কোম্পানির গাড়ি করে এসেছে তা নিয়ে না ভেবে তাকে রুম দেওয়া (ডিভাইস ইন্ডিপেন্ডেন্স)।</li>
+                     <li>সব রুমের নম্বর একটা নির্দিষ্ট নিয়মে রাখা (ইউনিফর্ম নেমিং)।</li>
+                     <li>গেস্টের কোনো সমস্যা হলে সেটা সমাধান করা (এরর হ্যান্ডলিং)।</li>
+                     <li>গেস্টকে যেন চেক-ইন বা চেক-আউটের জন্য বেশি অপেক্ষা করতে না হয় (দক্ষতা)।</li>
+                     <li>রুমের চাবি শুধু সঠিক গেস্টকেই দেওয়া এবং রুম নিরাপদ রাখা (শেয়ারিং ও প্রোটেকশন)।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">২। I/O System-এর প্রতিটি Layer-এর কাজ বর্ণনা কর।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p>অপারেটিং সিস্টেমের I/O সাবসিস্টেম সাধারণত একটি লেয়ারড আর্কিটেকচারে ডিজাইন করা হয়। একটি সাধারণ লেয়ারড ভিউ নিম্নরূপ:</p>
+                 <ol>
+                     <li><strong>ইউজার-লেভেল I/O সফটওয়্যার (User-Level I/O Software):</strong> অ্যাপ্লিকেশন প্রোগ্রামারদের জন্য লাইব্রেরি ফাংশন প্রদান করে (যেমন: <code>printf</code>), সিস্টেম কলকে কল করে, স্পুলিং ইত্যাদি পরিচালনা করে।</li>
+                     <li><strong>ডিভাইস-ইনডিপেন্ডেন্ট অপারেটিং সিস্টেম সফটওয়্যার (Device-Independent OS Software):</strong> বিভিন্ন ডিভাইসের জন্য ইউনিফর্ম ইন্টারফেস প্রদান, ডিভাইস নেমিং, প্রোটেকশন, ব্লকিং/নন-ব্লকিং I/O, বাফারিং, অ্যালোকেশন ইত্যাদি কাজ করে।</li>
+                     <li><strong>ডিভাইস ড্রাইভারস (Device Drivers):</strong> নির্দিষ্ট হার্ডওয়্যার কন্ট্রোলারের জন্য OS এবং হার্ডওয়্যারের মধ্যে ইন্টারফেস হিসেবে কাজ করে। অ্যাবস্ট্রাক্ট রিকোয়েস্টকে ডিভাইস-স্পেসিফিক কমান্ডে রূপান্তর করে।</li>
+                     <li><strong>ইন্টারাপ্ট হ্যান্ডলারস (Interrupt Handlers):</strong> হার্ডওয়্যার থেকে আসা ইন্টারাপ্ট গ্রহণ করে, কারণ নির্ণয় করে এবং সংশ্লিষ্ট ড্রাইভারকে জাগিয়ে তোলে বা সার্ভিস রুটিন চালু করে।</li>
+                     <li><strong>(হার্ডওয়্যার লেয়ার):</strong> আসল I/O ডিভাইস ও কন্ট্রোলার।</li>
+                 </ol>
+                 <p>এই লেয়ারগুলো একসাথে কাজ করে অ্যাপ্লিকেশন থেকে হার্ডওয়্যার পর্যন্ত ডেটা প্রবাহকে সহজ, নিরাপদ এবং কার্যকর করে তোলে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কম্পিউটারের I/O সিস্টেমটা কয়েকটা স্তরে কাজ করে:</p>
+                 <ul>
+                     <li><strong>ইউজার লেয়ার:</strong> আমরা যে লাইব্রেরি ফাংশন ব্যবহার করি (যেমন প্রিন্ট করার কোড)।</li>
+                     <li><strong>OS লেয়ার (ডিভাইস ইন্ডিপেন্ডেন্ট):</strong> এটা সব ডিভাইসের জন্য একটা কমন ব্যবস্থা তৈরি করে।</li>
+                     <li><strong>ডিভাইস ড্রাইভার:</strong> প্রত্যেকটা হার্ডওয়্যারের জন্য আলাদা অনুবাদক।</li>
+                     <li><strong>ইন্টারাপ্ট হ্যান্ডলার:</strong> হার্ডওয়্যার কাজ শেষ করলে বা সমস্যা হলে যে সিগন্যাল দেয়, সেটা গ্রহণ করে ব্যবস্থা নেয়।</li>
+                     <li><strong>হার্ডওয়্যার:</strong> আসল যন্ত্রগুলো।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> রিফাত প্রিন্ট কমান্ড দিলো:</p>
+                 <ul>
+                     <li><strong>ইউজার লেয়ার:</strong> রিফাতের প্রোগ্রাম <code>print()</code> ফাংশন কল করলো।</li>
+                     <li><strong>OS লেয়ার:</strong> কমান্ডটা সব প্রিন্টারের জন্য একই রকম রাখলো।</li>
+                     <li><strong>ড্রাইভার:</strong> OS এর কমান্ডটাকে রিফাতের নির্দিষ্ট প্রিন্টারের ভাষায় অনুবাদ করলো।</li>
+                     <li><strong>ইন্টারাপ্ট হ্যান্ডলার:</strong> প্রিন্ট শেষ হলে প্রিন্টার সিগন্যাল দিলো, হ্যান্ডলার সেটা রিসিভ করে OS কে জানালো।</li>
+                     <li><strong>হার্ডওয়্যার:</strong> প্রিন্টারটা প্রিন্ট করলো।</li>
+                 </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>অপারেটিং সিস্টেম স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        // Function to apply theme
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀️ লাইট মোড'; // Sun icon for light mode switch
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = '🌙 ডার্ক মোড'; // Moon icon for dark mode switch
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initial theme setup
+        let preferredTheme = 'light'; // Default to light
+        if (currentTheme) {
+            preferredTheme = currentTheme;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Uncomment below line if you want system preference to be the initial default
+            // preferredTheme = 'dark';
+        }
+        applyTheme(preferredTheme);
+
+        // Button click listener
+        themeToggleBtn.addEventListener('click', () => {
+            let newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+    </script>
+
+</body>
+</html>

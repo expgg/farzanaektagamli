@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ১০: ডস, উইন্ডোজ, ইউনিক্স ও লিনাক্স ওএস বৈশিষ্ট্য</title>
+    <link rel="stylesheet" href="os_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k55gMp/InvxBM1Mty9rgRDIJNu38mMhftBPqzhAXSDdy92HjL4IFNfey" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1MZu6ADomyXk8EogbLDBsPU5rkXF/dtZZxL1Pceg6x" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouEs/BHtTcWgwPkMAVEABrHI+WGBmvygAodXElARTYHD" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ১০: ডস, উইন্ডোজ, ইউনিক্স ও লিনাক্স ওএস বৈশিষ্ট্য</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">
+            </button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। মাল্টিটাস্কিং অপারেটিং সিস্টেম কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> (এটি ১ম অধ্যায়েও ছিল) মাল্টিটাস্কিং অপারেটিং সিস্টেম হলো এমন একটি OS যা একই সময়ে একাধিক টাস্ক বা প্রোগ্রামকে সিপিইউর সময় ভাগ করে দিয়ে সমান্তরালভাবে চালানোর সুযোগ করে দেয়, যার ফলে ব্যবহারকারীর মনে হয় কাজগুলো একসাথেই চলছে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> যে অপারেটিং সিস্টেমে তুমি একসাথে গান শোনা, ইন্টারনেট ব্রাউজ করা, লেখালেখি করা – এই রকম অনেকগুলো কাজ একসাথে করতে পারো, সেটাই মাল্টিটাস্কিং অপারেটিং সিস্টেম। Windows, Linux, macOS এগুলো মাল্টিটাস্কিং OS।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> যে ম্যানেজার (OS) একই সাথে অনেকগুলো কর্মচারীকে (প্রোগ্রাম) দিয়ে কাজ করাতে পারে, সেটাই মাল্টিটাস্কিং OS।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। শেল কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> শেল (Shell) হলো একটি ইউজার ইন্টারফেস (often command-line, like Bash, sh, PowerShell, CMD) যা ব্যবহারকারীকে অপারেটিং সিস্টেমের সার্ভিসগুলো অ্যাক্সেস করার সুযোগ দেয়। এটি ব্যবহারকারীর দেওয়া কমান্ড গ্রহণ করে, সেগুলোকে ইন্টারপ্রেট করে এবং অপারেটিং সিস্টেমকে দিয়ে সেই কমান্ড এক্সিকিউট করায়। শেল কমান্ড-লাইন ভিত্তিক বা গ্রাফিক্যাল হতে পারে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> শেল হলো তোমার আর অপারেটিং সিস্টেমের কার্নেলের মধ্যে কথা বলার মাধ্যম বা ইন্টারপ্রেটার। তুমি যখন কমান্ড লাইনে কিছু লেখো (যেমন <code>ls</code> বা <code>dir</code>), শেল সেই কমান্ডটা বুঝে OS কে দিয়ে কাজটা করিয়ে নেয়। গ্রাফিক্যাল ইন্টারফেসটাও (ডেক্সটপ, আইকন) এক ধরনের শেল।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো OS হলো একজন বিদেশী বস যে শুধু তার নিজের ভাষা বোঝে। শেল হলো একজন দোভাষী যে তোমার কথা বসের ভাষায় আর বসের কথা তোমার ভাষায় অনুবাদ করে দেয়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। জনপ্রিয় ২টি Linux operation system-এর নাম লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> দুটি জনপ্রিয় লিনাক্স অপারেটিং সিস্টেম ডিস্ট্রিবিউশন হলো: উবুন্টু (Ubuntu) এবং লিনাক্স মিন্ট (Linux Mint)। (অন্যান্য জনপ্রিয় উদাহরণ: Fedora, Debian, CentOS)।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> লিনাক্সের অনেকগুলো ভার্সন বা ডিস্ট্রিবিউশন আছে। তার মধ্যে দুটো খুব জনপ্রিয় হলো উবুন্টু আর লিনাক্স মিন্ট।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> লিনাক্স গাড়ির দুটো জনপ্রিয় মডেল হলো উবুন্টু আর মিন্ট।</p>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্নঃ</h3>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">১। বিভিন্ন প্রকার অপারেটিং সিস্টেমের বর্ণনা দাও।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> কার্যকারিতা ও ব্যবহারের উপর ভিত্তি করে অপারেটিং সিস্টেমকে বিভিন্ন প্রকারে ভাগ করা যায়:</p>
+                 <ol>
+                     <li><strong>ব্যাচ OS:</strong> একই ধরনের জব ব্যাচ করে চালানো হয়, ইন্টারঅ্যাকশন নেই।</li>
+                     <li><strong>টাইম-শেয়ারিং/মাল্টিটাস্কিং OS:</strong> একাধিক ইউজার/প্রোগ্রাম একই সাথে ইন্টারঅ্যাকটিভভাবে কাজ করে।</li>
+                     <li><strong>ডিস্ট্রিবিউটেড OS:</strong> একাধিক কম্পিউটারকে একটি সিস্টেম হিসেবে দেখায়, রিসোর্স শেয়ার করে।</li>
+                     <li><strong>নেটওয়ার্ক OS:</strong> নেটওয়ার্ক রিসোর্স ম্যানেজ ও শেয়ার করার জন্য সার্ভারে চলে।</li>
+                     <li><strong>রিয়েল-টাইম OS (RTOS):</strong> নির্দিষ্ট সময়ের মধ্যে কাজ সম্পন্ন করার গ্যারান্টি দেয়।</li>
+                     <li><strong>মোবাইল OS:</strong> স্মার্টফোন, ট্যাবলেটের জন্য ডিজাইন করা (Android, iOS)।</li>
+                     <li><strong>এমবেডেড OS:</strong> নির্দিষ্ট কাজের ডিভাইসের জন্য তৈরি।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কাজের ধরন অনুযায়ী OS কয়েক রকমের হয়: পুরনো দিনের ব্যাচ (একসাথে অনেক কাজ), এখনকার পিসির টাইম-শেয়ারিং (একসাথে অনেক কাজ চলে), অনেক কম্পিউটার মিলে একটা (ডিস্ট্রিবিউটেড), নেটওয়ার্ক চালানোর জন্য (নেটওয়ার্ক OS), সময়ের কাজ সময়ে করার জন্য (রিয়েল-টাইম), মোবাইলের জন্য (মোবাইল OS), আর ছোট যন্ত্রের জন্য (এমবেডেড OS)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> বিভিন্ন ধরনের ম্যানেজার: কেউ শুধু বিল বানায় (ব্যাচ), কেউ একই সাথে অনেক কাজ সামলায় (টাইম-শেয়ারিং), কেউ অনেকগুলো অফিস একসাথে দেখে (ডিস্ট্রিবিউটেড), কেউ ঠিক সময়ে অ্যালার্ম দেয় (রিয়েল-টাইম), কেউ মোবাইল ফোন চালায় (মোবাইল OS)।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। লিনাক্স অপারেটিং সিস্টেম বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> লিনাক্স বলতে সাধারণত লিনাক্স কার্নেল (Linux Kernel) এবং এর উপর ভিত্তি করে তৈরি করা ইউনিক্স-সদৃশ (Unix-like) অপারেটিং সিস্টেমগুলোকে বোঝায়। লিনাক্স কার্নেলটি লিনাস টোরভাল্ডস কর্তৃক ১৯৯১ সালে প্রথম প্রকাশিত হয় এবং এটি ওপেন সোর্স। বিভিন্ন ব্যক্তি ও প্রতিষ্ঠান এই কার্নেলের সাথে বিভিন্ন সিস্টেম সফটওয়্যার ও অ্যাপ্লিকেশন প্যাকেজ যুক্ত করে পূর্ণাঙ্গ অপারেটিং সিস্টেম তৈরি করে, যেগুলোকে লিনাক্স ডিস্ট্রিবিউশন (যেমন: Ubuntu, Fedora, Debian) বলা হয়। এটি সার্ভার, ডেস্কটপ, মোবাইল ডিভাইস এবং এমবেডেড সিস্টেমে ব্যাপকভাবে ব্যবহৃত হয়।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> লিনাক্স আসলে হলো অপারেটিং সিস্টেমের মূল ইঞ্জিন বা কার্নেলটা, যেটা একদম ফ্রি আর ওপেন সোর্স। এই ইঞ্জিনটা ব্যবহার করে অনেকে নিজেদের মতো করে পুরো অপারেটিং সিস্টেম বানায়, যেগুলোকে বলে লিনাক্স ডিস্ট্রিবিউশন বা ডিস্ট্রো (যেমন উবুন্টু, মিন্ট)। তাই লিনাক্স বলতে আমরা সাধারণত এই ডিস্ট্রোগুলোকেই বুঝি।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো লিনাক্স হলো একটা গাড়ির ইঞ্জিন যা ফ্রি-তে পাওয়া যায়। বিভিন্ন কোম্পানি (যেমন উবুন্টু, মিন্ট) এই ইঞ্জিন ব্যবহার করে নিজেদের বডি, সিট, চাকা লাগিয়ে পুরো গাড়ি বানায়। আমরা সেই গাড়িগুলোই (ডিস্ট্রো) ব্যবহার করি।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। কার্নেল বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> কার্নেল হলো একটি অপারেটিং সিস্টেমের কেন্দ্রীয় মূল অংশ (Core Component) যা হার্ডওয়্যার এবং সফটওয়্যারের মধ্যে যোগাযোগের প্রধান মাধ্যম হিসেবে কাজ করে। এটি সিস্টেমের রিসোর্স (সিপিইউ, মেমরি, ডিভাইস) পরিচালনা করে এবং অ্যাপ্লিকেশন প্রোগ্রাম থেকে আসা সিস্টেম কলগুলোর মাধ্যমে হার্ডওয়্যার অ্যাক্সেসের সেবা প্রদান করে। কম্পিউটার চালু হওয়ার পর এটি প্রথম মেমরিতে লোড হয় এবং সিস্টেম বন্ধ হওয়া পর্যন্ত সক্রিয় থাকে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কার্নেল হলো OS এর হার্ট বা ব্রেইন। এটাই সব গুরুত্বপূর্ণ কাজ করে – হার্ডওয়্যার ম্যানেজ করা, মেমরি দেখা, প্রোগ্রাম চালানো কন্ট্রোল করা ইত্যাদি। অ্যাপ্লিকেশনগুলো কার্নেলের মাধ্যমেই হার্ডওয়্যারের সাথে কথা বলে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> অপারেটিং সিস্টেম যদি হয় ফ্যাক্টরির ম্যানেজার, কার্নেল হলো তার কন্ট্রোল রুম, যেখান থেকে সবকিছু নিয়ন্ত্রণ করা হয়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৪। Windows অপেক্ষা Linux-এর সুবিধাগুলো লেখ।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> উইন্ডোজের তুলনায় লিনাক্সের কয়েকটি প্রধান সুবিধা হলো:</p>
+                 <ol>
+                     <li><strong>খরচ:</strong> লিনাক্স বিনামূল্যে পাওয়া যায় (ওপেন সোর্স), উইন্ডোজ কিনতে হয়।</li>
+                     <li><strong>নিরাপত্তা:</strong> লিনাক্স সাধারণত বেশি নিরাপদ ও ম্যালওয়্যার প্রতিরোধী।</li>
+                     <li><strong>কাস্টমাইজেশন:</strong> লিনাক্স অত্যন্ত কাস্টমাইজযোগ্য।</li>
+                     <li><strong>স্থিতিশীলতা:</strong> লিনাক্স (বিশেষ করে সার্ভারে) বেশি স্থিতিশীল।</li>
+                     <li><strong>পারফরম্যান্স:</strong> পুরনো হার্ডওয়্যারে ভালো পারফর্ম করতে পারে।</li>
+                     <li><strong>ওপেন সোর্স:</strong> সোর্স কোড উন্মুক্ত।</li>
+                     <li><strong>কমিউনিটি সাপোর্ট:</strong> বিশাল অনলাইন কমিউনিটি।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> উইন্ডোজের চেয়ে লিনাক্সের কিছু সুবিধা: এটা ফ্রি, সাধারণত বেশি নিরাপদ (ভাইরাস কম ধরে), নিজের ইচ্ছে মতো অনেক কিছু বদলানো যায়, সহজে ক্র্যাশ করে না (বিশেষ করে সার্ভারে), পুরনো পিসিতেও ভালো চলে, আর এর কোড সবাই দেখতে পারে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> অ্যান্ড্রয়েড ফোনের (লিনাক্স) কিছু সুবিধা আইফোনের (উইন্ডোজ) চেয়ে: বেশিরভাগ ফোন দামে সস্তা, নিজের মতো করে অনেক কিছু বদলানো যায়, অনেক ফ্রি অ্যাপ পাওয়া যায়।</p>
+            </div>
+        </div>
+
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন:</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">১। ইউনিক্স অপারেটিং সিস্টেমের বৈশিষ্ট্যসমূহ বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p>ইউনিক্স (Unix) একটি অত্যন্ত প্রভাবশালী অপারেটিং সিস্টেম যা ৭০ এর দশকে বেল ল্যাবসে তৈরি হয় এবং আধুনিক অনেক অপারেটিং সিস্টেমের ভিত্তি স্থাপন করেছে। এর মূল বৈশিষ্ট্যগুলো হলো:</p>
+                 <ol>
+                     <li><strong>মাল্টিইউজার (Multiuser):</strong> একাধিক ব্যবহারকারী একই সময়ে সিস্টেম ব্যবহার করতে পারে।</li>
+                     <li><strong>মাল্টিটাস্কিং (Multitasking):</strong> একাধিক প্রসেস বা প্রোগ্রাম একই সাথে চলতে পারে।</li>
+                     <li><strong>পোর্টেবিলিটি (Portability):</strong> বিভিন্ন হার্ডওয়্যার আর্কিটেকচারে সহজে স্থানান্তরযোগ্য।</li>
+                     <li><strong>হায়ারারকিক্যাল ফাইল সিস্টেম (Hierarchical File System):</strong> ট্রি-স্ট্রাকচারযুক্ত ফাইল সিস্টেম ব্যবহার করে।</li>
+                     <li><strong>শেল (Shell) বা কমান্ড-লাইন ইন্টারফেস:</strong> শক্তিশালী কমান্ড-লাইন ইন্টারফেস প্রদান করে।</li>
+                     <li><strong>পাইপস এবং ফিল্টারস (Pipes and Filters Philosophy):** ছোট টুলস যুক্ত করে জটিল কাজ সম্পাদনের দর্শন।</li>
+                     <li><strong>ইউটিলিটি বা টুলস (Utilities/Tools):** প্রচুর শক্তিশালী কমান্ড-লাইন ইউটিলিটি রয়েছে।</li>
+                     <li><strong>নিরাপত্তা মডেল:** ফাইল পারমিশন ভিত্তিক নিরাপত্তা ব্যবস্থা।</li>
+                 </ol>
+                 <p>এই বৈশিষ্ট্যগুলো ইউনিক্সকে একটি শক্তিশালী, নমনীয় এবং ডেভেলপার-বান্ধব অপারেটিং সিস্টেম হিসেবে প্রতিষ্ঠিত করেছে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ইউনিক্সের প্রধান গুণাবলি:</p>
+                 <ul>
+                     <li>একসাথে অনেক ইউজার লগইন করতে পারে।</li>
+                     <li>একসাথে অনেক প্রোগ্রাম চালাতে পারে।</li>
+                     <li>বিভিন্ন ধরনের কম্পিউটারে চলতে পারে।</li>
+                     <li>ফাইলগুলো ফোল্ডারের ভেতর ফোল্ডার এভাবে সুন্দর করে সাজানো থাকে।</li>
+                     <li>কমান্ড লিখে কাজ করার খুব শক্তিশালী ব্যবস্থা আছে (শেল)।</li>
+                     <li>ছোট ছোট প্রোগ্রামকে পাইপ দিয়ে জুড়ে বড় কাজ করা যায়।</li>
+                     <li>অনেক দরকারি কমান্ড-লাইন টুলস আছে।</li>
+                     <li>নিরাপত্তা ব্যবস্থা বেশ ভালো।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> ইউনিক্স হলো একটা পুরনো কিন্তু খুব পাওয়ারফুল মাল্টি-ট্যালেন্টেড ম্যানেজার। সে একই সাথে অনেক লোককে কাজ করতে দিতে পারে, নিজে পোর্টেবল (যেকোনো অফিসে কাজ করতে পারে), ফাইলপত্র খুব গুছিয়ে রাখে, কমান্ড শুনে কাজ করে, ছোট ছোট কাজ জুড়ে বড় কাজ বানাতে পারে, আর অফিসের নিরাপত্তা খুব ভালোভাবে দেখে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">২। লিনাক্স অপারেটিং সিস্টেমের বৈশিষ্ট্যসমূহ বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p>লিনাক্স (Linux) মূলত একটি ওপেন-সোর্স, ইউনিক্স-সদৃশ অপারেটিং সিস্টেম কার্নেল, তবে সাধারণত লিনাক্স বলতে কার্নেল সহ সম্পূর্ণ অপারেটিং সিস্টেম ডিস্ট্রিবিউশনকে বোঝানো হয়। এর প্রধান বৈশিষ্ট্যগুলো হলো:</p>
+                <ol>
+                    <li><strong>ওপেন সোর্স ও ফ্রি (Open Source & Free):</strong> সোর্স কোড উন্মুক্ত এবং বিনামূল্যে ব্যবহারযোগ্য।</li>
+                    <li><strong>ইউনিক্স-সদৃশ (Unix-like):</strong> ইউনিক্সের ডিজাইন দর্শন ও স্ট্যান্ডার্ড অনুসরণ করে।</li>
+                    <li><strong>মাল্টিইউজার ও মাল্টিটাস্কিং:** বহু ব্যবহারকারী ও কাজ সমর্থন করে।</li>
+                    <li><strong>পোর্টেবিলিটি ও হার্ডওয়্যার সাপোর্ট:** বিভিন্ন হার্ডওয়্যারে চলে।</li>
+                    <li><strong>স্থিতিশীলতা ও নির্ভরযোগ্যতা (Stability & Reliability):** অত্যন্ত স্থিতিশীল, বিশেষ করে সার্ভারে।</li>
+                    <li><strong>নিরাপত্তা (Security):** তুলনামূলকভাবে নিরাপদ, কম ম্যালওয়্যার টার্গেট করে।</li>
+                    <li><strong>কাস্টমাইজেশন ও নমনীয়তা (Customization & Flexibility):** ব্যবহারকারী প্রায় সবকিছু পরিবর্তন করতে পারে।</li>
+                    <li><strong>ডিস্ট্রিবিউশন (Distributions):** বিভিন্ন চাহিদা অনুযায়ী শত শত ডিস্ট্রো পাওয়া যায়।</li>
+                    <li><strong>কমিউনিটি সাপোর্ট:** বিশাল ও সক্রিয় গ্লোবাল কমিউনিটি।</li>
+                </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> লিনাক্সের গুণ বা বৈশিষ্ট্য:</p>
+                 <ul>
+                     <li>এটা ফ্রি আর এর কোড সবাই দেখতে ও বদলাতে পারে।</li>
+                     <li>ইউনিক্সের মতো, মানে মাল্টিইউজার, মাল্টিটাস্কিং।</li>
+                     <li>প্রায় সব ধরনের কম্পিউটারে বা ডিভাইসে চলে।</li>
+                     <li>খুব স্টেবল, সহজে ক্র্যাশ করে না।</li>
+                     <li>বেশ নিরাপদ, ভাইরাস কম ধরে।</li>
+                     <li>নিজের ইচ্ছে মতো সবকিছু সাজিয়ে বা বদলে নেওয়া যায়।</li>
+                     <li>অনেক রকম ভার্সন (ডিস্ট্রো) আছে (যেমন: উবুন্টু, মিন্ট)।</li>
+                     <li>অনলাইনে সাহায্য করার জন্য অনেক লোক ও ফোরাম আছে।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> লিনাক্স হলো একটা ফ্রি গাড়ির নকশা। এই নকশার বৈশিষ্ট্য:</p>
+                 <ul>
+                     <li>যে কেউ এই নকশা দেখতে বা বদলাতে পারে।</li>
+                     <li>অনেক লোক একসাথে চড়তে পারে, গাড়ি চলার সময় গানও শোনা যায়।</li>
+                     <li>এটা ছোট রাস্তা, বড় রাস্তা, এমনকি কাঁচা রাস্তাতেও চলতে পারে।</li>
+                     <li>সহজে নষ্ট হয় না।</li>
+                     <li>সহজে চুরি হয় না বা ছিনতাই হয় না।</li>
+                     <li>তুমি চাইলে গাড়ির রঙ, সিট, চাকা সব বদলে ফেলতে পারো।</li>
+                     <li>এই নকশা দিয়ে অনেকে অনেক রকম গাড়ি বানায় (উবুন্টু গাড়ি, মিন্ট গাড়ি)।</li>
+                     <li>রাস্তায় গাড়ি নষ্ট হলে সাহায্য করার জন্য অনেক মেকানিক পাওয়া যায়।</li>
+                 </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>অপারেটিং সিস্টেম স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        // Function to apply theme
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀️ লাইট মোড'; // Sun icon for light mode switch
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = '🌙 ডার্ক মোড'; // Moon icon for dark mode switch
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initial theme setup
+        let preferredTheme = 'light'; // Default to light
+        if (currentTheme) {
+            preferredTheme = currentTheme;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Uncomment below line if you want system preference to be the initial default
+            // preferredTheme = 'dark';
+        }
+        applyTheme(preferredTheme);
+
+        // Button click listener
+        themeToggleBtn.addEventListener('click', () => {
+            let newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+    </script>
+
+</body>
+</html>

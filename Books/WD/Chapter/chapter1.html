@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ১: ক্লায়েন্ট সাইড স্ক্রিপ্টিং ল্যাঙ্গুয়েজ</title>
+    <link rel="stylesheet" href="webdev_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k55gMp/InvxBM1Mty9rgRDIJNu38mMhftBPqzhAXSDdy92HjL4IFNfey" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1MZu6ADomyXk8EogbLDBsPU5rkXF/dtZZxL1Pceg6x" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouEs/BHtTcWgwPkMAVEABrHI+WGBmvygAodXElARTYHD" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ১: ক্লায়েন্ট সাইড স্ক্রিপ্টিং ল্যাঙ্গুয়েজ</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">
+            </button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্নোত্তর</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। DOM কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> DOM এর পূর্ণরূপ হলো Document Object Model। এটি একটি প্ল্যাটফর্ম ও ল্যাঙ্গুয়েজ-নিরপেক্ষ ইন্টারফেস বা API যা একটি HTML বা XML ডকুমেন্টকে একটি ট্রি (গাছ) স্ট্রাকচারের মতো অবজেক্ট মডেলে উপস্থাপন করে। এর মাধ্যমে স্ক্রিপ্টিং ল্যাঙ্গুয়েজ (যেমন: জাভাস্ক্রিপ্ট) ডকুমেন্টের কনটেন্ট, স্ট্রাকচার এবং স্টাইল অ্যাক্সেস ও পরিবর্তন করতে পারে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> DOM হলো HTML পেজটার একটা ম্যাপ বা নকশার মতো, যেটা ব্রাউজার তৈরি করে। এই ম্যাপটা দেখে জাভাস্ক্রিপ্ট বুঝতে পারে পেজে কোথায় কী আছে (যেমন: কোথায় হেডিং, কোথায় প্যারাগ্রাফ) এবং চাইলে সেগুলোকে বদলাতেও পারে (যেমন: লেখার রঙ বদলানো, নতুন লেখা যোগ করা)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো তোমার একটা বাড়ি (HTML পেজ) আছে। DOM হলো সেই বাড়ির একটা নকশা, যেখানে দেখানো আছে কোথায় বসার ঘর, কোথায় শোবার ঘর, কোথায় বারান্দা। তুমি যদি বসার ঘরের রঙ বদলাতে চাও, তাহলে নকশাটা দেখে সেই ঘরটা খুঁজে বের করে রঙ করতে পারবে। জাভাস্ক্রিপ্ট DOM নকশা ব্যবহার করে HTML পেজের জিনিসপত্র বদলায়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। HTML-এলিমেন্টকে জাভাস্ক্রিপ্ট দ্বারা সিলেক্ট করার পদ্ধতি লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> জাভাস্ক্রিপ্ট ব্যবহার করে HTML এলিমেন্ট সিলেক্ট করার কয়েকটি প্রধান পদ্ধতি হলো:</p>
+                <ul>
+                    <li><code>getElementById('id')</code></li>
+                    <li><code>getElementsByTagName('tagname')</code></li>
+                    <li><code>getElementsByClassName('classname')</code></li>
+                    <li><code>querySelector('selector')</code></li>
+                    <li><code>querySelectorAll('selector')</code></li>
+                </ul>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> জাভাস্ক্রিপ্ট দিয়ে HTML এর কোনো জিনিসকে (যেমন একটা বাটন বা লেখা) ধরতে বা সিলেক্ট করতে কয়েকটা উপায় আছে। যেমন: তার আইডি দিয়ে ধরা (`getElementById`), তার ট্যাগ নাম দিয়ে ধরা (`getElementsByTagName`), তার ক্লাস নাম দিয়ে ধরা (`getElementsByClassName`), অথবা CSS এর মতো করে সিলেক্টর লিখে ধরা (`querySelector`, `querySelectorAll`)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো ক্লাসরুমে অনেক ছাত্রছাত্রী আছে। তুমি রিফাতকে ডাকতে চাও। তুমি ডাকতে পারো: "এই যে যার রোল নম্বর ৫, সে এসো" (`getElementById`), "সব ছেলে এদিকে এসো" (`getElementsByTagName`), "যারা নীল জামা পরেছ, তারা এসো" (`getElementsByClassName`), অথবা "প্রথম বেঞ্চের ডানদিকের জন এসো" (`querySelector`)। এগুলো হলো সিলেক্ট করার বিভিন্ন পদ্ধতি।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। ক্লায়েন্ট সাইড ফ্রেমওয়ার্ক কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> ক্লায়েন্ট-সাইড ফ্রেমওয়ার্ক হলো জাভাস্ক্রিপ্ট লাইব্রেরি এবং টুলের একটি সেট যা ওয়েব অ্যাপ্লিকেশন তৈরির প্রক্রিয়াকে সহজ ও কাঠামোবদ্ধ করে তোলে। এটি ডেভেলপারদের ইউজার ইন্টারফেস (UI) তৈরি, ডেটা ম্যানেজমেন্ট এবং অ্যাপ্লিকেশন লজিক লেখার জন্য একটি সংগঠিত ভিত্তি এবং পূর্ব-লিখিত কোড সরবরাহ করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ক্লায়েন্ট-সাইড ফ্রেমওয়ার্ক হলো ওয়েবসাইট বানানোর জন্য রেডিমেড কিছু কোড, টুলস আর নিয়মকানুনের প্যাকেজ। এটা ব্যবহার করলে ডেভেলপারদের অনেক কাজ সহজ হয়ে যায়, কোড গুছিয়ে লেখা যায় আর দ্রুত ওয়েবসাইট বানানো যায়। এগুলো মূলত ব্রাউজারের দিকে (ক্লায়েন্ট সাইডে) কাজ করে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো তুমি একটা বাড়ি বানাবে। ফ্রেমওয়ার্ক হলো বাড়ি বানানোর জন্য আগে থেকে তৈরি করা নকশা, কিছু দেয়াল, ছাদের কাঠামো ইত্যাদির সেট। তোমাকে শুধু এগুলো জুড়ে দিয়ে নিজের মতো করে সাজাতে হবে। এতে বাড়ি বানানো অনেক সহজ আর দ্রুত হয়। React, Angular, Vue এগুলো হলো ওয়েবসাইটের বাড়ি বানানোর ফ্রেমওয়ার্ক।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। কয়েকটি ক্লায়েন্ট সাইড ফ্রেমওয়ার্কের নাম লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> কয়েকটি জনপ্রিয় ক্লায়েন্ট-সাইড ফ্রেমওয়ার্ক ও লাইব্রেরি হলো: React.js, Angular, Vue.js, Svelte, Ember.js, jQuery (লাইব্রেরি হলেও প্রায়ই উল্লেখ করা হয়)।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ওয়েবসাইটের সামনের অংশ (UI) বানানোর জন্য কয়েকটা খুব চালু ফ্রেমওয়ার্ক বা লাইব্রেরি হলো: রিয়্যাক্ট (React), অ্যাঙ্গুলার (Angular), ভিউ (Vue), স্ভেল্ট (Svelte)। জেকুয়েরি (jQuery) একটা পুরনো কিন্তু জনপ্রিয় লাইব্রেরি।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> ওয়েবসাইট বানানোর কয়েকটা বিখ্যাত 'রেডিমেড কাঠামোর' নাম হলো: রিয়্যাক্ট, অ্যাঙ্গুলার, ভিউ।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৫। জেকুয়েরি (jQuery) কী?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> জেকুয়েরি (jQuery) একটি দ্রুত, ছোট এবং ফিচার-সমৃদ্ধ জাভাস্ক্রিপ্ট লাইব্রেরি। এটি HTML ডকুমেন্ট ট্র্যাভার্সিং ও ম্যানিপুলেশন, ইভেন্ট হ্যান্ডলিং, অ্যানিমেশন এবং অ্যাজাক্স (Ajax) ইন্টারঅ্যাকশনকে অনেক সহজ করে তোলে। এর মূলমন্ত্র হলো "write less, do more"।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> jQuery হলো জাভাস্ক্রিপ্টের একটা হেল্পার বা সহকারী লাইব্রেরি। জাভাস্ক্রিপ্টে যে কাজগুলো করতে অনেক কোড লিখতে হয়, jQuery ব্যবহার করে সেগুলো অনেক সহজে আর কম কোডে করা যায়, বিশেষ করে HTML এলিমেন্ট ধরা, বদলানো, অ্যানিমেশন দেওয়া ইত্যাদি।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো অনেকগুলো কঠিন অংক আছে। jQuery হলো একটা ক্যালকুলেটরের মতো যেটা দিয়ে তুমি সেই অংকগুলো (জাভাস্ক্রিপ্টের কাজ) অনেক সহজে আর তাড়াতাড়ি করে ফেলতে পারো।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৬। রিডাক্স কী?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> রিডাক্স (Redux) একটি প্রেডিক্টেবল স্টেট কন্টেইনার (predictable state container) যা জাভাস্ক্রিপ্ট অ্যাপ্লিকেশনগুলোর (বিশেষ করে React বা Angular দিয়ে তৈরি Single Page Application) স্টেট বা অবস্থা ব্যবস্থাপনার জন্য ব্যবহৃত হয়। এটি অ্যাপ্লিকেশনের সমস্ত স্টেটকে একটি কেন্দ্রীয় 'স্টোর'-এ রাখে এবং স্টেট পরিবর্তনের নিয়মগুলোকে সুসংহত করে, যা অ্যাপ্লিকেশন ডিবাগিং ও টেস্ট করা সহজ করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> বড় ওয়েবসাইটে বা অ্যাপে অনেক তথ্য (স্টেট) থাকে যা বিভিন্ন জায়গায় বদলাতে পারে। রিডাক্স হলো এই সব তথ্য বা স্টেটগুলোকে এক জায়গায় গুছিয়ে রাখার এবং কন্ট্রোল করার একটা লাইব্রেরি। এতে অ্যাপের ডেটা ম্যানেজ করা সহজ হয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো তোমার স্কুলের সব নোটিশ একটা সেন্ট্রাল নোটিশ বোর্ডে (স্টোর) রাখা আছে। কেউ নোটিশ বদলাতে চাইলে তাকে নির্দিষ্ট নিয়ম মেনে বদলাতে হবে। রিডাক্সও ওয়েবসাইটের সব তথ্যকে এরকম একটা সেন্ট্রাল জায়গায় রেখে ম্যানেজ করে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৭। ভিউজেএস কী?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ভিউজেএস (Vue.js) একটি প্রগতিশীল (progressive) এবং সহজে ব্যবহারযোগ্য জাভাস্ক্রিপ্ট ফ্রেমওয়ার্ক যা ইউজার ইন্টারফেস এবং সিঙ্গেল-পেজ অ্যাপ্লিকেশন (SPA) তৈরির জন্য ব্যবহৃত হয়। এটি এর সরলতা, নমনীয়তা এবং ভালো পারফরম্যান্সের জন্য পরিচিত।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Vue.js হলো ওয়েবসাইট বা ওয়েব অ্যাপের ইউজার ইন্টারফেস (UI) বানানোর আরেকটা জনপ্রিয় জাভাস্ক্রিপ্ট ফ্রেমওয়ার্ক। এটা শিখতে এবং ব্যবহার করতে তুলনামূলকভাবে সহজ। React আর Angular এর মতো এটাও খুব পাওয়ারফুল।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> ওয়েবসাইট বানানোর আরেকটা 'রেডিমেড কাঠামোর' সেট হলো Vue.js, যেটা দিয়ে সুন্দর আর ইন্টারঅ্যাকটিভ ওয়েবপেজ বানানো যায়।</p>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্নোত্তর</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। HTML tree structure লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> HTML ডকুমেন্ট একটি ট্রি (Tree) বা গাছ স্ট্রাকচার অনুসরণ করে যেখানে প্রতিটি HTML এলিমেন্ট একটি নোড (Node) হিসেবে থাকে। <code>&lt;html&gt;</code> ট্যাগটি হলো রুট নোড। এর দুটি প্রধান চাইল্ড নোড থাকে: <code>&lt;head&gt;</code> এবং <code>&lt;body&gt;</code>। <code>&lt;head&gt;</code> এর চাইল্ড হিসেবে <code>&lt;title&gt;</code>, <code>&lt;meta&gt;</code>, <code>&lt;link&gt;</code>, <code>&lt;script&gt;</code> ইত্যাদি থাকতে পারে। <code>&lt;body&gt;</code> এর চাইল্ড হিসেবে বিভিন্ন কন্টেন্ট এলিমেন্ট যেমন <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code> ইত্যাদি থাকে, যারা আবার নিজেদের মধ্যে প্যারেন্ট-চাইল্ড সম্পর্ক তৈরি করে একটি হায়ারারকিক্যাল কাঠামো গঠন করে।</p>
+                 <p><strong>উদাহরণ (টেক্সট-ভিত্তিক):</strong></p>
+                 <pre><code>html
+├── head
+│   └── title (Text: My Page)
+└── body
+    ├── h1 (Text: Welcome)
+    ├── p (Text: This is a paragraph.)
+    └── ul
+        ├── li (Text: Item 1)
+        └── li (Text: Item 2)</code></pre>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> HTML কোডটা আসলে একটা গাছের মতো সাজানো থাকে। `&lt;html&gt;` হলো গাছের মূল কাণ্ড। এর দুটো ডাল হলো `&lt;head&gt;` আর `&lt;body&gt;`। আবার `&lt;body&gt;` ডালের মধ্যে `&lt;h1&gt;`, `&lt;p&gt;`, `&lt;div&gt;` এর মতো আরও ছোট ছোট ডালপালা বা পাতা থাকে। এই যে একটার ভেতর আরেকটা, বা একটার পাশে আরেকটা – এই পুরো সাজানো গোছানো গঠনটাই হলো HTML ট্রি স্ট্রাকচার। জাভাস্ক্রিপ্ট এই ট্রি ব্যবহার করেই পেজের বিভিন্ন অংশকে খুঁজে বের করে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার ফ্যামিলি ট্রি'র মতো। দাদু (html) থেকে তোমার বাবা-চাচা (head, body), তাদের থেকে আবার তুমি আর তোমার ভাইবোন (h1, p, ul), তোমার ভাইবোনের ছেলেমেয়ে (li) – এভাবে যেমন একটা বংশতালিকা হয়, HTML এর ট্যাগগুলোও ঠিক সেভাবে একটার পর একটা সাজানো থাকে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। HTML-এলিমেন্টকে জাভাস্ক্রিপ্ট দ্বারা সিলেক্ট করার পদ্ধতিগুলো সংক্ষেপে বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> জাভাস্ক্রিপ্ট দিয়ে HTML এলিমেন্ট সিলেক্ট করার কয়েকটি প্রধান পদ্ধতির সংক্ষিপ্ত বর্ণনা:</p>
+                <ul>
+                    <li><strong><code>getElementById('elementId')</code>:</strong> ডকুমেন্টের মধ্যে নির্দিষ্ট আইডি (<code>id</code>) যুক্ত একমাত্র এলিমেন্টটিকে খুঁজে বের করে। আইডি ইউনিক হওয়ায় এটি সবচেয়ে দ্রুত এবং সুনির্দিষ্ট পদ্ধতি।</li>
+                    <li><strong><code>getElementsByTagName('tagName')</code>:</strong> নির্দিষ্ট ট্যাগ নাম (যেমন 'p', 'div', 'img') যুক্ত সকল এলিমেন্টকে খুঁজে বের করে একটি HTMLCollection (লাইভ কালেকশন) হিসেবে রিটার্ন করে।</li>
+                    <li><strong><code>getElementsByClassName('className')</code>:</strong> নির্দিষ্ট ক্লাস নাম যুক্ত সকল এলিমেন্টকে খুঁজে বের করে একটি HTMLCollection হিসেবে রিটার্ন করে।</li>
+                    <li><strong><code>querySelector('cssSelector')</code>:</strong> যেকোনো বৈধ CSS সিলেক্টর ব্যবহার করে ডকুমেন্টের মধ্যে প্রথম ম্যাচ করা এলিমেন্টটিকে খুঁজে বের করে। এটি খুব শক্তিশালী ও নমনীয়।</li>
+                    <li><strong><code>querySelectorAll('cssSelector')</code>:</strong> যেকোনো বৈধ CSS সিলেক্টর ব্যবহার করে ডকুমেন্টের মধ্যে ম্যাচ করা সকল এলিমেন্টকে খুঁজে বের করে একটি স্ট্যাটিক NodeList হিসেবে রিটার্ন করে।</li>
+                </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> HTML এর জিনিস ধরার উপায়গুলো:</p>
+                 <ul>
+                     <li><code>getElementById</code>: আইডি দিয়ে একটা নির্দিষ্ট জিনিস ধরা।</li>
+                     <li><code>getElementsByTagName</code>: একই রকম দেখতে সব জিনিস ধরা (যেমন সব প্যারাগ্রাফ)।</li>
+                     <li><code>getElementsByClassName</code>: একই ক্লাস নামের সব জিনিস ধরা।</li>
+                     <li><code>querySelector</code>: CSS এর মতো করে খুঁজে প্রথম জিনিসটা ধরা।</li>
+                     <li><code>querySelectorAll</code>: CSS এর মতো করে খুঁজে সবকটা জিনিস ধরা।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> রিফাতকে ক্লাসে খুঁজে বের করার উপায়:</p>
+                 <ul>
+                     <li>তার রোল নম্বর দিয়ে ডাকা (<code>getElementById</code>)।</li>
+                     <li>ক্লাসের সব ছেলেকে ডাকা (<code>getElementsByTagName</code>)।</li>
+                     <li>যারা নীল শার্ট পরেছে তাদের সবাইকে ডাকা (<code>getElementsByClassName</code>)।</li>
+                     <li>প্রথম বেঞ্চের প্রথম ছাত্রকে ডাকা (<code>querySelector</code>)।</li>
+                     <li>জানালায় পাশে বসা সব ছাত্রকে ডাকা (<code>querySelectorAll</code>)।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। DOM-এর প্রয়োজনীয় কয়েকটি ফাংশনের সংক্ষিপ্ত বর্ণনা দাও।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> DOM (Document Object Model) ম্যানিপুলেশনের জন্য প্রয়োজনীয় কয়েকটি ফাংশন (মেথড) হলো:</p>
+                 <ul>
+                     <li><strong><code>createElement(tagName)</code>:</strong> একটি নতুন HTML এলিমেন্ট (যেমন: 'p', 'div') তৈরি করে।</li>
+                     <li><strong><code>appendChild(node)</code>:</strong> একটি এলিমেন্টের চাইল্ড বা সন্তান হিসেবে অন্য একটি নোড বা এলিমেন্ট যোগ করে (শেষে যোগ হয়)।</li>
+                     <li><strong><code>removeChild(node)</code>:</strong> একটি এলিমেন্ট থেকে তার নির্দিষ্ট চাইল্ড নোডকে সরিয়ে ফেলে।</li>
+                     <li><strong><code>setAttribute(attributeName, value)</code>:</strong> একটি এলিমেন্টের অ্যাট্রিবিউটের (যেমন: 'id', 'class', 'src') মান সেট বা পরিবর্তন করে।</li>
+                     <li><strong><code>getAttribute(attributeName)</code>:</strong> একটি এলিমেন্টের নির্দিষ্ট অ্যাট্রিবিউটের মান রিটার্ন করে।</li>
+                     <li><strong><code>innerHTML</code> / <code>textContent</code> (প্রপার্টি):</strong> একটি এলিমেন্টের ভেতরের HTML কনটেন্ট বা শুধু টেক্সট কনটেন্ট পড়া বা পরিবর্তন করার জন্য ব্যবহৃত হয়।</li>
+                     <li><strong><code>style</code> (প্রপার্টি):</strong> একটি এলিমেন্টের CSS স্টাইল পরিবর্তন করার জন্য ব্যবহৃত হয় (যেমন: <code>element.style.color = 'red'</code>)।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> DOM নিয়ে কাজ করার (HTML বদলানোর) কিছু কমন ফাংশন:</p>
+                 <ul>
+                     <li><code>createElement</code>: নতুন HTML ট্যাগ বানানো।</li>
+                     <li><code>appendChild</code>: একটার ভেতরে আরেকটা ট্যাগ ঢোকানো।</li>
+                     <li><code>removeChild</code>: কোনো ট্যাগ মুছে ফেলা।</li>
+                     <li><code>setAttribute</code>: ট্যাগের অ্যাট্রিবিউট (যেমন id, class, src) বসানো বা বদলানো।</li>
+                     <li><code>getAttribute</code>: ট্যাগের অ্যাট্রিবিউটের মান জানা।</li>
+                     <li><code>innerHTML</code> / <code>textContent</code>: ট্যাগের ভেতরের লেখা বা HTML বদলানো বা দেখা।</li>
+                     <li><code>style</code>: ট্যাগের রঙ, সাইজ ইত্যাদি CSS স্টাইল বদলানো।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> বাড়ির নকশা (DOM) দেখে বাড়ি বদলানোর কিছু কাজ:</p>
+                <ul>
+                    <li>নতুন ঘর বানানো (<code>createElement</code>)।</li>
+                    <li>এক ঘরের পাশে আরেকটা ঘর যোগ করা (<code>appendChild</code>)।</li>
+                    <li>একটা ঘর ভেঙে ফেলা (<code>removeChild</code>)।</li>
+                    <li>ঘরের দরজার রঙ বদলানো (<code>setAttribute</code>)।</li>
+                    <li>ঘরের ভেতরে কী লেখা আছে পড়া বা নতুন লেখা লাগানো (<code>innerHTML</code>/<code>textContent</code>)।</li>
+                    <li>ঘরের দেয়ালের রঙ বদলানো (<code>style</code>)।</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৪। জাভাস্ক্রিপ্ট রানটাইম এনভায়রনমেন্ট বলতে কী বুঝায়? কয়েকটি রানটাইমের এনভায়রনমেন্টের নাম লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> জাভাস্ক্রিপ্ট রানটাইম এনভায়রনমেন্ট হলো সেই পরিবেশ যেখানে জাভাস্ক্রিপ্ট কোড এক্সিকিউট বা চালিত হয়। এটি জাভাস্ক্রিপ্ট ইঞ্জিন (যা কোডকে পার্স ও এক্সিকিউট করে) এবং অতিরিক্ত কিছু বিল্ট-ইন API (অ্যাপ্লিকেশন প্রোগ্রামিং ইন্টারফেস) এর সমন্বয়ে গঠিত, যা জাভাস্ক্রিপ্টকে তার পারিপার্শ্বিক পরিবেশের (যেমন: ব্রাউজার বা সার্ভার) সাথে ইন্টারঅ্যাক্ট করতে সাহায্য করে।<br>
+                 কয়েকটি রানটাইম এনভায়রনমেন্টের নাম:</p>
+                 <ol>
+                     <li>ওয়েব ব্রাউজার (যেমন: Google Chrome - V8 ইঞ্জিন, Mozilla Firefox - SpiderMonkey ইঞ্জিন)</li>
+                     <li>Node.js (সার্ভার সাইড রানটাইম - V8 ইঞ্জিন)</li>
+                     <li>Deno (একটি আধুনিক ও সুরক্ষিত রানটাইম)</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> জাভাস্ক্রিপ্ট কোডটা যেখানে চলে, সেই জায়গাটাই হলো রানটাইম এনভায়রনমেন্ট। এর মধ্যে একটা জাভাস্ক্রিপ্ট ইঞ্জিন থাকে (যে কোডটা বোঝে আর চালায়) আর কিছু অতিরিক্ত টুলস বা API থাকে যা দিয়ে জাভাস্ক্রিপ্ট অন্য কাজ করতে পারে (যেমন ব্রাউজারে চললে HTML বদলানো, Node.js এ চললে ফাইল পড়া)। ব্রাউজারগুলো (ক্রোম, ফায়ারফক্স), Node.js, Deno – এগুলো হলো জাভাস্ক্রিপ্ট চালানোর একেকটা এনভায়রনমেন্ট।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো জাভাস্ক্রিপ্ট হলো একজন বাবুর্চি। রানটাইম এনভায়রনমেন্ট হলো তার রান্নাঘর। রান্নাঘরে একটা চুলা (JS Engine) থাকে আর রান্নার জন্য প্রয়োজনীয় হাঁড়ি-পাতিল, মশলাপাতি (APIs) থাকে। বাবুর্চি এই রান্নাঘরেই তার রেসিপি (কোড) অনুযায়ী রান্না (এক্সিকিউশন) করে। তোমার ওয়েব ব্রাউজার বা Node.js হলো এরকম একেকটা রান্নাঘর।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৫। নোড জেএস কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> Node.js একটি ওপেন-সোর্স, ক্রস-প্ল্যাটফর্ম জাভাস্ক্রিপ্ট রানটাইম এনভায়রনমেন্ট যা Google Chrome-এর V8 জাভাস্ক্রিপ্ট ইঞ্জিনের উপর ভিত্তি করে নির্মিত। এটি ডেভেলপারদের ওয়েব ব্রাউজারের বাইরে, অর্থাৎ সার্ভার সাইডে জাভাস্ক্রিপ্ট কোড এক্সিকিউট করার সুযোগ করে দেয়। এটি নন-ব্লকিং, ইভেন্ট-ড্রাইভেন আর্কিটেকচারের জন্য পরিচিত, যা এটিকে ডেটা-ইনটেনসিভ রিয়েল-টাইম অ্যাপ্লিকেশন তৈরির জন্য উপযুক্ত করে তোলে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Node.js হলো জাভাস্ক্রিপ্টকে ব্রাউজারের বাইরে (যেমন সার্ভারে) চালানোর একটা পরিবেশ বা প্ল্যাটফর্ম। আগে জাভাস্ক্রিপ্ট শুধু ব্রাউজারেই চলতো, Node.js আসার পর এটা দিয়ে সার্ভার সাইডের কাজ, যেমন ওয়েবসাইট বানানো, API তৈরি করা ইত্যাদিও করা যায়। এটা খুব দ্রুত কাজ করতে পারে কারণ এটা নন-ব্লকিং (একটার জন্য আরেকটা বসে থাকে না)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> আগে বাবুর্চি (জাভাস্ক্রিপ্ট) শুধু ঘরে (ব্রাউজার) রান্না করতে পারতো। Node.js হলো একটা নতুন ধরনের রান্নাঘর যেটা ঘরের বাইরেও (সার্ভার) বসানো যায়, ফলে বাবুর্চি এখন বাইরেও রান্না করতে পারে!</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৬। নোড জেএস-এর বৈশিষ্ট্য লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> Node.js এর প্রধান বৈশিষ্ট্যগুলো হলো:</p>
+                <ul>
+                    <li><strong>অ্যাসিঙ্ক্রোনাস ও ইভেন্ট-ড্রাইভেন:</strong> নন-ব্লকিং I/O অপারেশন এবং ইভেন্ট লুপ ব্যবহারের মাধ্যমে উচ্চ কনকারেন্সি অর্জন করে।</li>
+                    <li><strong>দ্রুতগতি:</strong> Google Chrome এর V8 জাভাস্ক্রিপ্ট ইঞ্জিনে চলার কারণে কোড এক্সিকিউশন খুব দ্রুত হয়।</li>
+                    <li><strong>সিঙ্গেল-থ্রেডেড কিন্তু হাইলি স্কেলেবল:</strong> ইভেন্ট লুপ মডেল ব্যবহারের কারণে এটি সিঙ্গেল থ্রেডে চললেও বহু সংখ্যক কানেকশন হ্যান্ডেল করতে পারে।</li>
+                    <li><strong>ক্রস-প্ল্যাটফর্ম:</strong> উইন্ডোজ, ম্যাকওএস, লিনাক্স সহ বিভিন্ন অপারেটিং সিস্টেমে চলে।</li>
+                    <li><strong>npm (Node Package Manager):</strong> একটি বিশাল প্যাকেজ ইকোসিস্টেম (npm) রয়েছে যা কোড শেয়ারিং ও রিইউজ সহজ করে।</li>
+                    <li><strong>কোনো বাফারিং নেই:</strong> ডেটা সাধারণত চাঙ্ক (Chunk) আকারে আদান-প্রদান হয়, বাফারিং কম হয়।</li>
+                </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Node.js এর কিছু গুণ: ১) এটা একটার জন্য আরেকটা কাজ আটকে রাখে না (অ্যাসিঙ্ক্রোনাস)। ২) খুব ফাস্ট চলে (V8 ইঞ্জিন)। ৩) একসাথে অনেক ইউজারের রিকোয়েস্ট সামলাতে পারে। ৪) সব অপারেটিং সিস্টেমে চলে। ৫) এর সাথে npm নামে একটা বিশাল লাইব্রেরি মার্কেট আছে যেখান থেকে রেডিমেড কোড নামিয়ে ব্যবহার করা যায়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> Node.js রান্নাঘরের বৈশিষ্ট্য: ১) মাল্টিটাস্কিং করতে পারে, এক রান্না হতে হতে অন্য রান্নার প্রস্তুতি নিতে পারে। ২) খুব দ্রুত রান্না হয়। ৩) একসাথে অনেক লোকের জন্য রান্না করতে পারে। ৪) যেকোনো জায়গায় এই রান্নাঘর বসানো যায়। ৫) এর জন্য অনেক রেডিমেড মশলার প্যাকেট (npm) পাওয়া যায়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৭। ডেনো কী? এর বৈশিষ্ট্য লেখ।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ডেনো (Deno) হলো জাভাস্ক্রিপ্ট এবং টাইপস্ক্রিপ্টের জন্য একটি আধুনিক ও সুরক্ষিত রানটাইম এনভায়রনমেন্ট, যা Node.js এর মূল স্রষ্টা Ryan Dahl কর্তৃক তৈরি। এটি V8 ইঞ্জিন, Rust প্রোগ্রামিং ল্যাঙ্গুয়েজ এবং Tokio (একটি অ্যাসিঙ্ক্রোনাস রানটাইম) এর উপর ভিত্তি করে নির্মিত।<br>
+                 <strong>বৈশিষ্ট্য:</strong></p>
+                 <ul>
+                     <li><strong>সুরক্ষিত (Secure by Default):</strong> ফাইল, নেটওয়ার্ক বা এনভায়রনমেন্ট অ্যাক্সেসের জন্য এক্সপ্লিসিট পারমিশন বা অনুমতির প্রয়োজন হয়।</li>
+                     <li><strong>টাইপস্ক্রিপ্ট সমর্থন:** কোনো অতিরিক্ত কনফিগারেশন ছাড়াই সরাসরি টাইপস্ক্রিপ্ট কোড রান করতে পারে।</li>
+                     <li><strong>আধুনিক জাভাস্ক্রিপ্ট:** ES মডিউল সিস্টেম ব্যবহার করে এবং Promise, async/await এর মতো আধুনিক ফিচার সমর্থন করে।</li>
+                     <li><strong>ডিসেন্ট্রালাইজড প্যাকেজ:** কোনো কেন্দ্রীয় প্যাকেজ ম্যানেজার (যেমন npm) নেই, URL থেকে সরাসরি মডিউল ইম্পোর্ট করা যায়।</li>
+                     <li><strong>বিল্ট-ইন টুলিং:** ফরম্যাটার, লিন্টার, টেস্টার সহ প্রয়োজনীয় টুলস বিল্ট-ইন থাকে।</li>
+                     <li><strong>সিঙ্গেল এক্সিকিউটেবল:** একটি মাত্র এক্সিকিউটেবল ফাইল হিসেবে ডিস্ট্রিবিউট হয়।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Deno হলো Node.js এর পরে আসা আরেকটা নতুন জাভাস্ক্রিপ্ট আর টাইপস্ক্রিপ্ট চালানোর রানটাইম। এটা Node.js এর কিছু সমস্যা সমাধানের চেষ্টা করে বানানো হয়েছে। এর বৈশিষ্ট্য: এটা ডিফল্টভাবে বেশি সিকিওর, টাইপস্ক্রিপ্ট সরাসরি চলে, প্যাকেজ ম্যানেজ করার সিস্টেম ভিন্ন (URL থেকে ইম্পোর্ট), আর দরকারি কিছু টুলস এর সাথেই দেওয়া থাকে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> Deno হলো Node.js এর আপডেটেড ভার্সনের মতো একটা নতুন রান্নাঘর। এটা আরও বেশি নিরাপদ, টাইপস্ক্রিপ্ট রান্নার রেসিপি সরাসরি বুঝতে পারে, আর কিছু দরকারি টুলস (ছুরি, চামচ) রান্নাঘরের সাথেই দেওয়া থাকে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৮। ডেনো এবং নোড-এর মধ্যে তুলনা কর।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ডেনো (Deno) এবং নোড.জেএস (Node.js) উভয়ই V8 ইঞ্জিনে চালিত জাভাস্ক্রিপ্ট রানটাইম হলেও এদের মধ্যে কিছু মূল পার্থক্য রয়েছে:</p>
+                 <ul>
+                     <li><strong>নিরাপত্তা:</strong> Deno ডিফল্টভাবে সুরক্ষিত স্যান্ডবক্সে চলে, ফাইল/নেটওয়ার্ক অ্যাক্সেসের জন্য অনুমতি লাগে। Node.js এর এই স্যান্ডবক্সিং নেই।</li>
+                     <li><strong>মডিউল সিস্টেম:</strong> Deno স্ট্যান্ডার্ড ES মডিউল ব্যবহার করে এবং URL থেকে মডিউল ইম্পোর্ট করে। Node.js মূলত CommonJS মডিউল ব্যবহার করে এবং প্যাকেজ ম্যানেজমেন্টের জন্য npm এর উপর নির্ভরশীল।</li>
+                     <li><strong>API:</strong> Deno এর API ডিজাইন আধুনিক ওয়েব স্ট্যান্ডার্ড (যেমন Fetch API) অনুসরণ করে এবং Promise-ভিত্তিক। Node.js এর API কিছুটা পুরনো এবং Callback-ভিত্তিক (যদিও Promise সমর্থন করে)।</li>
+                     <li><strong>টাইপস্ক্রিপ্ট:</strong> Deno টাইপস্ক্রিপ্টকে প্রথম শ্রেণীর নাগরিক হিসেবে গণ্য করে এবং সরাসরি সমর্থন করে। Node.js এ টাইপস্ক্রিপ্ট ব্যবহারের জন্য অতিরিক্ত সেটআপ প্রয়োজন।</li>
+                     <li><strong>প্যাকেজ ম্যানেজমেন্ট:</strong> Deno এর কোনো কেন্দ্রীয় প্যাকেজ রিপোজিটরি নেই, URL ভিত্তিক ইম্পোর্ট ব্যবহার করে। Node.js এর কেন্দ্রীয় npm রিপোজিটরি রয়েছে।</li>
+                     <li><strong>বিল্ট-ইন টুলস:</strong> Deno তে ফরম্যাটার, লিন্টার, টেস্টার ইত্যাদি বিল্ট-ইন থাকে। Node.js এ এগুলো আলাদাভাবে ইনস্টল করতে হয়।</li>
+                     <li><strong>package.json:</strong> Deno তে package.json ফাইলের প্রয়োজন হয় না। Node.js ডিপেন্ডেন্সি ম্যানেজমেন্টের জন্য package.json ব্যবহার করে।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li><strong>সিকিউরিটি:</strong> Deno বেশি সিকিওর।</li>
+                     <li><strong>মডিউল:</strong> Deno নতুন স্টাইল (ES Module) ব্যবহার করে URL থেকে, Node পুরনো স্টাইল (CommonJS) ব্যবহার করে npm থেকে।</li>
+                     <li><strong>API:</strong> Deno এর API গুলো নতুন আর স্ট্যান্ডার্ড, Node এর কিছু পুরনো।</li>
+                     <li><strong>টাইপস্ক্রিপ্ট:</strong> Deno তে সহজে চলে, Node এ একটু সেটআপ লাগে।</li>
+                     <li><strong>প্যাকেজ:</strong> Deno তে npm এর মতো সেন্ট্রাল মার্কেট নেই, Node এ আছে।</li>
+                     <li><strong>টুলস:</strong> Deno তে কিছু দরকারি টুলস আগে থেকেই থাকে।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> দুটো রান্নাঘরের তুলনা:</p>
+                 <ul>
+                     <li>Deno রান্নাঘরে ঢোকার আগে অনুমতি নিতে হয় (বেশি নিরাপদ)। Node এ লাগে না।</li>
+                     <li>Deno তে রেসিপি (মডিউল) সরাসরি ইন্টারনেট থেকে আনা যায়, Node এর জন্য একটা সেন্ট্রাল লাইব্রেরি (npm) লাগে।</li>
+                     <li>Deno তে আধুনিক রান্নার যন্ত্রপাতি (API) বেশি।</li>
+                     <li>Deno তে টাইপস্ক্রিপ্ট রেসিপি সরাসরি বোঝা যায়।</li>
+                     <li>Deno রান্নাঘরের সাথেই কিছু ছুরি-চামচ দেওয়া থাকে।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্নোত্তর</h3>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">১। DOM কী? DOM-এর ম্যানিপুলেশন বর্ণনা কর।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p><strong>DOM (Document Object Model):</strong><br>
+                 DOM হলো একটি ক্রস-প্ল্যাটফর্ম এবং ল্যাঙ্গুয়েজ-নিরপেক্ষ অ্যাপ্লিকেশন প্রোগ্রামিং ইন্টারফেস (API) যা একটি ওয়েবসাইটের HTML বা XML ডকুমেন্টকে একটি যৌক্তিক ট্রি (Tree) স্ট্রাকচারে উপস্থাপন করে। এই মডেলে, ডকুমেন্টের প্রতিটি অংশ - যেমন এলিমেন্ট, অ্যাট্রিবিউট, টেক্সট ইত্যাদি - এক একটি অবজেক্ট বা নোড হিসেবে বিবেচিত হয়। DOM এই অবজেক্টগুলোর একটি হায়ারারকিক্যাল (প্যারেন্ট-চাইল্ড) মডেল তৈরি করে, যা ডকুমেন্টের গঠন এবং বিষয়বস্তুকে প্রতিনিধিত্ব করে। ওয়েবের ক্ষেত্রে, ব্রাউজার যখন একটি HTML পেজ লোড করে, তখন সেটি মেমোরিতে ওই পেজের একটি DOM ট্রি তৈরি করে। স্ক্রিপ্টিং ল্যাঙ্গুয়েজ (প্রধানত জাভাস্ক্রিপ্ট) এই DOM API ব্যবহার করে ডকুমেন্টের যেকোনো নোড অ্যাক্সেস করতে, এর কনটেন্ট পরিবর্তন করতে, নতুন নোড যোগ করতে বা বিদ্যমান নোড মুছে ফেলতে পারে, যা ওয়েব পেজকে ডাইনামিক ও ইন্টারঅ্যাকটিভ করে তোলে।</p>
+
+                 <p><strong>DOM ম্যানিপুলেশন (Manipulation):</strong><br>
+                 জাভাস্ক্রিপ্ট ব্যবহার করে DOM ট্রি-এর নোড বা অবজেক্টগুলোকে পরিবর্তন করার প্রক্রিয়াকেই DOM ম্যানিপুলেশন বলে। এর মাধ্যমে ওয়েব পেজের বিষয়বস্তু, গঠন এবং স্টাইল ডাইনামিকভাবে পরিবর্তন করা যায়। প্রধান ম্যানিপুলেশন কাজগুলো হলো:</p>
+                 <ol>
+                     <li><strong>এলিমেন্ট খুঁজে বের করা (Finding Elements):</strong> পেজের নির্দিষ্ট এলিমেন্ট অ্যাক্সেস করার জন্য বিভিন্ন মেথড ব্যবহার করা হয়, যেমন: <code>getElementById()</code>, <code>getElementsByTagName()</code>, <code>getElementsByClassName()</code>, <code>querySelector()</code>, <code>querySelectorAll()</code>।</li>
+                     <li><strong>এলিমেন্টের কনটেন্ট পরিবর্তন (Changing Content):</strong> খুঁজে পাওয়া এলিমেন্টের ভেতরের লেখা বা HTML পরিবর্তন করা যায় <code>innerHTML</code> বা <code>textContent</code> প্রপার্টি ব্যবহার করে।</li>
+                     <li><strong>এলিমেন্টের অ্যাট্রিবিউট পরিবর্তন (Changing Attributes):</strong> এলিমেন্টের অ্যাট্রিবিউট (যেমন <code>src</code>, <code>href</code>, <code>id</code>, <code>class</code>) এর মান <code>getAttribute()</code> দিয়ে পড়া এবং <code>setAttribute()</code> দিয়ে পরিবর্তন বা সেট করা যায়। <code>element.id</code>, <code>element.className</code> ইত্যাদি প্রপার্টি দিয়েও সরাসরি কাজ করা যায়।</li>
+                     <li><strong>এলিমেন্টের স্টাইল পরিবর্তন (Changing Styles):</strong> এলিমেন্টের CSS স্টাইল পরিবর্তন করার জন্য <code>style</code> প্রপার্টি ব্যবহার করা হয় (যেমন: <code>element.style.color = 'blue';</code>, <code>element.style.fontSize = '16px';</code>)। ক্লাস যোগ বা অপসারণ করেও (<code>element.classList.add()</code>, <code>element.classList.remove()</code>) স্টাইল পরিবর্তন করা যায়।</li>
+                     <li><strong>নতুন এলিমেন্ট যোগ করা (Adding Elements):</strong> <code>document.createElement()</code> দিয়ে নতুন এলিমেন্ট তৈরি করে এবং <code>parentNode.appendChild(newElement)</code> বা <code>parentNode.insertBefore(newElement, referenceNode)</code> ব্যবহার করে DOM ট্রিতে যুক্ত করা যায়।</li>
+                     <li><strong>এলিমেন্ট মুছে ফেলা (Deleting Elements):</strong> <code>parentNode.removeChild(element)</code> অথবা <code>element.remove()</code> (আধুনিক ব্রাউজারে) ব্যবহার করে DOM থেকে এলিমেন্ট মুছে ফেলা যায়।</li>
+                     <li><strong>ইভেন্ট হ্যান্ডলিং (Handling Events):</strong> ব্যবহারকারীর অ্যাকশন (যেমন: ক্লিক, মাউসওভার, কী-প্রেস) এর প্রতিক্রিয়া জানানোর জন্য এলিমেন্টে ইভেন্ট লিসেনার (<code>addEventListener()</code>) যুক্ত করা হয়, যা DOM ম্যানিপুলেশনের মাধ্যমে পেজে পরিবর্তন আনতে পারে।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li><strong>DOM কী:</strong> DOM হলো ব্রাউজারের তৈরি করা HTML পেজের একটা লাইভ ম্যাপ বা কাঠামো। এটা একটা গাছের মতো, যেখানে প্রত্যেকটা ট্যাগ, লেখা, ছবি হলো একেকটা ডাল বা পাতা (নোড)।</li>
+                     <li><strong>DOM ম্যানিপুলেশন কী:</strong> জাভাস্ক্রিপ্ট ব্যবহার করে এই ম্যাপ বা গাছের ডালপালা-পাতা (HTML এলিমেন্ট) পরিবর্তন করার ক্ষমতাই হলো DOM ম্যানিপুলেশন। এর মানে হলো জাভাস্ক্রিপ্ট দিয়ে তুমি:
+                         <ul>
+                             <li>পেজের যেকোনো জিনিস খুঁজে বের করতে পারো।</li>
+                             <li>লেখার কনটেন্ট বা ভেতরের HTML বদলে দিতে পারো।</li>
+                             <li>ছবির সোর্স (src) বা লিঙ্কের ঠিকানা (href) বদলাতে পারো।</li>
+                             <li>লেখার রঙ, সাইজ, ব্যাকগ্রাউন্ড ইত্যাদি স্টাইল বদলাতে পারো।</li>
+                             <li>পেজে নতুন প্যারাগ্রাফ, বাটন বা ছবি যোগ করতে পারো।</li>
+                             <li>পেজ থেকে কোনো কিছু মুছে ফেলতে পারো।</li>
+                             <li>ইউজারের ক্লিক বা অন্য কোনো অ্যাকশনের পর পেজে কোনো পরিবর্তন ঘটাতে পারো।</li>
+                         </ul>
+                        এই সব মিলিয়েই DOM ম্যানিপুলেশন, যা দিয়ে স্ট্যাটিক HTML পেজকে ডাইনামিক বানানো যায়।
+                     </li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong></p>
+                <ul>
+                    <li><strong>DOM:</strong> তোমার খেলনা দিয়ে সাজানো একটা ঘরের মডেল।</li>
+                    <li><strong>DOM ম্যানিপুলেশন:</strong> তুমি হাত দিয়ে বা অন্য কোনো টুল দিয়ে সেই মডেলের জিনিসপত্র সরানো, নতুন জিনিস যোগ করা, রঙ বদলানো – এই কাজগুলোই DOM ম্যানিপুলেশন। যেমন, রিফাত তার খেলনা ঘরের মডেলের (DOM) লাল রঙের দরজাটা খুলে (Find Element) নীল রঙের একটা দরজা (Change Attribute/Style) লাগিয়ে দিলো, আবার ঘরের পাশে একটা নতুন গাছ (Add Element) বসালো।</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">২। জাভাস্ক্রিপ্ট রানটাইম এনভায়রনমেন্টের বর্ণনা দাও।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>জাভাস্ক্রিপ্ট রানটাইম এনভায়রনমেন্ট (JavaScript Runtime Environment):</strong><br>
+                 এটি হলো একটি সম্পূর্ণ পরিবেশ যা জাভাস্ক্রিপ্ট কোডকে এক্সিকিউট বা রান করার জন্য প্রয়োজনীয় সকল উপাদান সরবরাহ করে। এটি শুধু জাভাস্ক্রিপ্ট ইঞ্জিন (যা কোডকে মেশিন কোডে রূপান্তর করে চালায়) নয়, বরং এর সাথে আরও কিছু অতিরিক্ত ফিচার ও API যুক্ত থাকে যা জাভাস্ক্রিপ্টকে তার চারপাশের পরিবেশের সাথে যোগাযোগ করতে এবং বিভিন্ন কাজ সম্পাদন করতে সক্ষম করে।</p>
+
+                <p><strong>প্রধান উপাদানসমূহ:</strong></p>
+                <ol>
+                    <li><strong>জাভাস্ক্রিপ্ট ইঞ্জিন (JavaScript Engine):</strong> এটি রানটাইম এনভায়রনমেন্টের মূল অংশ। এর কাজ হলো জাভাস্ক্রিপ্ট সোর্স কোডকে পড়া, পার্স করা, ইন্টারপ্রেট বা কম্পাইল করা এবং এক্সিকিউট করা। উদাহরণ: Google Chrome ও Node.js এর V8 ইঞ্জিন, Firefox এর SpiderMonkey, Safari এর JavaScriptCore। ইঞ্জিনের ভেতরে মেমোরি হিপ (Memory Heap - অবজেক্ট রাখার জায়গা) এবং কল স্ট্যাক (Call Stack - ফাংশন এক্সিকিউশনের ট্র‍্যাক রাখার জায়গা) থাকে।</li>
+                    <li><strong>ওয়েব এপিআই (Web APIs) / নেটিভ এপিআই (Native APIs):</strong> এগুলো রানটাইম এনভায়রনমেন্ট কর্তৃক সরবরাহকৃত অতিরিক্ত ফাংশনালিটি বা ইন্টারফেস যা জাভাস্ক্রিপ্ট ইঞ্জিন নিজে প্রদান করে না।
+                        <ul>
+                            <li><strong>ব্রাউজার এনভায়রনমেন্টে:</strong> DOM API (HTML ম্যানিপুলেশন), Fetch API/XMLHttpRequest (নেটওয়ার্ক রিকোয়েস্ট), setTimeout/setInterval (টাইমার), Console API (ডিবাগিং), Geolocation API, Local Storage ইত্যাদি। এগুলো ব্রাউজার নিজে ইমপ্লিমেন্ট করে।</li>
+                            <li><strong>Node.js এনভায়রনমেন্টে:</strong> ফাইল সিস্টেম (fs), নেটওয়ার্কিং (http, net), চাইল্ড প্রসেস (child_process), অপারেটিং সিস্টেম (os) ইত্যাদি সম্পর্কিত API, যা সাধারণত C++ দিয়ে লেখা মডিউলের মাধ্যমে প্রদান করা হয়।</li>
+                        </ul>
+                    </li>
+                    <li><strong>ইভেন্ট লুপ (Event Loop):</strong> এটি জাভাস্ক্রিপ্টের অ্যাসিঙ্ক্রোনাস আচরণ বাস্তবায়নের মূল চাবিকাঠি। এটি কল স্ট্যাক এবং কলব্যাক কিউয়ের মধ্যে সমন্বয় সাধন করে। যখন কল স্ট্যাক খালি থাকে, তখন এটি কলব্যাক কিউ থেকে পেন্ডিং থাকা কলব্যাক ফাংশনগুলোকে কল স্ট্যাকে পাঠায় এক্সিকিউশনের জন্য।</li>
+                    <li><strong>কলব্যাক কিউ (Callback Queue) / টাস্ক কিউ (Task Queue):</strong> অ্যাসিঙ্ক্রোনাস অপারেশনের (যেমন: Web API থেকে আসা রেসপন্স, টাইমার শেষ হওয়া) কলব্যাক ফাংশনগুলো এখানে জমা হয়। ইভেন্ট লুপ এখান থেকেই ফাংশন নিয়ে কল স্ট্যাকে দেয়। (মাইক্রোটাস্ক কিউ নামেও একটি উচ্চ অগ্রাধিকারের কিউ থাকে Promise এর জন্য)।</li>
+                </ol>
+
+                <p><strong>কার্যপদ্ধতি:</strong> জাভাস্ক্রিপ্ট কোড ইঞ্জিনে এক্সিকিউট হয়। যখন কোনো অ্যাসিঙ্ক্রোনাস অপারেশন (যেমন <code>setTimeout</code> বা <code>fetch</code>) কল করা হয়, ইঞ্জিন সেটিকে সংশ্লিষ্ট API-এর কাছে পাঠিয়ে দেয় এবং নিজে পরের কোড এক্সিকিউট করতে থাকে (নন-ব্লকিং)। API তার কাজ শেষ করে কলব্যাক ফাংশনটিকে কলব্যাক কিউতে পাঠায়। ইভেন্ট লুপ sürekli কল স্ট্যাক ও কলব্যাক কিউ পর্যবেক্ষণ করে এবং কল স্ট্যাক খালি পেলেই কিউ থেকে কলব্যাক ফাংশনকে স্ট্যাকে এনে এক্সিকিউট করে। এভাবেই জাভাস্ক্রিপ্ট সিঙ্গেল-থ্রেডেড হওয়া সত্ত্বেও অ্যাসিঙ্ক্রোনাস অপারেশন দক্ষতার সাথে পরিচালনা করতে পারে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> জাভাস্ক্রিপ্ট যেখানে চলে (রানটাইম), সেখানে কয়েকটা জিনিস থাকে:</p>
+                <ol>
+                    <li><strong>ইঞ্জিন:</strong> যে কোডটা পড়ে আর চালায় (যেমন: গাড়ির ইঞ্জিন)।</li>
+                    <li><strong>API:</strong> কিছু অতিরিক্ত ক্ষমতা বা টুলস যা পরিবেশটা দেয় (যেমন: ব্রাউজার দিলে HTML বদলানোর ক্ষমতা, Node.js দিলে ফাইল পড়ার ক্ষমতা)। এগুলো ইঞ্জিনের অংশ না, বাইরের।</li>
+                    <li><strong>কলব্যাক কিউ:</strong> যখন কোনো বাইরের কাজ (API এর কাজ) শেষ হয়, তার পরের কাজটা (কলব্যাক ফাংশন) এই লাইনে এসে দাঁড়ায়।</li>
+                    <li><strong>ইভেন্ট লুপ:</strong> একটা ম্যানেজার যে সবসময় দেখে ইঞ্জিনের টেবিল (কল স্ট্যাক) খালি আছে কিনা। খালি পেলেই কলব্যাক কিউয়ের লাইন থেকে পরের কাজটা এনে টেবিলে দেয়।</li>
+                </ol>
+                 <p>এই সবগুলো মিলেই জাভাস্ক্রিপ্ট চলার পুরো পরিবেশটা তৈরি হয়, আর এভাবেই জাভাস্ক্রিপ্ট একটা কাজ করতে দিয়ে অন্য কাজ করতে পারে (অ্যাসিঙ্ক্রোনাস)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা রেস্টুরেন্টের রান্নাঘর (রানটাইম):</p>
+                 <ol>
+                     <li><strong>বাবুর্চি (ইঞ্জিন):</strong> যে রান্না করে।</li>
+                     <li><strong>ওয়েটার/অন্যান্য স্টাফ (API):</strong> যারা বাজার করে আনে, টেবিল পরিষ্কার করে, কাস্টমারের অর্ডার নেয় – বাবুর্চি নিজে এগুলো করে না।</li>
+                     <li><strong>অর্ডার ডেলিভারির জায়গা (কলব্যাক কিউ):</strong> ওয়েটার অর্ডার ডেলিভারি দেওয়ার জন্য এখানে অপেক্ষা করে।</li>
+                     <li><strong>ম্যানেজার (ইভেন্ট লুপ):</strong> সে দেখে বাবুর্চি ফ্রি আছে কিনা। ফ্রি হলেই ওয়েটারকে বলে অর্ডারটা ডেলিভারি দিতে (কল স্ট্যাকে পাঠায়)।</li>
+                 </ol>
+                 <p>এভাবে পুরো রেস্টুরেন্টটা চলতে থাকে।</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>ওয়েব ডিজাইন অ্যান্ড ডেভেলপমেন্ট স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        // Function to apply theme
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀️ লাইট মোড'; // Sun icon for light mode switch
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = '🌙 ডার্ক মোড'; // Moon icon for dark mode switch
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initial theme setup
+        let preferredTheme = 'light'; // Default to light
+        if (currentTheme) {
+            preferredTheme = currentTheme;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Uncomment below line if you want system preference to be the initial default
+            // preferredTheme = 'dark';
+        }
+        applyTheme(preferredTheme);
+
+        // Button click listener
+        themeToggleBtn.addEventListener('click', () => {
+            let newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৭: সুইং</title>
+
+    <link rel="stylesheet" href="java_style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    </head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৭: সুইং</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">🌙 ডার্ক মোড</button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। জাভা সুইং বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> Swing হলো জাভার একটি GUI (Graphical User Interface) টুলকিট যা প্ল্যাটফর্ম-স্বাধীন গ্রাফিক্যাল কম্পোনেন্ট সরবরাহ করে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Swing হলো জাভার একটা লাইব্রেরি বা টুলবক্স যার সাহায্যে আমরা ডেক্সটপ অ্যাপ্লিকেশনের জন্য দেখতে সুন্দর, ক্লিক করা যায় এমন বাটন, টেক্সট বক্স, মেনু ইত্যাদি (গ্রাফিক্যাল ইউজার ইন্টারফেস বা GUI) তৈরি করতে পারি। এটা পুরনো AWT লাইব্রেরির উন্নত সংস্করণ।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> কম্পিউটারে বাটন, ছবি, লেখার বক্স দিয়ে যে সুন্দর ইন্টারফেস দেখা যায় (যেমনটা Windows বা macOS এ দেখো), জাভাতে সেরকম ইন্টারফেস বানানোর যন্ত্রপাতির বাক্স হলো Swing।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। সুইং কম্পোনেন্ট কী? উদাহরণসহ লেখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> Swing GUI তৈরি করার জন্য ব্যবহৃত building block বা উপাদান। উদাহরণ: `JButton`, `JLabel`, `JTextField`।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Swing কম্পোনেন্ট হলো GUI বানানোর ছোট ছোট অংশ বা পার্টস। যেমন একটা বাটন (`JButton`), একটা লেখার লেবেল (`JLabel`), লেখার জন্য টেক্সট বক্স (`JTextField`), চেকবক্স (`JCheckBox`) ইত্যাদি। এগুলোকে একসাথে সাজিয়েই পুরো ইন্টারফেসটা তৈরি করা হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> লেগো ব্লকের মতো। বাটন, টেক্সট বক্স এগুলো হলো এক একটা ব্লক, যা জুড়ে জুড়ে তুমি তোমার সফটওয়্যারের চেহারা বানাও।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। JFrame কম্পোনেন্টের কাজ কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি টপ-লেভেল উইন্ডো তৈরি করা যেখানে অন্যান্য Swing কম্পোনেন্ট যোগ করা যায়।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `JFrame` হলো Swing অ্যাপ্লিকেশন বানানোর মূল ফ্রেম বা জানালা। এটা হলো টপ-লেভেল কন্টেইনার যার উপরে তুমি বাটন, টেক্সট ফিল্ড, লেবেল ইত্যাদি বসাতে পারো। যেকোনো Swing GUI অ্যাপ্লিকেশনের শুরুটা সাধারণত একটা `JFrame` দিয়েই হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা ছবি আঁকার ক্যানভাস বা ফ্রেম হলো `JFrame`। তুমি এই ফ্রেমের উপরেই রঙ (অন্যান্য কম্পোনেন্ট) দিয়ে ছবিটা আঁকো।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। JFrame কম্পোনেন্টের সিনট্যাক্স লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+import javax.swing.*;
+
+// ... innerhalb einer Methode oder Klasse ...
+JFrame frameName = new JFrame("Window Title");
+// Beispiel:
+// JFrame myFrame = new JFrame("My Application");
+                    </code></pre>
+                 </div>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `JFrame` বানাতে হলে প্রথমে `javax.swing` প্যাকেজ ইম্পোর্ট করতে হয়। তারপর `JFrame` ক্লাসের একটা অবজেক্ট তৈরি করতে হয় (`new JFrame()`)। চাইলে কনস্ট্রাক্টরের মধ্যে উইন্ডোর টাইটেল দেওয়া যায়। যেমন: `JFrame myWindow = new JFrame("রিফাতের অ্যাপ");`</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা নতুন জানালা খোলার কোড: `নতুন_জানালা আমার_জানালা = new নতুন_জানালা("অ্যাপের নাম");`</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৫। সুইং প্যাকেজ বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> জাভা ক্লাস লাইব্রেরির একটি প্যাকেজ (`javax.swing`) যেখানে Swing GUI কম্পোনেন্ট ও সম্পর্কিত ক্লাসগুলো থাকে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Swing এর সমস্ত ক্লাস (যেমন `JButton`, `JFrame`, `JLabel` ইত্যাদি) জাভার একটা নির্দিষ্ট প্যাকেজের মধ্যে গোছানো আছে। এই প্যাকেজটার নাম হলো `javax.swing`। Swing ব্যবহার করতে হলে সাধারণত এই প্যাকেজ বা এর সাব-প্যাকেজগুলো ইম্পোর্ট করতে হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার সব খেলনা যেমন একটা বাক্সে (`javax.swing` প্যাকেজ) রাখা থাকে, Swing এর সব বাটন, লেবেলও তেমন একটা প্যাকেজে রাখা থাকে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৬। যে-কোনো চারটি সুইং প্যাকেজের নাম লেখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> `javax.swing`, `javax.swing.event`, `javax.swing.table`, `javax.swing.tree`।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Swing এর সবকিছু একটা প্যাকেজে থাকে না, কাজের ধরণ অনুযায়ী ভাগ করা থাকে। যেমন:<ul><li>`javax.swing`: মূল কম্পোনেন্টগুলো (JButton, JFrame ইত্যাদি)।</li><li>`javax.swing.event`: ইভেন্ট হ্যান্ডলিং এর ক্লাস (বাটনে ক্লিক করলে কী হবে)।</li><li>`javax.swing.table`: টেবিল বানানোর ক্লাস (`JTable`)।</li><li>`javax.swing.tree`: ট্রি (গাছের শাখার মতো) স্ট্রাকচার দেখানোর ক্লাস (`JTree`)।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> খেলনার বাক্সের ভেতরের ছোট ছোট ভাগ: একটাতে শুধু গাড়ি, একটাতে বল, একটাতে রঙ পেন্সিল, একটাতে বিল্ডিং ব্লক।</p></div>
+        </div>
+
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। জাভা সুইং ব্যবহারের অসুবিধাসমূহ লেখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong><ul><li><strong>তুলনামূলক ধীরগতি:</strong> পুরনো AWT এর চেয়ে কিছুটা ধীর হতে পারে (যদিও আধুনিক JVM এ এই পার্থক্য কম)।</li><li><strong>বেশি মেমরি ব্যবহার:</strong> AWT এর তুলনায় বেশি মেমরি ব্যবহার করতে পারে।</li><li><strong>লুক এন্ড ফিল (Look and Feel):</strong> ডিফল্ট লুক এন্ড ফিল সব অপারেটিং সিস্টেমে একরকম নাও লাগতে পারে বা নেটিভ অ্যাপের মতো নাও হতে পারে (যদিও পরিবর্তনযোগ্য)।</li><li><strong>জটিলতা:</strong> GUI ডিজাইন ও ইভেন্ট হ্যান্ডলিং তুলনামূলক জটিল হতে পারে, বিশেষ করে নতুনদের জন্য।</li><li><strong>আধুনিক বিকল্প:</strong> বর্তমানে JavaFX বা ওয়েব-ভিত্তিক ফ্রেমওয়ার্ককে GUI এর জন্য বেশি আধুনিক মনে করা হয়।</li></ul></p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Swing ব্যবহারে কিছু অসুবিধা হলো:<ul><li>একটু স্লো হতে পারে।</li><li>র‍্যাম একটু বেশি লাগতে পারে।</li><li>দেখতে সব কম্পিউটারে একরকম নাও লাগতে পারে।</li><li>কোড লেখা বা ডিজাইন করা একটু কঠিন।</li><li>এখন এর চেয়েও নতুন ও আধুনিক টুল (যেমন JavaFX) চলে এসেছে।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> এই খেলনার বাক্সটা একটু ভারী, চালাতে একটু বেশি ব্যাটারি লাগে, আর দেখতে সবসময় লেটেস্ট মডেলের মতো লাগে না।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। সিনট্যাক্সসহ JLabel কম্পোনেন্ট ব্যাখ্যা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ব্যাখ্যা:</strong> `JLabel` হলো একটি Swing কম্পোনেন্ট যা GUI তে টেক্সট বা ইমেজ প্রদর্শনের জন্য ব্যবহৃত হয়। এটি ব্যবহারকারীর কাছ থেকে ইনপুট নেয় না, শুধু তথ্য দেখায়।</p>
+                <p><strong>সিনট্যাক্স (কিছু কনস্ট্রাক্টর):</strong></p>
+                 <div class="code-container">
+                     <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                     <pre><code class="language-java code-content">
+import javax.swing.*; // Required import
+
+// ... within a class or method ...
+
+// ১. খালি লেবেল
+JLabel label1 = new JLabel();
+
+// ২. টেক্সট সহ লেবেল
+JLabel label2 = new JLabel("Enter your name:");
+
+// ৩. আইকন সহ লেবেল (প্রথমে ImageIcon তৈরি করতে হবে)
+ImageIcon icon = new ImageIcon("path/to/image.png"); // Ensure image exists
+JLabel label3 = new JLabel(icon);
+
+// ৪. টেক্সট ও আইকন সহ লেবেল (এবং Alignment)
+JLabel label4 = new JLabel("Username:", icon, SwingConstants.LEFT); // Text left of icon
+
+// লেবেলের টেক্সট সেট/গেট করা:
+label2.setText("New Text");
+String text = label2.getText();
+                     </code></pre>
+                 </div>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `JLabel` হলো স্ক্রিনে কোনো লেখা বা ছবি দেখানোর একটা স্টিকারের মতো। তুমি এটায় কিছু লিখতে পারবে না, শুধু দেখতে পারবে। যেমন, টেক্সট বক্সের পাশে লেখা থাকে "Name:", ওই লেখাটা দেখানোর জন্য `JLabel` ব্যবহার করা হয়। এটা বানানোর সময় তুমি সরাসরি লেখাটা (`new JLabel("Name:")`) বা একটা ছবি (`new JLabel(myIcon)`) দিতে পারো। পরেও লেখা বদলানো যায় (`setText` দিয়ে)।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার খাতার উপরে যে নাম বা রোল লেখা স্টিকার লাগানো থাকে, সেটাই `JLabel`। ওটায় কিছু লেখা যায় না, শুধু দেখা যায়।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। উদাহরণসহ JButton কম্পোনেন্ট বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ব্যাখ্যা:</strong> `JButton` হলো একটি Swing কম্পোনেন্ট যা একটি স্ট্যান্ডার্ড পুশ বাটন (Push Button) তৈরি করে। ব্যবহারকারী এই বাটনে ক্লিক করে কোনো অ্যাকশন ট্রিগার করতে পারে। বাটনের উপর টেক্সট বা আইকন থাকতে পারে। বাটন ক্লিকের ঘটনা (Action Event) শোনার জন্য সাধারণত ActionListener যোগ করা হয়।</p>
+                <p><strong>উদাহরণ (কোড অংশ):</strong></p>
+                 <div class="code-container">
+                     <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                     <pre><code class="language-java code-content">
+import javax.swing.*;
+import java.awt.event.*; // ActionListener এর জন্য
+
+// ... Frame তৈরির কোড ...
+
+// ১. টেক্সট সহ বাটন তৈরি
+JButton button1 = new JButton("Click Me");
+
+// ২. আইকন সহ বাটন তৈরি (প্রথমে ImageIcon তৈরি করতে হবে)
+// ImageIcon icon = new ImageIcon("icon.png");
+// JButton button2 = new JButton(icon);
+
+// বাটনে ActionListener যোগ করা (ক্লিক করলে কী হবে)
+button1.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        // এই কোডটি বাটন ক্লিক হলে রান করবে
+        System.out.println("Button was clicked!");
+        JOptionPane.showMessageDialog(null, "রিফাত বাটন ক্লিক করেছে!"); // একটি মেসেজ বক্স দেখানো
+    }
+});
+
+// ফ্রেমের কন্টেন্ট প্যানে বাটন যোগ করা
+// frame.getContentPane().add(button1); // Layout Manager অনুযায়ী যোগ হবে
+                     </code></pre>
+                 </div>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `JButton` হলো তোমার অ্যাপ্লিকেশনের ক্লিক করার বাটন। তুমি এটার উপর লেখা ("Submit", "Cancel") বা ছবি দিতে পারো। যখন কেউ বাটনে ক্লিক করে, তখন একটা ঘটনা ঘটে (ActionEvent)। তুমি কোড লিখে বলে দিতে পারো যে ওই ঘটনা ঘটলে কী কাজ হবে (যেমন, "Button was clicked!" লেখা দেখানো বা একটা মেসেজ বক্স দেখানো)। এই কাজটা করার জন্য `ActionListener` ব্যবহার করা হয়। রিফাত একটা "Submit" বাটন বানাতে পারে, আর ফারজানা একটা "Cancel" বাটন।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার খেলনা গাড়ির স্টার্ট বাটনটা হলো `JButton`। ওটাতে চাপ দিলে গাড়ি চলতে শুরু করে (ActionEvent)।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৪। বাটন তৈরির একটি জাভা প্রোগ্রাম লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য (Code):</strong></p>
+                 <div class="code-container">
+                     <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                     <pre><code class="language-java code-content">
+import javax.swing.*;
+import java.awt.FlowLayout; // সিম্পল লেআউটের জন্য
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ButtonDemo {
+    public static void main(String[] args) {
+        // 1. JFrame তৈরি (মূল উইন্ডো)
+        JFrame frame = new JFrame("Button Example");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // বন্ধ করলে যেন প্রোগ্রাম শেষ হয়
+        frame.setSize(300, 150); // উইন্ডোর সাইজ
+        frame.setLayout(new FlowLayout()); // কম্পোনেন্টগুলো পরপর বসবে
+
+        // 2. JButton তৈরি
+        JButton myButton = new JButton("Click Here!");
+
+        // 3. JLabel তৈরি (Optional - ফলাফল দেখানোর জন্য)
+        JLabel statusLabel = new JLabel("Button not clicked yet.");
+
+        // 4. ActionListener যোগ করা
+        myButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // ক্লিক করলে লেবেলের লেখা বদলে যাবে
+                statusLabel.setText("Button was clicked!");
+            }
+        });
+
+        // 5. কম্পোনেন্টগুলো ফ্রেমে যোগ করা
+        frame.add(myButton);
+        frame.add(statusLabel);
+
+        // 6. ফ্রেম দৃশ্যমান করা
+        frame.setVisible(true);
+    }
+}
+                     </code></pre>
+                 </div>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এই প্রোগ্রামটা একটা ছোট উইন্ডো দেখাবে যার টাইটেল "Button Example"। উইন্ডোটার ভেতরে "Click Here!" লেখা একটা বাটন থাকবে আর নিচে একটা লেখা থাকবে "Button not clicked yet."। তুমি যদি বাটনটায় ক্লিক করো, নিচের লেখাটা বদলে গিয়ে "Button was clicked!" হয়ে যাবে। এখানে `JFrame` দিয়ে উইন্ডো, `JButton` দিয়ে বাটন, `JLabel` দিয়ে নিচের লেখাটা দেখানো হয়েছে। বাটনে ক্লিক করলে কী হবে সেটা `ActionListener` দিয়ে ঠিক করা হয়েছে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা বাক্স খোলা হচ্ছে (`JFrame`)। বাক্সের ভেতরে একটা সুইচ (`JButton`) আছে আর একটা লাইট (`JLabel`) আছে (যেটা প্রথমে বন্ধ)। সুইচে চাপ দিলে (`ActionListener`) লাইটটা জ্বলে উঠবে (লেবেলের লেখা বদলে যাবে)।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৫। JComponent ক্লাসের অধীনে ক্লাসগুলোর নাম লেখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> `JComponent` হলো প্রায় সকল Swing কম্পোনেন্টের সুপারক্লাস (ব্যতিক্রম: টপ-লেভেল কন্টেইনার যেমন `JFrame`, `JDialog`)। এর কিছু সাবক্লাস হলো: `JButton`, `JLabel`, `JTextField`, `JTextArea`, `JPanel`, `JCheckBox`, `JRadioButton`, `JComboBox`, `JList`, `JTable`, `JTree`, `JScrollPane`, `JMenuBar` ইত্যাদি।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `JComponent` হলো Swing এর বেশিরভাগ GUI উপাদানের "বাবা"। অনেকগুলো ক্লাস (যেমন বাটন, লেবেল, টেক্সটবক্স, প্যানেল) এই `JComponent` ক্লাস থেকে এসেছে। এর মানে হলো, `JComponent` এর মধ্যে থাকা কিছু কমন বৈশিষ্ট্য (যেমন বর্ডার সেট করা, টুলটিপ দেওয়া) এর সব "সন্তান" ক্লাসগুলোও ব্যবহার করতে পারে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো "খেলনা" (`JComponent`) একটা সাধারণ ক্যাটাগরি। এর অধীনে অনেক রকম খেলনা (`JButton`, `JLabel` ইত্যাদি) আছে। সব খেলনার কিছু কমন বৈশিষ্ট্য থাকে।</p></div>
+        </div>
+
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">৩। জাভা সুইং কম্পোনেন্টসমূহ আলোচনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ভূমিকা:</strong> জাভা Swing বিভিন্ন ধরনের GUI কম্পোনেন্ট সরবরাহ করে যা দিয়ে ইন্টারেক্টিভ ডেক্সটপ অ্যাপ্লিকেশন তৈরি করা যায়। এই কম্পোনেন্টগুলো `javax.swing` প্যাকেজের অংশ এবং বেশিরভাগই `JComponent` ক্লাসের সাবক্লাস। প্রধান কয়েকটি Swing কম্পোনেন্ট নিচে আলোচনা করা হলো:</p>
+                <ol>
+                    <li><strong>কন্টেইনার (Containers):</strong> অন্যান্য কম্পোনেন্ট ধারণ করার জন্য ব্যবহৃত হয়।
+                        <ul>
+                            <li><strong>টপ-লেভেল কন্টেইনার:</strong> `JFrame` (মূল অ্যাপ্লিকেশন উইন্ডো), `JDialog` (ডায়ালগ বক্স), `JApplet` (অ্যাপলেটের জন্য - এখন ব্যবহৃত হয় না), `JWindow` (বর্ডার ছাড়া উইন্ডো)।</li>
+                            <li><strong>ইন্টারমিডিয়েট কন্টেইনার:</strong> `JPanel` (অন্যান্য কম্পোনেন্ট গ্রুপ করার জন্য汎用 প্যানেল), `JScrollPane` (বড় কম্পোনেন্ট স্ক্রল করার সুবিধা দেয়), `JSplitPane` (একটি প্যানকে দুই ভাগে ভাগ করে), `JTabbedPane` (ট্যাব যুক্ত ইন্টারফেস তৈরি করে)।</li>
+                        </ul>
+                    </li>
+                    <li><strong>অ্যাটমিক/বেসিক কম্পোনেন্ট (Atomic/Basic Components):</strong> ব্যবহারকারীর সাথে সরাসরি ইন্টারঅ্যাক্ট করে বা তথ্য প্রদর্শন করে।
+                        <ul>
+                            <li><strong>`JButton`:** ক্লিকযোগ্য পুশ বাটন।</li>
+                            <li><strong>`JLabel`:** টেক্সট বা ইমেজ প্রদর্শনের লেবেল।</li>
+                            <li><strong>`JTextField`:** এক লাইনের টেক্সট ইনপুট নেওয়ার ফিল্ড।</li>
+                            <li><strong>`JPasswordField`:** পাসওয়ার্ড ইনপুটের ফিল্ড (ক্যারেক্টার দেখা যায় না)।</li>
+                            <li><strong>`JTextArea`:** একাধিক লাইনের টেক্সট ইনপুট বা প্রদর্শনের এলাকা।</li>
+                            <li><strong>`JCheckBox`:** একটি অপশন সিলেক্ট বা ডিসিলেক্ট করার চেকবক্স।</li>
+                            <li><strong>`JRadioButton`:**一组 অপশনের মধ্যে একটিকে বেছে নেওয়ার রেডিও বাটন (সাধারণত `ButtonGroup` এর সাথে ব্যবহৃত হয়)।</li>
+                            <li><strong>`JComboBox`:** ড্রপ-ডাউন লিস্ট থেকে আইটেম সিলেক্ট করার কম্বো বক্স।</li>
+                            <li><strong>`JList`:** একটি তালিকা থেকে এক বা একাধিক আইটেম সিলেক্ট করার লিস্ট।</li>
+                            <li><strong>`JSlider`:** একটি নির্দিষ্ট রেঞ্জের মধ্যে মান সিলেক্ট করার স্লাইডার।</li>
+                            <li><strong>`JProgressBar`:** কোনো কাজের অগ্রগতি দেখানোর প্রোগ্রেস বার।</li>
+                            <li><strong>`JSpinner`:** সংখ্যা বা তারিখের মান সহজে বাড়ানো বা কমানোর স্পিনার।</li>
+                        </ul>
+                    </li>
+                    <li><strong>মেনু সম্পর্কিত কম্পোনেন্ট (Menu Components):</strong> মেনুবার ও মেনু তৈরি করতে ব্যবহৃত হয়।
+                        <ul>
+                            <li><strong>`JMenuBar`:** উইন্ডোর উপরে মেনুবার ধারণ করে।</li>
+                            <li><strong>`JMenu`:** মেনুবারের একটি মেনু (যেমন: File, Edit)।</li>
+                            <li><strong>`JMenuItem`:** মেনুর ভেতরের ক্লিকযোগ্য আইটেম।</li>
+                            <li><strong>`JCheckBoxMenuItem` / `JRadioButtonMenuItem`:** মেনুর ভেতরে চেকবক্স বা রেডিও বাটন আইটেম।</li>
+                        </ul>
+                    </li>
+                    <li><strong>অন্যান্য:</strong>
+                        <ul>
+                            <li><strong>`JTable`:** টেবুলার ডেটা দেখানোর জন্য।</li>
+                            <li><strong>`JTree`:** হায়ারারকিক্যাল ডেটা (ট্রি স্ট্রাকচার) দেখানোর জন্য।</li>
+                            <li><strong>`JColorChooser` / `JFileChooser`:** কালার বা ফাইল সিলেক্ট করার ডায়ালগ।</li>
+                            <li><strong>`JOptionPane`:** স্ট্যান্ডার্ড মেসেজ বক্স, ইনপুট ডায়ালগ দেখানোর সহজ উপায়।</li>
+                        </ul>
+                    </li>
+                </ol>
+                <p>এই কম্পোনেন্টগুলো ব্যবহার করে এবং লেআউট ম্যানেজার (`FlowLayout`, `BorderLayout`, `GridLayout` ইত্যাদি) দিয়ে সাজিয়ে বিভিন্ন জটিল ও ব্যবহারকারী-বান্ধব GUI তৈরি করা সম্ভব হয়।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Swing এ অনেক রকম GUI পার্টস বা কম্পোনেন্ট আছে। এগুলোকে কয়েকটা গ্রুপে ভাগ করা যায়:<ul><li><strong>কন্টেইনার:</strong> যারা অন্য জিনিসকে ধরে রাখে। যেমন: `JFrame` (মূল জানালা), `JPanel` (ছোট বাক্স যার ভেতর অন্য জিনিস রাখা যায়)।</li><li><strong>ছোট পার্টস:</strong> যেগুলো দিয়ে সরাসরি কাজ করা হয়। যেমন: `JButton` (ক্লিক করার বাটন), `JLabel` (লেখা দেখানোর স্টিকার), `JTextField` (লেখার জায়গা), `JCheckBox` (টিক দেওয়ার বক্স), `JRadioButton` (কয়েকটার মধ্যে একটা বাছার বাটন), `JComboBox` (লিস্ট থেকে বাছার বক্স)।</li><li><strong>মেনু:</strong> অ্যাপের উপরে File, Edit মেনু বানানোর জন্য (`JMenuBar`, `JMenu`, `JMenuItem`)।</li><li><strong>অন্যান্য:</strong> টেবিল দেখানো (`JTable`), ফাইল ফোল্ডার দেখানো (`JTree`), ফাইল বা কালার পছন্দ করার বক্স (`JFileChooser`, `JColorChooser`), মেসেজ দেখানো (`JOptionPane`)।</li></ul>এই সব পার্টস জুড়েই রিফাত বা ফারজানা তাদের সফটওয়্যারের ইন্টারফেস বানাতে পারে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা ড্রইং সেট এর মতো। এতে আছে: বড় কাগজ (`JFrame`), ছোট কাগজ (`JPanel`), বাটন (`JButton`), লেখার জায়গা (`JTextField`), রং (`JLabel`), মেনু বানানোর স্কেল (`JMenuBar`, `JMenu`) ইত্যাদি। এগুলো ব্যবহার করে তুমি তোমার মনের মতো ছবি (অ্যাপ) আঁকতে পারো।</p></div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">৪। জাভা সুইং এ ব্যবহৃত প্যাকেজসমূহ বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ভূমিকা:</strong> জাভা Swing এর ক্লাস এবং ইন্টারফেসগুলো বিভিন্ন প্যাকেজে সংগঠিত করা হয়েছে, যার মূল প্যাকেজ হলো `javax.swing`। কাজের ধরণ অনুযায়ী বিভিন্ন সাব-প্যাকেজও রয়েছে। প্রধান কয়েকটি প্যাকেজ হলো:</p>
+                <ol>
+                    <li><strong>`javax.swing`:** এটি Swing এর মূল প্যাকেজ। এর মধ্যে বেশিরভাগ মৌলিক GUI কম্পোনেন্ট (যেমন `JButton`, `JFrame`, `JLabel`, `JTextField`, `JPanel`, `JComponent` ইত্যাদি), লেআউট ম্যানেজার সম্পর্কিত ক্লাস, এবং অন্যান্য কোর Swing ক্লাস ও ইন্টারফেস থাকে। GUI তৈরির জন্য এই প্যাকেজটি সবচেয়ে বেশি ব্যবহৃত হয়।</li>
+                    <li><strong>`javax.swing.event`:** Swing কম্পোনেন্টগুলোর দ্বারা তৈরি হওয়া বিভিন্ন ইভেন্ট (যেমন বাটন ক্লিক, লিস্ট সিলেকশন) এবং সেই ইভেন্টগুলো শোনার জন্য লিসেনার ইন্টারফেসগুলো (যেমন `ActionListener`, `ChangeListener`, `ListSelectionListener`) এই প্যাকেজে থাকে। ইভেন্ট-ড্রিভেন প্রোগ্রামিংয়ের জন্য এটি অপরিহার্য।</li>
+                    <li><strong>`javax.swing.border`:** Swing কম্পোনেন্টগুলোর চারপাশে বিভিন্ন ধরনের বর্ডার (যেমন লাইন বর্ডার, টাইটেল বর্ডার) তৈরি ও প্রয়োগ করার জন্য ক্লাস ও ইন্টারফেসগুলো এই প্যাকেজে পাওয়া যায়।</li>
+                    <li><strong>`javax.swing.table`:** `JTable` কম্পোনেন্ট ব্যবহার করে টেবুলার ডেটা প্রদর্শন ও সম্পাদনা করার জন্য প্রয়োজনীয় ক্লাস ও ইন্টারফেস (যেমন `TableModel`, `TableCellRenderer`, `DefaultTableModel`) এই প্যাকেজে থাকে।</li>
+                    <li><strong>`javax.swing.tree`:** `JTree` কম্পোনেন্ট ব্যবহার করে হায়ারারকিক্যাল ডেটা প্রদর্শন ও সম্পাদনা করার জন্য প্রয়োজনীয় ক্লাস ও ইন্টারফেস (যেমন `TreeModel`, `TreeNode`, `DefaultTreeModel`) এই প্যাকেজে থাকে।</li>
+                    <li><strong>`javax.swing.plaf` (Pluggable Look and Feel):** Swing অ্যাপ্লিকেশনগুলোর চেহারা ও আচরণ (Look and Feel - LAF) পরিবর্তন করার জন্য ক্লাস ও ইন্টারফেসগুলো এখানে থাকে। এর মাধ্যমে অ্যাপ্লিকেশনকে Windows, Motif, Metal বা অন্যান্য LAF অনুযায়ী দেখানো যায়।</li>
+                    <li><strong>`javax.swing.text`:** টেক্সট কম্পোনেন্ট (`JTextField`, `JTextArea` ইত্যাদি) গুলোর ডকুমেন্ট মডেল, এডিটিং, ফরম্যাটিং এবং ভিউ সম্পর্কিত ক্লাস ও ইন্টারফেসগুলো এই প্যাকেজে থাকে।</li>
+                </ol>
+                <p>এই প্যাকেজগুলো ইম্পোর্ট করে প্রোগ্রামাররা Swing এর বিভিন্ন সুবিধা ব্যবহার করে গ্রাফিক্যাল অ্যাপ্লিকেশন তৈরি করতে পারেন।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Swing এর সব যন্ত্রপাতি একটা বড় বাক্সে (`javax.swing`) রাখা থাকলেও, সেগুলোকে আবার কাজের ধরণ অনুযায়ী ছোট ছোট ড্রয়ারে ভাগ করা আছে। যেমন:<ul><li>`javax.swing`: মূল যন্ত্রপাতি (বাটন, লেবেল, ফ্রেম)।</li><li>`javax.swing.event`: বাটন চাপলে কী হবে বা লিস্ট থেকে কিছু বাছলে কী হবে – সেইসব শোনার যন্ত্রপাতি।</li><li>`javax.swing.border`: কম্পোনেন্টের চারপাশে ফ্রেম বা বর্ডার দেওয়ার জিনিসপত্র।</li><li>`javax.swing.table`: টেবিল বানানোর যন্ত্রপাতি।</li><li>`javax.swing.tree`: গাছের ডালপালার মতো লিস্ট বানানোর যন্ত্রপাতি।</li><li>`javax.swing.plaf`: অ্যাপের চেহারা বদলানোর (যেমন Windows এর মতো বা Mac এর মতো দেখতে করা) যন্ত্রপাতি।</li><li>`javax.swing.text`: লেখার বক্সের ভেতরের কাজকর্ম সামলানোর যন্ত্রপাতি।</li></ul>রিফাত যখন GUI বানাবে, তার কোন কাজের জন্য কোন ড্রয়ারের জিনিস লাগবে, সেই অনুযায়ী প্যাকেজ `import` করতে হবে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার খেলনার বিশাল বাক্সের ভেতর আলাদা ছোট বাক্স: এক বাক্সে শুধু গাড়ি (`javax.swing`), আরেক বাক্সে গাড়ির চাকা-ইঞ্জিন (`javax.swing.event`), আরেক বাক্সে গাড়ির রঙ (`javax.swing.plaf`), আরেক বাক্সে রাস্তা বানানোর ব্লক (`javax.swing.table`) ইত্যাদি।</p></div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>অ্যাপ্লিকেশন ডেভেলপমেন্ট ইউজিং জাভা - স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true} ], throwOnError: false });"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="main_script.js" defer></script>
+
+</body>
+</html>

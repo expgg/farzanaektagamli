@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৪: প্রসেস ম্যানেজমেন্ট এবং থ্রেড</title>
+    <link rel="stylesheet" href="os_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k55gMp/InvxBM1Mty9rgRDIJNu38mMhftBPqzhAXSDdy92HjL4IFNfey" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1MZu6ADomyXk8EogbLDBsPU5rkXF/dtZZxL1Pceg6x" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouEs/BHtTcWgwPkMAVEABrHI+WGBmvygAodXElARTYHD" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৪: প্রসেস ম্যানেজমেন্ট এবং থ্রেড</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">
+            </button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। প্রসেস কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রসেস হলো একটি প্রোগ্রাম যা বর্তমানে এক্সিকিউশন বা চালনারত অবস্থায় আছে। এটি একটি সক্রিয় (Active) সত্তা যা প্রোগ্রাম কোড, বর্তমান অ্যাক্টিভিটি (প্রোগ্রাম কাউন্টার ও রেজিস্টারের মান দ্বারা নির্ধারিত) এবং সংশ্লিষ্ট রিসোর্স (যেমন: মেমরি স্পেস, ফাইল হ্যান্ডেল) ধারণ করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কম্পিউটারে যখন কোনো প্রোগ্রাম (যেমন: ওয়ার্ড, ক্রোম ব্রাউজার) চালু থাকে বা চলতে থাকে, তখন সেই চলমান প্রোগ্রামটাকেই প্রসেস বলে। প্রোগ্রাম হলো হার্ডডিস্কে থাকা ফাইল, আর প্রসেস হলো সেই ফাইলটা যখন র‍্যামে লোড হয়ে চলতে শুরু করে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> রান্নার রেসিপিটা হলো প্রোগ্রাম। আর সেই রেসিপি দেখে রান্না করার যে কাজটা চলছে, সেটাই হলো প্রসেস।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">২। Process-এর state-গুলোর নাম লেখ।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি প্রসেসের জীবনচক্রে প্রধানত পাঁচটি অবস্থা বা স্টেট (State) থাকে: নতুন (New), রেডি (Ready), রানিং (Running), ওয়েটিং বা ব্লকড (Waiting/Blocked), এবং টার্মিনেটেড বা এক্সিট (Terminated/Exit)।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> একটা প্রোগ্রাম যখন চলে (প্রসেস), তখন সে কয়েকটা দশার মধ্যে দিয়ে যায়: তৈরি হচ্ছে (New), চলার জন্য তৈরি কিন্তু CPU খালি নেই (Ready), চলছে (Running), কোনো কিছুর জন্য অপেক্ষা করছে যেমন ইনপুট/আউটপুট (Waiting), আর কাজ শেষ (Terminated)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> দৌড় প্রতিযোগিতার মতো: দৌড়ানোর জন্য নাম লেখাচ্ছে (New), লাইনে দাঁড়িয়ে আছে দৌড় শুরু করার জন্য (Ready), দৌড়াচ্ছে (Running), পানি খাওয়ার জন্য বা জুতার ফিতা বাঁধার জন্য থেমেছে (Waiting), দৌড় শেষ (Terminated)।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৩। Process-এর state diagram আঁক।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রসেসের বিভিন্ন অবস্থার মধ্যে স্থানান্তর বা ট্রানজিশন একটি স্টেট ডায়াগ্রামের মাধ্যমে দেখানো যায়:</p>
+                 <pre><code>
+       +-------+     Admitted     +-------+      Dispatch     +---------+
+    -->|  New  |--------------->| Ready |---------------->| Running |-------> (Exit) --> [ Terminated ]
+       +-------+                 +---+---+       Timer Exp./  +----+----+
+                                     ^   |       Interrupt       |    | Interrupt
+                                     |   |                       |    |/ I/O or Event Wait
+                         I/O or Event  |                       |    V
+                         Completion    |      +---------+      |
+                                     +------| Waiting |<-----+
+                                            +---------+
+                 </code></pre>
+                 <p><em>(এই ডায়াগ্রামটি বিভিন্ন অবস্থা এবং তাদের মধ্যে সম্ভাব্য স্থানান্তরগুলো দেখায়)</em></p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> উপরের ছবিটা দেখাচ্ছে একটা প্রসেস কীভাবে এক অবস্থা থেকে আরেক অবস্থায় যায়। যেমন: New থেকে Ready তে যায়, Ready থেকে Running এ যায়। Running থেকে কাজ শেষ হলে Terminated হয়, অথবা টাইম শেষ হলে আবার Ready তে যায়, অথবা কোনো I/O এর জন্য Waiting এ যায়। Waiting থেকে আবার Ready তে ফেরে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> দৌড়ানোর ডায়াগ্রাম: নাম লেখানো (New) -> দৌড়ের লাইনে দাঁড়ানো (Ready) -> দৌড়ানো (Running)। দৌড়াতে দৌড়াতে -> ফিনিশ লাইনে পৌঁছানো (Terminated); অথবা একটু বিশ্রাম নেওয়া (Waiting); অথবা সময় শেষ হলে আবার লাইনে দাঁড়ানো (Ready)। বিশ্রাম শেষ হলে আবার লাইনে দাঁড়ানো (Waiting -> Ready)।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। সিডিউলার কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> সিডিউলার (Scheduler) হলো অপারেটিং সিস্টেমের একটি অংশ যা সিদ্ধান্ত নেয় কোন প্রসেসটি পরবর্তী ধাপে এক্সিকিউশনের জন্য সিপিইউ (CPU) তে বরাদ্দ করা হবে। এটি বিভিন্ন সিডিউলিং অ্যালগরিদম ব্যবহার করে রেডি কিউ থেকে প্রসেস নির্বাচন করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সিডিউলার হলো OS এর সেই অংশ যে ঠিক করে দেয়, অনেকগুলো প্রোগ্রাম চলার জন্য লাইনে দাঁড়িয়ে থাকলে (রেডি কিউতে থাকলে), তাদের মধ্যে কোনটা এখন CPU ব্যবহার করার সুযোগ পাবে। অনেকটা ট্র্যাফিক পুলিশের মতো যে ঠিক করে কোন গাড়িটা এখন যাবে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> ক্লাসের মনিটর যেমন ঠিক করে দেয় কে আগে কথা বলবে বা কে বোর্ডের কাছে যাবে, সিডিউলারও তেমনি ঠিক করে দেয় কোন প্রোগ্রামটা এখন চলবে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৫। Process control-এর প্রয়োজনীয়তা কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রসেস কন্ট্রোলের প্রয়োজনীয়তা হলো অপারেটিং সিস্টেম কর্তৃক প্রসেসগুলোর তৈরি, ব্যবস্থাপনা, সিডিউলিং, সিনক্রোনাইজেশন, পারস্পরিক যোগাযোগ এবং সমাপ্তি সঠিকভাবে নিয়ন্ত্রণ করা। এটি সিস্টেম রিসোর্সের কার্যকর ব্যবহার নিশ্চিত করে, প্রসেসগুলোর মধ্যে নিরাপত্তা বজায় রাখে এবং একটি স্থিতিশীল কম্পিউটিং পরিবেশ তৈরি করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কম্পিউটারে একসাথে অনেক প্রসেস চলে। কোনটা কখন শুরু হবে, কোনটা কখন শেষ হবে, কে কার সাথে কথা বলবে, কে কোন রিসোর্স ব্যবহার করবে – এই সব কিছু কন্ট্রোল করা দরকার, নাহলে সিস্টেম হ্যাং করবে বা ক্র্যাশ করবে। এই কন্ট্রোল করার কাজটাই প্রসেস কন্ট্রোল, যা OS করে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> খেলার মাঠে অনেকগুলো টিম খেললে যেমন একজন পরিচালক বা রেফারি দরকার হয় খেলাটা ঠিকমতো চালানোর জন্য, তেমনি কম্পিউটারে অনেকগুলো প্রসেস চালাতেও OS এর কন্ট্রোল দরকার হয়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৬। Program-এর সংজ্ঞা লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রোগ্রাম হলো কোনো একটি নির্দিষ্ট কাজ সম্পাদনের উদ্দেশ্যে লেখা এক সেট সুবিন্যস্ত নির্দেশনা বা ইন্সট্রাকশন যা একটি প্রোগ্রামিং ভাষায় লেখা হয়। এটি একটি নিষ্ক্রিয় (Passive) সত্তা, যা সাধারণত ডিস্ক বা অন্য কোনো স্টোরেজ মিডিয়ামে ফাইল হিসেবে সংরক্ষিত থাকে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> প্রোগ্রাম হলো কম্পিউটারের জন্য লেখা কিছু নির্দেশের তালিকা, যা কোনো একটা কাজ করতে পারে (যেমন: লেখালেখি করা, ছবি আঁকা, হিসাব করা)। এটা হার্ডডিস্কে একটা ফাইলের মতো পড়ে থাকে, যতক্ষণ না তুমি ওটা চালাচ্ছ।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> রান্নার রেসিপি বইতে লেখা রেসিপিটা হলো একটা প্রোগ্রাম। এটা শুধু কিছু নির্দেশ, নিজে নিজে কিছু করে না।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৭। Ready state-এর কাজ কী?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রসেসের রেডি স্টেট (Ready state) নির্দেশ করে যে প্রসেসটি এক্সিকিউশনের জন্য সম্পূর্ণ প্রস্তুত এবং প্রয়োজনীয় সকল রিসোর্স (মেমরি সহ) পেয়েছে, শুধুমাত্র সিপিইউ বরাদ্দের জন্য অপেক্ষা করছে। অপারেটিং সিস্টেমের সিডিউলার রেডি কিউতে থাকা প্রসেসগুলো থেকে একটিকে নির্বাচন করে রানিং স্টেটে পাঠায়।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রেডি স্টেট মানে হলো প্রসেসটা চলার জন্য একদম তৈরি, কিন্তু সিপিইউ এখন অন্য কাজে ব্যস্ত। সিপিইউ ফ্রি হলেই সিডিউলার এই রেডি থাকা প্রসেসগুলোর একটাকে বেছে নিয়ে চালাবে। এরা সবাই লাইনে দাঁড়িয়ে আছে চলার জন্য।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> দৌড় প্রতিযোগিতায় দৌড়ানোর জন্য স্টার্টিং লাইনে প্রস্তুত হয়ে দাঁড়িয়ে থাকা অবস্থাটাই হলো রেডি স্টেট। বাঁশি বাজলেই (CPU পেলেই) দৌড় শুরু করবে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৮। Multiprogramming বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> মাল্টিপ্রোগ্রামিং হলো একটি অপারেটিং সিস্টেম কৌশল যেখানে একই সময়ে কম্পিউটারের প্রধান মেমরিতে একাধিক প্রোগ্রাম বা প্রসেস লোড করে রাখা হয়। যখন একটি প্রসেস কোনো ইনপুট/আউটপুট অপারেশনের জন্য অপেক্ষা করে, তখন সিপিইউ অলস বসে না থেকে মেমরিতে থাকা অন্য একটি রেডি প্রসেসকে এক্সিকিউট করতে শুরু করে। এর মূল উদ্দেশ্য হলো সিপিইউ এবং অন্যান্য সিস্টেম রিসোর্সের ব্যবহার বা ইউটিলাইজেশন বৃদ্ধি করা।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> মাল্টিপ্রোগ্রামিং মানে হলো কম্পিউটারের র‍্যামে একসাথে অনেকগুলো প্রোগ্রাম লোড করে রাখা। যখন একটা প্রোগ্রাম কোনো কারণে অপেক্ষা করে (যেমন প্রিন্ট হওয়ার জন্য), তখন সিপিইউ সেই ফাঁকে অন্য একটা প্রোগ্রাম চালাতে শুরু করে। এতে সিপিইউ বেশিরভাগ সময় ব্যস্ত থাকে, কাজ দ্রুত হয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো রিফাত একসাথে দুটো কাজ করছে – অংক কষছে আর গল্পের বই পড়ছে। যখন অংক করতে গিয়ে কলম খুঁজছে (অপেক্ষা করছে), সেই ফাঁকে সে গল্পের বইয়ের দুই লাইন পড়ে নিচ্ছে। এটাই মাল্টিপ্রোগ্রামিংয়ের মতো – এক কাজ থামলে অন্য কাজ করা।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৯। Process scheduling বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রসেস সিডিউলিং হলো অপারেটিং সিস্টেমের একটি মৌলিক কাজ, যার মাধ্যমে মাল্টিপ্রোগ্রামিং পরিবেশে রেডি কিউতে থাকা একাধিক প্রসেসের মধ্যে থেকে কোন প্রসেসটি পরবর্তী ধাপে সিপিইউতে এক্সিকিউশনের জন্য বরাদ্দ পাবে, তা নির্ধারণ করা হয়। এই কাজটি শর্ট-টার্ম সিডিউলার বা সিপিইউ সিডিউলার দ্বারা সম্পাদিত হয় এবং এর লক্ষ্য হলো সিপিইউর কার্যকর ব্যবহার, থ্রুপুট বৃদ্ধি, টার্নঅ্যারাউন্ড টাইম কমানো ইত্যাদি।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> যখন অনেকগুলো প্রোগ্রাম একসাথে চলার জন্য তৈরি থাকে (রেডি থাকে), তখন তাদের মধ্যে কাকে আগে সিপিইউ ব্যবহার করতে দেওয়া হবে, আর কাকে পরে, এই সিদ্ধান্ত নেওয়ার প্রক্রিয়াটাই হলো প্রসেস সিডিউলিং। OS এর সিডিউলার এই কাজটা করে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> ক্লাসে অনেক ছাত্র টিচারের কাছে কিছু দেখাতে চায়। টিচার ঠিক করে দেন কে আগে আসবে, কে পরে। এই வரிசை ঠিক করাটাই প্রসেস সিডিউলিং।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১০। কয়েকটি সিডিউলিং Algorithm-এর নাম লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> কয়েকটি প্রচলিত প্রসেস সিডিউলিং অ্যালগরিদম হলো:</p>
+                <ol>
+                    <li>FCFS (First-Come, First-Served)</li>
+                    <li>SJF (Shortest Job First) - Preemptive and Non-preemptive</li>
+                    <li>Priority Scheduling - Preemptive and Non-preemptive</li>
+                    <li>Round Robin (RR)</li>
+                    <li>Multilevel Queue Scheduling</li>
+                    <li>Multilevel Feedback Queue Scheduling</li>
+                </ol>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কোন প্রসেস আগে চলবে, সেটা ঠিক করার জন্য OS অনেক রকম নিয়ম বা অ্যালগরিদম ব্যবহার করে। যেমন: যে আগে এসেছে সে আগে (FCFS), যার কাজ সবচেয়ে ছোট সে আগে (SJF), যার প্রায়োরিটি বেশি সে আগে (Priority), সবাই অল্প অল্প করে সময় পাবে (Round Robin) ইত্যাদি।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> টিচার ছাত্রদের ডাকার জন্য বিভিন্ন নিয়ম ব্যবহার করতে পারেন: যে আগে হাত তুলেছে সে আগে (FCFS), যার প্রশ্ন সবচেয়ে ছোট সে আগে (SJF), যাকে টিচার বেশি দরকারি মনে করেন সে আগে (Priority), বা সবাইকে ২ মিনিট করে সময় দেবেন (Round Robin)।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">১১। Thread কী?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> থ্রেড (Thread) হলো একটি প্রসেসের মধ্যে এক্সিকিউশনের একটি একক, অনুক্রমিক প্রবাহ (Single sequential flow of execution)। এটি একটি প্রসেসের ক্ষুদ্রতম অংশ যা সিপিইউতে স্বাধীনভাবে সিডিউলড হতে পারে। একটি প্রসেসের মধ্যে এক বা একাধিক থ্রেড থাকতে পারে, যারা প্রসেসের কোড সেকশন, ডেটা সেকশন এবং অপারেটিং সিস্টেম রিসোর্স (যেমন: ফাইল হ্যান্ডেল) শেয়ার করে, কিন্তু প্রত্যেকের নিজস্ব প্রোগ্রাম কাউন্টার, রেজিস্টার সেট এবং স্ট্যাক থাকে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> থ্রেড হলো একটা বড় কাজের (প্রসেস) ভেতরের ছোট ছোট অংশ যা আলাদাভাবে চলতে পারে। যেমন, একটা ওয়ার্ড প্রসেসর (প্রসেস) চলার সময়, একটা থ্রেড হয়তো তোমার টাইপিং নিচ্ছে, আরেকটা থ্রেড বানান চেক করছে, আরেকটা থ্রেড অটো-সেভ করছে। এরা সবাই একই প্রোগ্রামের অংশ এবং মেমরি শেয়ার করে, কিন্তু নিজেরা আলাদা আলাদা কাজ করে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো একটা রেস্টুরেন্টে রান্না করা (প্রসেস) একটা বড় কাজ। এই কাজের ছোট ছোট অংশ হলো: সবজি কাটা, মশলা বাটা, চুলায় বসানো – এগুলো প্রত্যেকটা এক একটা থ্রেড। এরা সবাই মিলে রান্নাটা সম্পন্ন করে।</p>
+            </div>
+        </div>
+
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্নঃ</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। শিডিউলারের কার্যক্রমের ফাংশন কয়টি ও কী কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> অপারেটিং সিস্টেমের সিডিউলিং কার্যক্রম সাধারণত তিনটি স্তরে বা ফাংশনের মাধ্যমে সম্পন্ন হয়:</p>
+                 <ol>
+                     <li><strong>লং-টার্ম সিডিউলার (Long-Term Scheduler) বা জব সিডিউলার:</strong> এটি ডিস্কে থাকা জব পুল থেকে কোন প্রসেসগুলোকে প্রধান মেমরিতে লোড করে রেডি কিউতে অন্তর্ভুক্ত করা হবে তা নির্ধারণ করে।</li>
+                     <li><strong>শর্ট-টার্ম সিডিউলার (Short-Term Scheduler) বা সিপিইউ সিডিউলার:</strong> এটি রেডি কিউতে থাকা প্রসেসগুলোর মধ্য থেকে কোন প্রসেসটি পরবর্তী ধাপে সিপিইউতে এক্সিকিউশনের জন্য বরাদ্দ পাবে তা খুব দ্রুত নির্বাচন করে।</li>
+                     <li><strong>মিডিয়াম-টার্ম সিডিউলার (Medium-Term Scheduler) (ঐচ্ছিক):</strong> এটি মেমরি থেকে প্রসেসকে সাময়িকভাবে সরিয়ে (Swap out) ডিস্কে নিয়ে যেতে পারে এবং পরে আবার মেমরিতে ফিরিয়ে আনতে (Swap in) পারে।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সিডিউলারের মূলত তিন ধরনের কাজ বা প্রকার আছে:</p>
+                 <ul>
+                     <li><strong>লং-টার্ম:</strong> গেটকিপার - অনেকগুলো কাজের মধ্যে থেকে কোন কাজগুলো কম্পিউটারের ভেতরে ঢুকবে (র‍্যামে আসবে) সেটা ঠিক করে।</li>
+                     <li><strong>শর্ট-টার্ম:</strong> ট্র্যাফিক পুলিশ - যারা ভেতরে ঢোকার পর চলার জন্য রেডি, তাদের মধ্যে কে এখন সিপিইউ পাবে সেটা ঠিক করে। এটা খুব দ্রুত কাজ করে।</li>
+                     <li><strong>মিডিয়াম-টার্ম:</strong> দারোয়ান - কোনো প্রসেসকে যদি অনেকক্ষণ ধরে অপেক্ষা করতে হয়, তাকে মেমরি থেকে বের করে দিয়ে পরে আবার ঢোকাতে পারে।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> ইউনিভার্সিটিতে ভর্তির মতো:</p>
+                 <ul>
+                     <li><strong>লং-টার্ম:</strong> ভর্তি কমিটি ঠিক করে কোন ছাত্ররা ভর্তি হতে পারবে।</li>
+                     <li><strong>শর্ট-টার্ম:</strong> রুটিন কমিটি ঠিক করে কোন ক্লাসটা এখন হবে।</li>
+                     <li><strong>মিডিয়াম-টার্ম:</strong> কোনো ছাত্র যদি লম্বা ছুটিতে যায়, তার সিটটা অন্য কাউকে দিয়ে দেওয়া, সে ফিরে এলে আবার ব্যবস্থা করা।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। একটি প্রসেস-এর অবস্থাগুলো বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি প্রসেস তার জীবনচক্রে বিভিন্ন অবস্থার মধ্য দিয়ে যায়। প্রধান অবস্থাগুলো হলো:</p>
+                <ol>
+                    <li><strong>নতুন (New):</strong> প্রসেসটি তৈরি হচ্ছে বা তৈরি হয়েছে কিন্তু এখনও এক্সিকিউশনের জন্য OS কর্তৃক অনুমোদিত হয়নি।</li>
+                    <li><strong>রেডি (Ready):</strong> প্রসেসটি এক্সিকিউশনের জন্য প্রস্তুত এবং সিপিইউ বরাদ্দের জন্য অপেক্ষা করছে।</li>
+                    <li><strong>রানিং (Running):</strong> প্রসেসটির ইন্সট্রাকশনগুলো বর্তমানে সিপিইউতে এক্সিকিউট হচ্ছে।</li>
+                    <li><strong>ওয়েটিং (Waiting) বা ব্লকড (Blocked):** প্রসেসটি কোনো একটি ইভেন্ট (যেমন: I/O) ঘটার জন্য অপেক্ষা করছে।</li>
+                    <li><strong>টার্মিনেটেড (Terminated) বা এক্সিট (Exit):** প্রসেসটির এক্সিকিউশন সম্পন্ন হয়েছে।</li>
+                </ol>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> একটা চলমান প্রোগ্রাম (প্রসেস) কয়েকটা অবস্থায় থাকতে পারে:</p>
+                <ul>
+                    <li><strong>New:</strong> প্রোগ্রামটা মাত্র চালু হচ্ছে।</li>
+                    <li><strong>Ready:</strong> চলার জন্য একদম তৈরি, শুধু CPU র জন্য লাইনে দাঁড়িয়ে আছে।</li>
+                    <li><strong>Running:</strong> এখন CPU তে চলছে।</li>
+                    <li><strong>Waiting:</strong> কোনো কিছুর জন্য অপেক্ষা করছে (যেমন: প্রিন্ট শেষ হওয়ার জন্য)।</li>
+                    <li><strong>Terminated:</strong> কাজ শেষ, বন্ধ হয়ে গেছে।</li>
+                </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> রিফাত স্কুলের জন্য রেডি হচ্ছে:</p>
+                 <ul>
+                     <li>ঘুম থেকে ওঠা (New)।</li>
+                     <li>ব্যাগ গুছিয়ে স্কুলের গাড়ির জন্য অপেক্ষা করা (Ready)।</li>
+                     <li>স্কুলের গাড়িতে করে স্কুলে যাওয়া (Running)।</li>
+                     <li>জ্যামে গাড়ি আটকে থাকা (Waiting)।</li>
+                     <li>স্কুলে পৌঁছানো (Terminated)।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৩। Process এবং Program এর পার্থক্য লেখ।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রসেস এবং প্রোগ্রামের মধ্যে মূল পার্থক্যগুলো হলো:</p>
+                 <ul>
+                     <li><strong>সংজ্ঞা:</strong> প্রোগ্রাম হলো ডিস্কে সংরক্ষিত এক সেট ইন্সট্রাকশন (ফাইল)। প্রসেস হলো একটি প্রোগ্রাম যা এক্সিকিউশনরত অবস্থায় আছে।</li>
+                     <li><strong>সত্তা (Entity):</strong> প্রোগ্রাম নিষ্ক্রিয় (Passive)। প্রসেস সক্রিয় (Active)।</li>
+                     <li><strong>অবস্থান:</strong> প্রোগ্রাম সেকেন্ডারি স্টোরেজে থাকে। প্রসেস প্রধান মেমরিতে লোড হয়।</li>
+                     <li><strong>রিসোর্স:</strong> প্রোগ্রামের রিসোর্স লাগে না। প্রসেসের সিপিইউ টাইম, মেমরি, ফাইল ইত্যাদি রিসোর্স লাগে।</li>
+                     <li><strong>জীবনকাল (Lifespan):</strong> প্রোগ্রামের জীবনকাল দীর্ঘ। প্রসেসের জীবনকাল সীমিত।</li>
+                     <li><strong>অবস্থা (State):</strong> প্রোগ্রামের অবস্থা নেই। প্রসেসের বিভিন্ন অবস্থা (New, Ready, Running...) থাকে।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>প্রোগ্রাম: কম্পিউটারে সেভ করা অ্যাপ বা সফটওয়্যার ফাইলটা (যেমন vlc.exe)। এটা নিজে চলে না।</li>
+                     <li>প্রসেস: ওই প্রোগ্রামটা যখন তুমি ডাবল ক্লিক করে চালু করো, তখন সেটা র‍্যামে আসে আর চলতে শুরু করে – এই চলমান অবস্থাটাই প্রসেস।</li>
+                     <li>প্রোগ্রাম হলো রেসিপি, প্রসেস হলো রান্না করা।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>প্রোগ্রাম: তোমার খেলনাটা বাক্সে রাখা আছে।</li>
+                     <li>প্রসেস: তুমি খেলনাটা বাক্স থেকে বের করে খেলছো।</li>
+                     <li>বাক্সবন্দী খেলনা (প্রোগ্রাম) কিছু করে না, কিন্তু যখন তুমি খেলছো (প্রসেস), তখন সেটা চলছে বা কাজ করছে।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৪। Race condition বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> রেস কন্ডিশন হলো মাল্টিপ্রোগ্রামিং বা মাল্টিথ্রেডিং পরিবেশে উদ্ভূত একটি সমস্যা যেখানে দুই বা ততোধিক প্রসেস বা থ্রেড একই শেয়ারড্ ডেটা বা রিসোর্স প্রায় একই সময়ে অ্যাক্সেস বা পরিবর্তন করার চেষ্টা করে এবং অপারেশনের চূড়ান্ত ফলাফল নির্ভর করে প্রসেস বা থ্রেডগুলো ঠিক কোন ক্রমে এক্সিকিউট হলো তার উপর। এই অনিয়ন্ত্রিত ক্রমের কারণে অপ্রত্যাশিত বা ভুল ফলাফল আসতে পারে। ক্রিটিক্যাল সেকশন (Critical Section) এর অ্যাক্সেস নিয়ন্ত্রণের জন্য সিনক্রোনাইজেশন মেকানিজম ব্যবহার করে রেস কন্ডিশন প্রতিহত করা হয়।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> যখন একাধিক প্রোগ্রাম বা থ্রেড একই সময়ে একটা مشترک জিনিস (যেমন একটা ভ্যারিয়েবল বা ফাইল) ব্যবহার বা বদলানোর চেষ্টা করে, তখন কে আগে করবে আর কে পরে করবে তার উপর রেজাল্টটা বদলে যেতে পারে। এই অবস্থাকে রেস কন্ডিশন বলে, কারণ প্রসেসগুলো যেন রেস করছে কে আগে কাজটা শেষ করবে। এর ফলে হিসাবে গড়মিল হতে পারে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো রিফাত আর তুমি দুজনই একটা সাদা বোর্ডের একই জায়গায় ছবি আঁকতে গেছো। কে আগে আঁকবে আর কে পরে মুছবে তার উপর ফাইনাল ছবিটা নির্ভর করছে। যদি কোনো নিয়ম না থাকে, তাহলে ছবিটা হিজিবিজি হয়ে যেতে পারে। এটাই রেস কন্ডিশন।</p>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন:</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">১। চিত্রসহ Process state বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p>একটি প্রসেস তার এক্সিকিউশনের সময় বিভিন্ন অবস্থার (State) মধ্য দিয়ে যায়। অপারেটিং সিস্টেম প্রতিটি প্রসেসের বর্তমান অবস্থা ট্র্যাক করে। প্রধান অবস্থাগুলো নিচে বর্ণনা করা হলো:</p>
+                 <ol>
+                     <li><strong>নতুন (New):</strong> এই অবস্থায় প্রসেসটি কেবল তৈরি করা হয়েছে।</li>
+                     <li><strong>রেডি (Ready):</strong> প্রসেসটি এক্সিকিউশনের জন্য প্রস্তুত এবং সিপিইউ বরাদ্দের জন্য অপেক্ষা করছে।</li>
+                     <li><strong>রানিং (Running):</strong> প্রসেসটির ইন্সট্রাকশনগুলো বর্তমানে সিপিইউতে এক্সিকিউট হচ্ছে।</li>
+                     <li><strong>ওয়েটিং (Waiting) বা ব্লকড (Blocked):** প্রসেসটি কোনো একটি ইভেন্ট (যেমন: I/O) ঘটার জন্য অপেক্ষা করছে।</li>
+                     <li><strong>টার্মিনেটেড (Terminated) বা এক্সিট (Exit):** প্রসেসটির এক্সিকিউশন সম্পন্ন হয়েছে।</li>
+                 </ol>
+                 <p><strong>স্টেট ট্রানজিশন ডায়াগ্রাম:</strong></p>
+                 <pre><code>
+       +-------+     Admitted     +-------+      Dispatch     +---------+
+    -->|  New  |--------------->| Ready |---------------->| Running |-------> (Exit) --> [ Terminated ]
+       +-------+      ^          +---+---+       Timer Exp./  +----+----+                +------------+
+                      |              |       Interrupt       |    | Interrupt
+                      |(Swap In)       |                       |    |/ I/O or Event Wait
+                      |              |                       |    V
+                      |  I/O or Event|      +---------+      |
+                      |  Completion  |------| Waiting |<-----+
+                      |              |      +----+----+
+                      +--------------+           |
+                               (Suspend)         | (Suspend)
+                                       &lt;----------+
+                                     (Suspended Waiting / Blocked)
+
+         (Ready state থেকেও Suspend হয়ে Suspended Ready তে যেতে পারে,
+          এবং সেখান থেকে Resume হয়ে Ready তে ফিরতে পারে - মিডিয়াম টার্ম সিডিউলিং)
+                 </code></pre>
+                 <p><em>(উপরের ডায়াগ্রামটি মূল পাঁচটি অবস্থা এবং তাদের মধ্যে প্রধান ট্রানজিশনগুলো দেখায়। সাসপেন্ডেড স্টেটগুলোও দেখানো হয়েছে যা মিডিয়াম টার্ম সিডিউলিংয়ে ব্যবহৃত হয়)</em></p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> একটা প্রোগ্রাম যখন চলে, সে কয়েকটা ধাপে থাকে:</p>
+                <ul>
+                    <li><strong>New:</strong> তৈরি হচ্ছে।</li>
+                    <li><strong>Ready:</strong> চলার জন্য লাইনে দাঁড়িয়ে আছে (CPU-র জন্য)।</li>
+                    <li><strong>Running:</strong> CPU তে কাজ করছে।</li>
+                    <li><strong>Waiting:</strong> অন্য কিছুর জন্য অপেক্ষা করছে (যেমন প্রিন্ট হওয়ার জন্য)।</li>
+                    <li><strong>Terminated:</strong> কাজ শেষ বা বন্ধ হয়ে গেছে।</li>
+                </ul>
+                <p>প্রসেসগুলো এই অবস্থাগুলোর মধ্যে 왔다-যাওয়া করে। যেমন, Running থেকে Waiting এ যেতে পারে, Waiting থেকে Ready তে, Ready থেকে Running এ, Running থেকে Terminated এ। উপরের ছবিটা এই আসা-যাওয়ার পথগুলোই দেখাচ্ছে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> রিফাত রান্না করছে:</p>
+                 <ul>
+                     <li>বাজার থেকে জিনিস কিনে আনা (New)।</li>
+                     <li>সবজি কেটে রান্নার জন্য প্রস্তুত কিন্তু চুলা খালি নেই (Ready)।</li>
+                     <li>চুলায় রান্না চলছে (Running)।</li>
+                     <li>মশলা বাটা বা অন্য কিছুর জন্য রান্না থামিয়ে অপেক্ষা করা (Waiting)।</li>
+                     <li>রান্না শেষ (Terminated)।</li>
+                 </ul>
+                 <p>ডায়াগ্রামটা দেখাচ্ছে রিফাত কীভাবে এক অবস্থা থেকে অন্য অবস্থায় যাচ্ছে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">২। Process scheduling এবং Scheduling queue বর্ণনা কর।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p><strong>প্রসেস সিডিউলিং (Process Scheduling):</strong><br>
+                 মাল্টিপ্রোগ্রামিং অপারেটিং সিস্টেমে, মেমরিতে একই সাথে একাধিক প্রসেস থাকতে পারে যারা সিপিইউতে এক্সিকিউশনের জন্য প্রস্তুত। প্রসেস সিডিউলিং হলো OS কার্নেলের একটি প্রক্রিয়া যার মাধ্যমে এই রেডি প্রসেসগুলোর মধ্য থেকে একটিকে নির্বাচন করে সিপিইউতে বরাদ্দ দেওয়া হয়। এর মূল উদ্দেশ্য হলো সিস্টেমের কর্মক্ষমতা অপ্টিমাইজ করা, যেমন: সিপিইউ ইউটিলাইজেশন বাড়ানো, থ্রুপুট বৃদ্ধি করা, টার্নঅ্যারাউন্ড টাইম, ওয়েটিং টাইম এবং রেসপন্স টাইম কমানো। সিডিউলিং ডিসিশন বিভিন্ন সময়ে নেওয়া হতে পারে। সিডিউলিং অ্যালগরিদম (যেমন: FCFS, SJF, RR) এই নির্বাচনের কাজটি করে।</p>
+
+                 <p><strong>সিডিউলিং কিউ (Scheduling Queues):</strong><br>
+                 অপারেটিং সিস্টেম প্রসেসগুলোর অবস্থা অনুযায়ী সেগুলোকে বিভিন্ন কিউ (Queue) বা লাইনে সাজিয়ে রাখে। প্রধান কিউগুলো হলো:</p>
+                 <ol>
+                     <li><strong>জব কিউ (Job Queue):</strong> সিস্টেমে আসা সকল প্রসেস প্রাথমিকভাবে এই কিউতে অবস্থান করে।</li>
+                     <li><strong>রেডি কিউ (Ready Queue):</strong> যে সকল প্রসেস মেইন মেমরিতে আছে এবং সিপিইউতে এক্সিকিউশনের জন্য প্রস্তুত ও অপেক্ষা করছে, তারা এই কিউতে থাকে।</li>
+                     <li><strong>ডিভাইস কিউ (Device Queues) বা ওয়েটিং কিউ:** যে সকল প্রসেস কোনো নির্দিষ্ট I/O ডিভাইসের জন্য অপেক্ষা করছে, তারা সেই ডিভাইসের সংশ্লিষ্ট ওয়েটিং কিউতে অবস্থান করে।</li>
+                 </ol>
+                 <p>প্রসেসগুলো তাদের জীবনচক্রে এই বিভিন্ন কিউয়ের মধ্যে চলাচল করে, যা অপারেটিং সিস্টেমের ডিসপ্যাচার এবং সিডিউলার দ্বারা নিয়ন্ত্রিত হয়।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li><strong>প্রসেস সিডিউলিং:</strong> অনেকগুলো প্রোগ্রাম একসাথে চলার জন্য রেডি থাকলে, তাদের মধ্যে কাকে কখন CPU ব্যবহার করতে দেওয়া হবে, সেই সিদ্ধান্ত নেওয়ার প্রক্রিয়া। এটা করে OS এর শর্ট-টার্ম সিডিউলার। লক্ষ্য হলো CPU কে ব্যস্ত রাখা আর সবাই যেন ঠিকমতো সার্ভিস পায়।</li>
+                     <li><strong>সিডিউলিং কিউ:</strong> প্রসেসগুলো অবস্থা অনুযায়ী বিভিন্ন লাইনে দাঁড়ায়:
+                         <ul>
+                             <li><strong>জব কিউ:</strong> সিস্টেমে আসা সব প্রসেসের লাইন (গেট)।</li>
+                             <li><strong>রেডি কিউ:</strong> যারা র‍্যামে আছে আর CPU পাওয়ার জন্য রেডি তাদের লাইন।</li>
+                             <li><strong>ওয়েটিং কিউ:</strong> যারা কোনো ডিভাইস (যেমন প্রিন্টার) বা অন্য কিছুর জন্য অপেক্ষা করছে তাদের লাইন।</li>
+                         </ul>
+                        প্রসেসগুলো এই লাইনগুলোর মধ্যে ঘুরতে থাকে।
+                     </li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li><strong>প্রসেস সিডিউলিং:</strong> খেলার মাঠে অনেকগুলো দল খেলতে চায়। কোচ ঠিক করে দেন কোন দল এখন মাঠে নামবে।</li>
+                     <li><strong>সিডিউলিং কিউ:</strong>
+                         <ul>
+                             <li><strong>জব কিউ:</strong> খেলার জন্য যতগুলো দল আবেদন করেছে তাদের লিস্ট।</li>
+                             <li><strong>রেডি কিউ:</strong> যারা মাঠে নামার জন্য একদম প্রস্তুত হয়ে সাইডলাইনে দাঁড়িয়ে আছে।</li>
+                             <li><strong>ওয়েটিং কিউ:</strong> যারা পানি খেতে বা ইনজুরির জন্য মাঠের বাইরে অপেক্ষা করছে।</li>
+                         </ul>
+                     </li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">৩। Process management -এর Synchronization বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p><strong>প্রসেস সিনক্রোনাইজেশন (Process Synchronization):</strong><br>
+                 মাল্টিপ্রোগ্রামিং পরিবেশে, একাধিক প্রসেস একই সাথে চলতে পারে এবং প্রায়শই তাদের মধ্যে কো-অপারেশন বা সহযোগিতা (যেমন: ডেটা শেয়ার করা) বা রিসোর্সের জন্য প্রতিযোগিতা (যেমন: একই ফাইল বা ডিভাইস ব্যবহার করা) করার প্রয়োজন হয়। প্রসেস সিনক্রোনাইজেশন হলো এমন কিছু মেকানিজম বা কৌশল যা এই কো-অপারেটিং বা প্রতিযোগী প্রসেসগুলোর এক্সিকিউশনকে এমনভাবে সমন্বয় বা নিয়ন্ত্রণ করে যাতে ডেটার অখণ্ডতা (Data Consistency) বজায় থাকে এবং অপ্রত্যাশিত ফলাফল (যেমন: রেস কন্ডিশন) এড়ানো যায়।</p>
+
+                 <p><strong>প্রয়োজনীয়তা:</strong></p>
+                 <ul>
+                     <li><strong>শেয়ারড্ রিসোর্স অ্যাক্সেস:</strong> সিনক্রোনাইজেশন নিশ্চিত করে যে একবারে কেবল একটি নির্দিষ্ট সংখ্যক প্রসেস ক্রিটিক্যাল সেকশনে প্রবেশ করতে পারে।</li>
+                     <li><strong>রেস কন্ডিশন প্রতিরোধ:</strong> সিনক্রোনাইজেশন ছাড়া শেয়ারড্ ডেটা ম্যানিপুলেট করলে ভুল ফলাফল আসতে পারে, এটি তা প্রতিরোধ করে।</li>
+                     <li><strong>প্রসেস কো-অপারেশন:</strong> একটি প্রসেসের কাজ শেষ হওয়ার পর অন্য প্রসেস শুরু করা নিশ্চিত করে।</li>
+                 </ul>
+
+                 <p><strong>সিনক্রোনাইজেশন মেকানিজম:</strong></p>
+                 <ul>
+                     <li><strong>মিউটেক্স (Mutex - Mutual Exclusion) লক:</strong> ক্রিটিক্যাল সেকশনে এক্সক্লুসিভ অ্যাক্সেস দেয়।</li>
+                     <li><strong>সেমাফোর (Semaphore):</strong> রিসোর্সের প্রাপ্যতা নিয়ন্ত্রণকারী একটি সিগন্যালিং মেকানিজম।</li>
+                     <li><strong>মনিটর (Monitor):</strong> ডেটা ও সিনক্রোনাইজড প্রসিডিউরকে একত্রিত করা উচ্চ-স্তরের কনস্ট্রাক্ট।</li>
+                     <li><strong>কন্ডিশন ভ্যারিয়েবল (Condition Variables):</strong> নির্দিষ্ট শর্ত পূরণের জন্য অপেক্ষা ও সিগন্যালিংয়ের ব্যবস্থা।</li>
+                 </ul>
+                 <p>সঠিক সিনক্রোনাইজেশন মেকানিজম ব্যবহার করা কনকারেন্ট সিস্টেম ডিজাইন ও বাস্তবায়নের একটি গুরুত্বপূর্ণ এবং চ্যালেঞ্জিং দিক।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> যখন অনেকগুলো প্রসেস একসাথে চলে আর একই জিনিস (যেমন: একটা ফাইল বা মেমরির অংশ) ব্যবহার করতে চায়, তখন তাদের মধ্যে একটা নিয়ম বা সমন্বয় দরকার হয়, নাহলে ডেটা নষ্ট হয়ে যেতে পারে বা হিসাবে গড়মিল হতে পারে (রেস কন্ডিশন)। এই সমন্বয় বা নিয়মকানুনগুলোকেই প্রসেস সিনক্রোনাইজেশন বলে। এর জন্য মিউটেক্স, সেমাফোর এসব টুলস ব্যবহার করা হয়, যারা ঠিক করে দেয় কে কখন শেয়ারড্ জিনিসটা ব্যবহার করবে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো রান্নাঘরে একটাই ছুরি (শেয়ারড্ রিসোর্স) আছে, আর রিফাত ও তার বন্ধু দুজনই সেটা দিয়ে সবজি কাটতে চায়। যদি কোনো নিয়ম না থাকে, তাহলে কাড়াকাড়ি লেগে দুর্ঘটনা ঘটতে পারে। সিনক্রোনাইজেশন হলো নিয়ম করে দেওয়া, যেমন: "একজন ছুরি ব্যবহার করার সময় অন্যজন অপেক্ষা করবে"। মিউটেক্স বা সেমাফোর হলো এই নিয়ম মানানোর উপায়ের মতো।</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>অপারেটিং সিস্টেম স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        // Function to apply theme
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀️ লাইট মোড'; // Sun icon for light mode switch
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = '🌙 ডার্ক মোড'; // Moon icon for dark mode switch
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initial theme setup
+        let preferredTheme = 'light'; // Default to light
+        if (currentTheme) {
+            preferredTheme = currentTheme;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Uncomment below line if you want system preference to be the initial default
+            // preferredTheme = 'dark';
+        }
+        applyTheme(preferredTheme);
+
+        // Button click listener
+        themeToggleBtn.addEventListener('click', () => {
+            let newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,357 @@
+/* --- Base Styles and Light Mode --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Light Theme Colors */
+    --body-bg: #f8f9fa;
+    --text-color: #212529;
+    --heading-color: #343a40;
+    --link-color: #007bff;
+    --border-color: #dee2e6;
+    --block-bg: #ffffff;
+    --header-footer-color: #6c757d;
+    --button-bg: #007bff;
+    --button-text: #ffffff;
+    --button-hover-bg: #0056b3;
+    --header-bg: #f8f9fa; /* Header bg for spacing */
+
+    /* Light mode specific backgrounds */
+    --oti-bg-light: #f0fff0; /* Honeydew */
+    --shong-bg-light: #fffff0; /* Ivory */
+    --rocho-bg-light: #fff0f0; /* LavenderBlush */
+    --exam-bg-light: #ffe0e0; /* Light Red/Pink */
+    --explain-bg-light: #e0ffe0; /* Light Green */
+    --kid-bg-light: #e0f7fa; /* Light Sky Blue */
+
+    --code-bg: #e9ecef;
+    --code-text: #212529;
+    --table-border: #ced4da;
+    --table-head-bg: #e9ecef;
+    --table-odd-row-bg: #f8f9fa;
+    --table-hover-bg: #e9ecef;
+
+    /* Dark Theme Colors */
+    --body-bg-dark: #1a1a1a;
+    --text-color-dark: #e0e0e0;
+    --heading-color-dark: #f0f0f0;
+    --link-color-dark: #4db6ac; /* Teal */
+    --border-color-dark: #444;
+    --block-bg-dark: #262626;
+    --header-footer-color-dark: #888;
+    --button-bg-dark: #444;
+    --button-text-dark: #e0e0e0;
+    --button-hover-bg-dark: #555;
+    --header-bg-dark: #1a1a1a;
+
+    --oti-border-dark: #81c784; /* Muted Green */
+    --shong-border-dark: #ffd54f; /* Muted Yellow */
+    --rocho-border-dark: #ff8a65; /* Muted Red/Orange */
+    --answer-bg-dark: #2f2f2f;
+    --answer-border-dark: #404040;
+    --exam-label-dark: #ff8a65;
+    --explain-label-dark: #81c784;
+    --kid-label-dark: #64b5f6;
+
+    --code-bg-dark: #333;
+    --code-text-dark: #f0f0f0;
+    --table-border-dark: #555;
+    --table-head-bg-dark: #333;
+    --table-odd-row-bg-dark: #2a2a2a;
+    --table-hover-bg-dark: #383838;
+}
+
+body {
+    font-family: 'Noto Sans Bengali', Arial, sans-serif;
+    background-color: var(--body-bg);
+    color: var(--text-color);
+    line-height: 1.7;
+    padding: 1rem;
+    padding-top: 5rem; /* Adjust padding top for fixed header height */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Header --- (Updated for Centered Title) */
+.page-header {
+    position: fixed; /* Fixed header */
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0.8rem 1.5rem; /* Adjusted padding */
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    text-align: center; /* Center inline/inline-block children like H1 */
+}
+
+h1 {
+    color: var(--heading-color);
+    margin: 0; /* Reset margin */
+    font-size: 1.5em;
+    font-weight: 700;
+    display: inline-block; /* Important for centering via text-align */
+    vertical-align: middle; /* Align vertically if needed */
+}
+
+.theme-toggle-button {
+    position: absolute; /* Position button absolutely */
+    top: 50%; /* Center vertically */
+    right: 1.5rem; /* Position on the right */
+    transform: translateY(-50%); /* Fine-tune vertical centering */
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+
+main {
+    max-width: 900px;
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+}
+
+/* --- Question Type Header --- */
+.question-type-header {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--link-color); /* Use link color */
+    color: var(--heading-color);
+    font-size: 1.6em;
+    font-weight: 700;
+}
+.question-type-header:first-of-type {
+    margin-top: 1rem; /* Less margin for the very first header */
+}
+
+h2.question-title {
+    color: var(--heading-color);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    font-size: 1.4em;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* --- Light Mode Question/Answer Styles --- */
+.question-block {
+    background-color: var(--block-bg);
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    border-left: none; /* No left border in light mode */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.q-type-oti { background-color: var(--oti-bg-light); }
+.q-type-shong { background-color: var(--shong-bg-light); }
+.q-type-rocho { background-color: var(--rocho-bg-light); }
+
+.answer-part {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    position: static;
+    padding-top: 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.answer-part::before { content: none; } /* Hide labels */
+
+.answer-part p:first-child strong {
+   display: block;
+   margin-bottom: 0.5rem;
+   color: inherit;
+   font-weight: bold;
+}
+
+.exam-answer { background-color: var(--exam-bg-light); }
+.explanation { background-color: var(--explain-bg-light); }
+.answer-part-3 { background-color: var(--kid-bg-light); }
+
+/* --- Common Styles (Lists, Code, Tables, Links) --- */
+ul, ol {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+}
+
+li { margin-bottom: 0.75rem; }
+
+pre, code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--code-bg);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    color: var(--code-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+pre {
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+pre code { background-color: transparent; padding: 0; border-radius: 0; }
+
+pre.mermaid { display: none; } /* Hide Mermaid containers */
+
+.table-container {
+    overflow-x: auto;
+    margin: 1rem 0;
+    border: 1px solid var(--table-border);
+    border-radius: 5px;
+}
+
+table { width: 100%; border-collapse: collapse; color: var(--text-color); }
+th, td { border: 1px solid var(--table-border); padding: 0.8rem 1rem; text-align: left; vertical-align: top; }
+thead { background-color: var(--table-head-bg); }
+th { font-weight: bold; color: var(--heading-color); font-size: 1.05em; }
+tbody tr { border-top: 1px solid var(--table-border); }
+tbody tr:nth-child(odd) { background-color: var(--table-odd-row-bg); }
+tbody tr:hover { background-color: var(--table-hover-bg); }
+
+a { color: var(--link-color); text-decoration: none; }
+a:hover { filter: brightness(90%); text-decoration: underline; }
+
+/* --- Footer --- */
+.page-footer {
+    text-align: center;
+    padding: 2rem 1rem 1rem 1rem;
+    margin-top: 2rem;
+    color: var(--header-footer-color);
+    font-size: 0.9em;
+    border-top: 1px solid var(--border-color);
+}
+
+
+/* --- Dark Mode Overrides --- */
+body.dark-mode {
+    background-color: var(--body-bg-dark);
+    color: var(--text-color-dark);
+}
+
+body.dark-mode .page-header {
+    background-color: var(--header-bg-dark);
+    border-bottom-color: var(--border-color-dark);
+}
+
+body.dark-mode h1,
+body.dark-mode .question-type-header,
+body.dark-mode h2.question-title {
+    color: var(--heading-color-dark);
+    border-bottom-color: var(--border-color-dark);
+}
+
+body.dark-mode .question-type-header {
+    border-bottom-color: var(--link-color-dark); /* Use accent for header border */
+}
+
+body.dark-mode .theme-toggle-button {
+    background-color: var(--button-bg-dark);
+    color: var(--button-text-dark);
+}
+
+body.dark-mode .theme-toggle-button:hover {
+    background-color: var(--button-hover-bg-dark);
+}
+
+body.dark-mode .question-block {
+    background-color: var(--block-bg-dark);
+    border: 1px solid var(--border-color-dark); /* Use overall border */
+    border-left: 5px solid; /* Use left border for type */
+}
+
+body.dark-mode .q-type-oti { border-left-color: var(--oti-border-dark); background-color: var(--block-bg-dark);}
+body.dark-mode .q-type-shong { border-left-color: var(--shong-border-dark); background-color: var(--block-bg-dark);}
+body.dark-mode .q-type-rocho { border-left-color: var(--rocho-border-dark); background-color: var(--block-bg-dark);}
+
+body.dark-mode .answer-part {
+    background-color: var(--answer-bg-dark);
+    padding-top: 2.5rem; /* Space for label */
+    position: relative;
+    border: 1px solid var(--answer-border-dark);
+}
+
+body.dark-mode .answer-part::before {
+    content: '';
+    position: absolute;
+    top: 0.75rem;
+    left: 1.5rem;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+body.dark-mode .exam-answer::before { content: 'পরীক্ষায় লেখার জন্য:'; color: var(--exam-label-dark); }
+body.dark-mode .explanation::before { content: 'সহজ ভাষায় ব্যাখ্যা:'; color: var(--explain-label-dark); }
+body.dark-mode .answer-part-3::before { content: 'একদম সহজ ব্যাখ্যা:'; color: var(--kid-label-dark); }
+body.dark-mode .answer-part p:first-child strong { display: none; }
+
+
+body.dark-mode pre, body.dark-mode code { background-color: var(--code-bg-dark); color: var(--code-text-dark); }
+body.dark-mode pre { border-color: var(--border-color-dark); }
+body.dark-mode pre.mermaid { background-color: var(--block-bg-dark); border-color: var(--border-color-dark); }
+body.dark-mode .table-container { border-color: var(--table-border-dark); }
+body.dark-mode table { color: var(--text-color-dark); }
+body.dark-mode th, body.dark-mode td { border-color: var(--table-border-dark); }
+body.dark-mode thead { background-color: var(--table-head-bg-dark); }
+body.dark-mode th { color: var(--link-color-dark); }
+body.dark-mode tbody tr { border-top-color: var(--table-border-dark); }
+body.dark-mode tbody tr:nth-child(odd) { background-color: var(--table-odd-row-bg-dark); }
+body.dark-mode tbody tr:hover { background-color: var(--table-hover-bg-dark); }
+body.dark-mode a { color: var(--link-color-dark); }
+body.dark-mode a:hover { filter: brightness(120%); }
+body.dark-mode .page-footer { color: var(--header-footer-color-dark); border-top-color: var(--border-color-dark); }
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 600px) {
+    body { padding-top: 5.5rem; /* Adjust body padding for mobile header */ font-size: 15px; }
+    .page-header {
+        padding: 0.5rem 1rem;
+        text-align: center; /* Keep title centered */
+    }
+    h1 {
+        font-size: 1.1em; /* Slightly smaller title */
+        display: block; /* Make title block level to take width */
+        margin-bottom: 0.5rem; /* Space below title */
+    }
+    .theme-toggle-button {
+        position: static; /* Unset absolute */
+        transform: none; /* Reset transform */
+        display: block; /* Make button block level */
+        margin: 0 auto; /* Center button below title */
+        width: fit-content; /* Adjust width */
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    main { padding: 0 0.5rem; }
+    .question-type-header { font-size: 1.4em; margin-top: 2rem; }
+    .question-block { padding: 1rem; border-left-width: 4px; }
+    .answer-part { padding: 1rem; }
+    h2.question-title { font-size: 1.2rem; }
+    th, td { padding: 0.6rem; }
+
+    body.dark-mode .answer-part { padding-top: 2rem; } /* Adjust dark mode label padding */
+    body.dark-mode .answer-part::before { left: 1rem; font-size: 0.9em; }
+}

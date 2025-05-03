@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৬: জাভা ডাটাবেজ সংযোগ (JDBC)</title>
+
+    <link rel="stylesheet" href="java_style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    </head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৬: জাভা ডাটাবেজ সংযোগ (JDBC)</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">🌙 ডার্ক মোড</button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। জাভা ডাটাবেজ কানেকটিভিটি (JDBC) বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> JDBC হলো একটি Java API যা জাভা প্রোগ্রামকে বিভিন্ন ধরনের ডাটাবেজের সাথে সংযোগ স্থাপন এবং ডেটা আদান-প্রদানের সুযোগ করে দেয়।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> JDBC হলো জাভা আর ডাটাবেজের মধ্যে কথা বলার একটা মাধ্যম বা ব্রিজ। এটার সাহায্যে রিফাত তার জাভা কোড দিয়ে ডাটাবেজে কানেক্ট করতে পারে, ডেটা ঢোকাতে পারে, ডেটা বের করতে পারে বা ডেটা বদলাতে পারে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> JDBC হলো একটা দোভাষী, যে জাভার কথা ডাটাবেজকে আর ডাটাবেজের কথা জাভাকে বুঝিয়ে দেয়।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। কানেকশন কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ডাটাবেজের সাথে একটি সক্রিয় সংযোগ বা সেশন।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Connection হলো জাভা প্রোগ্রামের সাথে ডাটাবেজের একটা লাইভ লিংক বা যোগাযোগ স্থাপন। এই লিংক তৈরি হলেই তুমি ডাটাবেজে ডেটা পাঠানো বা নিয়ে আসার কাজগুলো করতে পারবে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> ডাটাবেজের সাথে তোমার প্রোগ্রামের একটা ফোন কল চালু হওয়াটাই হলো কানেকশন।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। স্টেটমেন্ট বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ডাটাবেজে SQL কোয়েরি পাঠানোর একটি অবজেক্ট বা ইন্টারফেস।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Statement হলো JDBC এর একটা অংশ যা ব্যবহার করে তুমি ডাটাবেজের উপর SQL কমান্ড (যেমন: ডেটা খোঁজা, ঢোকানো, মোছা) চালাতে পারো। কানেকশন পাওয়ার পর স্টেটমেন্ট তৈরি করে তার মাধ্যমে কমান্ড পাঠাতে হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> ডাটাবেজকে প্রশ্ন করার বা আদেশ দেওয়ার জন্য একটা ফর্ম বা কাগজ হলো স্টেটমেন্ট।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। প্রিপেয়ার্ড স্টেটমেন্ট ব্যবহার করা হয় কেন?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> পারফরম্যান্স বৃদ্ধি এবং SQL ইনজেকশন অ্যাটাক প্রতিরোধের জন্য।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Prepared Statement হলো Statement এর একটা উন্নত ভার্সন। এটা একই SQL কমান্ড বারবার চালানোর জন্য খুব ফাস্ট এবং নিরাপদ। কারণ কমান্ডটা আগে থেকেই ডাটাবেজে কম্পাইল করা থাকে এবং বাইরের ডেটা সরাসরি কমান্ডের অংশ হতে পারে না, ফলে হ্যাকিং (SQL Injection) এর ঝুঁকি কমে যায়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো তুমি ফারজানাকে প্রতিদিন একই প্রশ্ন করো, শুধু নামটা বদলাও। Prepared Statement হলো প্রশ্নটা একবার লিখে শুধু নাম বসানোর জায়গাটা খালি রাখা। এতে প্রতিবার পুরো প্রশ্ন লিখতে হয় না, কাজ দ্রুত হয় আর কেউ ভুল নাম বসিয়ে সমস্যা করতে পারে না।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৫। JDBC ড্রাইভার বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> জাভা অ্যাপ্লিকেশন এবং নির্দিষ্ট ডাটাবেজের মধ্যে সংযোগ স্থাপনকারী একটি সফটওয়্যার কম্পোনেন্ট বা লাইব্রেরি।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> প্রত্যেক ডাটাবেজের (যেমন MySQL, Oracle, PostgreSQL) সাথে জাভার কথা বলার নিজস্ব নিয়ম আছে। JDBC ড্রাইভার হলো সেই সফটওয়্যার যা নির্দিষ্ট একটা ডাটাবেজের নিয়ম অনুযায়ী জাভা অ্যাপ্লিকেশনের সাথে ওই ডাটাবেজের যোগাযোগ করিয়ে দেয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার যেমন বিভিন্ন দেশের মানুষের সাথে কথা বলতে ভিন্ন ভিন্ন দোভাষী লাগে, তেমনি জাভারও ভিন্ন ভিন্ন ডাটাবেজের সাথে কথা বলতে ভিন্ন ভিন্ন JDBC ড্রাইভার লাগে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৬। ODBC-এর কাজ কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> বিভিন্ন অ্যাপ্লিকেশনের জন্য ডাটাবেজ অ্যাক্সেসের একটি স্ট্যান্ডার্ড ইন্টারফেস বা API প্রদান করা।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ODBC (Open Database Connectivity) হলো ডাটাবেজের সাথে কানেক্ট করার একটা সাধারণ নিয়ম বা স্ট্যান্ডার্ড। JDBC যেমন শুধু জাভার জন্য, ODBC অনেক ধরণের প্রোগ্রামিং ল্যাঙ্গুয়েজ থেকেই ব্যবহার করা যায়। JDBC-ODBC Bridge ড্রাইভার ব্যবহার করে জাভা থেকেও ODBC এর মাধ্যমে ডাটাবেজে কানেক্ট করা যেত (যদিও এখন এটা কম ব্যবহৃত)।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> ODBC হলো একটা মাস্টার-কি বা অ্যাডাপ্টার, যা দিয়ে অনেক ধরণের তালা (ডাটাবেজ) খোলা যায়।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৭। নেটওয়ার্ক প্রটোকল ড্রাইভার কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি JDBC ড্রাইভার যা নির্দিষ্ট ডাটাবেজের নেটওয়ার্ক প্রটোকল ব্যবহার করে সরাসরি ডাটাবেজ সার্ভারের সাথে যোগাযোগ করে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এটা এক ধরণের JDBC ড্রাইভার (Type 4 ড্রাইভার)। এটা জাভা কোডকে সরাসরি নেটওয়ার্কের মাধ্যমে ডাটাবেজ সার্ভারের সাথে কথা বলতে সাহায্য করে। এর জন্য ক্লায়েন্ট মেশিনে অন্য কোনো সফটওয়্যার লাগে না, শুধু এই ড্রাইভারটাই যথেষ্ট। এটা সাধারণত সবচেয়ে ফাস্ট এবং জনপ্রিয় উপায়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> এই ড্রাইভারটা হলো সরাসরি ডাটাবেজের সাথে কথা বলার হটলাইন ফোন নাম্বার। অন্য কোনো মাধ্যম লাগে না।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৮। JDBC স্টেটমেন্ট কত প্রকার ও কী কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রধানত ৩ প্রকার: `Statement`, `PreparedStatement`, `CallableStatement`।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> JDBC তে SQL কমান্ড পাঠানোর জন্য মূলত তিন ধরনের স্টেটমেন্ট আছে: <ol><li>`Statement`: সাধারণ SQL কমান্ড চালানোর জন্য।</li><li>`PreparedStatement`: একই কমান্ড বারবার চালানোর জন্য (পারফরম্যান্স ভালো, নিরাপদ)।</li><li>`CallableStatement`: ডাটাবেজের স্টোরড প্রসিডিউর (Stored Procedure) কল করার জন্য।</li></ol></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> ডাটাবেজকে আদেশ দেওয়ার ৩ রকম ফর্ম: ১) সাধারণ ফর্ম (`Statement`), ২) পূরণ করা সহজ ফর্ম (`PreparedStatement`), ৩) বিশেষ কাজের জন্য ফর্ম (`CallableStatement`)।</p></div>
+        </div>
+
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। JDBC ব্যবহারের সুবিধাসমূহ উল্লেখ কর।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong><ul><li><strong>ডাটাবেজ স্বাধীনতা (Database Independence):</strong> একই JDBC API ব্যবহার করে বিভিন্ন বিক্রেতার ডাটাবেজের সাথে কাজ করা যায়, কোড সামান্য পরিবর্তন করে বা না করেই।</li><li><strong>প্ল্যাটফর্ম স্বাধীনতা (Platform Independence):</strong> জাভার মতো JDBC ও প্ল্যাটফর্ম নির্ভর নয়, যেকোনো অপারেটিং সিস্টেমে চলে।</li><li><strong>সহজ ব্যবহার:</strong> JDBC API তুলনামূলকভাবে সহজবোধ্য এবং ব্যবহার করা সহজ।</li><li><strong>পারফরম্যান্স:</strong> Type 4 ড্রাইভার ব্যবহার করলে ভালো পারফরম্যান্স পাওয়া যায়।</li><li><strong>SQL স্ট্যান্ডার্ড সমর্থন:</strong> স্ট্যান্ডার্ড SQL কোয়েরি ব্যবহার করা যায়।</li><li><strong>ব্যতিক্রম হ্যান্ডলিং:</strong> `SQLException` এর মাধ্যমে ডাটাবেজ সম্পর্কিত ত্রুটি সহজে হ্যান্ডেল করা যায়।</li><li><strong>বিভিন্ন ড্রাইভার টাইপ:</strong> প্রয়োজন অনুযায়ী বিভিন্ন ধরনের JDBC ড্রাইভার (Type 1-4) ব্যবহারের সুযোগ।</li></ul></p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> JDBC ব্যবহার করলে লাভ হলো:<ul><li>এক ডাটাবেজ থেকে অন্য ডাটাবেজে সুইচ করা সহজ।</li><li>যেকোনো কম্পিউটারে (Windows, Mac, Linux) চলে।</li><li>ব্যবহার করা সোজা।</li><li>ভালো স্পিড পাওয়া যায়।</li><li>সাধারণ SQL কমান্ড লেখা যায়।</li><li>ডাটাবেজের ভুলগুলো ধরা ও সামলানো সহজ।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> JDBC দোভাষী ব্যবহার করলে সুবিধা: এই দোভাষী অনেক ভাষা জানে (বিভিন্ন ডাটাবেজ), যেকোনো জায়গায় কাজ করে (প্ল্যাটফর্ম), কথা বলা সহজ, তাড়াতাড়ি অনুবাদ করে (পারফরম্যান্স), আর ভুল হলে সেটাও বলে দেয়।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। ODBC ড্রাইভারের ব্লক ডায়াগ্রাম অঙ্কন কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ব্লক ডায়াগ্রাম (টেক্সট):</strong></p>
+                 <pre><code>
+    +---------------------+      +---------------------+      +---------------------+      +---------------------+
+    | Java Application    | ---> | JDBC-ODBC Bridge    | ---> | ODBC Driver Manager | ---> | ODBC Driver (Vendor)| ---> Database
+    | (Using JDBC API)    |      | (Type 1 JDBC Driver)|      | (OS Component)      |      | (e.g., MySQL Driver)|
+    +---------------------+      +---------------------+      +---------------------+      +---------------------+
+                 </code></pre>
+                 <p><strong>ব্যাখ্যা:</strong> এই ডায়াগ্রামে দেখানো হয়েছে কীভাবে একটি জাভা অ্যাপ্লিকেশন JDBC API ব্যবহার করে JDBC-ODBC Bridge ড্রাইভারের মাধ্যমে অপারেটিং সিস্টেমের ODBC Driver Manager এর সাথে যোগাযোগ করে। Driver Manager তখন নির্দিষ্ট ডাটাবেজ বিক্রেতার (Vendor) দেওয়া ODBC Driver ব্যবহার করে ডাটাবেজের সাথে সংযোগ স্থাপন করে। এটি একটি পুরনো পদ্ধতি এবং বর্তমানে কম ব্যবহৃত হয় কারণ এটি একাধিক স্তর পার করায় পারফরম্যান্স কিছুটা কম থাকে এবং ক্লায়েন্ট মেশিনে ODBC কনফিগারেশনের প্রয়োজন হয়।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> JDBC-ODBC Bridge হলো একটা বহুস্তর বিশিষ্ট ব্যবস্থা। জাভা প্রোগ্রাম প্রথমে JDBC Bridge কে বলে, Bridge সেটাকে অপারেটিং সিস্টেমের ODBC Manager কে দেয়, Manager আবার নির্দিষ্ট ডাটাবেজের ODBC Driver কে দেয়, তারপর সেই Driver ডাটাবেজের সাথে কথা বলে। অনেকগুলো ধাপ পার হতে হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি -> তোমার বন্ধু রিফাত -> রিফাতের বন্ধু ফারজানা -> ফারজানার ভাই -> আসল লোক। অনেক মাধ্যম ঘুরে ডাটাবেজের কাছে পৌঁছাতে হচ্ছে।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। নেটওয়ার্ক প্রটোকল ড্রাইভার সংক্ষেপে বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> নেটওয়ার্ক প্রটোকল ড্রাইভার, যা Type 4 JDBC ড্রাইভার নামেও পরিচিত, সম্পূর্ণরূপে জাভাতে লেখা একটি ড্রাইভার। এটি ডাটাবেজের নিজস্ব নেটওয়ার্কিং প্রটোকল ব্যবহার করে সরাসরি ডাটাবেজ সার্ভারের সাথে কমিউনিকেট করে। এর জন্য ক্লায়েন্ট মেশিনে কোনো অতিরিক্ত ডাটাবেজ-স্পেসিফিক লাইব্রেরি বা সফটওয়্যার ইনস্টল করার প্রয়োজন হয় না, শুধুমাত্র ড্রাইভারের JAR ফাইলটিই যথেষ্ট। এটি প্ল্যাটফর্ম-স্বাধীন এবং সাধারণত সবচেয়ে ভালো পারফরম্যান্স প্রদান করে বলে বহুলভাবে ব্যবহৃত হয়।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> Type 4 বা নেটওয়ার্ক প্রটোকল ড্রাইভার হলো সবচেয়ে আধুনিক আর কাজের JDBC ড্রাইভার। এটা পিওর জাভাতে তৈরি আর সরাসরি নেটওয়ার্ক দিয়ে ডাটাবেজের সাথে কথা বলে। তোমার কম্পিউটারে শুধু এই ড্রাইভারের `.jar` ফাইলটা থাকলেই চলে, আর কিছু ইনস্টল দিতে হয় না। এটা ফাস্ট আর যেকোনো অপারেটিং সিস্টেমে কাজ করে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> এটা হলো ডাটাবেজের সাথে কথা বলার জন্য একটা স্মার্টফোন অ্যাপ (Type 4 Driver)। অ্যাপটা থাকলেই তুমি সরাসরি ডাটাবেজকে কল (নেটওয়ার্ক কানেকশন) করতে পারো, অন্য কোনো টেলিফোন অপারেটর বা লাইনের দরকার হয় না।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৪। প্রিপেয়ার্ড স্টেটমেন্টের সুবিধাসমূহ উল্লেখ কর।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong><ul><li><strong>পারফরম্যান্স:</strong> একই SQL কোয়েরি ভিন্ন ভিন্ন প্যারামিটার দিয়ে বারবার এক্সিকিউট করার ক্ষেত্রে `PreparedStatement` অনেক দ্রুত কাজ করে, কারণ কোয়েরিটি ডাটাবেজে একবারই প্রি-কম্পাইলড হয়।</li><li><strong>SQL ইনজেকশন প্রতিরোধ:</strong> এটি প্যারামিটারাইজড কোয়েরি সমর্থন করে, যেখানে ইনপুট ডেটা SQL কমান্ডের অংশ হিসেবে বিবেচিত না হয়ে শুধুমাত্র ডেটা হিসেবে ব্যবহৃত হয়। এটি SQL ইনজেকশন নামক নিরাপত্তা ঝুঁকি থেকে রক্ষা করে।</li><li><strong>পঠনযোগ্যতা ও রক্ষণাবেক্ষণ:</strong> কোয়েরি থেকে ডেটা আলাদা থাকায় কোড বোঝা ও ম্যানেজ করা সহজ হয়।</li><li><strong>ব্যাচ আপডেট:</strong> একাধিক আপডেট বা ইনসার্ট কমান্ড একসাথে ব্যাচ হিসেবে এক্সিকিউট করার সুবিধা দেয়, যা পারফরম্যান্স বাড়ায়।</li></ul></p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `PreparedStatement` ব্যবহারের সুবিধা:<ul><li>একই প্রশ্ন বারবার করলে উত্তর তাড়াতাড়ি পাওয়া যায়।</li><li>কেউ ভুল বা খারাপ ডেটা দিয়ে সিস্টেম হ্যাক করতে পারে না (SQL Injection হয় না)।</li><li>কোড দেখতে সুন্দর আর গোছানো লাগে।</li><li>অনেকগুলো ডেটা একসাথে আপডেট করা যায়।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> রেডি করা প্রশ্নপত্র (`PreparedStatement`): ১) একবার প্রশ্ন রেডি করলে বারবার ব্যবহার করা যায়, শুধু ছাত্রের নাম বদলালেই হয় (ফাস্ট)। ২) ছাত্র উত্তরে যা খুশি লিখতে পারে না, শুধু নির্দিষ্ট জায়গায় নাম লিখতে পারে (নিরাপদ)। ৩) প্রশ্নটা দেখতে পরিষ্কার লাগে।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৫। প্রিপেয়ার্ড স্টেটমেন্টসমূহের মেথডগুলো কী কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> `PreparedStatement` ইন্টারফেসের কিছু গুরুত্বপূর্ণ মেথড হলো:<ul><li>বিভিন্ন `setXxx(int parameterIndex, Xxx value)` মেথড: কোয়েরির প্যারামিটারে (`?` চিহ্নিত স্থানে) মান সেট করার জন্য। যেমন: `setInt()`, `setString()`, `setDouble()`, `setDate()` ইত্যাদি। `parameterIndex` 1 থেকে শুরু হয়।</li><li>`executeUpdate()`: ডেটা পরিবর্তনকারী SQL কমান্ড (INSERT, UPDATE, DELETE) এক্সিকিউট করার জন্য। কতগুলো রো প্রভাবিত হলো তা রিটার্ন করে।</li><li>`executeQuery()`: ডেটা রিট্রিভকারী SQL কমান্ড (SELECT) এক্সিকিউট করার জন্য। `ResultSet` অবজেক্ট রিটার্ন করে।</li><li>`addBatch()`: ব্যাচ এক্সিকিউশনের জন্য বর্তমান প্যারামিটার সেট সহ কমান্ডটি ব্যাচে যোগ করে।</li><li>`executeBatch()`: ব্যাচে যোগ করা সব কমান্ড একসাথে এক্সিকিউট করে।</li><li>`clearParameters()`: বর্তমান প্যারামিটার সেট মুছে ফেলে।</li></ul></p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `PreparedStatement` এর কিছু কাজের বোতাম (মেথড):<ul><li>`set...()`: খালি জায়গায় (প্রশ্নের `?` গুলোতে) মান বসানো (যেমন: `setString(1, "রিফাত")`)।</li><li>`executeUpdate()`: ডেটা ঢোকানো, বদলানো বা মোছার কমান্ড চালানো।</li><li>`executeQuery()`: ডেটা খুঁজে বের করার কমান্ড চালানো।</li><li>`addBatch()` / `executeBatch()`: অনেকগুলো কমান্ড একসাথে জমা করে চালানো।</li><li>`clearParameters()`: খালি জায়গার মানগুলো মুছে ফেলা।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> পূরণ করার ফর্ম (`PreparedStatement`): `set` (খালি ঘরে লেখা), `executeUpdate` (ফর্ম জমা দেওয়া - ডেটা বদলাতে), `executeQuery` (ফর্ম জমা দেওয়া - তথ্য খুঁজতে), `addBatch` (অনেকগুলো ফর্ম একসাথে পিন করা), `executeBatch` (পিন করা সব ফর্ম একসাথে জমা দেওয়া)।</p></div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>অ্যাপ্লিকেশন ডেভেলপমেন্ট ইউজিং জাভা - স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true} ], throwOnError: false });"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="main_script.js" defer></script>
+
+</body>
+</html>

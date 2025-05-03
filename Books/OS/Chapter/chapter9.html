@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৯: ফাইল সিস্টেম</title>
+    <link rel="stylesheet" href="os_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k55gMp/InvxBM1Mty9rgRDIJNu38mMhftBPqzhAXSDdy92HjL4IFNfey" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1MZu6ADomyXk8EogbLDBsPU5rkXF/dtZZxL1Pceg6x" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouEs/BHtTcWgwPkMAVEABrHI+WGBmvygAodXElARTYHD" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৯: ফাইল সিস্টেম</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">
+            </button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। ফাইল সিস্টেম বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ফাইল সিস্টেম হলো অপারেটিং সিস্টেমের একটি অংশ যা সেকেন্ডারি স্টোরেজ ডিভাইসে (যেমন: হার্ড ডিস্ক, SSD) ফাইল এবং ডিরেক্টরি তৈরি, সংরক্ষণ, সংগঠন, অ্যাক্সেস এবং ব্যবস্থাপনা করার পদ্ধতি ও ডেটা স্ট্রাকচার নির্ধারণ করে। এটি ব্যবহারকারীকে একটি যৌক্তিক (logical) ভিউ প্রদান করে ডেটা সংরক্ষণের জন্য।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফাইল সিস্টেম হলো কম্পিউটারের হার্ডডিস্কে বা পেনড্রাইভে ফাইল আর ফোল্ডার গুছিয়ে রাখার নিয়ম বা পদ্ধতি। তুমি যে ফাইল সেভ করো, ফোল্ডার বানাও, ফাইল খুঁজে বের করো – এই সব কাজ ফাইল সিস্টেমের নিয়ম মেনেই হয়। NTFS, FAT32, ext4 এগুলো হলো বিভিন্ন ফাইল সিস্টেমের নাম।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার বইয়ের তাক বা আলমারিটা হলো ফাইল সিস্টেম। এটা ঠিক করে দেয় তুমি কীভাবে বইগুলো সাজাবে (ফোল্ডার), বইয়ের নাম কী দেবে, আর পরে কীভাবে খুঁজে পাবে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। Extension-সহ বিভিন্ন ধরণের File-এর নাম লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> ফাইলের বিষয়বস্তু বা ধরনের উপর ভিত্তি করে বিভিন্ন প্রকার ফাইল ও তাদের সাধারণ এক্সটেনশন রয়েছে। কয়েকটি উদাহরণ:</p>
+                <ul>
+                    <li>টেক্সট ফাইল: <code>.txt</code>, <code>.doc</code>, <code>.docx</code>, <code>.pdf</code></li>
+                    <li>এক্সিকিউটেবল ফাইল: <code>.exe</code> (Windows), <code>.sh</code> (Linux/Unix), <code>.app</code> (macOS)</li>
+                    <li>ইমেজ ফাইল: <code>.jpg</code>/<code>.jpeg</code>, <code>.png</code>, <code>.gif</code>, <code>.bmp</code></li>
+                    <li>অডিও ফাইল: <code>.mp3</code>, <code>.wav</code>, <code>.aac</code>, <code>.ogg</code></li>
+                    <li>ভিডিও ফাইল: <code>.mp4</code>, <code>.avi</code>, <code>.mkv</code>, <code>.wmv</code></li>
+                    <li>আর্কাইভ ফাইল: <code>.zip</code>, <code>.rar</code>, <code>.tar</code>, <code>.gz</code></li>
+                    <li>সোর্স কোড ফাইল: <code>.c</code>, <code>.java</code>, <code>.py</code>, <code>.js</code>, <code>.html</code>, <code>.css</code></li>
+                </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কম্পিউটারে অনেক রকম ফাইল থাকে। ফাইলের নামের শেষে ডটের (.) পর যে অংশটা থাকে (এক্সটেনশন), সেটা দেখে ফাইলের ধরন বোঝা যায়। যেমন: লেখার ফাইল (<code>.txt</code>, <code>.docx</code>), ছবি (<code>.jpg</code>, <code>.png</code>), গান (<code>.mp3</code>), ভিডিও (<code>.mp4</code>), সফটওয়্যার (<code>.exe</code>), জিপ করা ফাইল (<code>.zip</code>)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> যেমন তোমার নামের শেষে একটা টাইটেল থাকে (যেমন: চৌধুরী, আহমেদ), তেমনি ফাইলের নামের শেষেও একটা এক্সটেনশন থাকে যা তার পরিচয় দেয় (এটা কি ছবি, গান নাকি লেখার ফাইল)।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। ফাইল অপারেশনগুলো লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি ফাইলের উপর সাধারণত নিম্নলিখিত মৌলিক অপারেশনগুলো করা যায়:</p>
+                <ol>
+                    <li>তৈরি করা (Create)</li>
+                    <li>লেখা (Write)</li>
+                    <li>পড়া (Read)</li>
+                    <li>পুনঃঅবস্থান নির্ণয় (Reposition বা Seek)</li>
+                    <li>মুছে ফেলা (Delete)</li>
+                    <li>সংক্ষিপ্ত করা (Truncate)</li>
+                </ol>
+                 <p><em>এছাড়াও ফাইল খোলা (Open), বন্ধ করা (Close), অ্যাট্রিবিউট পড়া/সেট করা ইত্যাদি অপারেশন রয়েছে।</em></p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> একটা ফাইল নিয়ে আমরা কী কী করতে পারি? নতুন ফাইল বানাতে পারি, ফাইলে কিছু লিখতে পারি, ফাইল থেকে কিছু পড়তে পারি, ফাইলের নির্দিষ্ট জায়গায় যেতে পারি (Seek), ফাইল ডিলিট করতে পারি, ফাইলের ভেতরের সব লেখা মুছে ফেলতে পারি (Truncate)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার খাতার মতো: নতুন খাতা কেনা (Create), খাতায় লেখা (Write), খাতা পড়া (Read), নির্দিষ্ট পৃষ্ঠায় যাওয়া (Seek), খাতা ছিঁড়ে ফেলে দেওয়া (Delete)।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৪। Disk free space management বলতে কী বুঝায়?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ডিস্ক ফ্রি স্পেস ম্যানেজমেন্ট হলো অপারেটিং সিস্টেমের ফাইল সিস্টেমের একটি গুরুত্বপূর্ণ কাজ, যার মাধ্যমে সেকেন্ডারি স্টোরেজ ডিভাইসের (যেমন: হার্ড ডিস্ক) কোন ব্লকগুলো খালি বা অব্যবহৃত আছে তার হিসাব রাখা হয়। যখন নতুন ফাইল তৈরি করা হয় বা ফাইলের আকার বাড়ে, তখন এই খালি ব্লকের তালিকা থেকে প্রয়োজনীয় ব্লক বরাদ্দ করা হয়। ফাইল ডিলিট হলে ব্লকগুলো আবার খালি ব্লকের তালিকায় যুক্ত হয়।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> হার্ডডিস্কে কোথায় কোথায় খালি জায়গা আছে, সেটার হিসাব রাখাই হলো ডিস্ক ফ্রি স্পেস ম্যানেজমেন্ট। OS এই হিসাবটা রাখে যাতে নতুন ফাইল সেভ করার সময় বা কোনো ফাইল বড় করার সময় সে بسرعة খালি জায়গা খুঁজে বের করে দিতে পারে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার বইয়ের তাকের কোথায় কোথায় বই রাখার মতো খালি জায়গা আছে, সেই হিসাবটা মনে রাখা বা লিখে রাখা, যাতে নতুন বই আনলে সহজেই রাখতে পারো।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৫। FAT, NTFS ও NFS-এর পুরো নাম লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <ul>
+                    <li><strong>FAT:</strong> File Allocation Table</li>
+                    <li><strong>NTFS:</strong> New Technology File System</li>
+                    <li><strong>NFS:</strong> Network File System</li>
+                </ul>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> FAT আর NTFS হলো উইন্ডোজে ব্যবহৃত দুটো ফাইল সিস্টেম (ফাইল গুছিয়ে রাখার নিয়ম)। FAT পুরনো, NTFS নতুন আর বেশি ফিচার সমৃদ্ধ। NFS হলো নেটওয়ার্কের মাধ্যমে এক কম্পিউটার থেকে অন্য কম্পিউটারের ফাইল ব্যবহার করার একটা প্রটোকল বা ফাইল সিস্টেম।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> FAT, NTFS হলো ফাইল সাজানোর দুটো স্টাইল। NFS হলো নেটওয়ার্কে ফাইল শেয়ার করার একটা নিয়ম।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৬। ফাইল সিস্টেমের বৈশিষ্ট্যগুলো কী কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি সাধারণ ফাইল সিস্টেমের প্রধান বৈশিষ্ট্যগুলো হলো:</p>
+                <ul>
+                    <li>ফাইল ও ডিরেক্টরি ব্যবহার করে ডেটা সংরক্ষণ ও সংগঠন।</li>
+                    <li>হায়ারারকিক্যাল বা ট্রি-স্ট্রাকচার ডিরেক্টরি কাঠামো।</li>
+                    <li>ফাইলের নামকরণ পদ্ধতি ও নিয়মাবলী।</li>
+                    <li>ফাইলের অ্যাট্রিবিউট বা মেটাডেটা সংরক্ষণ।</li>
+                    <li>ফাইল অ্যাক্সেস ও পরিবর্তনের জন্য বিভিন্ন অপারেশন সমর্থন।</li>
+                    <li>ডেটা সুরক্ষার জন্য অ্যাক্সেস কন্ট্রোল ও পারমিশন ব্যবস্থা।</li>
+                    <li>ডিস্কে ডেটা সংরক্ষণের জন্য অ্যালোকেশন পদ্ধতি।</li>
+                </ul>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফাইল সিস্টেমের কিছু গুণ বা বৈশিষ্ট্য: এটা ফাইল আর ফোল্ডার ব্যবহার করে, ফোল্ডারের ভেতর ফোল্ডার রাখা যায়, ফাইলের নাম দেওয়া যায়, ফাইলের তথ্য (সাইজ, তারিখ) জানা যায়, ফাইল নিয়ে বিভিন্ন কাজ করা যায়, কে ফাইল ব্যবহার করতে পারবে তা নিয়ন্ত্রণ করা যায়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> লাইব্রেরির বৈশিষ্ট্য: বই আর তাক ব্যবহার করে, তাকগুলো বিষয় অনুযায়ী সাজানো থাকে, প্রত্যেক বইয়ের নাম আর নম্বর থাকে, বইয়ের তথ্য লেখা থাকে, বই ইস্যু করা বা ফেরত দেওয়া যায়, কারা বই নিতে পারবে তার নিয়ম থাকে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৭। MPEG ও JPEG-এর পুরো নাম কী?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <ul>
+                     <li><strong>MPEG:</strong> Moving Picture Experts Group</li>
+                     <li><strong>JPEG:</strong> Joint Photographic Experts Group</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> MPEG হলো ভিডিও ফাইল স্ট্যান্ডার্ড বা ফরম্যাট নিয়ে কাজ করা একটা গ্রুপের নাম (যেমন .mpg ফাইল)। JPEG হলো স্থির ছবির (Image) স্ট্যান্ডার্ড বা ফরম্যাট নিয়ে কাজ করা একটা গ্রুপের নাম (যেমন .jpg ফাইল)। এরা ফাইল সাইজ কমানোর জন্য কম্প্রেশন কৌশল তৈরি করে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> MPEG হলো ভিডিওর বস, আর JPEG হলো ছবির বস। এরা ঠিক করে দেয় ভিডিও বা ছবি কীভাবে সেভ করলে জায়গা কম লাগবে কিন্তু দেখতে ভালো লাগবে।</p>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্নঃ</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। Database Management System ও File Processing System-এর মধ্যে পার্থক্য লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ডেটাবেজ ম্যানেজমেন্ট সিস্টেম (DBMS) এবং সাধারণ ফাইল প্রসেসিং সিস্টেমের মধ্যে প্রধান পার্থক্যগুলো হলো:</p>
+                 <ul>
+                     <li><strong>ডেটা সংগঠন:</strong> DBMS এ ডেটা সুসংগঠিত ও সম্পর্কযুক্ত টেবিলে থাকে। ফাইল সিস্টেমে ডেটা পৃথক ফাইলে থাকে, সম্পর্ক কম।</li>
+                     <li><strong>রিডানডেন্সি:</strong> DBMS রিডানডেন্সি কমায়। ফাইল সিস্টেমে রিডানডেন্সি বেশি হতে পারে।</li>
+                     <li><strong>কনসিসটেন্সি:</strong> DBMS কনসিসটেন্সি বজায় রাখে। ফাইল সিস্টেমে কঠিন।</li>
+                     <li><strong>ডেটা ইন্ডিপেন্ডেন্স:</strong> DBMS এ ডেটা ইন্ডিপেন্ডেন্স থাকে। ফাইল সিস্টেমে কম থাকে।</li>
+                     <li><strong>অ্যাক্সেস ও কুয়েরি:</strong> DBMS এ জটিল কুয়েরি ও দ্রুত অ্যাক্সেস সম্ভব। ফাইল সিস্টেমে সীমিত।</li>
+                     <li><strong>কনকারেন্সি কন্ট্রোল:</strong> DBMS ভালো কনকারেন্সি কন্ট্রোল প্রদান করে।</li>
+                     <li><strong>সিকিউরিটি ও রিকভারি:</strong> DBMS উন্নত নিরাপত্তা ও রিকভারি সুবিধা দেয়।</li>
+                     <li><strong>জটিলতা ও খরচ:</strong> DBMS বেশি জটিল ও ব্যয়বহুল।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>ফাইল সিস্টেম: সহজ, ফাইলগুলো আলাদা আলাদা থাকে, একই তথ্য പലയിടത്തും থাকতে পারে, নিরাপত্তা কম।</li>
+                     <li>DBMS: গুছানো, টেবিলের মধ্যে সম্পর্ক থাকে, একই তথ্য বারবার থাকে কম, নিরাপত্তা বেশি, ডেটা খোঁজা সহজ, কিন্তু একটু জটিল আর দামি।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>ফাইল সিস্টেম: তোমার পড়ার টেবিলের উপর ছড়ানো ছিটানো অনেকগুলো কাগজ।</li>
+                     <li>DBMS: একটা লাইব্রেরি যেখানে সব বই (ডেটা) বিষয় অনুযায়ী সাজানো, কার্ড দিয়ে ট্র্যাক রাখা হয় কে বই নিচ্ছে, নিরাপত্তা আছে।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">২। File পয়েন্টার বর্ণনা কর।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ফাইল পয়েন্টার (File Pointer বা Current File Position Indicator) হলো অপারেটিং সিস্টেম কর্তৃক প্রতিটি খোলা ফাইলের জন্য রক্ষণাবেক্ষণ করা একটি মার্কার বা নির্দেশক যা ফাইলের মধ্যে বর্তমান অবস্থান নির্দেশ করে। পরবর্তী Read বা Write অপারেশন এই পয়েন্টারের অবস্থান থেকে শুরু হয়। ফাইল খোলার সময় এটি সাধারণত ফাইলের শুরুতে (অবস্থান ০) থাকে। Read/Write অপারেশনের পর পয়েন্টারটি স্বয়ংক্রিয়ভাবে স্থানান্তরিত হয়। Seek বা Reposition অপারেশনের মাধ্যমে এই পয়েন্টারকে ফাইলের যেকোনো নির্দিষ্ট অবস্থানে ইচ্ছাকৃতভাবে সরানো যায়।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> তুমি যখন একটা ফাইল কম্পিউটারে খোলো (যেমন একটা টেক্সট ফাইল), তখন OS মনে রাখে তুমি ফাইলের ঠিক কোন জায়গায় এখন আছো বা কোথায় লিখছো/পড়ছো। এই মনে রাখা পজিশনটাই হলো ফাইল পয়েন্টার। তুমি যখন Read বা Write করো, পয়েন্টারটা নিজে নিজেই সামনে এগোতে থাকে। আবার চাইলে তুমি পয়েন্টারটাকে ফাইলের শুরুতে, শেষে বা মাঝখানে যেকোনো জায়গায় নিয়েও যেতে পারো (Seek)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> বই পড়ার সময় তুমি যেমন আঙ্গুল দিয়ে বা বুকমার্ক দিয়ে মনে রাখো কোন লাইনটা পড়ছিলে, ফাইল পয়েন্টারও তেমনি কম্পিউটারে ফাইলের মধ্যে তোমার বর্তমান পজিশনটা মনে রাখে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৩। সাধারণ File system-এর বৈশিষ্ঠ্যগুলো লেখ।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি সাধারণ বা টিপিক্যাল ফাইল সিস্টেমের প্রধান বৈশিষ্ট্যগুলো হলো:</p>
+                 <ol>
+                     <li>হায়ারারকিক্যাল ডিরেক্টরি স্ট্রাকচার।</li>
+                     <li>ফাইলের নামকরণ পদ্ধতি।</li>
+                     <li>ফাইলের অ্যাট্রিবিউট বা মেটাডেটা সংরক্ষণ।</li>
+                     <li>ফাইল অপারেশন (Create, Read, Write, Delete ইত্যাদি) সমর্থন।</li>
+                     <li>অ্যাক্সেস মেথড (Sequential, Direct) নির্ধারণ।</li>
+                     <li>ডিস্ক স্পেস ম্যানেজমেন্ট।</li>
+                     <li>সুরক্ষা ও নিরাপত্তা (অ্যাক্সেস কন্ট্রোল)।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফাইল সিস্টেমের বৈশিষ্ট্য: ফাইল-ফোল্ডার দিয়ে সাজানো, ফোল্ডারের ভেতর ফোল্ডার রাখা যায়, ফাইলের নাম দেওয়া যায়, ফাইলের ডিটেইলস (সাইজ, তারিখ) থাকে, ফাইল নিয়ে কাজ করা যায় (read, write, delete), ডিস্কে জায়গা ম্যানেজ করে, আর ফাইলের নিরাপত্তা দেয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> লাইব্রেরির বৈশিষ্ট্য: বই (ফাইল) আর তাক (ডিরেক্টরি) থাকে, তাকগুলো বিষয় অনুযায়ী সাজানো, বইয়ের নাম ও নম্বর থাকে, বইয়ের তথ্য (লেখক, পৃষ্ঠা) থাকে, বই ইস্যু/ফেরত দেওয়া যায়, তাকের খালি জায়গা বোঝা যায়, কারা বই নিতে পারবে তার নিয়ম থাকে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৪। বিভিন্ন ধরণের File system-এর নাম লেখ।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> বিভিন্ন অপারেটিং সিস্টেম এবং ডিভাইসের জন্য নানা ধরনের ফাইল সিস্টেম ব্যবহৃত হয়। কয়েকটি উল্লেখযোগ্য ফাইল সিস্টেম হলো:</p>
+                 <ul>
+                     <li><strong>উইন্ডোজ:</strong> FAT (FAT16, FAT32), exFAT, NTFS (প্রধান)।</li>
+                     <li><strong>লিনাক্স/ইউনিক্স:</strong> ext2, ext3, ext4 (বহুল ব্যবহৃত), Btrfs, XFS, ZFS, ReiserFS।</li>
+                     <li><strong>ম্যাকওএস:</strong> HFS, HFS+, APFS (প্রধান)।</li>
+                     <li><strong>অপটিক্যাল ডিস্ক:</strong> ISO 9660, UDF।</li>
+                     <li><strong>নেটওয়ার্ক:</strong> NFS (Network File System), SMB/CIFS (Server Message Block/Common Internet File System)।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফাইল গুছিয়ে রাখার অনেক রকম স্টাইল বা সিস্টেম আছে। উইন্ডোজ ব্যবহার করে NTFS বা FAT32। লিনাক্স ব্যবহার করে ext4 বা অন্যগুলো। ম্যাক ব্যবহার করে APFS বা HFS+। সিডি/ডিভিডির জন্য আলাদা সিস্টেম আছে। আবার নেটওয়ার্কে ফাইল শেয়ার করার জন্যও NFS বা SMB নামের সিস্টেম আছে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> বই সাজানোর যেমন বিভিন্ন নিয়ম বা ক্যাটালগ সিস্টেম থাকতে পারে (ডিউই ডেসিমাল, লাইব্রেরি অফ কংগ্রেস), তেমনি কম্পিউটারে ফাইল সাজানোরও বিভিন্ন সিস্টেম (FAT, NTFS, ext4) আছে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৫। File কী? File-এর Basic operation-গুলো সংক্ষেপে লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <ul>
+                     <li><strong>ফাইল (File):</strong> ফাইল হলো সেকেন্ডারি স্টোরেজে সংরক্ষিত সম্পর্কিত তথ্যের একটি সংগ্রহ, যাকে একটি নির্দিষ্ট নাম দ্বারা শনাক্ত করা হয়। অপারেটিং সিস্টেমের দৃষ্টিকোণ থেকে, এটি বাইট বা বিটের একটি সিকোয়েন্স।</li>
+                     <li><strong>বেসিক অপারেশন (Basic Operations):** ফাইলের উপর সম্পাদিত মৌলিক অপারেশনগুলো হলো: Create, Write, Read, Reposition (Seek), Delete, Truncate।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>ফাইল: হার্ডডিস্কে রাখা যেকোনো ডেটার কালেকশন (যেমন একটা গান, ছবি বা লেখা)।</li>
+                     <li>কাজগুলো: নতুন ফাইল বানানো, লেখা, পড়া, ফাইলের মাঝে কোথাও যাওয়া, ডিলিট করা, সব লেখা মুছে ফেলা।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>ফাইল: তোমার খাতা।</li>
+                     <li>কাজগুলো: নতুন খাতা কেনা, খাতায় লেখা, খাতা পড়া, নির্দিষ্ট পৃষ্ঠায় যাওয়া, খাতা ফেলে দেওয়া, খাতার সব লেখা ইরেজার দিয়ে মুছে ফেলা।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন:</h3>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">১। চিত্রসহ File System Organization বর্ণনা কর।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p>ফাইল সিস্টেম অর্গানাইজেশন বলতে বোঝায় কিভাবে ফাইলগুলো যৌক্তিকভাবে (ব্যবহারকারীর দৃষ্টিকোণ থেকে) এবং ভৌতভাবে (ডিস্কের উপর) সংগঠিত ও সংরক্ষিত থাকে।</p>
+                 <p><strong>যৌক্তিক সংগঠন (Logical Organization):</strong><br>
+                 ব্যবহারকারীরা ফাইলগুলোকে সাধারণত একটি হায়ারারকিক্যাল বা ট্রি-স্ট্রাকচার ডিরেক্টরি அமைப்பில் দেখে।</p>
+                 <ul>
+                     <li><strong>ফাইল:</strong> তথ্যের মৌলিক সংগ্রহ।</li>
+                     <li><strong>ডিরেক্টরি/ফোল্ডার:</strong> ফাইল ও ডিরেক্টরি ধারণকারী কন্টেইনার।</li>
+                     <li><strong>ট্রি স্ট্রাকচার:</strong> একটি রুট ডিরেক্টরি থেকে শাখা-প্রশাখার মতো ফাইল ও সাব-ডিরেক্টরি বিস্তৃত হয়। প্রতিটি আইটেমের একটি পাথ নেম থাকে।</li>
+                 </ul>
+                 <p><strong>চিত্র (ট্রি-স্ট্রাকচার ডিরেক্টরি):</strong></p>
+                 <pre><code>
+          / (রুট)
+         /|\
+        / | \
+       /  |  \
+    home usr etc
+     |    |    |
+    rifat bin conf
+     |
+    docs
+     |
+    report.txt
+                 </code></pre>
+                 <p><strong>ভৌত সংগঠন (Physical Organization) বা ডিস্ক অ্যালোকেশন:</strong><br>
+                 ফাইলগুলোকে ডিস্কের ভৌত ব্লকগুলোতে সংরক্ষণ করার পদ্ধতি। প্রধান পদ্ধতিগুলো হলো:</p>
+                 <ol>
+                     <li><strong>কন্টিগুয়াস অ্যালোকেশন:</strong> ফাইলের সকল ব্লক ডিস্কে পরপর থাকে।</li>
+                     <li><strong>লিঙ্কড অ্যালোকেশন:</strong> ফাইলের ব্লকগুলো চেইনের মতো একে অপরের সাথে যুক্ত থাকে।</li>
+                     <li><strong>ইনডেক্সড অ্যালোকেশন:</strong> একটি ইনডেক্স ব্লক ফাইলের সকল ডেটা ব্লকের ঠিকানা ধারণ করে।</li>
+                 </ol>
+                 <p>অপারেটিং সিস্টেম এই যৌক্তিক এবং ভৌত সংগঠন পরিচালনা করে ফাইল তৈরি, অ্যাক্সেস এবং ব্যবস্থাপনাকে সম্ভব করে তোলে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফাইল সিস্টেম যেভাবে সাজানো থাকে:</p>
+                 <ul>
+                     <li><strong>লজিক্যাল ভিউ (আমরা যা দেখি):</strong> ফাইলগুলো ফোল্ডারের ভেতর, ফোল্ডার অন্য ফোল্ডারের ভেতর, অনেকটা গাছের ডালপালার মতো।</li>
+                     <li><strong>ফিজিক্যাল ভিউ (ডিস্কে যেভাবে থাকে):</strong> ডিস্কে ফাইল রাখার নিয়ম:
+                         <ul>
+                             <li>কন্টিগুয়াস: সব একসাথে।</li>
+                             <li>লিঙ্কড: একটার সাথে পরেরটার লিংক।</li>
+                             <li>ইনডেক্সড: সূচিপত্র দেখে জায়গা খুঁজে নেওয়া।</li>
+                         </ul>
+                     </li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong></p>
+                 <ul>
+                     <li>লজিক্যাল: লাইব্রেরিতে বইগুলো বিষয় অনুযায়ী তাকের পর তাক সাজানো।</li>
+                     <li>ফিজিক্যাল: তাকের মধ্যে বইগুলো রাখার নিয়ম:
+                         <ul>
+                             <li>কন্টিগুয়াস: একটা সিরিজের সব বই একসাথে রাখা।</li>
+                             <li>লিঙ্কড: প্রথম বইয়ের শেষে পরের বইয়ের তাক নম্বর লেখা।</li>
+                             <li>ইনডেক্সড: লাইব্রেরির ক্যাটালগ কার্ড।</li>
+                         </ul>
+                     </li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">২। Disk-এর Space management পদ্ধতি বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p>ডিস্ক স্পেস ম্যানেজমেন্ট, বিশেষ করে ফ্রি স্পেস ম্যানেজমেন্ট, ফাইল সিস্টেমের একটি গুরুত্বপূর্ণ অংশ। অপারেটিং সিস্টেমকে ডিস্কের কোন ব্লকগুলো বর্তমানে খালি বা উপলব্ধ আছে তার হিসাব রাখতে হয়। কয়েকটি প্রচলিত ফ্রি স্পেস ম্যানেজমেন্ট পদ্ধতি হলো:</p>
+                <ol>
+                    <li><strong>বিট ভেক্টর (Bit Vector) বা বিটম্যাপ (Bitmap):</strong> ডিস্কের প্রতিটি ব্লকের জন্য একটি করে বিট (খালি/ভরা) ব্যবহার করা হয়। পুরো ডিস্কের জন্য একটি বিটম্যাপ মেমরিতে রাখা হয়।</li>
+                    <li><strong>লিঙ্কড লিস্ট (Linked List) বা ফ্রি লিস্ট (Free List):</strong> সকল খালি ডিস্ক ব্লকগুলোকে একটি লিঙ্কড লিস্টের মাধ্যমে সংযুক্ত রাখা হয়। প্রতিটি খালি ব্লকে পরবর্তী খালি ব্লকের ঠিকানা থাকে।</li>
+                    <li><strong>গ্রুপিং (Grouping):</strong> লিঙ্কড লিস্টের উন্নত সংস্করণ, যেখানে প্রথম খালি ব্লকের মধ্যে পরবর্তী অনেকগুলো খালি ব্লকের ঠিকানা সংরক্ষণ করা হয়।</li>
+                    <li><strong>কাউন্টিং (Counting):** যখন একাধিক কন্টিগুয়াস খালি ব্লক থাকে, তখন প্রথম খালি ব্লকের ঠিকানা এবং মোট কন্টিগুয়াস খালি ব্লকের সংখ্যা একসাথে সংরক্ষণ করা হয়।</li>
+                </ol>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> হার্ডডিস্কের কোথায় কোথায় জায়গা খালি আছে, সেটা OS কীভাবে মনে রাখে? কয়েকটা উপায়:</p>
+                <ul>
+                    <li><strong>বিটম্যাপ:</strong> ডিস্কের প্রত্যেকটা ছোট জায়গার জন্য ০ বা ১ দিয়ে ম্যাপ বানানো।</li>
+                    <li><strong>লিঙ্কড লিস্ট:</strong> একটা খালি জায়গার ঠিকানার সাথে পরের খালি জায়গার ঠিকানা জুড়ে দেওয়া।</li>
+                    <li><strong>গ্রুপিং:</strong> এক জায়গায় পরের অনেকগুলো খালি জায়গার ঠিকানা রাখা।</li>
+                    <li><strong>কাউন্টিং:</strong> পরপর খালি জায়গা থাকলে, শুরু আর মোট সংখ্যা লিখে রাখা।</li>
+                 </ul>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার বাসার খালি রুমগুলোর হিসাব রাখা:</p>
+                 <ul>
+                     <li><strong>বিটম্যাপ:</strong> একটা লিস্টে প্রত্যেক রুমের পাশে 'খালি' বা 'ভরা' লেখা।</li>
+                     <li><strong>লিঙ্কড লিস্ট:</strong> প্রত্যেক খালি রুমের দরজায় পরের খালি রুমের নম্বর লেখা।</li>
+                     <li><strong>গ্রুপিং:</strong> একটা খালি রুমের দরজায় পরের ৫টা খালি রুমের নম্বর লেখা।</li>
+                     <li><strong>কাউন্টিং:</strong> লিখে রাখা "৩ তলায় ৫টা রুম খালি"।</li>
+                 </ul>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+             <h2 class="question-title">৩। Disk space allocation বর্ণনা কর।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p>ডিস্ক স্পেস অ্যালোকেশন বলতে বোঝায় ফাইল সিস্টেম কীভাবে ফাইলের ডেটা ব্লকগুলোকে সেকেন্ডারি স্টোরেজের (ডিস্ক) ভৌত ব্লকগুলোতে বরাদ্দ বা স্থাপন করে। প্রধান তিনটি অ্যালোকেশন পদ্ধতি হলো:</p>
+                 <ol>
+                     <li><strong>কন্টিগুয়াস অ্যালোকেশন (Contiguous Allocation):</strong>
+                         <ul>
+                            <li><strong>বর্ণনা:</strong> প্রতিটি ফাইল ডিস্কের উপর পরপর বা নিরবচ্ছিন্ন ব্লক দখল করে।</li>
+                            <li><strong>সুবিধা:</strong> দ্রুত রিড/রাইট, ডিরেক্ট অ্যাক্সেস সহজ।</li>
+                            <li><strong>অসুবিধা:</strong> এক্সটারনাল ফ্র্যাগমেন্টেশন, ফাইলের আকার বৃদ্ধি করা কঠিন।</li>
+                         </ul>
+                     </li>
+                     <li><strong>লিঙ্কড অ্যালোকেশন (Linked Allocation):</strong>
+                         <ul>
+                            <li><strong>বর্ণনা:</strong> প্রতিটি ফাইল ডিস্ক ব্লকের একটি লিঙ্কড লিস্ট হিসেবে সংরক্ষিত থাকে। প্রতি ব্লকে পরের ব্লকের পয়েন্টার থাকে।</li>
+                            <li><strong>সুবিধা:</strong> এক্সটারনাল ফ্র্যাগমেন্টেশন হয় না, ফাইলের আকার সহজে বাড়ানো যায়।</li>
+                            <li><strong>অসুবিধা:</strong> র্যা ন্ডম অ্যাক্সেস ধীর, পয়েন্টারের জন্য স্পেস নষ্ট, পয়েন্টার নষ্ট হলে ডেটা লস।</li>
+                         </ul>
+                     </li>
+                     <li><strong>ইনডেক্সড অ্যালোকেশন (Indexed Allocation):</strong>
+                         <ul>
+                            <li><strong>বর্ণনা:</strong> প্রতিটি ফাইলের জন্য একটি ইনডেক্স ব্লক থাকে যা ফাইলের সকল ডেটা ব্লকের ঠিকানা ধারণ করে।</li>
+                            <li><strong>সুবিধা:</strong> এক্সটারনাল ফ্র্যাগমেন্টেশন নেই, র্যা ন্ডম অ্যাক্সেস দ্রুত।</li>
+                            <li><strong>অসুবিধা:</strong> ইনডেক্স ব্লকের জন্য অতিরিক্ত স্পেস লাগে, বড় ফাইলের জন্য জটিলতা বাড়ে।</li>
+                         </ul>
+                     </li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> হার্ডডিস্কে ফাইল রাখার তিনটা স্টাইল:</p>
+                 <ol>
+                     <li><strong>কন্টিগুয়াস:</strong> ফাইলের সব অংশ একসাথে, পাশাপাশি রাখা। পড়া সহজ আর ফাস্ট, কিন্তু জায়গা ফাঁকা না থাকলে বা ফাইল বড় করতে গেলে সমস্যা।</li>
+                     <li><strong>লিঙ্কড:</strong> ফাইলের এক অংশের সাথে পরের অংশের ঠিকানা জুড়ে দেওয়া, চেইনের মতো। জায়গা নষ্ট হয় কম, ফাইল বড় করা সহজ, কিন্তু মাঝখান থেকে কিছু পড়তে গেলে সময় বেশি লাগে।</li>
+                     <li><strong>ইনডেক্সড:</strong> একটা সূচিপত্র (ইনডেক্স ব্লক) রাখা যেখানে ফাইলের সব অংশের ঠিকানা লেখা থাকে। মাঝখান থেকে পড়া সহজ, জায়গা নষ্ট হয় কম, কিন্তু সূচিপত্র রাখার জন্য আলাদা জায়গা লাগে।</li>
+                 </ol>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> বইয়ের তাকের উদাহরণ:</p>
+                 <ol>
+                     <li><strong>কন্টিগুয়াস:</strong> একটা সিরিজের সব বই একসাথে রাখা।</li>
+                     <li><strong>লিঙ্কড:</strong> প্রথম বইয়ের শেষে পরের বইয়ের তাক নম্বর লেখা, সেটার শেষে তার পরেরটার...</li>
+                     <li><strong>ইনডেক্সড:</strong> লাইব্রেরির ক্যাটালগ কার্ড, যেখানে একটা বইয়ের সব খণ্ড কোন কোন সেলফে আছে তার লিস্ট করা।</li>
+                 </ol>
+            </div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">৪। ডিস্ক ফ্রি স্পেস ম্যানেজমেন্ট পদ্ধতি বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p>*(রচনামূলক প্রশ্ন ২ এর উত্তরটি এখানে আবার লেখা হবে)*</p>
+                 <p>ডিস্ক স্পেস ম্যানেজমেন্ট, বিশেষ করে ফ্রি স্পেস ম্যানেজমেন্ট, ফাইল সিস্টেমের একটি গুরুত্বপূর্ণ অংশ। অপারেটিং সিস্টেমকে ডিস্কের কোন ব্লকগুলো বর্তমানে খালি বা উপলব্ধ আছে তার হিসাব রাখতে হয়, যাতে নতুন ফাইল তৈরি বা ফাইল বাড়ানোর সময় দ্রুত ও দক্ষতার সাথে খালি ব্লক বরাদ্দ করা যায়। কয়েকটি প্রচলিত ফ্রি স্পেস ম্যানেজমেন্ট পদ্ধতি হলো:</p>
+                 <ol>
+                     <li><strong>বিট ভেক্টর (Bit Vector) বা বিটম্যাপ (Bitmap):</strong> ডিস্কের প্রতিটি ব্লকের জন্য একটি বিট (খালি/ভরা) ব্যবহার করা হয়। সুবিধা: দ্রুত খালি ব্লক খোঁজা যায়। অসুবিধা: বড় ডিস্কের জন্য ম্যাপ বড় হয়।</li>
+                     <li><strong>লিঙ্কড লিস্ট (Linked List) বা ফ্রি লিস্ট (Free List):</strong> সকল খালি ব্লক একটি লিঙ্কড লিস্টের মাধ্যমে যুক্ত থাকে। সুবিধা: অতিরিক্ত স্পেস কম লাগে। অসুবিধা: খালি ব্লক খুঁজতে সময় লাগে।</li>
+                     <li><strong>গ্রুপিং (Grouping):</strong> লিঙ্কড লিস্টের উন্নত রূপ, প্রথম খালি ব্লকে পরের অনেকগুলো খালি ব্লকের ঠিকানা থাকে। সুবিধা: দ্রুত একাধিক খালি ব্লক পাওয়া যায়।</li>
+                     <li><strong>কাউন্টিং (Counting):** পরপর খালি ব্লক থাকলে প্রথম ব্লকের ঠিকানা ও মোট সংখ্যা রাখা হয়। সুবিধা: কন্টিগুয়াস খালি ব্লকের জন্য খুব কার্যকর।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> (রচনামূলক প্রশ্ন ২ এর অনুরূপ) হার্ডডিস্কের খালি জায়গার হিসাব রাখার উপায়: বিটম্যাপ (প্রতি ব্লকের জন্য ০/১ ম্যাপ), লিঙ্কড লিস্ট (একটার সাথে পরেরটার ঠিকানা জোড়া), গ্রুপিং (একটায় অনেকের ঠিকানা), কাউন্টিং (পরপর খালি থাকলে সংখ্যা গোনা)।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                <p><strong>একদম সহজ ব্যাখ্যা:</strong> (রচনামূলক প্রশ্ন ২ এর অনুরূপ) খালি রুমের হিসাব রাখার উপায়: লিস্টে রুমের পাশে খালি/ভরা লেখা, এক খালি রুমের দরজায় পরেরটার নম্বর লেখা, এক খালি রুমে পরের কয়েকটার নম্বর লেখা, বা লিখে রাখা "৩ তলায় ৫টা রুম খালি"।</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>অপারেটিং সিস্টেম স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        // Function to apply theme
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀️ লাইট মোড'; // Sun icon for light mode switch
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = '🌙 ডার্ক মোড'; // Moon icon for dark mode switch
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initial theme setup
+        let preferredTheme = 'light'; // Default to light
+        if (currentTheme) {
+            preferredTheme = currentTheme;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Uncomment below line if you want system preference to be the initial default
+            // preferredTheme = 'dark';
+        }
+        applyTheme(preferredTheme);
+
+        // Button click listener
+        themeToggleBtn.addEventListener('click', () => {
+            let newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+    </script>
+
+</body>
+</html>

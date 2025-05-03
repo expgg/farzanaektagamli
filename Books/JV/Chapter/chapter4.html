@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৪: স্ট্রিংস এবং ক্যারেক্টারস</title>
+
+    <link rel="stylesheet" href="java_style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    </head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৪: স্ট্রিংস এবং ক্যারেক্টারস</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">🌙 ডার্ক মোড</button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। ক্যারেক্টর বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ক্যারেক্টার হলো একক কোনো বর্ণ, অঙ্ক বা চিহ্ন।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কীবোর্ডে আমরা যা টাইপ করি, যেমন একটা অক্ষর ('A', 'ক'), একটা সংখ্যা ('1', '৫') বা কোনো বিশেষ চিহ্ন ('#', '$', '?'), তার প্রত্যেকটা এক একটা ক্যারেক্টার। জাভাতে `char` ডেটা টাইপ দিয়ে এগুলো প্রকাশ করা হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার নামের প্রথম অক্ষর 'রি' (`R`) একটা ক্যারেক্টার, ফারজানার নামের 'ফা' (`F`) আরেকটা ক্যারেক্টার।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। স্ট্রিং কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> স্ট্রিং হলো ক্যারেক্টারের একটি সিকোয়েন্স বা অনুক্রম।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> স্ট্রিং মানে হলো অনেকগুলো ক্যারেক্টার একসাথে পরপর বসিয়ে যা তৈরি হয় – সোজা কথায় একটা শব্দ বা বাক্য। যেমন, "Rifat", "Farzana", "Hello World", "I love Java" – এগুলো সবই স্ট্রিং। জাভাতে স্ট্রিং একটা অবজেক্ট হিসেবে কাজ করে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> অনেকগুলো অক্ষর পরপর বসিয়ে যখন একটা নাম বা কথা লেখা হয়, সেটাই স্ট্রিং। যেমন তোমার পুরো নাম "রিফাত" একটা স্ট্রিং।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। জাভাতে ব্যবহৃত যে-কোনো দুটি স্ট্রিং কনস্ট্রাক্টরের নাম লেখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> `String()` (খালি স্ট্রিং), `String(String original)` (কপি)।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> স্ট্রিং অবজেক্ট বানানোর জন্য কিছু রেডিমেড উপায় (কনস্ট্রাক্টর) আছে। দুটো কমন উপায় হলো: একটা একদম খালি স্ট্রিং বানানো (`new String()`), অথবা আগে থেকে থাকা একটা স্ট্রিংয়ের হুবহু কপি বানানো (`new String("আগের স্ট্রিং")`)।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> দুটো আইডিয়া: ১) একটা খালি নামের ট্যাগ বানানো, ২) রিফাতের নামের ট্যাগ দেখে ঠিক ওরকম আরেকটা বানানো।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। জাভাতে ব্যবহৃত যে-কোনো দুটি স্ট্রিং মেথডের নাম লেখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> `length()`, `charAt()`। (অথবা `toUpperCase()`, `concat()` ইত্যাদি)</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> স্ট্রিং নিয়ে বিভিন্ন কাজ করার জন্য অনেকগুলো তৈরি করা মেথড আছে। যেমন: `length()` দিয়ে স্ট্রিংটা কত লম্বা (কয়টা ক্যারেক্টার আছে) সেটা জানা যায়, `charAt()` দিয়ে নির্দিষ্ট পজিশনে কোন ক্যারেক্টার আছে সেটা বের করা যায়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> নামের উপর দুটো কাজ: `length()` (নামটা কত অক্ষরের?), `charAt()` (নামের ৩ নম্বর অক্ষরটা কী?)।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৫। toUpperCase মেথডের কাজ কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> স্ট্রিংয়ের সব ক্যারেক্টারকে বড় হাতের অক্ষরে (Uppercase) রূপান্তর করা।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `toUpperCase()` মেথডটা একটা স্ট্রিংয়ের ভেতরের সব ছোট হাতের অক্ষরকে (lowercase) বড় হাতের অক্ষরে (uppercase) পরিণত করে একটা নতুন স্ট্রিং ফেরত দেয়। যেমন, "rifat" কে `toUpperCase()` করলে "RIFAT" পাওয়া যাবে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> "rifat" নামটাকে চিৎকার করে ডাকলে যেমন শোনায় "RIFAT"!</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৬। replace মেথড ব্যবহার করা হয় কেন?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> স্ট্রিংয়ের একটি নির্দিষ্ট ক্যারেক্টার বা ক্যারেক্টার সিকোয়েন্সকে অন্য একটি দিয়ে প্রতিস্থাপন করতে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `replace()` মেথডটা ব্যবহার করা হয় একটা স্ট্রিংয়ের ভেতরের কোনো একটা অক্ষর বা অংশকে বদলে অন্য কিছু বসানোর জন্য। যেমন, "Java is fun" স্ট্রিংটাতে `replace('f', 'F')` ব্যবহার করলে "Java is Fun" হবে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> রিফাতের নামে যদি ভুল করে 't' এর জায়গায় 'd' লেখা হয় ("Rifad"), `replace('d', 't')` দিয়ে সেটা ঠিক করে "Rifat" করা যায়।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৭। trim () মেথডের কাজ কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> স্ট্রিংয়ের শুরু এবং শেষের হোয়াইটস্পেস (Whitespace) বাদ দেওয়া।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `trim()` মেথড একটা স্ট্রিংয়ের শুরুর দিকে আর শেষের দিকে যদি কোনো অতিরিক্ত খালি জায়গা (স্পেস, ট্যাব ইত্যাদি) থাকে, সেগুলোকে ছেঁটে ফেলে দেয়। যেমন, `"  Hello World  "` কে `trim()` করলে `"Hello World"` পাওয়া যাবে। মাঝখানের স্পেস কিন্তু বাদ যায় না।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> লেখার আগে আর পরে যদি ভুল করে এক্সট্রা স্পেস পড়ে যায়, `trim()` সেই স্পেসগুলো মুছে লেখাটাকে সাইজ করে দেয়।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৮। জাভার ব্যবহৃত কমন স্ট্রিং বাফার কনস্ট্রাক্টরগুলোর নাম লেখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> `StringBuffer()`, `StringBuffer(int capacity)`, `StringBuffer(String str)`।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `StringBuffer` হলো পরিবর্তন করা যায় এমন স্ট্রিং। এটা বানানোর কিছু কমন উপায় হলো: একটা খালি StringBuffer বানানো (`new StringBuffer()`), নির্দিষ্ট সাইজের StringBuffer বানানো (`new StringBuffer(50)`) অথবা একটা সাধারণ স্ট্রিং দিয়ে StringBuffer শুরু করা (`new StringBuffer("Rifat")`)।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা লেখার খাতা (`StringBuffer`) নেওয়ার উপায়: ১) খালি খাতা, ২) ৫০ পাতার খাতা, ৩) "রিফাত" নাম লেখা একটা খাতা।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৯। জাভা স্ট্রিং বাফার বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি পরিবর্তনযোগ্য (Mutable) ক্যারেক্টার সিকোয়েন্স।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> সাধারণ `String` অবজেক্ট একবার বানালে সেটা আর বদলানো যায় না (Immutable)। যদি স্ট্রিংকে বারবার বদলানোর দরকার হয় (যেমন: লেখা যোগ করা, বাদ দেওয়া), তখন `StringBuffer` ব্যবহার করা হয়। `StringBuffer` হলো এমন একটা স্ট্রিং যা তৈরি করার পরেও পরিবর্তন করা যায়। এটা থ্রেড-সেফও বটে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> `String` হলো পাথরে খোদাই করা নাম, যা বদলানো যায় না। `StringBuffer` হলো লেখার বোর্ডের মতো, যেখানে তুমি চাইলেই লেখা মুছতে পারো, নতুন কিছু যোগ করতে পারো।</p></div>
+        </div>
+
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। জাভার ব্যবহৃত স্ট্রিং কনস্ট্রাক্টরসমূহ কী কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> জাভাতে `String` ক্লাস অবজেক্ট তৈরি করার জন্য বিভিন্ন কনস্ট্রাক্টর রয়েছে। কয়েকটি প্রধান কনস্ট্রাক্টর হলো:<ul><li>`String()`: একটি খালি স্ট্রিং অবজেক্ট তৈরি করে।</li><li>`String(String original)`: একটি বিদ্যমান স্ট্রিংয়ের কপি তৈরি করে।</li><li>`String(char[] value)`: একটি ক্যারেক্টার অ্যারে থেকে স্ট্রিং তৈরি করে।</li><li>`String(char[] value, int offset, int count)`: ক্যারেক্টার অ্যারের একটি অংশ থেকে স্ট্রিং তৈরি করে।</li><li>`String(byte[] bytes)`: একটি বাইট অ্যারে থেকে ডিফল্ট ক্যারেক্টার সেট ব্যবহার করে স্ট্রিং তৈরি করে।</li><li>`String(byte[] bytes, int offset, int length)`: বাইট অ্যারের অংশ থেকে স্ট্রিং তৈরি করে।</li><li>`String(StringBuffer buffer)`: একটি `StringBuffer` থেকে স্ট্রিং তৈরি করে।</li><li>`String(StringBuilder builder)`: একটি `StringBuilder` থেকে স্ট্রিং তৈরি করে।</li></ul></p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> স্ট্রিং বানানোর অনেকগুলো উপায় জাভা দেয়। যেমন:<ul><li>একদম ফাঁকা স্ট্রিং বানানো।</li><li>অন্য একটা স্ট্রিং দেখে সেটার কপি বানানো (যেমন, রিফাতের নাম দেখে আরেকটা রিফাত স্ট্রিং বানানো)।</li><li>অনেকগুলো অক্ষর (`char` array) একসাথে করে স্ট্রিং বানানো।</li><li>অক্ষর অ্যারের মাঝখান থেকে কিছু অক্ষর নিয়ে স্ট্রিং বানানো।</li><li>বাইট ডেটা থেকে স্ট্রিং বানানো (বিভিন্ন এনকোডিংয়ের জন্য দরকার হয়)।</li><li>পরিবর্তন করা যায় এমন স্ট্রিং (`StringBuffer` বা `StringBuilder`) থেকে সাধারণ স্ট্রিং বানানো।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> নাম লেখার বিভিন্ন উপায়: ১) খালি কাগজ নেওয়া। ২) কারো নাম কপি করা। ৩) আলাদা আলাদা অক্ষর জুড়ে নাম বানানো। ৪) অক্ষরের সারি থেকে কিছু অক্ষর নেওয়া। ৫) অন্যরকম ডেটা থেকে নাম বানানো। ৬) লেখার বোর্ড থেকে ফাইনাল নাম লেখা।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। উদাহরণসহ যে-কোনো চারটি স্ট্রিং মেথড সংক্ষেপে লিখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <ol>
+                    <li><strong>`int length()`**: স্ট্রিংয়ের দৈর্ঘ্য (ক্যারেক্টারের সংখ্যা) রিটার্ন করে।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String name = "Rifat";
+int len = name.length(); // len হবে 5
+System.out.println("Length: " + len);
+                           </code></pre>
+                        </div>
+                    </li>
+                    <li><strong>`char charAt(int index)`**: নির্দিষ্ট ইন্ডেক্স (পজিশন) এর ক্যারেক্টারটি রিটার্ন করে। ইন্ডেক্স 0 থেকে শুরু হয়।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String greet = "Hello";
+char ch = greet.charAt(1); // ch হবে 'e'
+System.out.println("Char at index 1: " + ch);
+                           </code></pre>
+                        </div>
+                    </li>
+                    <li><strong>`String concat(String str)`**: বর্তমান স্ট্রিংয়ের শেষে অন্য একটি স্ট্রিং যুক্ত করে নতুন স্ট্রিং রিটার্ন করে।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String s1 = "Rifat ";
+String s2 = "loves ";
+String s3 = "Farzana";
+String s4 = s1.concat(s2).concat(s3); // s4 হবে "Rifat loves Java"
+System.out.println(s4);
+// '+' অপারেটরও একই কাজ করে: System.out.println(s1 + s2 + s3);
+                           </code></pre>
+                        </div>
+                    </li>
+                    <li><strong>`boolean equals(Object anObject)`**: দুটি স্ট্রিং ক্যারেক্টার বাই ক্যারেক্টার একই কিনা তা তুলনা করে (case-sensitive)। এক হলে `true`, না হলে `false` রিটার্ন করে।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String name1 = "Farzana";
+String name2 = "Farzana";
+String name3 = "farzana";
+boolean isEqual1 = name1.equals(name2); // isEqual1 হবে true
+boolean isEqual2 = name1.equals(name3); // isEqual2 হবে false
+System.out.println("name1 equals name2? " + isEqual1);
+System.out.println("name1 equals name3? " + isEqual2);
+                           </code></pre>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> স্ট্রিং নিয়ে কাজ করার ৪টা মেথড: <ol><li>`length()`: স্ট্রিংটা কত লম্বা? "রিফাত" এর length হলো ৫।</li><li>`charAt()`: নির্দিষ্ট জায়গায় কোন অক্ষর আছে? "Farzana" এর ১ নম্বর জায়গায় (0 থেকে শুরু) আছে 'a'।</li><li>`concat()`: দুটো স্ট্রিংকে জোড়া লাগানো। "Rifat" আর " Farzana" কে concat করলে হবে "Rifat Farzana"।</li><li>`equals()`: দুটো স্ট্রিং কি হুবহু এক? "Farzana" আর "Farzana" equals, কিন্তু "Farzana" আর "farzana" equals না (কারণ বড়/ছোট হাতের অক্ষর আলাদা)।</li></ol></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> নামের উপর ৪টা কাজ: <ol><li>নামে কয়টা অক্ষর আছে গোনা (`length`)।</li><li>নির্দিষ্ট জায়গার অক্ষরটা বের করা (`charAt`)।</li><li>রিফাতের নামের পাশে ফারজানার নাম জুড়ে দেওয়া (`concat`)।</li><li>দুটো নাম কি দেখতে একদম একরকম কিনা চেক করা (`equals`)।</li></ol></p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। স্ট্রিং ও স্ট্রিং বাফারের মধ্যে পার্থক্য লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <div class="table-container"><table><thead><tr><th>বৈশিষ্ট্য</th><th>`String`</th><th>`StringBuffer`</th></tr></thead><tbody><tr><td><strong>Mutability</strong></td><td>Immutable (অপরিবর্তনীয়)</td><td>Mutable (পরিবর্তনীয়)</td></tr><tr><td><strong>Performance</strong></td><td>পরিবর্তনের প্রয়োজন হলে ধীরগতিসম্পন্ন।</td><td>পরিবর্তনের ক্ষেত্রে দ্রুতগতিসম্পন্ন।</td></tr><tr><td><strong>Memory</strong></td><td>প্রতিটি পরিবর্তনে নতুন অবজেক্ট তৈরি হয়।</td><td>একই অবজেক্ট পরিবর্তিত হয়, নতুন তৈরি কম হয়।</td></tr><tr><td><strong>Thread Safety</strong></td><td>Immutable হওয়ায় স্বাভাবিকভাবে থ্রেড-সেফ।</td><td>Synchronized হওয়ায় থ্রেড-সেফ।</td></tr><tr><td><strong>Use Case</strong></td><td>যে স্ট্রিংয়ের মান বদলায় না বা কম বদলায়।</td><td>যে স্ট্রিং ঘনঘন পরিবর্তন করতে হয় (multithreaded env)।</td></tr><tr><td><strong>Class</strong></td><td>`java.lang.String` ক্লাস।</td><td>`java.lang.StringBuffer` ক্লাস।</td></tr></tbody></table></div>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong><ul><li><strong>মূল পার্থক্য:</strong> স্ট্রিং (`String`) একবার বানালে বদলানো যায় না, স্টিলের পাতের মতো। স্ট্রিংবাফার (`StringBuffer`) বদলানো যায়, রাবার ব্যান্ডের মতো।</li><li><strong>গতি:</strong> স্ট্রিং বারবার বদলাতে গেলে স্লো হয়ে যায়, কারণ প্রতিবার নতুন স্ট্রিং বানাতে হয়। স্ট্রিংবাফার বদলানো ফাস্ট।</li><li><strong>মেমরি:</strong> স্ট্রিং বদলালে নতুন মেমরি লাগে। স্ট্রিংবাফার একই জায়গায় বদলায়।</li><li><strong>থ্রেড সেফটি:</strong> স্ট্রিংবাফার একসাথে একাধিক থ্রেড ব্যবহার করলে নিরাপদ (Synchronized), সাধারণ স্ট্রিংও নিরাপদ কারণ তা বদলায়ই না।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong><ul><li>`String`: প্রিন্ট করা বইয়ের পাতা। একবার প্রিন্ট হলে আর বদলানো যায় না।</li><li>`StringBuffer`: লেখার জন্য হোয়াইটবোর্ড। চাইলেই মোছা যায়, নতুন কিছু লেখা যায়।</li></ul></p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৪। স্ট্রিং বাফার মেথডগুলোর কাজ লেখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> `StringBuffer` ক্লাসের কিছু গুরুত্বপূর্ণ মেথড ও তাদের কাজ:<ul><li><strong>`append(data)`**: স্ট্রিং বাফারের শেষে ডেটা (স্ট্রিং, ইন্টিজার, ক্যারেক্টার ইত্যাদি) যোগ করে।</li><li><strong>`insert(index, data)`**: নির্দিষ্ট ইন্ডেক্সে ডেটা প্রবেশ করায়।</li><li><strong>`delete(startIndex, endIndex)`**: নির্দিষ্ট অংশ মুছে ফেলে।</li><li><strong>`deleteCharAt(index)`**: নির্দিষ্ট ইন্ডেক্সের ক্যারেক্টার মুছে ফেলে।</li><li><strong>`replace(startIndex, endIndex, str)`**: নির্দিষ্ট অংশকে অন্য স্ট্রিং দিয়ে প্রতিস্থাপন করে।</li><li><strong>`reverse()`**: স্ট্রিং বাফারের ক্যারেক্টারগুলোকে উল্টে দেয়।</li><li><strong>`capacity()`**: বর্তমান ক্যাপাসিটি (ধারণক্ষমতা) রিটার্ন করে।</li><li><strong>`length()`**: বর্তমান দৈর্ঘ্য রিটার্ন করে।</li><li><strong>`charAt(index)`**: নির্দিষ্ট ইন্ডেক্সের ক্যারেক্টার রিটার্ন করে।</li><li><strong>`setCharAt(index, ch)`**: নির্দিষ্ট ইন্ডেক্সের ক্যারেক্টার পরিবর্তন করে।</li></ul></p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> স্ট্রিংবাফার (যেটা বদলানো যায়) নিয়ে কাজ করার কিছু মেথড:<ul><li>`append`: লেখার শেষে আরও কিছু যোগ করা।</li><li>`insert`: লেখার মাঝখানে কিছু ঢুকিয়ে দেওয়া।</li><li>`delete`: লেখার একটা অংশ মুছে ফেলা।</li><li>`deleteCharAt`: একটা নির্দিষ্ট অক্ষর মুছে ফেলা।</li><li>`replace`: একটা অংশ বদলে অন্য কিছু লেখা।</li><li>`reverse`: পুরো লেখাটাকে উল্টো করে ফেলা।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> লেখার বোর্ডের উপর কাজ: `append` (শেষে লেখা), `insert` (মাঝে ঢোকানো), `delete` (কিছু অংশ মোছা), `reverse` (লেখা উল্টে দেওয়া)।</p></div>
+        </div>
+
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">১। একটি প্রোগ্রামের মাধ্যমে জাভা স্ট্রিং কনস্ট্রাক্টরগুলো ব্যাখ্যা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য (Code & Explanation):</strong></p>
+                <p><strong>ভূমিকা:</strong> জাভাতে `String` ক্লাসের অবজেক্ট বিভিন্ন উপায়ে তৈরি করা যায় এর কনস্ট্রাক্টরগুলো ব্যবহার করে। নিচে কয়েকটি প্রধান কনস্ট্রাক্টরের ব্যবহার প্রোগ্রামের মাধ্যমে দেখানো হলো।</p>
+                <p><strong>প্রোগ্রাম:</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+public class StringConstructorsDemo {
+    public static void main(String[] args) {
+
+        // ১. খালি স্ট্রিং কনস্ট্রাক্টর: String()
+        String s1 = new String(); // একটি খালি স্ট্রিং তৈরি করে
+        System.out.println("s1 (খালি): \"" + s1 + "\"");
+
+        // ২. স্ট্রিং লিটারাল থেকে কনস্ট্রাক্টর: String(String original)
+        String literal = "Hello";
+        String s2 = new String(literal); // "Hello" এর কপি তৈরি করে
+        System.out.println("s2 (লিটারাল কপি): " + s2);
+
+        // ৩. ক্যারেক্টার অ্যারে থেকে কনস্ট্রাক্টর: String(char[] value)
+        char[] chars = {'J', 'a', 'v', 'a'};
+        String s3 = new String(chars); // char অ্যারে থেকে স্ট্রিং
+        System.out.println("s3 (char[] থেকে): " + s3);
+
+        // ৪. ক্যারেক্টার অ্যারের অংশ থেকে: String(char[] value, int offset, int count)
+        char[] chars2 = {'P', 'r', 'o', 'g', 'r', 'a', 'm'};
+        String s4 = new String(chars2, 3, 4); // ইন্ডেক্স 3 থেকে 4টি ক্যারেক্টার 'gram'
+        System.out.println("s4 (char[] অংশ থেকে): " + s4);
+
+        // ৫. বাইট অ্যারে থেকে কনস্ট্রাক্টর (Default Charset): String(byte[] bytes)
+        byte[] bytes = {65, 66, 67}; // ASCII for A, B, C
+        String s5 = new String(bytes); // বাইট অ্যারে থেকে স্ট্রিং
+        System.out.println("s5 (byte[] থেকে): " + s5);
+
+        // ৬. StringBuffer থেকে কনস্ট্রাক্টর: String(StringBuffer buffer)
+        StringBuffer sbf = new StringBuffer("Buffer");
+        String s6 = new String(sbf); // StringBuffer থেকে স্ট্রিং
+        System.out.println("s6 (StringBuffer থেকে): " + s6);
+
+         // ৭. StringBuilder থেকে কনস্ট্রাক্টর: String(StringBuilder builder)
+        StringBuilder sbl = new StringBuilder("Builder");
+        String s7 = new String(sbl); // StringBuilder থেকে স্ট্রিং
+        System.out.println("s7 (StringBuilder থেকে): " + s7);
+    }
+}
+                    </code></pre>
+                 </div>
+                 <p><strong>ব্যাখ্যা:</strong> এই প্রোগ্রামটি `String` ক্লাসের বিভিন্ন কনস্ট্রাক্টর ব্যবহার করে স্ট্রিং অবজেক্ট তৈরি প্রদর্শন করে। `s1` একটি খালি স্ট্রিং, `s2` একটি বিদ্যমান স্ট্রিংয়ের কপি, `s3` একটি সম্পূর্ণ ক্যারেক্টার অ্যারে থেকে তৈরি, `s4` ক্যারেক্টার অ্যারের অংশবিশেষ থেকে তৈরি, `s5` বাইট অ্যারে থেকে তৈরি (যেখানে বাইট ভ্যালুগুলো ASCII কোড অনুযায়ী ক্যারেক্টারে রূপান্তরিত হয়েছে), এবং `s6` ও `s7` যথাক্রমে `StringBuffer` ও `StringBuilder` অবজেক্ট থেকে তৈরি করা হয়েছে। প্রতিটি ক্ষেত্রে ভিন্ন কনস্ট্রাক্টর কল করে ভিন্ন উপায়ে স্ট্রিং ইনিশিয়ালাইজ করা হয়েছে।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> জাভাতে স্ট্রিং বা লেখা বানানোর নানা পথ আছে। এই প্রোগ্রামে আমরা কয়েকটা পথ দেখেছি:<ul><li>একদম খালি লেখা বানানো (`s1`)।</li><li>আগে লেখা "Hello" দেখে আরেকটা "Hello" বানানো (`s2`)।</li><li>'J', 'a', 'v', 'a' অক্ষরগুলো জুড়ে "Java" বানানো (`s3`)।</li><li>'P', 'r', 'o', 'g', 'r', 'a', 'm' থেকে মাঝখানের 'g', 'r', 'a', 'm' নিয়ে "gram" বানানো (`s4`)।</li><li>কিছু সংখ্যা (কম্পিউটারের ভাষায় অক্ষর) থেকে "ABC" বানানো (`s5`)।</li><li>পরিবর্তনশীল স্ট্রিং ("Buffer" বা "Builder") থেকে ফাইনাল স্ট্রিং বানানো (`s6`, `s7`)।</li></ul>এগুলো সবই স্ট্রিং বানানোর ভিন্ন ভিন্ন কনস্ট্রাক্টর বা উপায়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো তুমি "রিফাত" নামটা বিভিন্ন উপায়ে লিখতে পারো: ১) একটা খালি কার্ড নিতে পারো। ২) রিফাত লেখা দেখে আরেকটা কার্ডে লিখতে পারো। ৩) 'রি', 'ফা', 'ত' আলাদা অক্ষর জুড়ে লিখতে পারো। ৪) অক্ষরের মালা থেকে নির্দিষ্ট অংশ কেটে লিখতে পারো। ৫) অন্য কিছু থেকে কোড করে লিখতে পারো। এগুলো স্ট্রিং কনস্ট্রাক্টরের মতো।</p></div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">২। উদাহরণসহ স্ট্রিং মেথডগুলো বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ভূমিকা:</strong> জাভার `String` ক্লাস অনেকগুলো বিল্ট-ইন মেথড সরবরাহ করে যা স্ট্রিং ম্যানিপুলেশন ও বিভিন্ন অপারেশনের জন্য ব্যবহৃত হয়। নিচে কয়েকটি বহুল ব্যবহৃত মেথডের উদাহরণসহ বর্ণনা দেওয়া হলো:</p>
+                <ol>
+                    <li><strong>`int length()`**: স্ট্রিংয়ের দৈর্ঘ্য (ক্যারেক্টার সংখ্যা) প্রদান করে।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String str = "Java";
+int len = str.length(); // len = 4
+System.out.println("Length: " + len);
+                           </code></pre>
+                        </div>
+                    </li>
+                    <li><strong>`String toUpperCase()` / `toLowerCase()`**: স্ট্রিংকে যথাক্রমে সম্পূর্ণ বড় হাতের বা ছোট হাতের অক্ষরে রূপান্তর করে নতুন স্ট্রিং প্রদান করে।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String str = "JaVa";
+System.out.println(str.toUpperCase()); // Output: JAVA
+System.out.println(str.toLowerCase()); // Output: java
+                           </code></pre>
+                        </div>
+                    </li>
+                    <li><strong>`char charAt(int index)`**: নির্দিষ্ট ইন্ডেক্সের ক্যারেক্টার প্রদান করে।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String str = "Rifat";
+char ch = str.charAt(0); // ch = 'R'
+System.out.println("First char: " + ch);
+                           </code></pre>
+                        </div>
+                    </li>
+                    <li><strong>`String substring(int beginIndex)` / `substring(int beginIndex, int endIndex)`**: স্ট্রিংয়ের একটি অংশ (সাবস্ট্রিং) প্রদান করে। দ্বিতীয় ভার্সনে endIndex এর আগ পর্যন্ত নেয়।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String str = "Programming";
+System.out.println(str.substring(3));    // Output: gramming
+System.out.println(str.substring(3, 7)); // Output: gram
+                           </code></pre>
+                        </div>
+                    </li>
+                    <li><strong>`boolean equals(String other)` / `equalsIgnoreCase(String other)`**: দুটি স্ট্রিং সমান কিনা তা পরীক্ষা করে। `equals` case-sensitive, `equalsIgnoreCase` case-insensitive।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String s1 = "Farzana";
+String s2 = "farzana";
+System.out.println(s1.equals(s2));        // Output: false
+System.out.println(s1.equalsIgnoreCase(s2)); // Output: true
+                           </code></pre>
+                        </div>
+                    </li>
+                    <li><strong>`String concat(String str)` / `+` অপারেটর**: দুটি স্ট্রিং যুক্ত করে।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String s1 = "Hello ";
+String s2 = "World";
+System.out.println(s1.concat(s2)); // Output: Hello World
+System.out.println(s1 + s2);       // Output: Hello World
+                           </code></pre>
+                        </div>
+                    </li>
+                    <li><strong>`String replace(char oldChar, char newChar)` / `replace(CharSequence old, CharSequence new)`**: ক্যারেক্টার বা স্ট্রিং প্রতিস্থাপন করে।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String str = "Java is easy";
+System.out.println(str.replace('a', 'A')); // Output: JAvA is eAsy
+System.out.println(str.replace("easy", "fun")); // Output: Java is fun
+                           </code></pre>
+                        </div>
+                    </li>
+                    <li><strong>`String trim()`**: স্ট্রিংয়ের শুরু ও শেষের হোয়াইটস্পেস বাদ দেয়।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String str = "  Rifat  ";
+System.out.println("\"" + str.trim() + "\""); // Output: "Rifat"
+                           </code></pre>
+                        </div>
+                    </li>
+                    <li><strong>`boolean startsWith(String prefix)` / `endsWith(String suffix)`**: স্ট্রিং নির্দিষ্ট উপসর্গ দিয়ে শুরু বা প্রত্যয় দিয়ে শেষ হয়েছে কিনা পরীক্ষা করে।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String filename = "report.pdf";
+System.out.println(filename.startsWith("report")); // Output: true
+System.out.println(filename.endsWith(".txt"));   // Output: false
+                           </code></pre>
+                        </div>
+                    </li>
+                    <li><strong>`int indexOf(String str)` / `lastIndexOf(String str)`**: স্ট্রিংয়ের মধ্যে অন্য স্ট্রিংয়ের প্রথম বা শেষ অবস্থান খুঁজে বের করে। না পেলে -1 রিটার্ন করে।
+                        <div class="code-container">
+                           <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                           <pre><code class="language-java code-content">
+String msg = "Java hello world, java hello again!"; // Changed to lower case java
+System.out.println(msg.indexOf("hello"));     // Output: 5
+System.out.println(msg.lastIndexOf("hello")); // Output: 18
+                           </code></pre>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> স্ট্রিং নিয়ে অনেক কাজ করা যায়। যেমন: <ul><li>লেখাটা কত লম্বা দেখা (`length`)।</li><li>সব অক্ষর বড় হাতের বা ছোট হাতের করা (`toUpperCase/toLowerCase`)।</li><li>নির্দিষ্ট জায়গার অক্ষর বের করা (`charAt`)।</li><li>লেখার মাঝখান থেকে একটা অংশ কেটে নেওয়া (`substring`)।</li><li>দুটো লেখা একই কিনা দেখা (`equals/equalsIgnoreCase`), যেমন "Farzana" আর "farzana" এক না, কিন্তু কেস ইগনোর করলে এক।</li><li>দুটো লেখা জোড়া লাগানো (`concat` বা `+`), যেমন রিফাত আর ফারজানার নাম।</li><li>লেখার ভেতরের অক্ষর বা শব্দ বদলানো (`replace`)।</li><li>লেখার আগে/পরে থাকা খালি জায়গা মুছে ফেলা (`trim`)।</li><li>লেখাটা নির্দিষ্ট কিছু দিয়ে শুরু বা শেষ হয়েছে কিনা দেখা (`startsWith/endsWith`)।</li><li>লেখার ভেতরে অন্য একটা লেখা কোথায় আছে খুঁজে বের করা (`indexOf/lastIndexOf`)।</li></ul> এই প্রোগ্রামগুলোতে দেখানো হয়েছে কীভাবে বিভিন্ন লেখার উপর এই কাজগুলো করা যায়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার নামের উপর বিভিন্ন জাদু করা: নামটা কত লম্বা? সব অক্ষর বড় হাতের করা। প্রথম অক্ষর কী? নামের মাঝের অংশ নেওয়া। "রিফাত" আর "ফারজানা" কি একই? দুটো নাম জুড়ে দেওয়া। নামের একটা অক্ষর বদলে দেওয়া। নামের আগে-পরের স্পেস মোছা। নামটা কি 'রি' দিয়ে শুরু? নামটা কি 'ত' দিয়ে শেষ? নামের মধ্যে 'ফা' কোথায় আছে? - এগুলোই স্ট্রিং মেথড।</p></div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>অ্যাপ্লিকেশন ডেভেলপমেন্ট ইউজিং জাভা - স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    {/* --- Scripts at the end of body --- */}
+
+    {/* KaTeX JS (Deferred - No integrity/crossorigin) */}
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true} ], throwOnError: false });"></script>
+
+    {/* Prism.js Core & Autoloader (No integrity/crossorigin) */}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    {/* External JavaScript File for Theme & Comment Toggling */}
+    <script src="main_script.js" defer></script>
+
+</body>
+</html>

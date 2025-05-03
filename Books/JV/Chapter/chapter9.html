@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৯: ইভেন্ট হ্যান্ডলিং</title>
+
+    <link rel="stylesheet" href="java_style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    </head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ৯: ইভেন্ট হ্যান্ডলিং</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">🌙 ডার্ক মোড</button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। ইভেন্ট বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ব্যবহারকারী বা সিস্টেম কর্তৃক সম্পাদিত কোনো নির্দিষ্ট কাজ বা ঘটনা যা প্রোগ্রামের অবস্থার পরিবর্তন ঘটায়।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ইভেন্ট হলো কোনো একটা ঘটনা ঘটা। যেমন, তুমি মাউস ক্লিক করলে, কীবোর্ডে কিছু টাইপ করলে, উইন্ডোটা ছোট বা বড় করলে – এগুলো সবই এক একটা ইভেন্ট।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> দরজায় বেল বাজাটা একটা ইভেন্ট।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">২। ইভেন্ট হ্যান্ডলিং কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রোগ্রামে সংঘটিত ইভেন্ট শনাক্ত করা এবং তার प्रतिक्रिया स्वरूप নির্দিষ্ট কোড এক্সিকিউট করার প্রক্রিয়া।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ইভেন্ট হ্যান্ডলিং মানে হলো, কোনো ঘটনা (ইভেন্ট) ঘটলে সেটার Reaktion দেখানো বা সেটার জবাবে কোনো কাজ করা। যেমন, বাটনে ক্লিক (ইভেন্ট) করলে একটা মেসেজ দেখানো (হ্যান্ডলিং)।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> দরজায় বেল বাজলে (ইভেন্ট) তুমি গিয়ে দরজা খুলে দাও (হ্যান্ডলিং)।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৩। ইভেন্ট হ্যান্ডলিং-এর উপাদান কয়টি ও কী কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রধানত ৩টি: ইভেন্ট সোর্স (Event Source), ইভেন্ট অবজেক্ট (Event Object), ইভেন্ট লিসেনার (Event Listener)।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ইভেন্ট হ্যান্ডলিং এর তিনটা মূল অংশ:<ol><li><strong>ইভেন্ট সোর্স:</strong> যে জিনিসটার উপর ঘটনাটা ঘটছে (যেমন: বাটন)।</li><li><strong>ইভেন্ট অবজেক্ট:</strong> ঘটনাটা ঘটার পর সেই ঘটনা সম্পর্কিত তথ্য বহনকারী অবজেক্ট (যেমন: কোন বাটনে ক্লিক হয়েছে, কোথায় ক্লিক হয়েছে)।</li><li><strong>ইভেন্ট লিসেনার:</strong> যে অবজেক্টটা ঘটনাটা শোনার জন্য অপেক্ষা করে এবং ঘটনা ঘটলে নির্দিষ্ট কাজটা করে।</li></ol></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> দরজার বেল: ১) কলিং বেলটা (সোর্স), ২) বেল বাজার শব্দটা (ইভেন্ট অবজেক্ট), ৩) তুমি যে কান পেতে ছিলে এবং শুনে দরজা খুললে (লিসেনার)।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। অটোমেটিক ইভেন্ট হ্যান্ডলিং কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> কিছু GUI টুল বা IDE দ্বারা স্বয়ংক্রিয়ভাবে ইভেন্ট হ্যান্ডলিং কোডের কাঠামো তৈরি করে দেওয়ার প্রক্রিয়া।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> অটোমেটিক ইভেন্ট হ্যান্ডলিং মানে হলো, তোমাকে নিজে নিজে ইভেন্ট লিসেনার যোগ করার কোড বিস্তারিত লিখতে হয় না, কিছু GUI Builder টুল (যেমন NetBeans এর ডিজাইন ভিউ) তোমার জন্য কোডের বেসিক কাঠামোটা তৈরি করে দেয়। তুমি শুধু ঘটনা ঘটলে কী কাজ হবে সেই কোডটুকু লেখো।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> স্মার্টফোন: কল এলে রিসিভ বাটন চাপলেই কল ধরা হয়ে যায়, ভেতরের অনেক কারিগরি কিছু করতে হয় না। GUI টুলগুলো অনেকটা এরকম সুবিধা দেয়।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৫। ম্যানুয়াল ইভেন্ট হ্যান্ডলিং বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রোগ্রামার কর্তৃক কোড লিখে ইভেন্ট সোর্সের সাথে ইভেন্ট লিসেনারকে নিবন্ধন (Register) করার প্রক্রিয়া।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ম্যানুয়াল ইভেন্ট হ্যান্ডলিং মানে হলো, প্রোগ্রামারকে নিজের হাতে কোড লিখে বলে দিতে হয় কোন কম্পোনেন্টে (সোর্স) কোন ঘটনা ঘটলে কোন লিসেনার সেটা শুনবে এবং কী কাজ করবে। যেমন `button.addActionListener(myListener);` এই ধরনের কোড লেখা।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> সাধারণ কলিং বেল: তোমাকে বেল লাগাতে হবে, তার কানেক্ট করতে হবে, তারপর বেল বাজলে নিজে গিয়ে দরজা খুলতে হবে। সব নিজে করতে হচ্ছে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৬। ইভেন্ট সোর্স কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> যে GUI কম্পোনেন্ট বা অবজেক্ট ইভেন্ট তৈরি করে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> যে জিনিসটার কারণে ঘটনাটা ঘটছে, সেটাই ইভেন্ট সোর্স। যেমন, তুমি যদি বাটনে ক্লিক করো, তাহলে বাটনটা হলো ইভেন্ট সোর্স। যদি টেক্সটবক্সে কিছু লেখো, তাহলে টেক্সটবক্সটা হলো ইভেন্ট সোর্স।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> যে কলিং বেলটায় চাপ দেওয়া হয়, সেই বেলটাই ইভেন্ট সোর্স।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৭। ইভেন্ট লিসনার কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> একটি অবজেক্ট যা নির্দিষ্ট ধরনের ইভেন্ট শোনার জন্য অপেক্ষা করে এবং ইভেন্ট ঘটলে তার प्रतिक्रिया জানায়।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ইভেন্ট লিসেনার হলো একটা 'কান পেতে থাকা' অবজেক্ট। সে একটা নির্দিষ্ট সোর্সের উপর নজর রাখে আর অপেক্ষা করে কখন নির্দিষ্ট ঘটনাটা ঘটবে। ঘটনা ঘটলেই সে তার ভেতরের নির্দিষ্ট মেথডটাকে (যেমন `actionPerformed`) চালু করে দেয়। এটা সাধারণত একটা ইন্টারফেস ইমপ্লিমেন্ট করে তৈরি করা হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি যে কান পেতে অপেক্ষা করছো কখন বেল বাজবে, তুমিই হলে ইভেন্ট লিসেনার।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৮। ইভেন্ট হ্যান্ডলিং ক্লাস বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> যে ক্লাসটি ইভেন্ট লিসেনার ইন্টারফেসকে ইমপ্লিমেন্ট করে এবং ইভেন্টের प्रतिक्रिया তে এক্সিকিউট হওয়ার কোড ধারণ করে।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ইভেন্ট লিসেনার বানানোর জন্য আমরা সাধারণত একটা ক্লাস তৈরি করি যেটা নির্দিষ্ট লিসেনার ইন্টারফেসকে (যেমন `ActionListener`, `MouseListener`) ইমপ্লিমেন্ট করে। এই ক্লাসটার ভেতরেই আমরা ওই ইন্টারফেসের মেথডগুলোকে ওভাররাইড করে লিখি যে ঘটনা ঘটলে কী কাজ হবে। এই ক্লাসটাই হলো ইভেন্ট হ্যান্ডলিং ক্লাস।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি (লিসেনার) কীভাবে দরজা খুলবে (কাজ), সেই নিয়ম বা পদ্ধতি যে খাতায় লেখা আছে, সেটাই ইভেন্ট হ্যান্ডলিং ক্লাস।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৯। মাউস ইভেন্ট কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> মাউস ব্যবহারের ফলে (যেমন: ক্লিক, মুভমেন্ট, প্রেস, রিলিজ) তৈরি হওয়া ইভেন্ট।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> যখন তুমি মাউস দিয়ে কোনো কাজ করো, যেমন – ক্লিক করা, ডাবল ক্লিক করা, মাউস নাড়ানো, মাউসের বাটন চেপে ধরা বা ছাড়া – তখন যে ইভেন্টগুলো তৈরি হয় সেগুলোকে মাউস ইভেন্ট বলে। এগুলো শোনার জন্য `MouseListener` বা `MouseMotionListener` ইন্টারফেস ব্যবহার করা হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> কম্পিউটারে মাউস দিয়ে ক্লিক করা বা নাড়াচাড়া করলে যে ঘটনাগুলো ঘটে।</p></div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১০। এনোটেশন বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> কোডের সাথে মেটাডেটা বা অতিরিক্ত তথ্য যুক্ত করার একটি বিশেষ সিনট্যাক্স বা ট্যাগ।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এনোটেশন (`@` চিহ্ন দিয়ে শুরু হয়, যেমন `@Override`) হলো কোডের মধ্যে ব্যবহার করা বিশেষ ধরণের লেবেল বা ট্যাগ। এগুলো সরাসরি প্রোগ্রামের এক্সিকিউশনে অংশ না নিলেও কম্পাইলার বা অন্য টুলকে কোড সম্পর্কে অতিরিক্ত তথ্য দেয় বা বিশেষ কোনো নির্দেশ দেয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> বইয়ের পাতার কোণায় যেমন তুমি স্টার চিহ্ন দিয়ে রাখো কোনো লাইন জরুরি বোঝানোর জন্য, এনোটেশনও কোডের গায়ে সেরকম একটা চিহ্ন যা বিশেষ কিছু বোঝায়।</p></div>
+        </div>
+
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। ইভেন্ট হ্যান্ডলিং এর প্রকারভেদ আলোচনা কর।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> জাভাতে ইভেন্ট হ্যান্ডলিং মডেলকে মূলত ডেলিগেশন ইভেন্ট মডেল (Delegation Event Model) বলা হয়। কার্যকারিতার ভিত্তিতে হ্যান্ডলিংয়ের কৌশলকে কয়েক প্রকারে ভাবা যেতে পারে (যদিও মডেল একটাই):<ol><li><strong>ইনার ক্লাস (Inner Class) ব্যবহার করে:</strong> ইভেন্ট হ্যান্ডলিং ক্লাসটিকে অন্য একটি ক্লাসের ভেতরে ডিফাইন করা হয়। এটা ডেটা এনক্যাপসুলেশনে সাহায্য করে। অ্যানোনিমাস ইনার ক্লাস বহুল ব্যবহৃত হয়।</li><li><strong>আলাদা ক্লাস (Separate Class) ব্যবহার করে:</strong> একটি সম্পূর্ণ আলাদা ক্লাস তৈরি করা হয় যা লিসেনার ইন্টারফেস ইমপ্লিমেন্ট করে। কোড পরিষ্কার থাকে কিন্তু অন্য ক্লাসের প্রাইভেট মেম্বার অ্যাক্সেস করতে পারে না।</li><li><strong>একই ক্লাস (Same Class) ব্যবহার করে:</strong> যে ক্লাসের GUI কম্পোনেন্টগুলো আছে, সেই ক্লাসটি নিজেই লিসেনার ইন্টারফেস ইমপ্লিমেন্ট করে এবং হ্যান্ডলিং কোড ধারণ করে। ছোট অ্যাপ্লিকেশনে চলে, কিন্তু কোড জটিল হতে পারে।</li></ol><strong>(আরেকটি পার্সপেক্টিভ):</strong><ul><li><strong>অটোমেটিক:</strong> GUI বিল্ডার টুল দ্বারা জেনারেটেড কোড।</li><li><strong>ম্যানুয়াল:</strong> প্রোগ্রামার কর্তৃক সম্পূর্ণ কোড লেখা।</li></ul></p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ইভেন্ট সামলানোর কোড লেখার কয়েকটা স্টাইল আছে:<ul><li>ইনার ক্লাস: মেইন ক্লাসের ভেতরেই ছোট আরেকটা ক্লাস বানিয়ে তার মধ্যে হ্যান্ডলিং কোড লেখা। অ্যানোনিমাস (নাম ছাড়া) ইনার ক্লাস খুব জনপ্রিয়।</li><li>আলাদা ক্লাস: হ্যান্ডলিং এর জন্য একদম ভিন্ন একটা ক্লাস বানানো।</li><li>একই ক্লাস: যে ক্লাসে বাটন/টেক্সটবক্স আছে, সেই ক্লাস নিজেই লিসেনারের কাজ করে।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> দরজা খোলার কাজটা কে করবে: ১) তোমার ভেতরের সত্ত্বা (ইনার ক্লাস), ২) বাড়ির কাজের লোক (আলাদা ক্লাস), ৩) তুমি নিজেই (একই ক্লাস)।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">২। অটোমেটিক ইভেন্ট হ্যান্ডলিং কী লিখ?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> অটোমেটিক ইভেন্ট হ্যান্ডলিং বলতে সাধারণত GUI বিল্ডার বা IDE (Integrated Development Environment) গুলোর সেই ফিচারকে বোঝায় যা ব্যবহারকারীকে গ্রাফিক্যাল ইন্টারফেস ডিজাইন করার সময় কম্পোনেন্টের জন্য ইভেন্ট লিসেনার এবং হ্যান্ডলার মেথডের বেসিক কাঠামো বা কোড স্কেলেটন স্বয়ংক্রিয়ভাবে জেনারেট করে দেয়। যেমন, NetBeans বা Eclipse এর GUI ডিজাইনারে একটি বাটনে ডাবল ক্লিক করলে IDE স্বয়ংক্রিয়ভাবে একটি `actionPerformed` মেথডের খালি কাঠামো তৈরি করে দেয়, যেখানে প্রোগ্রামার শুধু তার লজিকটুকু লেখে। এটি কোডিং প্রক্রিয়াকে দ্রুততর করে কিন্তু ভেতরের সম্পূর্ণ নিয়ন্ত্রণ প্রোগ্রামারের হাতে থাকে না।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কিছু সফটওয়্যার (যেমন NetBeans) আছে যারা তোমাকে মাউস দিয়ে টেনে টেনে বাটন, টেক্সটবক্স বসিয়ে ডিজাইন করতে দেয়। তুমি যখন কোনো বাটনে ডাবল ক্লিক করো, ওই সফটওয়্যারটা নিজে নিজেই বাটন ক্লিকের ঘটনা সামলানোর জন্য প্রয়োজনীয় কোডের একটা অংশ (খালি ফাংশন) লিখে দেয়। তোমাকে শুধু ওই খালি ফাংশনের ভেতরে বলে দিতে হয় ক্লিক করলে কী হবে। এই যে সফটওয়্যার নিজে থেকে কোডের একটা অংশ লিখে দিচ্ছে, এটাই অটোমেটিক ইভেন্ট হ্যান্ডলিং।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> স্মার্ট হোমের মতো। তুমি ডিজাইন করে দিলে যে লাইটের সুইচ চাপলে লাইট জ্বলবে, সিস্টেম নিজে থেকেই কানেকশনের ব্যবস্থা করে দেয়, তোমাকে তার জোড়া লাগাতে হয় না।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। ম্যানুয়াল ইভেন্ট হ্যান্ডলিং লিখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ম্যানুয়াল ইভেন্ট হ্যান্ডলিং হলো প্রোগ্রামার কর্তৃক সোর্স কোডে স্পষ্টভাবে ইভেন্ট হ্যান্ডলিং এর তিনটি ধাপ বাস্তবায়ন করার প্রক্রিয়া:<ol><li>প্রয়োজনীয় ইভেন্ট লিসেনার ইন্টারফেস (যেমন `ActionListener`, `MouseListener`) ইমপ্লিমেন্ট করে একটি ক্লাস তৈরি করা (অথবা ইনার/অ্যানোনিমাস ক্লাস ব্যবহার করা)।</li><li>ইন্টারফেসের অ্যাবস্ট্রাক্ট মেথডগুলোকে (যেমন `actionPerformed()`, `mouseClicked()`) ওভাররাইড করে ইভেন্ট ঘটলে যে কাজ সম্পাদন করতে হবে তার কোড লেখা।</li><li>ইভেন্ট সোর্স কম্পোনেন্টের (যেমন `JButton`) সাথে লিসেনার অবজেক্টকে নিবন্ধন (Register) করা, সাধারণত `addXxxListener()` মেথড ব্যবহার করে (যেমন `button.addActionListener(myListenerObject);`)।</li></ol>এই পদ্ধতিতে প্রোগ্রামারের সম্পূর্ণ নিয়ন্ত্রণ থাকে এবং কোডের প্রতিটি অংশ স্পষ্টভাবে বোঝা যায়।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ম্যানুয়াল ইভেন্ট হ্যান্ডলিং মানে হলো পুরো কাজটা নিজের হাতে কোড লিখে করা:<ol><li>একটা লিসেনার ক্লাস বানানো (যে ঘটনাটা শুনবে)।</li><li>সেই ক্লাসের ভেতর বলে দেওয়া যে ঘটনা ঘটলে কী কাজ হবে (হ্যান্ডলার মেথড লেখা)।</li><li>যে জিনিসটায় (যেমন বাটন) ঘটনাটা ঘটবে, তাকে বলে দেওয়া যে অমুক লোক তোমার উপর নজর রাখছে (লিসেনার রেজিস্টার করা)।</li></ol>এখানে কোনো টুল নিজে থেকে কিছু করে দেয় না, সব প্রোগ্রামারকেই লিখতে হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> সাধারণ কলিং বেলের মতো। বেল কেনা, তার লাগানো, কানেকশন দেওয়া, বেল বাজলে শোনার জন্য প্রস্তুত থাকা, আর শুনে দরজা খোলা – সব কাজ নিজে করা।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৪। ইভেন্ট সোর্স বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ইভেন্ট সোর্স হলো সেই অবজেক্ট বা GUI কম্পোনেন্ট যার উপর কোনো ঘটনা (ইভেন্ট) সংঘটিত হয়। যখন ব্যবহারকারী এই কম্পোনেন্টের সাথে ইন্টারঅ্যাক্ট করে (যেমন: বাটনে ক্লিক করে, টেক্সট ফিল্ডে টাইপ করে, মাউস নাড়ায়), তখন এই সোর্স অবজেক্টটি একটি ইভেন্ট অবজেক্ট তৈরি করে এবং নিবন্ধিত (registered) লিসেনারদের কাছে সেই ইভেন্টটি প্রেরণ করে। জাভা Swing এ `JButton`, `JTextField`, `JFrame`, `JCheckBox` ইত্যাদি ক্লাসগুলো ইভেন্ট সোর্স হিসেবে কাজ করতে পারে। প্রতিটি সোর্স নির্দিষ্ট ধরনের ইভেন্ট তৈরি করে (যেমন `JButton` তৈরি করে `ActionEvent`)।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> যে জিনিসটার কারণে ঘটনাটা ঘটছে, সেটাই ইভেন্ট সোর্স। ধরো, রিফাত একটা বাটনে ক্লিক করলো। এখানে বাটনটা হলো ইভেন্ট সোর্স, কারণ বাটনটার উপরেই ক্লিকের ঘটনাটা ঘটেছে। এই সোর্সই তখন একটা "ঘটনা ঘটেছে" সিগন্যাল (ইভেন্ট অবজেক্ট) তৈরি করে পাঠায়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> যে কলিং বেলটায় চাপ দেওয়া হয়, সেই বেলটাই ইভেন্ট সোর্স।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৫। উদাহরণসহ জাভা এনোটেশন ব্যাখ্যা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ব্যাখ্যা:</strong> জাভা এনোটেশন হলো `@` চিহ্ন দিয়ে শুরু হওয়া এক বিশেষ ধরনের মেটাডেটা বা ট্যাগ যা সোর্স কোডের সাথে যুক্ত করা হয়। এগুলো কোডের কার্যকারিতা সরাসরি পরিবর্তন না করলেও কম্পাইলার, JVM বা অন্যান্য টুলকে কোড সম্পর্কে অতিরিক্ত তথ্য বা নির্দেশনা প্রদান করে। এগুলো ক্লাস, মেথড, ভেরিয়েবল, প্যারামিটার ইত্যাদির উপর প্রয়োগ করা যায়।</p>
+                <p><strong>উদাহরণ (`@Override`):</strong> `@Override` এনোটেশনটি নির্দেশ করে যে একটি মেথড তার সুপারক্লাসের কোনো মেথডকে ওভাররাইড করছে। কম্পাইলার তখন চেক করে দেখে যে সত্যিই সুপারক্লাসে একই সিগনেচারের মেথড আছে কিনা। না থাকলে কম্পাইলার এরর দেখায়।</p>
+                 <div class="code-container">
+                     <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                     <pre><code class="language-java code-content">
+class Animal {
+    void makeSound() {
+        System.out.println("Some sound");
+    }
+}
+
+class Dog extends Animal {
+    // এই এনোটেশন কম্পাইলারকে বলছে যে এটি সুপারক্লাসের মেথডকে ওভাররাইড করছে
+    @Override
+    void makeSound() {
+        System.out.println("Woof woof");
+    }
+}
+                     </code></pre>
+                 </div>
+                 <p>অন্যান্য বিল্ট-ইন এনোটেশন হলো `@Deprecated` (যা নির্দেশ করে মেথডটি পুরনো এবং ব্যবহার অনুচিত), `@SuppressWarnings` (কম্পাইলার ওয়ার্নিং দমন করার জন্য) ইত্যাদি। এছাড়া কাস্টম এনোটেশনও তৈরি করা যায়।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এনোটেশন হলো কোডের গায়ে লাগানো একটা স্টিকার বা লেবেল যা কোড সম্পর্কে কিছু তথ্য দেয়। যেমন `@Override` স্টিকারটা বলে যে "এই মেথডটা তার বাবার (সুপারক্লাস) একটা মেথডকে নকল বা আপডেট করছে"। এটা লিখলে কম্পাইলার চেক করে দেখে যে সত্যিই বাবার ক্লাসে ওই নামে কোনো মেথড আছে কিনা। বানান ভুল হলে বা মেথড না থাকলে কম্পাইলার ধরে ফেলে। `@Deprecated` স্টিকার বলে "এই জিনিসটা পুরনো হয়ে গেছে, ব্যবহার করো না"।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার খাতার উপর যেমন "জরুরী", "পড়া শেষ" এরকম স্টিকার লাগিয়ে রাখো, এনোটেশনও কোডের উপর লাগানো সেরকম স্টিকার যা কোড বা কম্পাইলারকে কিছু মেসেজ দেয়।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৬। ইভেন্ট হ্যান্ডলিং এর ধাপসমূহ কী কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ডেলিগেশন ইভেন্ট মডেলে ইভেন্ট হ্যান্ডলিংয়ের প্রধান ধাপগুলো হলো:<ol><li><strong>ইভেন্ট লিসেনার ইমপ্লিমেন্ট করা:</strong> উপযুক্ত লিসেনার ইন্টারফেস (যেমন: `ActionListener`, `MouseListener`, `KeyListener`) ইমপ্লিমেন্ট করে একটি ক্লাস তৈরি করা অথবা অ্যানোনিমাস ইনার ক্লাস ব্যবহার করা।</li><li><strong>ইভেন্ট হ্যান্ডলার মেথড ওভাররাইড করা:</strong> লিসেনার ইন্টারফেসের প্রয়োজনীয় মেথডগুলোকে (যেমন: `actionPerformed()`, `mouseClicked()`, `keyPressed()`) ওভাররাইড করে ইভেন্ট ঘটলে যে কোড এক্সিকিউট হবে তা লেখা।</li><li><strong>ইভেন্ট সোর্সের সাথে লিসেনার নিবন্ধন (Register) করা:</strong> ইভেন্ট সোর্স অবজেক্টের (যেমন: `JButton` অবজেক্ট) `addXxxListener()` মেথড কল করে ধাপ ১ এ তৈরি করা লিসেনার অবজেক্টকে তার সাথে যুক্ত করা।</li></ol></p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কোনো ঘটনা (যেমন বাটন ক্লিক) সামলানোর জন্য ৩টা কাজ করতে হয়:<ol><li>ঘটনাটা শোনার জন্য একজনকে (`Listener`) তৈরি করা।</li><li>তাকে বলে দেওয়া যে ঘটনাটা শুনলে সে কী কাজ করবে (হ্যান্ডলার মেথড লেখা)।</li><li>যে জিনিসটায় (যেমন বাটন) ঘটনাটা ঘটবে, তাকে বলে দেওয়া যে অমুক লোক তোমার উপর নজর রাখছে (লিসেনার রেজিস্টার করা)।</li></ol></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> দরজার বেল লাগানোর ধাপ: ১) তোমাকে (লিসেনার) ঠিক করতে হবে কে বেল বাজলে শুনবে। ২) তাকে শিখিয়ে দিতে হবে বেল বাজলে কীভাবে দরজা খুলতে হবে। ৩) কলিং বেলটাকে বলে দিতে হবে যে তুমি কান পেতে আছো।</p></div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৭। Override এনোটেশন লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> `@Override` এনোটেশনটি কোনো মেথড ডিক্লারেশনের ঠিক আগে লেখা হয়। এটি কম্পাইলারকে নির্দেশ দেয় যে এই মেথডটি তার সুপারক্লাসের একটি মেথডকে ওভাররাইড করার উদ্দেশ্যে লেখা হয়েছে।</p>
+                <p><strong>সিনট্যাক্স/উদাহরণ:</strong></p>
+                 <div class="code-container">
+                     <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                     <pre><code class="language-java code-content">
+class SuperClass {
+    public void display() {
+        System.out.println("Display from SuperClass");
+    }
+}
+
+class SubClass extends SuperClass {
+    // Override এনোটেশন ব্যবহার
+    @Override
+    public void display() {
+        System.out.println("Display from SubClass");
+    }
+}
+                     </code></pre>
+                 </div>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> `@Override` হলো একটা টীকা বা লেবেল যা তুমি একটা মেথডের ঠিক উপরে লেখো। এটা লেখার মানে হলো, তুমি কম্পাইলারকে বলছো, "আমি নিশ্চিত যে আমি আমার বাবার (সুপারক্লাস) ক্লাসের ঠিক এই নামের আর এই প্যারামিটারের মেথডটাকেই এখানে নতুন করে লিখছি"। যদি কোনো কারণে সুপারক্লাসে ওই মেথডটা না থাকে বা তোমার লেখার সিগনেচারে (নাম বা প্যারামিটার) ভুল হয়, তাহলে `@Override` লেখা থাকলে কম্পাইলার সাথে সাথে ভুল ধরিয়ে দেবে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তুমি যখন পরীক্ষার খাতায় নিশ্চিত হয়ে লেখো "এই প্রশ্নের উত্তর এটাই", `@Override` অনেকটা সেরকম। এটা কম্পাইলারকে বলে, "আমি জেনেশুনেই বাবার মেথডটা বদলাচ্ছি"।</p></div>
+        </div>
+
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">১। ডেলিগেশন ইভেন্ট মডেলের উপাদানসমূহ বর্ণনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ভূমিকা:</strong> জাভা AWT এবং Swing এ ব্যবহৃত ইভেন্ট হ্যান্ডলিং মডেল হলো ডেলিগেশন ইভেন্ট মডেল। এই মডেলে, ইভেন্ট প্রসেসিংয়ের দায়িত্ব সোর্স কম্পোনেন্ট নিজে না নিয়ে একটি বা একাধিক পৃথক লিসেনার অবজেক্টের উপর অর্পণ (delegate) করে। এর প্রধান উপাদানগুলো নিম্নরূপ:</p>
+                <ol>
+                    <li><strong>ইভেন্ট সোর্স (Event Source):</strong> এটি হলো GUI কম্পোনেন্ট বা অবজেক্ট যার উপর ঘটনাটি ঘটে। যেমন: `JButton`, `JTextField`, `JFrame` ইত্যাদি। যখন সোর্সের অবস্থার পরিবর্তন হয় (যেমন: বাটনে ক্লিক), তখন সোর্স একটি ইভেন্ট অবজেক্ট তৈরি করে। সোর্সের অবশ্যই লিসেনার নিবন্ধন (register) এবং নিবন্ধনমুক্ত (unregister) করার মেথড থাকতে হবে (যেমন `addActionListener()`, `removeActionListener()`)।</li>
+                    <li><strong>ইভেন্ট অবজেক্ট (Event Object):</strong> যখন কোনো ঘটনা ঘটে, তখন সেই ঘটনা সম্পর্কিত যাবতীয় তথ্য (যেমন: ইভেন্টের ধরন, সোর্স অবজেক্ট, ঘটনার সময়, মাউস ক্লিকের স্থানাঙ্ক ইত্যাদি) একটি অবজেক্টের মধ্যে আবদ্ধ করে তৈরি করা হয়। এই অবজেক্টটিই লিসেনারের কাছে পাঠানো হয়। সকল ইভেন্ট অবজেক্ট `java.util.EventObject` ক্লাসের সাবক্লাস। নির্দিষ্ট ইভেন্টের জন্য নির্দিষ্ট ক্লাস আছে, যেমন: `ActionEvent`, `MouseEvent`, `KeyEvent`, `WindowEvent` ইত্যাদি।</li>
+                    <li><strong>ইভেন্ট লিসেনার (Event Listener):</strong> এটি একটি অবজেক্ট যা নির্দিষ্ট ধরনের ইভেন্ট গ্রহণ ও প্রসেস করার জন্য ডিজাইন করা হয়। লিসেনারকে অবশ্যই একটি নির্দিষ্ট লিসেনার ইন্টারফেস (যেমন: `ActionListener`, `MouseListener`, `WindowListener`) ইমপ্লিমেন্ট করতে হয়। এই ইন্টারফেসগুলো এক বা একাধিক মেথড ডিক্লেয়ার করে (যেমন: `actionPerformed()`, `mouseClicked()`), যেগুলোকে ইভেন্ট হ্যান্ডলার মেথড বলা হয়। লিসেনারকে ইভেন্ট সোর্সের সাথে `addXxxListener()` মেথড ব্যবহার করে নিবন্ধন করতে হয়। যখন সোর্স কোনো ইভেন্ট তৈরি করে, সে তার নিবন্ধিত সকল লিসেনারের উপযুক্ত হ্যান্ডলার মেথডটিকে কল করে এবং ইভেন্ট অবজেক্টটি পাস করে দেয়।</li>
+                </ol>
+                <p>এই তিনটি উপাদানের সমন্বয়ে ডেলিগেশন ইভেন্ট মডেল একটি ফ্লেক্সিবল, অর্গানাইজড এবং কার্যকর ইভেন্ট হ্যান্ডলিং ব্যবস্থা প্রদান করে।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ডেলিগেশন মডেল মানে হলো "দায়িত্ব ভাগ করে দেওয়া"। এখানে ৩ জন মেইন প্লেয়ার: <ol><li><strong>সোর্স (Source):</strong> যার উপর ঘটনা ঘটে (যেমন: বাটন)। সে ঘটনা ঘটলে একটা খবর তৈরি করে।</li><li><strong>ইভেন্ট (Event):</strong> ঘটনার খবরটা (একটা অবজেক্ট, যাতে ঘটনার বিবরণ থাকে)।</li><li><strong>লিসেনার (Listener):</strong> যে খবরটা শোনার জন্য অপেক্ষা করে এবং খবর পেলে কাজ করে।</li></ol> কাজটা এভাবে হয়: বাটন (সোর্স) তার উপর ক্লিক হলে একটা "ক্লিক হয়েছে" খবর (ActionEvent অবজেক্ট) তৈরি করে। যারা যারা এই খবর শোনার জন্য বাটনের কাছে নাম লিখিয়েছিল (রেজিস্টার্ড লিসেনার), বাটন তাদের সবাইকে খবরটা পাঠিয়ে দেয়। লিসেনাররা খবর পেয়ে তাদের যা করার কথা (যেমন: মেসেজ দেখানো) সেই কাজটা করে।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> স্কুলে কোনো নোটিশ এলে: <ol><li>অফিস (সোর্স) নোটিশটা তৈরি করে।</li><li>নোটিশের কাগজটা (ইভেন্ট অবজেক্ট) হলো খবর।</li><li>ক্লাস টিচার (লিসেনার) যার কাছে নোটিশ আসে, তিনি সেটা ক্লাসে পড়ে শোনান (হ্যান্ডেল করেন)।</li></ol> অফিস নিজে ক্লাসে এসে নোটিশ দেয় না, দায়িত্বটা টিচারকে দেয় (delegate করে)।</p></div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">২। ইভেন্ট হ্যান্ডলিং ক্লাসসমূহ আলোচনা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ভূমিকা:</strong> জাভাতে ইভেন্ট হ্যান্ডলিং ক্লাসগুলো মূলত ইভেন্ট লিসেনার ইন্টারফেসকে ইমপ্লিমেন্ট করে তৈরি করা হয়। এই ক্লাসগুলোর প্রধান কাজ হলো নির্দিষ্ট ইভেন্ট ঘটলে তার প্রতিক্রিয়া স্বরূপ প্রয়োজনীয় কোড এক্সিকিউট করা। বিভিন্ন ধরনের ইভেন্টের জন্য ভিন্ন ভিন্ন লিসেনার ইন্টারফেস ও সংশ্লিষ্ট ইভেন্ট ক্লাস রয়েছে। নিচে কয়েকটি প্রধান ইভেন্ট ক্লাস ও সংশ্লিষ্ট লিসেনার ইন্টারফেস/ক্লাস আলোচনা করা হলো:</p>
+                <ol>
+                    <li><strong>`ActionEvent` ও `ActionListener`:</strong>
+                        <ul><li><strong>ইভেন্ট:</strong> কম্পোনেন্টের ডিফল্ট অ্যাকশন সম্পাদিত হলে (যেমন: `JButton` ক্লিক, `JTextField` এ Enter চাপা, `JMenuItem` সিলেক্ট করা)।</li><li><strong>লিসেনার:</strong> `java.awt.event.ActionListener` ইন্টারফেস। একটি মাত্র মেথড: `actionPerformed(ActionEvent e)`। হ্যান্ডলিং ক্লাস এই ইন্টারফেস ইমপ্লিমেন্ট করে `actionPerformed` মেথডে কোড লেখে।</li></ul>
+                    </li>
+                    <li><strong>`MouseEvent` ও `MouseListener` / `MouseMotionListener`:</strong>
+                        <ul><li><strong>ইভেন্ট:</strong> কম্পোনেন্টের উপর মাউসের বিভিন্ন ক্রিয়া (ক্লিক, প্রেস, রিলিজ, প্রবেশ, প্রস্থান, ড্র্যাগ, মুভ)।</li><li><strong>লিসেনার:</strong> `java.awt.event.MouseListener` (ক্লিক, প্রেস, রিলিজ, এন্টার, এক্সিট এর জন্য মেথড: `mouseClicked`, `mousePressed`, `mouseReleased`, `mouseEntered`, `mouseExited`) এবং `java.awt.event.MouseMotionListener` (ড্র্যাগ ও মুভ এর জন্য মেথড: `mouseDragged`, `mouseMoved`)। `MouseAdapter` ক্লাস ব্যবহার করে শুধু প্রয়োজনীয় মেথড ওভাররাইড করা যায়।</li></ul>
+                    </li>
+                    <li><strong>`KeyEvent` ও `KeyListener`:</strong>
+                        <ul><li><strong>ইভেন্ট:</strong> কীবোর্ডের কী চাপা, ছাড়া বা টাইপ করা।</li><li><strong>লিসেনার:</strong> `java.awt.event.KeyListener` ইন্টারফেস। মেথড: `keyPressed`, `keyReleased`, `keyTyped`। `KeyAdapter` ক্লাস ব্যবহার করা যায়।</li></ul>
+                    </li>
+                    <li><strong>`WindowEvent` ও `WindowListener`:</strong>
+                        <ul><li><strong>ইভেন্ট:</strong> উইন্ডোর অবস্থার পরিবর্তন (যেমন: খোলা, বন্ধ হওয়া, অ্যাক্টিভেট, ডিঅ্যাক্টিভেট, আইকনিফাই, ডিআইকনিফাই)।</li><li><strong>লিসেনার:</strong> `java.awt.event.WindowListener` ইন্টারফেস। মেথড: `windowOpened`, `windowClosing`, `windowClosed`, `windowActivated`, `windowDeactivated`, `windowIconified`, `windowDeiconified`। `WindowAdapter` ক্লাস ব্যবহার করা যায়।</li></ul>
+                    </li>
+                    <li><strong>`ItemEvent` ও `ItemListener`:</strong>
+                        <ul><li><strong>ইভেন্ট:</strong> কোনো আইটেমের স্টেট পরিবর্তন হলে (যেমন: `JCheckBox` বা `JRadioButton` সিলেক্ট/ডিসিলেক্ট, `JComboBox` বা `JList` থেকে আইটেম সিলেক্ট)।</li><li><strong>লিসেনার:</strong> `java.awt.event.ItemListener` ইন্টারফেস। মেথড: `itemStateChanged(ItemEvent e)`।</li></ul>
+                    </li>
+                    <li><strong>`FocusEvent` ও `FocusListener`:</strong>
+                        <ul><li><strong>ইভেন্ট:</strong> কম্পোনেন্ট ফোকাস পেলে বা হারালে।</li><li><strong>লিসেনার:</strong> `java.awt.event.FocusListener` ইন্টারফেস। মেথড: `focusGained`, `focusLost`। `FocusAdapter` ক্লাস ব্যবহার করা যায়।</li></ul>
+                    </li>
+                </ol>
+                <p>এই ক্লাস ও ইন্টারফেসগুলো ব্যবহার করে জাভা অ্যাপ্লিকেশনে বিভিন্ন ধরনের ইউজার ইন্টারেকশন হ্যান্ডেল করা হয়।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> বিভিন্ন ঘটনার জন্য আলাদা আলাদা কান পাতা লোক (লিসেনার) আর খবরের কাগজ (ইভেন্ট ক্লাস) আছে:<ul><li>বাটন ক্লিক/এন্টার চাপার খবর (`ActionEvent`) শোনার জন্য আছে `ActionListener`।</li><li>মাউসের ক্লিক/নড়াচড়ার খবর (`MouseEvent`) শোনার জন্য আছে `MouseListener` আর `MouseMotionListener`।</li><li>কীবোর্ড চাপার খবর (`KeyEvent`) শোনার জন্য `KeyListener`।</li><li>উইন্ডো খোলা/বন্ধ করার খবর (`WindowEvent`) শোনার জন্য `WindowListener`।</li><li>কোনো লিস্ট বা চেকবক্স থেকে আইটেম সিলেক্ট করার খবর (`ItemEvent`) শোনার জন্য `ItemListener`।</li><li>কোনো কম্পোনেন্টে ফোকাস আসা বা যাওয়ার খবর (`FocusEvent`) শোনার জন্য `FocusListener`।</li></ul>রিফাত যখন কোড লেখে, তখন যে ঘটনার জন্য কোড লিখতে চায়, সেই ঘটনার উপযুক্ত লিসেনার ইন্টারফেস ব্যবহার করে একটা ক্লাস বানাতে হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> বিভিন্ন খবরের জন্য আলাদা রিপোর্টার: একজন শুধু খেলার খবর দেয়, একজন সিনেমার খবর, একজন রাজনীতির খবর। ইভেন্ট ক্লাস আর লিসেনার ইন্টারফেসগুলোও এরকম আলাদা আলাদা ঘটনার জন্য বিশেষায়িত।</p></div>
+        </div>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">৩। লিসনার-ভিত্তিক ও ডেলিগেট-ভিত্তিক ইভেন্ট হ্যান্ডলিং উদাহরণসহ লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                <p><strong>ভূমিকা:</strong> জাভার ডেলিগেশন ইভেন্ট মডেল মূলত লিসনার-ভিত্তিক। অর্থাৎ, ইভেন্ট হ্যান্ডেল করার জন্য লিসেনার ইন্টারফেস ইমপ্লিমেন্ট করতে হয়। ডেলিগেশন মডেল নিজেই লিসনার ব্যবহারের উপর নির্ভরশীল। তাই 'লিসনার-ভিত্তিক' ও 'ডেলিগেট-ভিত্তিক' আসলে একই মডেলের দুটি দিক বা নাম। নিচে ডেলিগেশন ইভেন্ট মডেলের একটি সাধারণ উদাহরণ দেওয়া হলো যা লিসনার ব্যবহার করে:</p>
+                <p><strong>উদাহরণ (ActionListener ব্যবহার করে):</strong></p>
+                 <div class="code-container">
+                     <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                     <pre><code class="language-java code-content">
+import javax.swing.*;
+import java.awt.event.*;
+
+// হ্যান্ডলিং ক্লাস, ActionListener ইমপ্লিমেন্ট করছে (লিসনার)
+class MyButtonListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // ইভেন্ট ঘটলে এই কোড চলবে
+        System.out.println("Button clicked! (Handled by separate listener class)");
+        // e.getSource() ব্যবহার করে জানা যায় কোন বাটন ক্লিক হয়েছে
+        JButton sourceButton = (JButton) e.getSource();
+        System.out.println("Source button text: " + sourceButton.getText());
+    }
+}
+
+public class DelegationModelDemo {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Delegation Model");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 100);
+
+        // ইভেন্ট সোর্স (একটি বাটন)
+        JButton button = new JButton("Click Me");
+
+        // ইভেন্ট লিসেনার অবজেক্ট তৈরি
+        MyButtonListener listener = new MyButtonListener();
+
+        // সোর্সের সাথে লিসেনার নিবন্ধন (ডেলিগেশন)
+        // বাটন ক্লিকের দায়িত্ব listener অবজেক্টকে দেওয়া হচ্ছে
+        button.addActionListener(listener);
+
+        frame.add(button);
+        frame.setVisible(true);
+    }
+}
+                     </code></pre>
+                 </div>
+                 <p><strong>ব্যাখ্যা:</strong><ol><li>`MyButtonListener` ক্লাসটি `ActionListener` ইন্টারফেসকে ইমপ্লিমেন্ট করেছে। এটি হলো <strong>লিসেনার ক্লাস</strong>। এর `actionPerformed` মেথডে হ্যান্ডলিং কোড লেখা আছে।</li><li>`main` মেথডে `JButton` (এটি <strong>ইভেন্ট সোর্স</strong>) তৈরি করা হয়েছে।</li><li>`MyButtonListener` ক্লাসের একটি অবজেক্ট `listener` তৈরি করা হয়েছে।</li><li>`button.addActionListener(listener);` লাইনের মাধ্যমে বাটন (`source`) তার অ্যাকশন ইভেন্ট হ্যান্ডেল করার দায়িত্ব `listener` অবজেক্টের উপর <strong>ডেলিগেট</strong> বা অর্পণ করেছে।</li><li>যখন বাটন ক্লিক করা হয়, বাটন একটি `ActionEvent` তৈরি করে এবং নিবন্ধিত `listener` অবজেক্টের `actionPerformed` মেথডকে কল করে, ইভেন্ট অবজেক্টটি পাস করে দেয়।</li></ol>এই পুরো প্রক্রিয়াটিই ডেলিগেশন ইভেন্ট মডেল, যা লিসনার ব্যবহারের উপর ভিত্তি করে চলে।</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> জাভার ইভেন্ট হ্যান্ডলিং মডেলটাকেই ডেলিগেশন মডেল বলে, আর এটা কাজ করে লিসেনার ব্যবহার করে। মানে দুটো একই জিনিস। উদাহরণে:<ul><li>একটা বাটন (`button`) আছে, যেটা হলো ঘটনার সোর্স।</li><li>একটা `MyButtonListener` ক্লাস আছে, যে `ActionListener` ইন্টারফেস মানে (অর্থাৎ বাটন ক্লিকের ঘটনা শুনতে পারে)। এটা হলো লিসেনার।</li><li>`button.addActionListener(listener);` লাইন দিয়ে আমরা বাটনকে বলে দিচ্ছি, "তোমার উপর ক্লিক হলে তুমি নিজে কিছু না করে খবরটা `listener` কে দিয়ে দেবে"। এই দায়িত্ব দিয়ে দেওয়াটাই হলো ডেলিগেশন।</li><li>যখন ক্লিক হয়, বাটন খবরটা লিসেনারকে দেয়, আর লিসেনারের `actionPerformed` মেথডটা কাজ করে (যেমন মেসেজ প্রিন্ট করে)।</li></ul></p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো, রিফাত (`JButton`) একটা কাজ করতে পারে না (যেমন পড়ালেখা)। সে ফারজানাকে (`MyButtonListener`) দায়িত্ব দিলো (`addActionListener`) যে পড়ালেখার কাজটা এলে সে যেন করে দেয়। এটাই ডেলিগেশন। ফারজানা হলো লিসেনার যে কাজটা করে।</p></div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>অ্যাপ্লিকেশন ডেভেলপমেন্ট ইউজিং জাভা - স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true} ], throwOnError: false });"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="main_script.js" defer></script>
+
+</body>
+</html>

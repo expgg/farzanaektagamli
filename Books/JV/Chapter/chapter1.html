@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ১: ক্লাস এবং অবজেক্ট (সংশোধিত)</title>
+
+    <link rel="stylesheet" href="java_style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    </head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ১: ক্লাস এবং অবজেক্ট</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">🌙 ডার্ক মোড</button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। ক্লাস বলতে কী বুঝায়?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ক্লাস হলো অবজেক্ট তৈরির ব্লুপ্রিন্ট বা টেমপ্লেট।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ক্লাস হলো একটা নকশা বা ছাঁচ। যেমন – বাড়ি বানানোর আগে ইঞ্জিনিয়ার যে প্ল্যানটা আঁকেন, সেটাই হলো ক্লাস। ওই প্ল্যান দেখে অনেকগুলো একই রকম বাড়ি (অবজেক্ট) বানানো যায়। ক্লাসের মধ্যে থাকে ডেটা (ভেরিয়েবল) আর সেই ডেটা নিয়ে কাজ করার নিয়ম (মেথড)।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> আইসক্রিম বানানোর ছাঁচটা হলো ক্লাস।</p></div>
+        </div>
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">২। অবজেক্ট বলতে কী বুঝায়?</h2>
+             <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> অবজেক্ট হলো ক্লাসের একটি ইন্সট্যান্স বা বাস্তব রূপ।</p></div>
+             <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ক্লাস যদি হয় বাড়ির প্ল্যান, তাহলে সেই প্ল্যান দেখে বানানো আসল বাড়িটাই হলো অবজেক্ট। প্রতিটা অবজেক্টের নিজস্ব কিছু বৈশিষ্ট্য (স্টেট) থাকে আর তারা কিছু কাজ (বিহেভিয়ার) করতে পারে, যা ক্লাসে ডিফাইন করা থাকে।</p></div>
+             <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> আইসক্রিম বানানোর ছাঁচ (ক্লাস) দিয়ে বানানো আসল আইসক্রিমটাই হলো অবজেক্ট।</p></div>
+        </div>
+         <div class="question-block q-type-oti">
+             <h2 class="question-title">৩। ক্লাস ডিক্লারেশন বলতে কী বুঝায়?</h2>
+             <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> জাভাতে ক্লাস তৈরির কোড লেখার প্রক্রিয়া।</p></div>
+             <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ক্লাস ডিক্লারেশন মানে হলো জাভা কোডে একটা ক্লাস তৈরি করা। `class` কিওয়ার্ড ব্যবহার করে ক্লাসের একটা নাম দেওয়া হয় এবং দ্বিতীয় বন্ধনীর `{}` মধ্যে তার ভেরিয়েবল (ডেটা) আর মেথড (কাজ) লেখা হয়। এটাই হলো ক্লাস তৈরির ঘোষণা।</p></div>
+             <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা জিনিসের (যেমন খেলনা গাড়ি) নকশা কাগজে আঁকাটাই হলো ক্লাস ডিক্লারেশন।</p></div>
+        </div>
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। জাভায় ক্লাস ডিক্লারেশনের ফরম্যাট লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+[modifier] class ClassName {
+    // ভেরিয়েবলস (ডেটা মেম্বার)
+    // মেথডস (মেম্বার ফাংশন)
+}
+                    </code></pre>
+                 </div>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ক্লাস লিখতে হলে প্রথমে `class` শব্দটা লিখতে হয়, তারপর ক্লাসের একটা নাম দিতে হয় (যেমন: `Car`, `Student`)। এর আগে চাইলে মডিফায়ার (যেমন: `public`) লেখা যায়। এরপর `{}` ব্রাকেটের ভেতরে ক্লাসের সব জিনিস (ভেরিয়েবল, মেথড) লেখা হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> নকশা আঁকার নিয়ম: প্রথমে লেখো "নকশা", তারপর নাম দাও "খেলনা গাড়ি", এরপর বাক্সের মধ্যে আঁকো গাড়ির চাকা, বডি কেমন হবে।</p></div>
+        </div>
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৫। জাভার ক্লাসে অবজেক্ট ডিক্লারেশনের ফরম্যাট লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+ClassName objectName = new ClassName();
+                    </code></pre>
+                 </div>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> কোনো ক্লাসের অবজেক্ট বানাতে হলে প্রথমে ক্লাসের নাম লিখতে হয়, তারপর অবজেক্টের একটা নাম দিতে হয়। এরপর `=` চিহ্ন দিয়ে `new` লিখে আবার ক্লাসের নাম আর `()` দিতে হয়। যেমন: `Car myCar = new Car();` এখানে `Car` হলো ক্লাসের নাম আর `myCar` হলো অবজেক্টের নাম।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> ছাঁচ দিয়ে আইসক্রিম বানানো: `আইসক্রিমের_ছাঁচ আমার_আইসক্রিম = নতুন আইসক্রিমের_ছাঁচ();`</p></div>
+        </div>
+         <div class="question-block q-type-oti">
+            <h2 class="question-title">৬। ক্লাস মেম্বার অ্যাক্সেসিবিলিটি মোডগুলোর নাম লেখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> `public`, `private`, `protected`, `default` (প্যাকেজ-প্রাইভেট)।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ক্লাসের ভেতরের জিনিস (মেম্বার - ভেরিয়েবল বা মেথড) বাইরে থেকে কে কে দেখতে বা ব্যবহার করতে পারবে, সেটা ঠিক করে দেওয়ার জন্য কিছু লেভেল আছে। এগুলো হলো: `public` (সবাই পারবে), `private` (শুধু ঐ ক্লাসই পারবে), `protected` (ঐ ক্লাস, একই প্যাকেজের ক্লাস এবং সাব-ক্লাস পারবে), আর কিছু না লিখলে `default` (শুধু একই প্যাকেজের ক্লাস পারবে)।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> তোমার খেলনার লেভেল: `public` (যে কেউ খেলতে পারে), `private` (শুধু তুমি খেলতে পারো), `protected` (তুমি আর তোমার ভাইবোন খেলতে পারো), `default` (শুধু তোমার বাসার লোকেরা খেলতে পারে)।</p></div>
+        </div>
+         <div class="question-block q-type-oti">
+             <h2 class="question-title">৭। মেথড কাকে বলে?</h2>
+             <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> মেথড হলো ক্লাসের অভ্যন্তরে সংজ্ঞায়িত একটি কোড ব্লক যা নির্দিষ্ট কোনো কাজ সম্পাদন করে।</p></div>
+             <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> মেথড হলো ক্লাসের ভেতরে থাকা এক একটা ফাংশন বা কাজের যন্ত্র। যেমন একটা `Car` ক্লাসের `startEngine()`, `stopEngine()`, `accelerate()` এগুলো হলো মেথড। এদের কল করলে এরা নির্দিষ্ট কাজ করে দেয়।</p></div>
+             <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> খেলনা গাড়ির বাটনগুলো হলো মেথড। একটা চাপলে লাইট জ্বলে, আরেকটা চাপলে গান বাজে।</p></div>
+        </div>
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৮। Object ও Class- এর মাঝে মূল পার্থক্য কী?</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ক্লাস হলো লজিক্যাল ধারণা (ব্লুপ্রিন্ট), অবজেক্ট হলো ফিজিক্যাল বাস্তবতা (ইন্সট্যান্স)।</p></div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ক্লাস হলো শুধু একটা প্ল্যান বা আইডিয়া (যেমন: মানুষ কেমন হয় তার ধারণা), আর অবজেক্ট হলো সেই প্ল্যান থেকে তৈরি হওয়া আসল জিনিস (যেমন: রহিম, করিম একেকজন মানুষ)। ক্লাস মেমরি নেয় না, কিন্তু প্রতিটি অবজেক্ট মেমরি নেয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> বাড়ির নকশাটা (ক্লাস) কাগজে থাকে, জায়গা নেয় না। কিন্তু নকশা দেখে বানানো আসল বাড়িটা (অবজেক্ট) জায়গা নেয়।</p></div>
+        </div>
+         <div class="question-block q-type-oti">
+            <h2 class="question-title">৯। জাভা ক্লাসের ভেরিয়েবলগুলো লেখ।</h2>
+            <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> ইন্সট্যান্স ভেরিয়েবল, স্ট্যাটিক (ক্লাস) ভেরিয়েবল, লোকাল ভেরিয়েবল।</p></div>
+            <div class="answer-part explanation"> <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ক্লাসের ভেতরে ৩ ধরণের ভেরিয়েবল থাকতে পারে:</p><ul><li><strong>ইন্সট্যান্স ভেরিয়েবল:</strong> প্রতিটা অবজেক্টের জন্য আলাদা আলাদা কপি থাকে (যেমন: প্রতিটা ছাত্রের রোল নম্বর)।</li><li><strong>স্ট্যাটিক বা ক্লাস ভেরিয়েবল:</strong> ক্লাসের সব অবজেক্ট মিলে একটাই কপি শেয়ার করে (যেমন: স্কুলের নাম)।</li><li><strong>লোকাল ভেরিয়েবল:</strong> শুধু মেথডের ভেতরে ব্যবহার করা হয়, মেথড শেষ হলে এগুলো মুছে যায়।</li></ul></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong></p><ul><li>ইন্সট্যান্স: প্রতিটা ছাত্রের আলাদা টিফিন বক্স।</li><li>স্ট্যাটিক: ক্লাসের সবার জন্য একটাই দেয়াল ঘড়ি।</li><li>লোকাল: টিচারের হাতে থাকা চক, ক্লাস শেষ হলে আর দরকার হয় না।</li></ul></div>
+        </div>
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। Area নামে একটি Class তৈরি করে বৃত্তের ক্ষেত্রফল নির্ণয়ের একটি Java Program লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য (Code):</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+import java.lang.Math; // Math.PI ব্যবহারের জন্য (ঐচ্ছিক)
+
+// Area নামে ক্লাস
+class Area {
+    // ক্ষেত্রফল হিসাব ও প্রিন্ট করার মেথড
+    void calculateAndPrintArea(double radius) {
+        // ক্ষেত্রফল = π * r^2
+        double result = Math.PI * radius * radius;
+        System.out.println("ব্যাসার্ধ " + radius + " হলে বৃত্তের ক্ষেত্রফল: " + result);
+    }
+}
+
+// মূল প্রোগ্রাম চালানোর ক্লাস
+class Main {
+    public static void main(String[] args) {
+        // Area ক্লাসের অবজেক্ট তৈরি
+        Area circle = new Area();
+        // মেথড কল করে ক্ষেত্রফল বের করা (ব্যাসার্ধ 5.0)
+        circle.calculateAndPrintArea(5.0);
+         // মেথড কল করে ক্ষেত্রফল বের করা (ব্যাসার্ধ 7.5)
+        circle.calculateAndPrintArea(7.5);
+    }
+}
+                    </code></pre>
+                 </div>
+                 <p>(<b>নোট:</b> পরীক্ষার খাতায় শুধু ক্লাস দুটো লিখবে। কমেন্ট আর নম্বরগুলো বোঝার জন্য...)</p>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এখানে আমরা দুটো ক্লাস বানিয়েছি: `Area` আর `Main`। `Area` ক্লাসটা হলো বৃত্তের ক্ষেত্রফল বের করার নকশা। এর ভেতরে `calculateAndPrintArea` নামে একটা মেথড (কাজের যন্ত্র) আছে। এই মেথডটা একটা ব্যাসার্ধ (radius) নেয়, তারপর `Math.PI * radius * radius` সূত্র ব্যবহার করে ক্ষেত্রফল হিসাব করে এবং সেটা প্রিন্ট করে দেখিয়ে দেয়। `Main` ক্লাসটা প্রোগ্রামটাকে চালানোর জন্য। এর `main` মেথডের ভেতরে আমরা প্রথমে `Area circle = new Area();` লিখে `Area` ক্লাসের একটা আসল জিনিস (অবজেক্ট) বানিয়েছি, যার নাম দিয়েছি `circle`। তারপর `circle.calculateAndPrintArea(5.0);` লিখে ওই `circle` অবজেক্টকে বলেছি ৫.০ ব্যাসার্ধের জন্য ক্ষেত্রফল বের করতে। একইভাবে ৭.৫ ব্যাসার্ধের জন্যও বের করতে বলেছি।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> আমরা একটা "ক্ষেত্রফল মাপার যন্ত্র" (`Area` ক্লাস) বানিয়েছি। যন্ত্রটার মধ্যে একটা বাটন (`calculateAndPrintArea` মেথড) আছে। তুমি যন্ত্রটা (`circle` অবজেক্ট) হাতে নিলে, তারপর ওকে একটা গোল জিনিসের মাপ (ব্যাসার্ধ) দিলে আর বাটন চাপলে, যন্ত্রটা সাথে সাথে হিসেব করে বলে দেয় জিনিসটার ক্ষেত্রফল কতো।</p></div>
+        </div>
+         <div class="question-block q-type-shong">
+             <h2 class="question-title">২। জাভার ক্লাস ডিক্লারেশনের ফরম্যাট উদাহরণসহ উল্লেখ কর।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <p><strong>ফরম্যাট:</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+[modifier] class ClassName {
+    // Fields (Instance Variables)
+    dataType variableName1;
+    // ...
+
+    // Methods
+    [modifier] returnType methodName(parameters) {
+        // Method body
+    }
+    // ...
+}
+                    </code></pre>
+                 </div>
+                 <p><strong>উদাহরণ:</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+public class Student {
+    // Instance variables
+    String name;
+    int rollNo;
+
+    // Method
+    public void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Roll No: " + rollNo);
+    }
+}
+                    </code></pre>
+                 </div>
+            </div>
+             <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> জাভাতে ক্লাস ডিক্লেয়ার করার একটা নির্দিষ্ট নিয়ম বা ফরম্যাট আছে। প্রথমে `class` কিওয়ার্ড লিখতে হয়, তারপর ক্লাসের নাম দিতে হয় (যেমন `Student`)। এর আগে চাইলে অ্যাক্সেস মডিফায়ার (`public`, `private` ইত্যাদি) দেওয়া যায়। এরপর `{}` ব্রাকেটের ভেতরে ক্লাসের মেম্বারগুলো লেখা হয়। মেম্বার দুই ধরণের:<ul><li><strong>ভেরিয়েবল (Fields/Attributes):</strong> অবজেক্টের ডেটা বা বৈশিষ্ট্য ধারণ করে (যেমন: ছাত্রের নাম `name`, রোল নম্বর `rollNo`)।</li><li><strong>মেথড (Methods/Behaviors):</strong> অবজেক্ট কী কাজ করতে পারে তা ডিফাইন করে (যেমন: `displayInfo` মেথড ছাত্রের তথ্য দেখায়)।</li></ul>উদাহরণে, `Student` নামে একটা `public` ক্লাস বানানো হয়েছে যার দুটো ভেরিয়েবল (`name`, `rollNo`) আর একটা মেথড (`displayInfo`) আছে।</p></div>
+             <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা খেলনা গাড়ির নকশা বানানোর নিয়ম: প্রথমে বলো এটা কী ধরণের নকশা (`public class`), নাম দাও `Student`। তারপর এর কী কী থাকবে (ভেরিয়েবল) সেটা লেখো: `নাম`, `রোল নম্বর`। এরপর এটা কী কাজ করতে পারবে (মেথড) সেটা লেখো: `তথ্য দেখানো`। সবগুলোকে একটা বাক্সের (`{}`) মধ্যে রাখো।</p></div>
+        </div>
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। Java Class ও Object একটি উদাহরণ প্রোগ্রামের মাধ্যমে ব্যাখ্যা কর।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য (Code):</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+// ক্লাস ডিক্লারেশন (নকশা)
+class Dog {
+    // Instance variables (বৈশিষ্ট্য)
+    String breed;
+    int age;
+    String color;
+
+    // Method (কাজ)
+    void bark() {
+        System.out.println("Woof! Woof!");
+    }
+
+    void displayDetails() {
+        System.out.println("Breed: " + breed + ", Age: " + age + ", Color: " + color);
+    }
+}
+
+// মূল প্রোগ্রাম চালানোর ক্লাস
+class TestDog {
+    public static void main(String[] args) {
+        // অবজেক্ট তৈরি (নকশা থেকে আসল জিনিস বানানো)
+        Dog dog1 = new Dog(); // প্রথম কুকুর
+        Dog dog2 = new Dog(); // দ্বিতীয় কুকুর
+
+        // প্রথম অবজেক্টের বৈশিষ্ট্য সেট করা
+        dog1.breed = "German Shepherd";
+        dog1.age = 3;
+        dog1.color = "Black and Tan";
+
+        // দ্বিতীয় অবজেক্টের বৈশিষ্ট্য সেট করা
+        dog2.breed = "Labrador";
+        dog2.age = 2;
+        dog2.color = "Golden";
+
+        // অবজেক্টগুলোর কাজ (মেথড) কল করা
+        System.out.print("Dog 1: ");
+        dog1.displayDetails();
+        dog1.bark();
+
+        System.out.print("Dog 2: ");
+        dog2.displayDetails();
+    }
+}
+                    </code></pre>
+                 </div>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> এই প্রোগ্রামে, `Dog` হলো ক্লাস (কুকুরের নকশা)। এর মধ্যে কুকুরের বৈশিষ্ট্য (ভেরিয়েবল: `breed`, `age`, `color`) আর কাজ (মেথড: `bark`, `displayDetails`) ডিফাইন করা আছে। `TestDog` ক্লাসের `main` মেথডে আমরা `Dog` ক্লাস ব্যবহার করে দুটো আসল কুকুর (অবজেক্ট) বানিয়েছি: `dog1` আর `dog2`। `dog1 = new Dog();` এবং `dog2 = new Dog();` লাইন দুটি দিয়ে অবজেক্ট তৈরি করা হয়েছে। এরপর, আমরা প্রতিটি কুকুরের বৈশিষ্ট্য সেট করেছি (যেমন `dog1.breed = "German Shepherd";`)। খেয়াল করো, দুটো কুকুরের বৈশিষ্ট্য কিন্তু আলাদা। শেষে, আমরা অবজেক্টগুলোর মেথড কল করে তাদের কাজ করিয়েছি (যেমন `dog1.displayDetails();` দিয়ে প্রথম কুকুরের তথ্য দেখানো হয়েছে)। এভাবেই ক্লাস (নকশা) থেকে অবজেক্ট (আসল জিনিস) তৈরি করে জাভাতে কাজ করা হয়।</p></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> আমরা একটা কুকুরের ছাঁচ (`Dog` ক্লাস) বানিয়েছি। ছাঁচে বলা আছে কুকুরের জাত, বয়স, রঙ থাকবে আর সে ঘেউ ঘেউ করতে পারবে, নিজের তথ্য দেখাতে পারবে। তারপর ওই ছাঁচ দিয়ে দুটো আসল কুকুর (`dog1`, `dog2` অবজেক্ট) বানিয়েছি। প্রথম কুকুরটাকে বানিয়েছি German Shepherd, বয়স ৩, কালো-বাদামী রঙের। দ্বিতীয়টাকে বানিয়েছি Labrador, বয়স ২, সোনালী রঙের। তারপর প্রথম কুকুরটাকে বলেছি তার তথ্য দেখাতে আর ঘেউ ঘেউ করতে। দ্বিতীয় কুকুরটাকে বলেছি শুধু তার তথ্য দেখাতে।</p></div>
+        </div>
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৪। ক্লাসের বৈশিষ্ট্যসমূহ লেখ।</h2>
+             <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong></p><ul><li>একটি ক্লাস হলো অবজেক্ট তৈরির ব্লুপ্রিন্ট।</li><li>এটি ডেটা (ভেরিয়েবল) এবং কোড (মেথড) কে একসাথে প্যাকেজ (এনক্যাপসুলেট) করে।</li><li>ক্লাস ডেটা অ্যাবস্ট্রাকশন ও ইনহেরিট্যান্স সমর্থন করে।</li><li>এটি একটি ইউজার-ডিফাইন্ড ডেটা টাইপ।</li><li>ক্লাস সরাসরি মেমরি দখল করে না।</li></ul></div>
+             <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ক্লাসের কিছু মেইন ক্যারেক্টার হলো: এটা অবজেক্ট বানানোর নকশা; ডেটা আর কোড একসাথে রাখে; ডেটা লুকানো (অ্যাবস্ট্রাকশন) আর এক ক্লাস থেকে আরেক ক্লাসের বৈশিষ্ট্য পাওয়া (ইনহেরিট্যান্স) সাপোর্ট করে; এটা আমরা নিজেরা বানাই এমন একটা ডেটা টাইপ; আর এটা শুধু প্ল্যান, তাই নিজে কোনো মেমরি নেয় না।</p></div>
+             <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> বাড়ির নকশার বৈশিষ্ট্য: এটা বাড়ি বানানোর প্ল্যান; এর মধ্যে ঘরের মাপ (ডেটা) আর দরজা-জানালা কোথায় বসবে (মেথড) একসাথে থাকে; ভেতরের জিনিস বাইরের লোক থেকে আড়াল করা যায়; একতলা বাড়ির প্ল্যান থেকে দোতলা বাড়ির প্ল্যান বানানো যায়; এটা ইঞ্জিনিয়ার নিজে বানান; আর নকশাটা নিজে কোনো জায়গা নেয় না।</p></div>
+        </div>
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৫। অবজেক্টের বৈশিষ্ট্যসমূহ লেখ।</h2>
+             <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong></p><ul><li>অবজেক্ট হলো ক্লাসের একটি ইন্সট্যান্স।</li><li>প্রতিটি অবজেক্টের নিজস্ব স্টেট (ডেটা/ বৈশিষ্ট্য) ও বিহেভিয়ার (কাজ/ মেথড) থাকে।</li><li>অবজেক্ট মেমরিতে স্থান দখল করে।</li><li>অবজেক্ট বাস্তব জগতের সত্তাকে প্রতিনিধিত্ব করে।</li><li>অবজেক্ট মেসেজ পাসিং এর মাধ্যমে একে অপরের সাথে যোগাযোগ করতে পারে।</li></ul></div>
+             <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> অবজেক্টের বৈশিষ্ট্যগুলো হলো: এটা ক্লাসের বাস্তব রূপ; এর নিজস্ব ডেটা আর কাজ করার ক্ষমতা থাকে; এটা কম্পিউটারের মেমরিতে জায়গা নেয়; এটা বাস্তব কোনো জিনিস বা ধারণাকে প্রকাশ করে (যেমন: গাড়ি, ছাত্র, ব্যাংক অ্যাকাউন্ট); আর একটা অবজেক্ট আরেকটা অবজেক্টকে দিয়ে কাজ করাতে পারে।</p></div>
+             <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> আসল বাড়ির (অবজেক্ট) বৈশিষ্ট্য: এটা নকশা দেখে বানানো; এর নিজস্ব ঠিকানা, রঙ (স্টেট) থাকে আর এর ভেতরে থাকা যায়, লাইট জ্বালানো যায় (বিহেভিয়ার); এটা জায়গা নেয়; এটা একটা বাস্তব বাড়ি; আর এক বাড়ির লোক আরেক বাড়ির লোককে ডাকতে পারে।</p></div>
+        </div>
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৬। ক্লাস ও অবজেক্ট এর মধ্যে পার্থক্য লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <div class="table-container"><table><thead><tr><th>বৈশিষ্ট্য</th><th>ক্লাস (Class)</th><th>অবজেক্ট (Object)</th></tr></thead><tbody><tr><td><strong>সংজ্ঞা</strong></td><td>অবজেক্ট তৈরির ব্লুপ্রিন্ট বা টেমপ্লেট।</td><td>ক্লাসের একটি ইন্সট্যান্স বা বাস্তব রূপ।</td></tr><tr><td><strong>প্রকৃতি</strong></td><td>লজিক্যাল বা যৌক্তিক সত্তা।</td><td>ফিজিক্যাল বা ভৌত সত্তা।</td></tr><tr><td><strong>মেমরি</strong></td><td>মেমরি স্থান দখল করে না।</td><td>মেমরিতে স্থান দখল করে।</td></tr><tr><td><strong>তৈরি</strong></td><td>একবার ডিক্লেয়ার করা হয়।</td><td>প্রয়োজন অনুযায়ী একাধিক তৈরি করা যায়।</td></tr><tr><td><strong>উদাহরণ</strong></td><td><code>Car</code> একটি ক্লাস।</td><td><code>myCar</code>, <code>yourCar</code> হলো <code>Car</code> অবজেক্ট।</td></tr><tr><td><strong>অস্তিত্ব</strong></td><td>অবজেক্ট ছাড়া ক্লাসের সরাসরি ব্যবহার নেই।</td><td>ক্লাসের উপর ভিত্তি করে তৈরি হয়।</td></tr></tbody></table></div>
+            </div>
+            <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong></p><ul><li>ক্লাস হলো আইডিয়া, অবজেক্ট হলো বাস্তব জিনিস।</li><li>ক্লাস মেমরি নেয় না, অবজেক্ট নেয়।</li><li>ক্লাস একবার বানাও, অবজেক্ট অনেকগুলো বানাতে পারো।</li><li>ক্লাস নিজে কাজ করে না, অবজেক্ট কাজ করে।</li></ul></div>
+            <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> রুটি বানানোর ছাঁচ (ক্লাস) আর ছাঁচ দিয়ে বানানো রুটি (অবজেক্ট)। ছাঁচ একটাই, রুটি অনেকগুলো বানানো যায়। ছাঁচ খাওয়া যায় না, রুটি খাওয়া যায়।</p></div>
+        </div>
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৭। ক্রিয়েশনাল ডিজাইন প্যাটার্ন কত প্রকার ও কী কী?</h2>
+             <div class="answer-part exam-answer"><p><strong>পরীক্ষায় লেখার জন্য:</strong> সাধারণত ৫ প্রকার। যথা:</p><ol><li>সিঙ্গলটন (Singleton)</li><li>ফ্যাক্টরি মেথড (Factory Method)</li><li>অ্যাবস্ট্রাক্ট ফ্যাক্টরি (Abstract Factory)</li><li>বিল্ডার (Builder)</li><li>প্রোটোটাইপ (Prototype)</li></ol></div>
+             <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ক্রিয়েশনাল ডিজাইন প্যাটার্ন হলো অবজেক্ট তৈরির কিছু পরীক্ষিত কৌশল বা নকশা। এগুলো অবজেক্ট তৈরির প্রক্রিয়াকে সহজ, ফ্লেক্সিবল আর নিয়ন্ত্রিত করে। প্রধান ৫টা হলো: সিঙ্গলটন (একটাই অবজেক্ট বানানো), ফ্যাক্টরি মেথড (সাব-ক্লাসকে অবজেক্ট বানাতে দেওয়া), অ্যাবস্ট্রাক্ট ফ্যাক্টরি (সম্পর্কিত অবজেক্টের ফ্যামিলি বানানো), বিল্ডার (জটিল অবজেক্ট ধাপে ধাপে বানানো), প্রোটোটাইপ (আগের অবজেক্ট কপি করে নতুন অবজেক্ট বানানো)।</p></div>
+             <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> খেলনা বানানোর বিভিন্ন বুদ্ধি: সিঙ্গলটন (পুরো দুনিয়ায় একটাই বিশেষ খেলনা), ফ্যাক্টরি (বিভিন্ন কারখানা বিভিন্ন খেলনা বানাচ্ছে), অ্যাবস্ট্রাক্ট ফ্যাক্টরি (এক কারখানা শুধু গাড়ির পার্টস বানাচ্ছে, আরেকটা শুধু প্লেনের), বিল্ডার (আগে চাকা লাগাও, তারপর বডি, তারপর রঙ করো), প্রোটোটাইপ (একটা বানানো খেলনা দেখে ফটোকপি করে আরেকটা বানানো)।</p></div>
+        </div>
+
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">১। ক্লাসের পাবলিক মেম্বার অ্যাক্সেসিং প্রক্রিয়া প্রোগ্রাম লিখে ব্যাখ্যা কর।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য (Code & Explanation):</strong></p>
+                <p><strong>ভূমিকা:</strong> ক্লাসের যে মেম্বারগুলোকে (ভেরিয়েবল বা মেথড) `public` হিসেবে ডিক্লেয়ার করা হয়, সেগুলোকে ক্লাসের বাইরে থেকে যেকোনো স্থান হতে সরাসরি অ্যাক্সেস করা যায়। সাধারণত অবজেক্টের নামের সাথে ডট (`.`) অপারেটর ব্যবহার করে পাবলিক মেম্বার অ্যাক্সেস করা হয়।</p>
+                <p><strong>প্রোগ্রাম:</strong></p>
+                 <div class="code-container">
+                    <button class="toggle-comments-btn" title="কমেন্ট দেখানো/লুকানো">কমেন্ট লুকান</button>
+                    <pre><code class="language-java code-content">
+// একটি ক্লাস যার পাবলিক মেম্বার আছে
+class Calculator {
+    // পাবলিক ইন্সট্যান্স ভেরিয়েবল
+    public int lastResult;
+
+    // পাবলিক মেথড
+    public int add(int num1, int num2) {
+        lastResult = num1 + num2; // পাবলিক ভেরিয়েবল অ্যাক্সেস (ক্লাসের ভেতর থেকে)
+        return lastResult;
+    }
+
+    // পাবলিক মেথড
+    public void displayLastResult() {
+        System.out.println("সর্বশেষ ফলাফল (Last Result): " + lastResult);
+    }
+}
+
+// অন্য একটি ক্লাস থেকে পাবলিক মেম্বার অ্যাক্সেস
+class TestCalculator {
+    public static void main(String[] args) {
+        // Calculator ক্লাসের অবজেক্ট তৈরি
+        Calculator calc = new Calculator();
+
+        // অবজেক্টের মাধ্যমে পাবলিক মেথড কল করা (ক্লাসের বাইরে থেকে)
+        int sum = calc.add(10, 5);
+        System.out.println("যোগফল: " + sum);
+
+        // অবজেক্টের মাধ্যমে পাবলিক ভেরিয়েবল সরাসরি অ্যাক্সেস (ক্লাসের বাইরে থেকে)
+        // (যদিও সরাসরি পাবলিক ভেরিয়েবল অ্যাক্সেস কম উৎসাহিত করা হয়)
+        // calc.lastResult = 100; // ইচ্ছা করলে বাইরে থেকে মান পরিবর্তনও করা যায়
+
+        // অবজেক্টের মাধ্যমে অন্য পাবলিক মেথড কল করা
+        calc.displayLastResult();
+
+        // সরাসরি পাবলিক ভেরিয়েবলের মান দেখা (ক্লাসের বাইরে থেকে)
+        System.out.println("সরাসরি অ্যাক্সেস করা সর্বশেষ ফলাফল: " + calc.lastResult);
+    }
+}
+                    </code></pre>
+                 </div>
+                 <p><strong>ব্যাখ্যা:</strong></p>
+                 <ol>
+                     <li>`Calculator` নামে একটি ক্লাস তৈরি করা হয়েছে।</li>
+                     <li>এই ক্লাসে `lastResult` নামে একটি `public` ইন্টিজার ভেরিয়েবল এবং `add`, `displayLastResult` নামে দুটি `public` মেথড ডিক্লেয়ার করা হয়েছে।</li>
+                     <li>`add` মেথড দুটি সংখ্যা যোগ করে ফলাফল `lastResult` ভেরিয়েবলে রাখে এবং ফলাফল রিটার্ন করে। এটি ক্লাসের ভেতরের মেথড থেকে `public` ভেরিয়েবল (`lastResult`) অ্যাক্সেস করছে।</li>
+                     <li>`displayLastResult` মেথড `lastResult` এর মান প্রিন্ট করে।</li>
+                     <li>`TestCalculator` নামে আরেকটি ক্লাস তৈরি করা হয়েছে, যার `main` মেথড থেকে `Calculator` ক্লাসের পাবলিক মেম্বারগুলো অ্যাক্সেস করা হবে।</li>
+                     <li>`Calculator calc = new Calculator();` লাইনের মাধ্যমে `Calculator` ক্লাসের একটি অবজেক্ট (`calc`) তৈরি করা হয়েছে।</li>
+                     <li>`calc.add(10, 5);` লাইনে, `calc` অবজেক্টের মাধ্যমে `add` মেথডটি কল করা হয়েছে। এটি ক্লাসের বাইরে থেকে একটি `public` মেথড অ্যাক্সেসের উদাহরণ।</li>
+                     <li>`calc.displayLastResult();` লাইনে একইভাবে `displayLastResult` মেথড কল করা হয়েছে।</li>
+                     <li>`System.out.println("সরাসরি অ্যাক্সেস করা সর্বশেষ ফলাফল: " + calc.lastResult);` লাইনে, `calc` অবজেক্টের মাধ্যমে সরাসরি `public` ভেরিয়েবল `lastResult` অ্যাক্সেস করা হয়েছে।</li>
+                     <li>যেহেতু মেম্বারগুলো `public`, তাই `TestCalculator` ক্লাস থেকে (যা `Calculator` ক্লাসের বাইরে) অবজেক্ট (`calc`) ব্যবহার করে ডট (`.`) অপারেটরের সাহায্যে সহজেই সেগুলো অ্যাক্সেস করা যাচ্ছে।</li>
+                 </ol>
+            </div>
+             <div class="answer-part explanation"><p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ক্লাসের কিছু জিনিসকে যদি আমরা `public` বলে দিই, তার মানে হলো সেই জিনিসগুলো ক্লাসের বাইরে থেকেও যে কেউ দেখতে বা ব্যবহার করতে পারবে। যেমন, `Calculator` ক্লাসের `add` মেথডটা `public`, তাই `TestCalculator` ক্লাস থেকে `calc.add(10, 5)` লিখে আমরা সহজেই সেটাকে ব্যবহার করতে পারছি। একইভাবে `lastResult` ভেরিয়েবলটাও `public` হওয়ায় আমরা `TestCalculator` থেকে `calc.lastResult` লিখে সেটার মান দেখতে পাচ্ছি (বা চাইলে बदलানোও যেত)। পাবলিক জিনিস হলো সবার জন্য খোলা, কোনো বাধা নেই। তবে সাধারণত ভেরিয়েবলগুলোকে সরাসরি পাবলিক না করে মেথডের মাধ্যমে ব্যবহার করাই ভালো প্র্যাকটিস।</p></div>
+             <div class="answer-part answer-part-3"><p><strong>একদম সহজ ব্যাখ্যা:</strong> মনে করো, তোমার একটা খেলনার বাক্স (`Calculator` ক্লাস) আছে। বাক্সের গায়ে যদি তুমি লিখে রাখো "সবার জন্য খোলা" (`public`), তাহলে যে কেউ (`TestCalculator` ক্লাস) এসে বাক্সটা খুলে ভেতরের খেলনা (`lastResult` ভেরিয়েবল) দেখতেও পারবে, আবার ভেতরের বাটন (`add`, `displayLastResult` মেথড) টিপে খেলনা চালাতেও পারবে। পাবলিক মানে হলো কোনো প্রাইভেসি নেই, সবার জন্য উন্মুক্ত।</p></div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>অ্যাপ্লিকেশন ডেভেলপমেন্ট ইউজিং জাভা - স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    {/* --- Scripts at the end of body --- */}
+
+    {/* KaTeX JS (Deferred - No integrity/crossorigin) */}
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, { delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true} ], throwOnError: false });"></script>
+
+    {/* Prism.js Core & Autoloader (No integrity/crossorigin) */}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    {/* External JavaScript File for Theme & Comment Toggling */}
+    <script src="main_script.js" defer></script>
+
+</body>
+</html>

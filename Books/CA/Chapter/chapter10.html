@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ১০: অ্যাডভান্সড মাইক্রোপ্রসেসরের বৈশিষ্ট্য</title>
+    <link rel="stylesheet" href="os_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k55gMp/InvxBM1Mty9rgRDIJNu38mMhftBPqzhAXSDdy92HjL4IFNfey" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1MZu6ADomyXk8EogbLDBsPU5rkXF/dtZZxL1Pceg6x" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouEs/BHtTcWgwPkMAVEABrHI+WGBmvygAodXElARTYHD" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError : false
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>অধ্যায় ১০: অ্যাডভান্সড মাইক্রোপ্রসেসরের বৈশিষ্ট্য</h1>
+        <button id="theme-toggle" class="theme-toggle-button" aria-label="থিম পরিবর্তন করুন">
+            </button>
+    </header>
+
+    <main>
+        <h3 class="question-type-header">অতি সংক্ষিপ্ত প্রশ্ন</h3>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">১। সুপার স্কেলার আর্কিটেকচার কী?</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> সুপারস্কেলার আর্কিটেকচার (Superscalar Architecture) হলো এক ধরনের মাইক্রোপ্রসেসর ডিজাইন যা একটি ক্লক সাইকেলে একাধিক ইনস্ট্রাকশন স্বাধীনভাবে এক্সিকিউট করতে পারে। এটি ইনস্ট্রাকশন-লেভেল প্যারালালইজম (ILP) ব্যবহার করে পারফরম্যান্স বৃদ্ধি করে, যার জন্য একাধিক এক্সিকিউশন ইউনিট প্রয়োজন হয়।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, সুপারস্কেলার মানে হলো প্রসেসরের ভেতরে একই কাজ করার জন্য একাধিক ইউনিট থাকা, যাতে সে একই সময়ে কয়েকটা কাজ করতে পারে। ফারজানার মতো, যে একই সাথে গান শুনতে আর ছবি আঁকতে পারে!</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা ফাস্ট ফুডের দোকানে যেমন একসাথে কয়েকটা বার্গার বানানো যায়, সুপারস্কেলার প্রসেসরও তেমনি একই সময়ে কয়েকটা হিসাব করতে পারে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">২। রিয়‍্যাল মোড কাকে বলে?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> রিয়্যাল মোড (Real Mode) হলো Intel x86 প্রসেসরগুলোর একটি অপারেটিং মোড যা 8086/8088 প্রসেসরের কার্যকারিতা অনুকরণ করে। এই মোডে প্রসেসর শুধুমাত্র 1MB মেমরি অ্যাড্রেস করতে পারে এবং এতে মেমরি প্রোটেকশন বা হার্ডওয়্যার মাল্টিটাস্কিং সাপোর্ট থাকে না।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, রিয়্যাল মোড হলো প্রসেসরের একটা পুরনো দিনের কাজের স্টাইল, যেটা একদম প্রথম 8086 প্রসেসরের মতো কাজ করে। এটা রিফাতের পুরনো দিনের বাটন ফোনের মতো, শুধু বেসিক কাজ পারে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> কম্পিউটারের "বেসিক মোড", যেখানে সে শুধু পুরনো দিনের সহজ কাজগুলো করতে পারে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+             <h2 class="question-title">৩। BIST-এর কাজ কী?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> BIST (Built-In Self-Test) এর প্রধান কাজ হলো একটি ইন্টিগ্রেটেড সার্কিটকে (যেমন মাইক্রোপ্রসেসর) পাওয়ার-অন বা নির্দিষ্ট কমান্ডের মাধ্যমে নিজের ভেতরের সার্কিট্রি বা ফাংশনালিটি পরীক্ষা করার সুযোগ দেওয়া। এটি টেস্টিং সহজ ও দ্রুত করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, BIST হলো চিপের নিজের ভেতরে থাকা একটা 'সেলফ-টেস্ট' বা 'ডাক্তার'। এটা নিজে নিজেই চিপের বিভিন্ন অংশ ঠিকঠাক কাজ করছে কিনা তা পরীক্ষা করে। ফারজানা যেমন পরীক্ষার আগে নিজে নিজে মক টেস্ট দেয়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা গাড়ির মতো যার ভেতরেই একটা মেকানিক আছে, যে স্টার্ট দিলেই সব চেক করে নেয়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-oti">
+            <h2 class="question-title">৪। BIST-এর পূর্ণ নাম নাম কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> BIST-এর পূর্ণ নাম হলো Built-In Self-Test।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> BIST মানে হলো Built-In Self-Test, অর্থাৎ ভেতরেই তৈরি করা সেলফ-টেস্ট করার ব্যবস্থা।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> নিজের পরীক্ষা নিজে নেওয়া (Built-In Self-Test)।</p>
+            </div>
+        </div>
+
+
+        <h3 class="question-type-header">সংক্ষিপ্ত প্রশ্নোত্তর</h3>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১। ডুয়েল কোর বা কোয়াড কোর কী?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <ul>
+                     <li><strong>ডুয়াল কোর (Dual Core):</strong> একটি সিঙ্গেল সিপিইউ চিপ যাতে দুটি স্বাধীন প্রসেসিং কোর থাকে।</li>
+                     <li><strong>কোয়াড কোর (Quad Core):</strong> একটি সিঙ্গেল সিপিইউ চিপ যাতে চারটি স্বাধীন প্রসেসিং কোর থাকে।</li>
+                 </ul>
+                 <p>এই মাল্টি-কোর ডিজাইনগুলো মাল্টিটাস্কিং ও প্যারালাল প্রসেসিং এ পারফরম্যান্স বৃদ্ধি করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, ডুয়াল কোর মানে একটা প্রসেসরে দুটো ব্রেইন, কোয়াড কোর মানে চারটে ব্রেইন। যত বেশি কোর, তত বেশি কাজ একসাথে করা যায়। রিফাতের যদি দুটো মাথা থাকতো (ডুয়াল কোর)!</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> ডুয়াল কোর মানে গাড়িতে দুটো ইঞ্জিন, কোয়াড কোর মানে গাড়িতে চারটে ইঞ্জিন। ইঞ্জিন যত বেশি, গাড়ি তত পাওয়ারফুল।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">২। প্রটেক্টেড মোড অপারেশন কাকে বলে?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> প্রটেক্টেড মোড (Protected Mode) হলো Intel x86 প্রসেসরগুলোর (80286+) একটি প্রধান অপারেটিং মোড যা বৃহৎ মেমরি স্পেস (1MB এর বেশি) অ্যাড্রেস করতে পারে এবং হার্ডওয়্যার-ভিত্তিক মেমরি প্রোটেকশন ও মাল্টিটাস্কিংয়ের মতো অ্যাডভান্সড বৈশিষ্ট্য প্রদান করে। আধুনিক অপারেটিং সিস্টেমগুলো এই মোডে কাজ করে।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, প্রটেক্টেড মোড হলো প্রসেসরের 'স্মার্টফোন' মোড। এই মোডে সে অনেক বেশি মেমরি ব্যবহার করতে পারে, এক প্রোগ্রামকে অন্য প্রোগ্রামের জায়গায় ঢুকতে দেয় না (প্রোটেকশন), আর একসাথে অনেকগুলো প্রোগ্রাম চালাতে পারে (মাল্টিটাস্কিং)। ফারজানা যেমন তার কম্পিউটারে একসাথে অনেক কাজ করে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা সুরক্ষিত বিল্ডিংয়ের মতো, যেখানে অনেক তলা (বেশি মেমরি), প্রতি ফ্ল্যাটের আলাদা নিরাপত্তা (মেমরি প্রোটেকশন), আর অনেকে একসাথে থাকতে পারে (মাল্টিটাস্কিং)।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৩। প্যারালাল প্রসেসিং কাকে বলে?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> প্যারালাল প্রসেসিং (Parallel Processing) হলো একটি কম্পিউটিং কৌশল যেখানে একটি কাজকে একাধিক ছোট অংশে ভাগ করে সেই অংশগুলোকে একই সময়ে একাধিক প্রসেসর বা প্রসেসিং কোরের মাধ্যমে সমান্তরালভাবে এক্সিকিউট করা হয়। এর উদ্দেশ্য হলো কাজ দ্রুত সম্পন্ন করা এবং সিস্টেমের থ্রুপুট বৃদ্ধি করা।</p>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, প্যারালাল প্রসেসিং মানে হলো একটা বড় কাজকে ভাগ করে নিয়ে অনেকে মিলে একসাথে করা। যেমন, একটা বড় বাড়ির নকশা আঁকার কাজটা যদি রিফাত, তুমি আর আমি ভাগ করে নিয়ে একই সময়ে আঁকি, তাহলে কাজটা অনেক তাড়াতাড়ি শেষ হবে।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> দশজন লোক মিলে একসাথে একটা দেয়াল গাঁথা (প্যারালাল প্রসেসিং) একজন লোকের একা গাঁথার চেয়ে অনেক দ্রুত হয়।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৪। পেন্টিয়াম প্রসেসর কয়টি মোডে কাজ করে ও কী কী?</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> পেন্টিয়াম প্রসেসর প্রধানত চারটি মোডে কাজ করতে পারে:</p>
+                 <ol>
+                     <li>রিয়্যাল মোড (Real Mode)</li>
+                     <li>প্রটেক্টেড মোড (Protected Mode)</li>
+                     <li>ভার্চুয়াল ৮০৮৬ মোড (Virtual 8086 Mode)</li>
+                     <li>সিস্টেম ম্যানেজমেন্ট মোড (System Management Mode - SMM)</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, পেন্টিয়াম প্রসেসর কয়েকটা ভিন্ন ভিন্ন রূপে বা মোডে চলতে পারে: পুরনো 8086 এর মতো (রিয়্যাল), আধুনিক শক্তিশালী রূপে (প্রটেক্টেড), প্রটেক্টেডের ভেতরে পুরনো প্রোগ্রাম চালানোর জন্য (ভার্চুয়াল 8086), আর পাওয়ার সেভিং বা গোপন কাজের জন্য (SMM)। ফারজানা যেমন কখনো ছাত্রী, কখনো খেলোয়াড়।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা খেলনা রোবটের বিভিন্ন মোড: হাঁটার মোড, কথা বলার মোড, ঘুমানোর মোড, আর একটা সিক্রেট মোড।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৫। রিয়‍্যাল মোড ও প্রটেক্টেড মোড অপারেশন বলতে কী বুঝ?</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong></p>
+                 <ul>
+                     <li><strong>রিয়্যাল মোড অপারেশন:</strong> 8086/88 এর মতো কাজ করে, 1MB মেমরি অ্যাক্সেস, কোনো মেমরি প্রোটেকশন বা হার্ডওয়্যার মাল্টিটাস্কিং নেই।</li>
+                     <li><strong>প্রটেক্টেড মোড অপারেশন:</strong> বৃহৎ মেমরি (4GB+) অ্যাক্সেস, ভার্চুয়াল মেমরি, মেমরি প্রোটেকশন এবং হার্ডওয়্যার মাল্টিটাস্কিং সমর্থন করে।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, রিয়্যাল মোড হলো বেসিক, পুরনো ধরণ (1MB মেমরি, নিরাপত্তা কম)। প্রটেক্টেড মোড হলো আধুনিক, শক্তিশালী ধরণ (অনেক মেমরি, নিরাপত্তা বেশি, মাল্টিটাস্কিং)। রিফাতের সাইকেল চালানো রিয়্যাল মোড, আর প্লেন চালানো প্রটেক্টেড মোড।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> রিয়্যাল মোড মানে খোলা মাঠে খেলা। প্রটেক্টেড মোড মানে একটা বড় সুরক্ষিত বিল্ডিংয়ে খেলা।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৬। পেন্টিয়াম-৪ প্রসেসরের স্পেসিফিকেশন উল্লেখ কর।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ইন্টেল পেন্টিয়াম ৪ (Pentium 4) প্রসেসরের কিছু সাধারণ স্পেসিফিকেশন:</p>
+                 <ul>
+                     <li><strong>আর্কিটেকচার:</strong> নেটবার্স্ট (NetBurst)</li>
+                     <li><strong>ক্লক স্পিড:</strong> ~1.3 GHz - 3.8 GHz</li>
+                     <li><strong>FSB:</strong> 400/533/800/1066 MT/s</li>
+                     <li><strong>কোর:</strong> সিঙ্গেল কোর (কিছু মডেলে হাইপার-থ্রেডিং)</li>
+                     <li><strong>ক্যাশ:</strong> L1 (ডেটা+ট্রেস), L2 (যেমন 256KB-2MB)</li>
+                     <li><strong>সকেট:</strong> Socket 423/478, LGA 775</li>
+                     <li><strong>ফিচার:</strong> SSE, SSE2, SSE3, Hyper-Threading (কিছু মডেলে)</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, পেন্টিয়াম ৪ এর কিছু বৈশিষ্ট্য: নেটবার্স্ট ডিজাইন, স্পিড অনেক বেশি ছিল (GHz রেঞ্জে), FSB স্পিডও ভালো ছিল, একটাই কোর কিন্তু কিছু মডেলে হাইপার-থ্রেডিং ছিল, L1/L2 ক্যাশ ছিল, SSE ইনস্ট্রাকশন সাপোর্ট করতো। ফারজানার নতুন ল্যাপটপের কনফিগারেশনের মতো।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা নির্দিষ্ট মডেলের গাড়ির স্পেসিফিকেশন: ইঞ্জিনের ক্ষমতা, টপ স্পিড, চাকা কেমন, ভেতরে কী কী ফিচার আছে ইত্যাদি।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৭। মাল্টিপ্রসেসিং-এর সুবিধা লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> মাল্টিপ্রসেসিং এর প্রধান সুবিধাগুলো হলো:</p>
+                 <ol>
+                     <li>বর্ধিত থ্রুপুট (একই সময়ে বেশি কাজ)।</li>
+                     <li>উন্নত পারফরম্যান্স (কাজ দ্রুত সম্পন্ন)।</li>
+                     <li>বর্ধিত নির্ভরযোগ্যতা (একটি প্রসেসর ফেইল করলেও সিস্টেম চলতে পারে)।</li>
+                     <li>খরচ সাশ্রয় (কিছু ক্ষেত্রে, রিসোর্স শেয়ারিংয়ের মাধ্যমে)।</li>
+                 </ol>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, একটা কম্পিউটারে একাধিক প্রসেসর বা কোর ব্যবহার করার লাভ: একসাথে বেশি কাজ করা যায়, কাজ তাড়াতাড়ি শেষ হয়, একটা নষ্ট হলেও কিছুটা চলে, আর রিসোর্স শেয়ার করে বলে খরচও কমতে পারে। রিফাতের যদি চারটে হাত থাকতো!</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা টিম বানিয়ে কাজ করার সুবিধা: কাজ দ্রুত হয়, নির্ভরযোগ্যতা বাড়ে, আর সবাই মিলে জিনিসপত্র শেয়ার করতে পারে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">৮। পেন্টিয়াম প্রসেসরের বৈশিষ্ট্য উল্লেখ কর।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ইন্টেল পেন্টিয়াম প্রসেসরের (প্রথম দিকের) কিছু বৈশিষ্ট্য:</p>
+                 <ul>
+                     <li>সুপারস্কেলার ডিজাইন (দুটি ইন্টিজার পাইপলাইন)।</li>
+                     <li>64-বিট এক্সটার্নাল ডেটা বাস।</li>
+                     <li>সেপারেট L1 কোড ও ডেটা ক্যাশ (8KB+8KB)।</li>
+                     <li>উন্নত অন-চিপ FPU।</li>
+                     <li>ব্রাঞ্চ প্রেডিকশন।</li>
+                     <li>MMX টেকনোলজি (পরবর্তী মডেলে)।</li>
+                     <li>একাধিক অপারেটিং মোড সাপোর্ট।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, পেন্টিয়াম প্রসেসর (পুরনো দিনের বস) এর কিছু পাওয়ার: একই সময়ে দুটো কাজ করতে পারতো, ডেটা বাস অনেক চওড়া ছিল, আলাদা L1 ক্যাশ ছিল, দশমিকের হিসাব খুব দ্রুত করতো, প্রোগ্রাম কোথায় লাফ দেবে অনুমান করতো, পরে MMX যুক্ত হয়েছিল। ফারজানার পুরনো 486 এর চেয়ে অনেক পাওয়ারফুল ছিল।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা সুপারহিরোর মতো যার দুটো হাত, চওড়া রাস্তা দিয়ে হাঁটে, দুটো পকেট, আর খুব দ্রুত অঙ্ক করতে পারে।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+             <h2 class="question-title">৯। Inter core i3 প্রসেসরের বৈশিষ্ট্য লেখ।</h2>
+             <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ইন্টেল কোর আই৩ (Core i3) প্রসেসরের সাধারণ বৈশিষ্ট্য:</p>
+                 <ul>
+                     <li>সাধারণত ডুয়াল-কোর (2 Cores)।</li>
+                     <li>হাইপার-থ্রেডিং সাপোর্ট করে (যেমন 2 Cores, 4 Threads)।</li>
+                     <li>মাঝারি থেকে উচ্চ ক্লক স্পিড।</li>
+                     <li>তুলনামূলক ছোট L3 ক্যাশ।</li>
+                     <li>ইন্টিগ্রেটেড গ্রাফিক্স থাকে।</li>
+                     <li>টার্বো বুস্ট সাধারণত থাকে না।</li>
+                     <li>সাধারণ কম্পিউটিং, অফিসিয়াল কাজ, মাল্টিমিডিয়ার জন্য উপযুক্ত।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, Core i3 হলো ইন্টেলের এন্ট্রি-লেভেল প্রসেসর। ২টা কোর থাকে, হাইপার-থ্রেডিং থাকে, স্পিড মোটামুটি, ক্যাশ কম, গ্রাফিক্স চিপ ভেতরেই থাকে, কিন্তু টার্বো বুস্ট নেই। এটা রিফাতের স্টুডেন্ট ল্যাপটপের মতো।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা ফ্যামিলি কার। খুব বেশি গতি বা লাক্সারি নেই, কিন্তু প্রতিদিনের কাজের জন্য যথেষ্ট।</p>
+            </div>
+        </div>
+
+        <div class="question-block q-type-shong">
+            <h2 class="question-title">১০। Intel core i7 প্রসেসরের বৈশিষ্ট্য লেখ।</h2>
+            <div class="answer-part exam-answer">
+                 <p><strong>পরীক্ষায় লেখার জন্য:</strong> ইন্টেল কোর আই৭ (Core i7) প্রসেসরের সাধারণ বৈশিষ্ট্য:</p>
+                 <ul>
+                     <li>সাধারণত কোয়াড-কোর (4 Cores) বা তার বেশি।</li>
+                     <li>হাইপার-থ্রেডিং সাপোর্ট করে।</li>
+                     <li>উচ্চ থেকে খুব উচ্চ ক্লক স্পিড।</li>
+                     <li>টার্বো বুস্ট টেকনোলজি থাকে।</li>
+                     <li>তুলনামূলকভাবে বড় L3 ক্যাশ।</li>
+                     <li>ইন্টিগ্রেটেড গ্রাফিক্স থাকতেও পারে, নাও পারে।</li>
+                     <li>গেমিং, ভিডিও এডিটিং, ও অন্যান্য ভারী কাজের জন্য উপযুক্ত।</li>
+                 </ul>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> রিফাত, Core i7 হলো ইন্টেলের পাওয়ারফুল প্রসেসর। অনেকগুলো কোর থাকে, হাইপার-থ্রেডিং থাকে, স্পিড খুব বেশি, নিজে নিজে স্পিড বাড়াতে পারে (টার্বো বুস্ট), ক্যাশ মেমরি অনেক বেশি। এটা ফারজানার হাই-এন্ড গেমিং ল্যাপটপের মতো।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা স্পোর্টস কার। অনেক ইঞ্জিন, প্রচণ্ড গতি, প্রয়োজনে আরও গতি বাড়ানোর ক্ষমতা।</p>
+            </div>
+        </div>
+
+
+        <h3 class="question-type-header">রচনামূলক প্রশ্ন</h3>
+
+        <div class="question-block q-type-rocho">
+            <h2 class="question-title">১। পেন্টিয়াম ও ৮০৮৬ প্রসেসরের মধ্যে পার্থক্য লেখ।</h2>
+            <div class="answer-part exam-answer">
+                <p><strong>পরীক্ষায় লেখার জন্য:</strong> ইন্টেল পেন্টিয়াম এবং ইন্টেল ৮০৮৬ প্রসেসরের মধ্যে প্রধান পার্থক্যগুলো নিম্নরূপ:</p>
+                 <div class="table-container">
+                     <table>
+                         <thead>
+                             <tr>
+                                 <th>বৈশিষ্ট্য</th>
+                                 <th>ইন্টেল ৮০৮৬ (Intel 8086)</th>
+                                 <th>ইন্টেল পেন্টিয়াম (Intel Pentium - প্রথম প্রজন্ম)</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr>
+                                 <td><strong>আর্কিটেকচার</strong></td>
+                                 <td>16-বিট</td>
+                                 <td>32-বিট (IA-32)</td>
+                             </tr>
+                             <tr>
+                                 <td><strong>ডেটা বাস</strong></td>
+                                 <td>16-বিট</td>
+                                 <td>64-বিট</td>
+                             </tr>
+                             <tr>
+                                 <td><strong>অ্যাড্রেস বাস</strong></td>
+                                 <td>20-বিট (1MB)</td>
+                                 <td>32-বিট (4GB)</td>
+                             </tr>
+                             <tr>
+                                 <td><strong>ক্লক স্পিড (সাধারণ)</strong></td>
+                                 <td>5-10 MHz</td>
+                                 <td>60-200+ MHz</td>
+                             </tr>
+                             <tr>
+                                 <td><strong>সুপারস্কেলার</strong></td>
+                                 <td>না</td>
+                                 <td>হ্যাঁ (2-way)</td>
+                             </tr>
+                              <tr>
+                                 <td><strong>পাইপলাইনিং</strong></td>
+                                 <td>বেসিক (BIU/EU)</td>
+                                 <td>উন্নত 5-স্টেজ</td>
+                             </tr>
+                             <tr>
+                                 <td><strong>অন-চিপ ক্যাশ</strong></td>
+                                 <td>না</td>
+                                 <td>L1 (8KB কোড + 8KB ডেটা)</td>
+                             </tr>
+                             <tr>
+                                 <td><strong>অন-চিপ FPU</strong></td>
+                                 <td>না (8087 লাগত)</td>
+                                 <td>হ্যাঁ (উন্নত)</td>
+                             </tr>
+                             <tr>
+                                 <td><strong>ব্রাঞ্চ প্রেডিকশন</strong></td>
+                                 <td>না</td>
+                                 <td>হ্যাঁ</td>
+                             </tr>
+                             <tr>
+                                 <td><strong>অপারেটিং মোড</strong></td>
+                                 <td>রিয়্যাল (মিনিমাম/ম্যাক্সিমাম)</td>
+                                 <td>রিয়্যাল, প্রটেক্টেড, V86, SMM</td>
+                             </tr>
+                             <tr>
+                                 <td><strong>ট্রানজিস্টর সংখ্যা</strong></td>
+                                 <td>~২৯,০০০</td>
+                                 <td>~৩.১ মিলিয়ন</td>
+                             </tr>
+                         </tbody>
+                     </table>
+                 </div>
+            </div>
+            <div class="answer-part explanation">
+                 <p><strong>সহজ ভাষায় ব্যাখ্যা:</strong> ফারজানা, 8086 হলো কম্পিউটারের দাদা, আর পেন্টিয়াম হলো নাতির মতো। পার্থক্য বিশাল: পেন্টিয়াম 32-বিটের, 8086 16-বিটের; পেন্টিয়ামের বাস অনেক চওড়া, স্পিড অনেক বেশি; পেন্টিয়াম একই সময়ে দুটো কাজ করতে পারতো, ক্যাশ মেমরি আর FPU নিজের ভেতরেই ছিল, লাফ দেওয়ার আগে অনুমান করতে পারতো, অনেকগুলো মোডে চলতে পারতো। এটা রিফাতের পুরনো সাইকেল (8086) আর তার বাবার মোটর বাইকের (পেন্টিয়াম) মতো।</p>
+            </div>
+            <div class="answer-part answer-part-3">
+                 <p><strong>একদম সহজ ব্যাখ্যা:</strong> একটা গরুর গাড়ি (8086) আর একটা সাধারণ কার (পেন্টিয়াম) এর মধ্যে যা যা পার্থক্য: গতি, ক্ষমতা, আকার, ফিচার – সবকিছুতেই পেন্টিয়াম অনেক এগিয়ে।</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>কম্পিউটার আর্কিটেকচার অ্যান্ড মাইক্রোপ্রসেসর স্টাডি অ্যাসিস্ট্যান্ট</p>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme');
+
+        // Function to apply theme
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀️ লাইট মোড'; // Sun icon for light mode switch
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeToggleBtn.textContent = '🌙 ডার্ক মোড'; // Moon icon for dark mode switch
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initial theme setup
+        let preferredTheme = 'light'; // Default to light
+        if (currentTheme) {
+            preferredTheme = currentTheme;
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Uncomment below line if you want system preference to be the initial default
+            // preferredTheme = 'dark';
+        }
+        applyTheme(preferredTheme);
+
+        // Button click listener
+        themeToggleBtn.addEventListener('click', () => {
+            let newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+    </script>
+
+</body>
+</html>
